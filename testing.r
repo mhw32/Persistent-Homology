@@ -19,13 +19,31 @@ circle <- function(num=n, rad=r, center=c(0, 0)) {
 }
 
 # Run the RIPS diagram for N independent simulation
-multiRIPS <- function(maxdimension, maxscale, N) {
+multiRIPS <- function(maxdimension, maxscale, N, K) {
   for (i in 1:N) {
-    Circle <- circle(numparticle, radius, center)
+    Circle <- circle(K, radius, center)
     Diag   <- ripsDiag(Circle, maxdimension, maxscale, library = "GUDHI", printProgress = FALSE)
     # Use points so that we can overlay these RIPS diagrams.
     par(new = TRUE)
-    plot(Diag$diagram, main = "RIPS Diagram")
+    plot(Diag$diagram, main = paste("RIPS Diagram", "( N =", toString(N), ", n =", toString(K), ")"))
+  }
+}
+
+# Adds gaussian noise
+makeNoise <- function(mu, sigma, num) {
+  result <- rnorm(num, mean = mu, sd = sigma)
+  return(result)
+}
+
+noisyRIPS <- function(maxdimension, maxscale, N, K, emu, esig) {
+  for (i in 1:N) {
+    Circle <- circle(K, radius, center)
+    # Add some gaussian noise to the circle.
+    Diag   <- ripsDiag(Circle, maxdimension, maxscale, library = "GUDHI", printProgress = FALSE)
+    # Use points so that we can overlay these RIPS diagrams.
+    par(new = TRUE)
+    plot(Diag$diagram, main = paste("RIPS Diagram", "( N =", toString(N), ", n =", toString(K), "noise = N(", toString(emu), ",", toString(esig), ")", ")"
+))
   }
 }
 
@@ -35,7 +53,7 @@ maxscale     <- 5          # limit of the filtration
 numparticle  <- 10         # number of samples to draw per circle
 radius       <- 2          # radius of circle
 center       <- c(0, 0)    # center of circle
-multiRIPS(maxdimension, maxscale, 100)
+multiRIPS(maxdimension, maxscale, 10, 250)
 
 # ---------------------------------------------------------
 # TRIAL TWO : Do the same thing with "Kernel Density" RIPS.
@@ -59,28 +77,27 @@ Ylim        <- c(center[1] - radius - 1, center[2] + radius + 1)
 by          <- 0.1
 Grid        <- makeGrid(X, Xlim, Ylim, by)
 
-
-multiKDE <- function(N, Xlim, Ylim, by, h=0.3) {
+multiKDE <- function(N, K, Xlim, Ylim, by, h=0.3) {
   for (i in 1:N) {
-    Circle <- circle(numparticle, radius, center)
+    Circle <- circle(K, radius, center)
     # Use gridDiag with the Kernal Density Estimator.
     Diag <- gridDiag(X = Circle, FUN = kde, lim = cbind(Xlim, Ylim), by = by, 
                      sublevel = FALSE, library = "Dionysus", printProgress = FALSE, h = h)
     par(new = TRUE)
-    plot(Diag$diagram, main = "KDE Diagram")
+    plot(Diag$diagram, main = paste("KDE Diagram", "( N =", toString(N), ", n =", toString(K), ")"))
   }
 }
 
 # ----------------------------------------------------------------
 # TRIAL THREE : Do the same thing with "Distance to Measure" RIPS.
-multiDTM <- function(N, Xlim, Ylim, by, m0=0.1) {
+multiDTM <- function(N, K, Xlim, Ylim, by, m0=0.1) {
   for (i in 1:N) {
-    Circle <- circle(numparticle, radius, center)
+    Circle <- circle(K, radius, center)
     # Use gridDiag with the Kernal Density Estimator.
     Diag <- gridDiag(X = Circle, FUN = dtm, lim = cbind(Xlim, Ylim), by = by, 
-                     sublevel = FALSE, library = "Dionysus", printProgress = FALSE, m0 = h)
+                     sublevel = FALSE, library = "Dionysus", printProgress = FALSE, m0 = m0)
     par(new = TRUE)
-    plot(Diag$diagram, main = "DTM Diagram")
+    plot(Diag$diagram, main = paste("DTM Diagram", "( N =", toString(N), ", n =", toString(K), ")"))
   }
 }
 
