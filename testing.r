@@ -35,15 +35,40 @@ makeNoise <- function(mu, sigma, num) {
   return(result)
 }
 
+# First way of adding noise. This shifts the actual points on the circle a little bit. 
 noisyRIPS <- function(maxdimension, maxscale, N, K, emu, esig) {
   for (i in 1:N) {
     Circle <- circle(K, radius, center)
+    Noise1 <- makeNoise(emu, esig, K)
+    Noise2 <- makeNoise(emu, esig, K)
+    # Combine the vectors with the noise
+    Circle[, 1] = Circle[, 1] + Noise1
+    Circle[, 2] = Circle[, 2] + Noise2
     # Add some gaussian noise to the circle.
     Diag   <- ripsDiag(Circle, maxdimension, maxscale, library = "GUDHI", printProgress = FALSE)
     # Use points so that we can overlay these RIPS diagrams.
     par(new = TRUE)
-    plot(Diag$diagram, main = paste("RIPS Diagram", "( N =", toString(N), ", n =", toString(K), "noise = N(", toString(emu), ",", toString(esig), ")", ")"
+    plot(Diag$diagram, main = paste("RIPS Diagram", "( N =", toString(N), ", n =", toString(K), "noise = Gaussian(", toString(emu), ",", toString(esig), ")", ")"
 ))
+  }
+}
+
+# This adds noise a second way. This adds additional points themselves to the circle.
+# But it lets circles maintain its structure.
+noisy2RIPS <- function(maxdimension, maxscale, N, K, E) {
+  for (i in 1:N) {
+    Circle <- circle(K, radius, center)
+    Noise1 <- makeNoise(center[1], radius/2, E)
+    Noise2 <- makeNoise(center[1], radius/2, E)
+    Noise <- cbind(Noise1, Noise2)
+    # Combine the vectors with the noise
+    Circle <- rbind(Circle, Noise)
+    # Add some gaussian noise to the circle.
+    Diag   <- ripsDiag(Circle, maxdimension, maxscale, library = "GUDHI", printProgress = FALSE)
+    # Use points so that we can overlay these RIPS diagrams.
+    par(new = TRUE)
+    plot(Diag$diagram, main = paste("RIPS Diagram", "( N =", toString(N), ", n =", toString(K), "noise = Gaussian(", toString(center[1]), ",", toString(radius/2), ")", ")"
+    ))
   }
 }
 
