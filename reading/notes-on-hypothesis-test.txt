@@ -1,0 +1,29 @@
+Hypothesis Testing for Topological Data Analysis
+Andrew Robinson & Katherine Turner
+-------------------------------------------------
+
+How do you statistically compare persistence diagrams.
+Uses a randomization-style null hypothesis significance test (NHST).
+
+Topological Data Analysis is used to find shape in data. Persistent homology shows how the topology changes through a filtration through space. The question is how to connect persistence and statistics? How can we make decisions about entire collections of persistence diagrams. 
+
+Related work : Randomization tests on persistence landscapes.
+NHST : tool that provides a measure of strength of evidence against of hypothesis. It finds differences between types of objects (persistence diagrams are observations). 
+
+Persistence diagrams are actually infinite dimensions. So we cannot use parametric models. Paper uses a joint loss function + use a randomization test. 
+Randomization tests: if 2 sets of diagrams are drawn from the same distribution of diagrams, p value = random variable with uniform distribution ~ U(0, 1). But we can't say p will be low if distributions are different. 
+
+Persistence Diagrams as Random Elements
+---------------------------------------
+
+Because construction of persistence diagrams is a bit random, then this randomness is also in the collection of diagrams. Each persistence diagram is like a random element. 
+
+Let's say we are sampling points m with noise from some K. This is equal to a point cloud that will approximate K. This sample =  a distribution rho. Each point cloud --> simplicial complexes. So the distribution of point clouds --> distribution of simplicial complex filtrations. Every time we draw m sample points to create a point cloud = drawing a sample from distribution rho + drawing a sample persistence diagram. If we have two objects K and L, then null hypothesis = from the same subset. If rho_{K} == rho_{L} --> necessary but no sufficient condition. We want to test if the underlying distributions from which rho_{K} and rho_{L} are drawn are the same.
+
+Null Hypothesis Significance Testing
+------------------------------------
+
+Choose a parameter that represents the data (like mean, median, variance). Choose a statistic to estimate that parameter. Predict the statistical behavior of the statistic under the null hypothesis (generally the test statistic is assumed to be from some distribution aka Gaussian by CLT). Compare the observed value of the test statistic with the expected behavior under the null. If the test statistic does not align with the expectation, it is evidence against it. 
+
+NHST = usually conditional on a model. The hypothesis is then based on the parameters of the model. Therefore, we have to ensure that the model is an approximation of reality. 
+
