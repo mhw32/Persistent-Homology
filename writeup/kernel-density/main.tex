@@ -110,7 +110,7 @@ Each of the $K$ points sampled from the uniform circle is shifted a little by a 
 \end{figure}
 
 \subsection{Adding Additional Points}
-Instead of perturbing the points themselves, additional gaussian samples are added around the circle. This should again, be an easier problem than the previous one. There still is a clear circular structure, albeit distractions all around. Looking at the data, the main loop was not found. All of the 1st order homology features had very short lives, indicating that could not have been the loop. And if they were, they must of immediately been distracted by the noise. From these observations, I think that Kernel Density Estimate also does not do well with noise. In general, I think topological methods are not good at handling noise. Intuitively it is hard to not consider a point if you do not know the final object's shape. Then, it's possible to find objects that are not actually there. \textbf{The only solution is to rerun the simulations over and over and look for significant objects.} But even then, I am not sure if the object that appears is noise or significant. 
+Instead of perturbing the points themselves, additional gaussian samples are added around the circle. This should again, be an easier problem than the previous one. There still is a clear circular structure, albeit distractions all around. Looking at the data, the main loop was not found. All of the 1st order homology features had very short lives, indicating that could not have been the loop. And if they were, they must of immediately been distracted by the noise. From these observations, I think that Kernel Density Estimate also does not do well with noise. In general, I think topological methods are not good at handling noise. Intuitively it is hard to not consider a point if you do not know the final object's shape. Then, it's possible to find objects that are not actually there. \textbf{The only solution is to rerun the simulations over and over and look for significant objects.} But even then, I am not sure if the object that appears is noise or significant. Actually... after reading the paper, it seems that KDE is probably really good at handling noise but just not as good as Rips in discovering topological features. So although we can't find the loop, that isn't actually because of the noise, but because of the method itself!
 
 \begin{figure}[htp!]
 \centering
@@ -128,6 +128,38 @@ Instead of perturbing the points themselves, additional gaussian samples are add
 \end{subfigure}
 \caption{(left) Noisy circle data. (middle) The topology of the circle w/ extra points. Notice the several clumps of local maxima, esp in the middle. (right), A single persistence diagram. There are several shortlived 1st homology features,  and several long-living 0th order homology features. }
 \end{figure}
+
+\section{Minimally Noisy Kernel Densities}
+Another possibility is that I just added too much noise. Perhaps KDE is resistant to noise but I perturbed it to the degree in which even a hypothetically optimal topological algorithm could not distinguish them. Repeat the process with a reduced noise setting: 
+
+Consider a dataset of a uniform circle of radius 1. The persistence diagram (figure 7) shows a very clear and long-living 1st order homology feature. This is a very clear dataset. Continuing through figure 7, both forms of noise addition shifted the persistence diagrams slightly, but not to a drastic manner. All persistence diagrams still show the clear loop. This suggests that in situations of light noise, KDE is a much better option than Rips. However, if the Universe simulation data is anything of what I expect, the data will be much messier. How will KDE be able to hold together then? 
+
+\begin{figure}[htp!]
+\centering
+\begin{subfigure}{.20\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{testtest1}
+\end{subfigure}%
+\begin{subfigure}{.20\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{testtest2}
+\end{subfigure}%
+\begin{subfigure}{.20\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{testtest3}
+\end{subfigure}%
+\begin{subfigure}{.20\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{testtest4}
+\end{subfigure}%
+\begin{subfigure}{.20\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{testtest5}
+\end{subfigure}
+\caption{(1) Original plot (no noise added). (2,3) Plots for point perturbation. (4,5) Plots for point addition. Each contains plot of circle and a persistence diagram.}
+\end{figure}
+
+
 
 \section{Persistence Diagrams on Hypothesis Testing}
 
