@@ -55,7 +55,7 @@ multiDTM <- function(N, K, Xlim, Ylim, by, m0=0.1) {
 
 singleKDE <- function(Circle, Grid, h=0.3) {
   band=bootstrapBand(X=Circle, FUN=kde, Grid=Grid, B=100, parallel=FALSE, alpha=0.1, h=h)
-  Diag = gridDiag( X=X, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=by, sublevel=FALSE, library="Dionysus", printProgress=FALSE )$diagram
+  Diag = gridDiag( X=Circle, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=by, sublevel=FALSE, library="Dionysus", printProgress=FALSE )$diagram
   return(list(first=band, second=Diag))
 }
 
@@ -113,12 +113,13 @@ makeNoise <- function(mu, sigma, num) {
 
 # Provided any circle, this shifts around the points a little bit. 
 addRandomNoise <- function(Circle, emu=0, esig=1) {
-  K <- length(Circle)
-  Noise1 <- makeNoise(emu, esig, K)
-  Noise2 <- makeNoise(emu, esig, K)
+  K1 <- length(Circle[,1])
+  K2 <- length(Circle[,2])
+  Noise1 <- makeNoise(emu, esig, K1)
+  Noise2 <- makeNoise(emu, esig, K2)
   # Combine the vectors with the noise.
-  Circle[, 1] = Circle[, 1] + Noise1
-  Circle[, 2] = Circle[, 2] + Noise2
+  Circle[,1] = Circle[,1] + Noise1
+  Circle[,2] = Circle[,2] + Noise2
   # Return a circular object.
   return(Circle)
 }
