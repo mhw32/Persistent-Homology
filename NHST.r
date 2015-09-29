@@ -19,6 +19,7 @@ lossfunc <- function(X, L) {
     sum2 <- 0 # Initialize a counter.
     for (i in 1:n[m]) {
       for (j in 1:n[m]) {
+        # Only using dimension1 right now
         sum2 <- sum2 + bottleneck(P[[i]], P[[j]], dimension=1)
         # sum2 <- sum2 + wasserstein(P[i]$diagram, P[j]$diagram, dimension=1, p=2)
       }
@@ -36,7 +37,8 @@ nhst <- function(X, L, N) {
   order <- c(1:length(X))
   for (i in 1:N) {
     random <- sample(order)
-    loss_new <- lossfunc(X[random], L[random])
+    # Only vary the order of the labels!
+    loss_new <- lossfunc(X, L[random])
     if (loss_new <= loss_orig) {
       Z <- Z + 1
     }
@@ -80,24 +82,24 @@ circle2 <- function(N, mu, sig) {
 }
 
 # For demonstration, let's just do the example in the book. 
-example <- function() {
+example <- function(noisemu=0, noisestd=0) {
   # Define the two circles. 
-  N <- 50
-  allX1 <- vector("list",5)
-  allX2 <- vector("list",5)
-  L1 <- c(0, 0, 0, 0, 0)
-  L2 <- c(1, 1, 1, 1, 1)
-  for (i in 1:5) {
-    C1 <- circle1(50, 0, 0)
-    C2 <- circle2(50, 0, 0)
+  N <- 5
+  allX1 <- vector("list",N)
+  allX2 <- vector("list",N)
+  L1 <- rep(0, N)
+  L2 <- rep(1, N)
+  for (i in 1:N) {
+    C1 <- circle1(50, noisemu, noisestd)
+    C2 <- circle2(50, noisemu, noisestd)
     Xlim <- c(-1.5, 1.5)
     Ylim <- c(-1.5, 1.5)
     # Use the same grid for both
     grid <- makeGrid(Xlim, Ylim, 0.065)
-    X1[[i]] <- gridDiag(X=C1, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
-    allX1[i] = X1$diagram
-    X2[[i]] <- gridDiag(X=C2, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
-    allX2[i] = X2$diagram
+    X1 <- gridDiag(X=C1, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
+    allX1[[i]] = X1$diagram
+    X2 <- gridDiag(X=C2, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
+    allX2[[i]] = X2$diagram
   }
   # Then we can combine these. 
   X <- cbind(allX1, allX2)
