@@ -19,12 +19,12 @@ genCircle <- function(num=n, rad=r, center=c(0, 0)) {
 }
 
 # Example running setting
-maxdimension <- 1          # components and loops
-maxscale     <- 5          # limit of the filtration
-numparticle  <- 10         # number of samples to draw per circle
-radius       <- 5          # radius of circle
-center       <- c(0, 0)    # center of circle
-multiRIPS(maxdimension, maxscale, 10, 250)
+# maxdimension <- 1          # components and loops
+# maxscale     <- 5          # limit of the filtration
+# numparticle  <- 10         # number of samples to draw per circle
+# radius       <- 5          # radius of circle
+# center       <- c(0, 0)    # center of circle
+# multiRIPS(maxdimension, maxscale, 10, 250)
 
 # Run the RIPS diagram for N independent simulation
 multiRIPS <- function(maxdimension, maxscale, N, K) {
@@ -54,14 +54,14 @@ multiDTM <- function(N, K, Xlim, Ylim, by, m0=0.1) {
 # ----------------------------------------------------------------
 
 singleKDE <- function(Circle, Grid, h=0.3) {
-  band=bootstrapBand(X=Circle, FUN=kde, Grid=Grid, B=100, parallel=FALSE, alpha=0.1, h=h)
-  Diag = gridDiag( X=Circle, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=by, sublevel=FALSE, library="Dionysus", printProgress=FALSE )$diagram
+  band <- bootstrapBand(X=Circle, FUN=kde, Grid=Grid, B=100, parallel=FALSE, alpha=0.1, h=h)
+  Diag <- gridDiag( X=Circle, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=by, sublevel=FALSE, library="Dionysus", printProgress=FALSE )$diagram
   return(list(first=band, second=Diag))
 }
 
 # Before we can do any distance estimates, we need to construct a grid of points over which we will evaluate the functions.
 # Inputs : X is the sampled units from a circle
-makeGrid <- function(X, Xlim, Ylim, by) {
+makeGrid <- function(Xlim, Ylim, by) {
   Xseq <- seq(from = Xlim[1], to = Xlim[2], by = by)
   Yseq <- seq(from = Ylim[1], to = Ylim[2], by = by)
   Grid <- expand.grid(Xseq, Yseq)
@@ -112,25 +112,25 @@ makeNoise <- function(mu, sigma, num) {
 }
 
 # Provided any circle, this shifts around the points a little bit. 
-addRandomNoise <- function(Circle, emu=0, esig=1) {
-  K1 <- length(Circle[,1])
-  K2 <- length(Circle[,2])
+addRandomNoise <- function(X, emu=0, esig=1) {
+  K1 <- length(X[,1])
+  K2 <- length(X[,2])
   Noise1 <- makeNoise(emu, esig, K1)
   Noise2 <- makeNoise(emu, esig, K2)
   # Combine the vectors with the noise.
-  Circle[,1] = Circle[,1] + Noise1
-  Circle[,2] = Circle[,2] + Noise2
+  X[,1] = X[,1] + Noise1
+  X[,2] = X[,2] + Noise2
   # Return a circular object.
-  return(Circle)
+  return(X)
 }
 
 # This generates random points to add to the Circle vector. 
-addRandomPoints <- function(Circle, radius, center, E=100) {
+addRandomPoints <- function(X, radius, center, E=100) {
   Noise1 <- makeNoise(center[1], radius/2, E)
   Noise2 <- makeNoise(center[2], radius/2, E)
   Noise  <- cbind(Noise1, Noise2)
   # Combine the vectors with the noise
-  Circle <- rbind(Circle, Noise)
-  return(Circle)
+  X <- rbind(X, Noise)
+  return(X)
 }
 
