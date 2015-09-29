@@ -159,8 +159,43 @@ Consider a dataset of a uniform circle of radius 1. The persistence diagram (fig
 \caption{(1) Original plot (no noise added). (2,3) Plots for point perturbation. (4,5) Plots for point addition. Each contains plot of circle and a persistence diagram.}
 \end{figure}
 
-
-
 \section{Persistence Diagrams on Hypothesis Testing}
+To properly compare persistence diagrams, a version of hypothesis testing adapted from Robinson, Turner 2013 (http://arxiv.org/pdf/1310.7467v1.pdf) of  randomization-style null hypothesis significance tests (NHST) is used. Instead of the bijection distance advocated by Robinson and Turner, the 2-Wasserstein and bottleneck distances are used. (All code for this is in the Github). The implementation of random sampling with NHST remains faithful. As predicted, the expectation of Z (our estimation for p-value) approaches the true p-value as N grows large.
 
+To valid correctness, the same simulated example is included as in the paper. There are two shapes, the first being a uniform circle of radius 1, and the second being two uniform seconds joined by 1 point, 1 of radius $3/5$, one of radius $2/5$. Five simulations are conducted with each simulation holding 20 point masses for each of the 2 circles. Persistence diagrams are evaluated on the two point masses, and inputted into NHST. Gaussian noise is added to the circles for each of 20 point masses. Different simulations are conducted with different levels of gaussian noise to see how the test handles perturbations. 
+
+\begin{figure}[htp!]
+\centering
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{sept29_1}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Sept29_2}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Sept29_3}
+\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Sept29_4}
+\end{subfigure}
+\caption{Left 2: Simulation comparison data set (0 noise). Right 2: Same data set with Gaussian Noise (std=0.1).}
+\end{figure}
+
+\textbf{Observation 1: The testing is rather resistant to noise!} Notice in the figures above how much noise 0.1 standard deviation already adds. However, with NHST, a noise level of 0.25 std only creates a p-value of 0.17. (Of course, the baseline test shows that a noise level of 0 produces a p-value of 0 -- as in there is a probability of 0 that the two are the same. Concurrently, a high noise level of 1 produces p-values of 0.8-0.9, suggesting that they are the same). 
+
+\begin{figure}[htp!]
+\centering
+	\includegraphics[width=\linewidth]{sept29_5}
+    \caption{The p-values for different levels of variance (x-axis). }
+\end{figure}
+
+\textbf{Observation 2: As noise increases, the confidence interval for p-values increase dramatically.} With a variance of 1, the noise has a very wide spread. Because of that, depending on the sampled noise, the two objects could be really close (really noise) or really different (really clear). In general, the fact these have such large variances with noise might be a problem.
+
+\textbf{Observation 3: As N increases, the p-value stabilizes.} This is just the law of large numbers, so it is not anything we should be surprised by. 
+
+\textbf{End Note:} I think this is ready for use! 
 \end{document}

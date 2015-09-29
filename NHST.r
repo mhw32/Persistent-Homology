@@ -82,7 +82,7 @@ circle2 <- function(N, mu, sig) {
 }
 
 # For demonstration, let's just do the example in the book. 
-example <- function(noisemu=0, noisestd=0) {
+example <- function(num, noisemu=0, noisestd=0) {
   # Define the two circles. 
   N <- 5
   allX1 <- vector("list",N)
@@ -104,7 +104,7 @@ example <- function(noisemu=0, noisestd=0) {
   # Then we can combine these. 
   X <- cbind(allX1, allX2)
   L <- cbind(L1, L2)
-  proba <- nhst(X, L, 50)
+  proba <- nhst(X, L, num)
   return(proba)
 }
 
