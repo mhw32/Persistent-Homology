@@ -10,16 +10,16 @@ source('/Users/grub/Desktop/Cisewski-Lab/homology.r')
 # L is a vector of labels. 
 lossfunc <- function(X, L) {
   # Split the persistence diagrams into 2 groups.
-  G <- c(X[L == 0], X[L == 1])
-  n <- c(length(X1), length(X2))
+  G <- list(X[L == 0], X[L == 1])
+  n <- c(length(G[[1]]), length(G[[2]]))
   sum1 <- 0 # Initialize outer counter.
   for (m in 1:2) {
-    P <- G[m]
+    P <- G[[m]]
     C <- 1 / (2 * n[m] * (n[m] - 1))
     sum2 <- 0 # Initialize a counter.
     for (i in 1:n[m]) {
       for (j in 1:n[m]) {
-        sum2 <- sum2 + bottleneck(P[i]$diagram, P[j]$diagram, dimension=1)
+        sum2 <- sum2 + bottleneck(P[[i]], P[[j]], dimension=1)
         # sum2 <- sum2 + wasserstein(P[i]$diagram, P[j]$diagram, dimension=1, p=2)
       }
     }
@@ -36,7 +36,7 @@ nhst <- function(X, L, N) {
   order <- c(1:length(X))
   for (i in 1:N) {
     random <- sample(order)
-    loss_new <- lossfunc(X[random], L[random], dim, type, p)
+    loss_new <- lossfunc(X[random], L[random])
     if (loss_new <= loss_orig) {
       Z <- Z + 1
     }
@@ -83,8 +83,8 @@ circle2 <- function(N, mu, sig) {
 example <- function() {
   # Define the two circles. 
   N <- 50
-  allX1 <- c(0, 0, 0, 0, 0)
-  allX2 <- c(0, 0, 0, 0, 0)
+  allX1 <- vector("list",5)
+  allX2 <- vector("list",5)
   L1 <- c(0, 0, 0, 0, 0)
   L2 <- c(1, 1, 1, 1, 1)
   for (i in 1:5) {
@@ -94,14 +94,16 @@ example <- function() {
     Ylim <- c(-1.5, 1.5)
     # Use the same grid for both
     grid <- makeGrid(Xlim, Ylim, 0.065)
-    X1 <- gridDiag(X=C1, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
-    allX1[i] = X1
-    X2 <- gridDiag(X=C2, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
-    allX2[i] = X2
+    X1[[i]] <- gridDiag(X=C1, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
+    allX1[i] = X1$diagram
+    X2[[i]] <- gridDiag(X=C2, FUN=kde, h=0.3, lim=cbind(Xlim,Ylim), by=0.065, sublevel=FALSE, library="Dionysus", printProgress=FALSE)
+    allX2[i] = X2$diagram
   }
   # Then we can combine these. 
   X <- cbind(allX1, allX2)
   L <- cbind(L1, L2)
+  proba <- nhst(X, L, 50)
+  return(proba)
 }
 
 
