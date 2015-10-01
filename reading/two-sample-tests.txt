@@ -58,15 +58,15 @@ Think of K(x, y) as a measure of the similarity between x and y. T then compares
 
 To choose h, T = sup(T_h) with h >= 0
 
-Energy Test
+Energy Test (distance is in energy package)
 -----------
 
 D(P, Q) = 2E||X - Y|| - E||X - X'|| - E||Y - Y'||
 where X, X' ~ P, and Y, Y' ~ Q
 D is basically the euclidean metric --> this is a more specific type of kernel test. 
 
-The Cross Match Test
---------------------
+The Cross Match Test (Rossenbaum)
+---------------------------------
 
 Ignore the labels and treat the data as one sample Z_1, ..., Z_(n+m). We can form a non-bipartite matching = non-overlapping pairs. 
 {Z_3, Z_8}, {Z_17, Z_6}, ...
@@ -79,8 +79,36 @@ P(T=t = (2^t*N!) / ((N choose M)*(# of 0, 0)! (# of (0, 1) or (1, 0))! (# number
 
 Accurately approximated by a Normal with mean {nm/(N-1)} and variance {2 n (n-1)m (m-1)/( (N-3)(N-1)^2)}
 
+Set up a table:
+D1, ...., D1
+. For each find the closest neighbor.
+.
+.
+D2
+.
+.
+.
 
-I like Kernel. It's simple and seemingly robust.
+To Select a dimension 
+Given persistence X --> X[X[,1] ==1,]
+apply, sapply, lapply, mclapply (multi-core), "foreach" (multiCPU)
 
+
+Euler Characteristic
+--------------------
+
+#B0 - #B1 + #B2 for small time intervals
+Creates points that approximate a function. 
+Find the area under the curve (integrate the function). -- 1 number for each euler characteristic. 
+
+Assume that they have the same standard deviation --> or not.
+One euler characteristic per set in a dataset.
+
+
+Tasks: 
+-----
+
+1) Make R code non-for-loopy
+2) Do Rossenbaum, euler, kernel, bottleneck, wasserstein. 
 
 
