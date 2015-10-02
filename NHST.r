@@ -5,6 +5,15 @@
 library(TDA)
 source('/Users/grub/Desktop/Cisewski-Lab/homology.r')
 
+# Create all perms or 1..a, 1..b. 
+# Dups are preserved.
+permutate <- function(a, b) {
+  A <- seq(1:a)
+  B <- seq(1:b)
+  C <- expand.grid(A, B)
+  return(C)
+}
+
 # TODO: THIS NEEDS TO BE SPED UP.
 # X is a vector of persistence diagrams. 
 # L is a vector of labels. 
@@ -13,19 +22,19 @@ lossfunc <- function(X, L) {
   G <- list(X[L == 0], X[L == 1])
   n <- c(length(G[[1]]), length(G[[2]]))
   sum1 <- 0 # Initialize outer counter.
-  for (m in 1:2) {
+  fillme <- lapply(seq(1:2), function(m) {
+    # Get all permutations for this n[m]
+    tups <- permutate(n[m], n[m])
+    num <- length(tups[[1]]) # Number of tuples
     P <- G[[m]]
     C <- 1 / (2 * n[m] * (n[m] - 1))
     sum2 <- 0 # Initialize a counter.
-    for (i in 1:n[m]) {
-      for (j in 1:n[m]) {
-        # Only using dimension1 right now
-        sum2 <- sum2 + bottleneck(P[[i]], P[[j]], dimension=1)
-        # sum2 <- sum2 + wasserstein(P[i]$diagram, P[j]$diagram, dimension=1, p=2)
-      }
-    }
-    sum1 <- sum1 + C * sum2
-  }
+    filler <- lapply(seq(1:num), function(i) {
+      sum2 <<- sum2 + bottleneck(P[[tups[i,1]]], P[[tups[i,2]]], dimension=1)
+      # sum2 <- sum2 + wasserstein(P[[tups[i,1]]], P[[tups[i,2]]], dimension=1, p=2)
+    })
+    sum1 <<- sum1 + C * sum2
+  });
   return(sum1)
 }
 
@@ -35,22 +44,21 @@ nhst <- function(X, L, N) {
   loss_orig <- lossfunc(X, L)
   # Preserve some amount of order.
   order <- c(1:length(X))
-  for (i in 1:N) {
+  filler <- lapply(c(1:20), function(i) {
     random <- sample(order)
     # Only vary the order of the labels!
     loss_new <- lossfunc(X, L[random])
-    if (loss_new <= loss_orig) {
-      Z <- Z + 1
-    }
-  }
+    if (loss_new <= loss_orig)
+      Z <<- Z + 1
+  })
   # Average the outputs.
   Z <- Z / N
   return(Z)
 }
 # By law of large numbers, the expectation of Z --> P(loss(L_new) <= loss(L_obs)) as n --> infinity.
 
+# Code for an example.
 # -----------------------------------------------------------------
-
 circle1 <- function(N, mu, sig) {
   K <- circleUnif(N, r=1)
   K <- addRandomNoise(K, mu, sig)
