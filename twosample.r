@@ -3,12 +3,12 @@
 # To be used in the permutation tests. 
 source('/Users/grub/Desktop/Cisewski-Lab/NHST.r')
 source('/Users/grub/Desktop/Cisewski-Lab/multiassign.r')
+source('/Users/grub/Desktop/Cisewski-Lab/tools.r')
 # The code below is based on the link:
 # https://normaldeviate.wordpress.com/2012/07/14/modern-two-sample-tests/
 
 # Kernel Test
 # ---------------------------------------------
-
 # d is the distance between x and y. 
 # Use bottleneck or wasserstein.
 # P, Q are two persistence diagrams
@@ -66,7 +66,6 @@ findBestParam <- function(X, L, KERNEL, DISTFUN, min=0, max=5, by=0.1) {
 
 # Energy Test
 # ---------------------------------------------
-
 energyKernel <- function(P, Q, DISTFUN, ...) {
   alpha <- c(...)[1]
   k <- DISTFUN(P, Q)^alpha
@@ -82,14 +81,68 @@ energyStat <- function(X, L, ENERGY, DISTFUN, ...) {
   return(E)
 }
 
-# Rossenbaum Test
+# Permutation Test
 # ---------------------------------------------
+# This is a wrapper function for the kernel and the energy test.
+# It estimates the p-value through randomization. Asymptotically correct.
 
-bipartiteMatch <- function() {
-
+# Given two vectors, X, Y, try to do a non-bipartite minimum match
+# via a grid formulation.
+minimatch <- function(X, Y) {
+  g(n, m) %=% list(length(X), length(Y))
+  Z <- c(X, Y)
+  len <- length(Z)
+  # Create a grid over the vectors. 
+  grid <- permutate(len1, len2)
+  gridlen <- length(grid[[1]])
+  # Loop through the grid and calculate distance.
+  distances <- sapply(seq(1:gridlen), function(i) {
+    d <- DISTFUN(Z[[grid[i, 1]]], Z[[grid[i, 2]]])
+    return(d)
+  }) 
+  # Calculate all distances and add it to the grid table.
+  grid['Dist'] = distances
+  # Find index of the minimum for each row item 1..len
+  indices <- sapply(seq(1:len), function(i) {
+    idx <- which.min(grid['Dist'][grid['Var2'] == i])
+    return(c(i, idx))
+  })
+  # Tranpose the indices (this is the index matching).
+  indices <- t(indices)
+  return(indices)
 }
 
-rossenbaumStat <- function() {
-
+# Rossenbaum Test (Cross-Match)
+# ---------------------------------------------
+# Unlike the other two tests, this one does not require a permutation wrapper. 
+rosenbaumStat <- function(Z, L, DISTFUN) {
+  g(n, m) <- list(length(Z[L == 0]), length(Z[L == 1]))
+  allL <- c(L[L == 0], L[L == 1])
+  # Non-bipartite matching across Z
+  indices <- minimatch(Z[,1], Z[,2])
+  # Abstract the indices and pull out the labels.
+  labelidx <- cbind(allL[indices[,1]], allL[indices[,2]])
+  # Count number bigger, same, smaller
+  g(zeros, both, ones) %=% list(0, 0, 0)
+  tmp <- lapply(seq(1:length(allL)), function(i) {
+    if (labelidx[i, 1] == labelidx[i, 2]) {
+      if (labelidx[i,1] == 1) {
+        ones <<- ones + 1
+      } else {
+        zeros <<- zeros + 1
+      }
+    } else {
+      both <<- both + 1
+    }
+  })
+  # Define T as the number (0,1), (1,0) pairs.
+  T <- both
+  # Compute the exact distribution of T under H_0 (the probability)
+  N <- zeros + ones + both
+  P <- (2^T * factorial(N)) / (choose(N, m) * factorial(zeros) * factorial(both) * factorial(ones))
+  return(P)
 }
+
+
+
 

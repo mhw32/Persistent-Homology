@@ -1,4 +1,5 @@
 # Functionalize distances w/ known parameters.
+library(TDA)
 
 # Calculate the bottleneck distance.
 bottleneckDist <- function(X, Y, dimension=1) {
