@@ -14,10 +14,10 @@ permutate <- function(a, b) {
   return(C)
 }
 
-# TODO: THIS NEEDS TO BE SPED UP.
 # X is a vector of persistence diagrams. 
 # L is a vector of labels. 
-lossfunc <- function(X, L) {
+# DISTFUN is a distance function. (See /distance.r)
+lossfunc <- function(X, L, DISTFUN) {
   # Split the persistence diagrams into 2 groups.
   G <- list(X[L == 0], X[L == 1])
   n <- c(length(G[[1]]), length(G[[2]]))
@@ -30,8 +30,7 @@ lossfunc <- function(X, L) {
     C <- 1 / (2 * n[m] * (n[m] - 1))
     sum2 <- 0 # Initialize a counter.
     filler <- lapply(seq(1:num), function(i) {
-      sum2 <<- sum2 + bottleneck(P[[tups[i,1]]], P[[tups[i,2]]], dimension=1)
-      # sum2 <- sum2 + wasserstein(P[[tups[i,1]]], P[[tups[i,2]]], dimension=1, p=2)
+      sum2 <<- sum2 + DISTFUN(P[[tups[i,1]]], P[[tups[i,2]]])
     })
     sum1 <<- sum1 + C * sum2
   });
@@ -44,7 +43,7 @@ nhst <- function(X, L, N) {
   loss_orig <- lossfunc(X, L)
   # Preserve some amount of order.
   order <- c(1:length(X))
-  filler <- lapply(c(1:20), function(i) {
+  filler <- lapply(c(1:N), function(i) {
     random <- sample(order)
     # Only vary the order of the labels!
     loss_new <- lossfunc(X, L[random])
@@ -58,7 +57,7 @@ nhst <- function(X, L, N) {
 # By law of large numbers, the expectation of Z --> P(loss(L_new) <= loss(L_obs)) as n --> infinity.
 
 # Code for an example.
-# -----------------------------------------------------------------
+# --------------------
 circle1 <- function(N, mu, sig) {
   K <- circleUnif(N, r=1)
   K <- addRandomNoise(K, mu, sig)
@@ -93,12 +92,11 @@ circle2 <- function(N, mu, sig) {
 example <- function(num, noisemu=0, noisestd=0) {
   # Define the two circles. 
   N <- 5
-  allX1 <- vector("list",N)
-  allX2 <- vector("list",N)
+  allX1 <- vector("list", N)
+  allX2 <- vector("list", N)
   L1 <- rep(0, N)
   L2 <- rep(1, N)
   filler <- lapply(c(1:N), function(i) {
-    print(i)
     C1 <- circle1(50, noisemu, noisestd)
     C2 <- circle2(50, noisemu, noisestd)
     Xlim <- c(-1.5, 1.5)
