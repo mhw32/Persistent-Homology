@@ -2,7 +2,7 @@ library(FNN)
 library(mvtnorm)
 
 ## INPUT
-##############################
+# -------------------------------------
 ## Boxlim: limit of the side of the box
 ## resolution: grid space for approximating the voronoi cells.
 ## perturb: sd of gaussian noise to perturb the grid

@@ -1,4 +1,5 @@
 library(TDA)
+library(pracma)
 
 eulerChar <- function(tseq, diagram, maxdimension, threshold=0) {
 	eulerFct <- function(t) {
@@ -38,6 +39,28 @@ eulerCharDim <- function(tseq, diagram, which.dim, threshold=0) {
 		out[count] <- eulerFct(t)
 	}
 	return(out)
+}
+
+# Find the area underneath a curve.
+integrate <- function(xarr, yarr) {
+	auc <- trapz(xarr, yarr)
+	return(auc)
+}
+
+eulerKernel <- function(P, N=1000) {
+	tseq <- seq(attributes(P)$scale[1],attributes(P)$scale[2],length=N)
+	euler <- eulerChar(tseq, P, maxdimension=max(P[,1]), threshold=0)
+	auc <- integrate(tseq, euler)
+	return(auc)
+}
+
+eulerStat <- function(X, L) {
+	G1, G2 %=% X[L == 0], X[L == 1]
+  n, m %=% length(G1), length(G2)
+  G1arr <- sapply(seq(1:n), function(i) { eulerKernel(G1) })
+  G2arr <- sapply(seq(1:m), function(i) { eulerKernel(G2) })
+  proba <- t.test(G1arr, G2arr, conf.level=0.95)
+  return(proba$p.value)
 }
 
 # Example Usage

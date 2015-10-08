@@ -2,11 +2,11 @@
 library(TDA)
 library(scatterplot3d)
 source("voronoi3dfct.r")
-# ########################################
+# -------------------------------------
 # Generate VF Data
-# ########################################
+# -------------------------------------
 # INPUT of voronoi3d function
-# ###########################
+# -------------------------------------
 # Boxlim: limit of the side of the box
 # resolution: grid space for approximating the voronoi cells.
 # perturb: sd of gaussian noise to perturb the grid
@@ -16,7 +16,6 @@ source("voronoi3dfct.r")
 # percWall: percentage of particles on the walls
 # percFil: percentage of particles on the filaments
 # percClust: percentage of particles on the clusters
-
 
 Boxlim <- c(0,10)
 Xlim <- Boxlim
