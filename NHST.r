@@ -38,15 +38,15 @@ lossfunc <- function(X, L, DISTFUN) {
 }
 
 # Given n1 + n2 persistence diagrams with n1 + n2 labels. Note that n1, and the following n2 diagrams must be disjoint. This is meshed together as X with labels L. Given N (number of iterations).
-nhst <- function(X, L, N) {
+nhst <- function(X, L, N, DISTFUN) {
   Z <- 0 # Initialization
-  loss_orig <- lossfunc(X, L)
+  loss_orig <- lossfunc(X, L, DISTFUN)
   # Preserve some amount of order.
   order <- c(1:length(X))
   filler <- lapply(c(1:N), function(i) {
     random <- sample(order)
     # Only vary the order of the labels!
-    loss_new <- lossfunc(X, L[random])
+    loss_new <- lossfunc(X, L[random], DISTFUN)
     if (loss_new <= loss_orig)
       Z <<- Z + 1
   })
