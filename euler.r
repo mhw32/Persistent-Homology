@@ -55,13 +55,24 @@ eulerKernel <- function(P, N=1000) {
 }
 
 eulerStat <- function(X, L) {
-	G1, G2 %=% X[L == 0], X[L == 1]
-  n, m %=% length(G1), length(G2)
+	G1 <- X[L == 0]
+	G2 <- X[L == 1]
+  n <- length(G1)
+  m <- length(G2)
   G1arr <- sapply(seq(1:n), function(i) { eulerKernel(G1) })
   G2arr <- sapply(seq(1:m), function(i) { eulerKernel(G2) })
   proba <- t.test(G1arr, G2arr, conf.level=0.95)
   return(proba$p.value)
 }
+
+# Wrapper fxn to combine generation and integration.
+eulerIntegration <- function(diagram) {
+  tseq <- seq(attributes(diagram)$scale[1],attributes(diagram)$scale[2],length=1000)
+  euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
+  auc <- integrate(tseq, euler)
+  return(auc)
+}
+
 
 # Example Usage
 # -------------

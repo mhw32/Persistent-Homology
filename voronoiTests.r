@@ -1,93 +1,72 @@
 # A test script to play around with Voronoi simulations and measuring hypothesis tests between them.
-source('NHST.r')
-source('twosample.r')
-source("voronoi3dfct.r")
+source('VoronoiFoam.r')
 source('euler.r')
-source('distance.r')
+source('summarize.r')
+source('tools.r')
+library(abind)
+library(corpcor)
+library(Hotelling)
 
-# First, create two sets of voronoi diagrams.
-# Simulation settings. Small diagrams for computational purposes.
-Boxlim <- c(0,10)
-Xlim <- Boxlim
-Ylim <- Boxlim
-Zlim <- Boxlim
-resolution <- 0.5  ## grid space for approximating the voronoi cells.
-perturb <- 1 ## variance around the filaments
-N <- 1000   ## number of particles
-groupN <- 5 ## each "set" has 15 diagrams.
+# voronoi_compilation() 
+foam <- readRDS('./voronoifoam.rds')
 
-# Generate group 1.
-set1 <- sapply(seq(1:groupN), function(i) {
-  percFil1 <- 0.9
-  vf1 <- voronoi3d(Boxlim, resolution, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil1, percClust=0.02)
-  diag1 <- gridDiag(vf1, dtm, lim=cbind(Xlim,Ylim,Zlim), by=resolution, sublevel=T, printProgress=T, m0=0.001)
-  return(diag1)
-})
+# Each of the datasets contains a sample from some high dimensional estimation of the universe. Because this is a random variable, maximum matching doesn't really mean much. So algorithms using distance metrics are most likely meaningless.
 
-# Generate group 2.
-set2 <- sapply(seq(1:groupN), function(i) {
-  percFil2 <- 0.1
-  vf2 <- voronoi3d(Boxlim, resolution, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil2, percClust=0.02)
-  diag2 <- gridDiag(vf2, dtm, lim=cbind(Xlim,Ylim,Zlim), by=resolution, sublevel=T, printProgress=T, m0=0.001)
-  return(diag2)
-})
+# Everything will be compared to baseline of 0.1
+setnum <- length(foam)
+colnum <- length(foam[[1]])
 
-# The datasets are fully generated. They may be too sparse and the box limits may also be too restrictive but I think they should be operational.
+# =====================================================================
+# Euler Characteristic [Baseline]
+# =====================================================================
+eulerMat <- gridOperation(foam, eulerIntegration)
+# Do a T-test on the two sets of AUC.
+# Set 0.1 as the baseline and calculate on top of it.
+eulerProba <- rep(0, setnum)
+for (i in 1:setnum) {
+  currproba <- t.test(eulerMat[,1], eulerMat[,i])
+  eulerProba[i] <- currproba$p.value
+}
+# Plot the probabilities.
+plot(seq(1:setnum), proba)
+lines(seq(1:setnum), proba, type="b")
 
-X <- cbind(set1, set2)
-L <- cbind(rep(0, groupN), rep(1, groupN))
-permN <- 100
+# =====================================================================
+# Distribution Testing [Hypothesis]
+# Given diagrams, split it into 0, 1, 2 dimensions and compare their distributions via a Wilcoxon / Manning-Whitney U. 
+# The question is how to compare both the birth and death times.
+# =====================================================================
 
-# ---------------------------------------------------------------------
 
-# 1. NHST test.
-# Should check that nhst is working as expected.
-distfunc <- bottleneckDist
-# distfunc <- wassersteinDist
-proba <- nhst(X, L, permN, bottleneckDist)
-# This works but it is so slow. 
-# system.time(bottleneck(X[[1,1]], X[[2,1]], dimension=1))
-# 1.335 * 225 * 2 * 1000 (group size 15 --> 15^2, 2 groups, 1000 iterations.)
-# Even 100 iterations = 16 hours...
- 
-# system.time(bottleneck(X[[1,1]], X[[2,1]], dimension=2))
-# user  system elapsed
-# 0.212  0.024  0.237
+# =====================================================================
+# Try landscapes: How do the tests on these compare?
+# =====================================================================
+# landMat <- gridOperation(foam, landscapeAUC)
+landfxn <- dimWrapper(landscapeAUC)
+landMat <- gridOperation(foam, landfxn)
+# Calculate probabilities through multi-D t-test
+landProba <- rep(0, setnum)
+for (i in 1:setnum) {
+  currproba <- hotelling.test(t(landMat[,,1]), t(landMat[,,i]))
+  landProba[i] <- currproba$pval
+}
 
-# Is the 2-wasserstein faster (dimension 1)? This is so slow.
-# Crashes. 160.656 seconds.
+# =====================================================================
+# Try silhouttes: How do the tests on these compare?
+# Silhouttes are so freaking fast!
+# =====================================================================
+# silhMat <- gridOperation(foam, silhouetteAUC)
+silhfxn <- dimWrapper(silhouetteAUC)
+silhMat <- gridOperation(foam, silhfxn)
+# Calculate probabilities through multi-D t-test
+silhProba <- rep(0, setnum)
+for (i in 1:setnum) {
+  currproba <- hotelling.test(t(silhMat[,,1]), t(silhMat[,,i]))
+  silhProba[i] <- currproba$pval
+}
 
-# 2-wasserstein faster (dimension 2)
-# user  system elapsed
-# 5.760   0.014   5.796
+# =====================================================================
+# Blobbing: Representations of high dimensional space.
+# =====================================================================
 
-# No this is much slower. How do I make these raw functions faster? Otherwise, tests for as big as the Universe will take decades. I don't think this is a viable path.
-
-# ---------------------------------------------------------------------
-# In fact, tests 2-4 all require some form of a distance measurement. This is going to be very problematic since everything takes such a long time. Perhaps we must move to landscapes directly. How did you run these? 
-
-# 2. Gaussian kernel (max likelihood h).
-distfunc <- bottleneckDist
-kernel <- gaussianKernel
-# If we want to find the best value for parameter h:
-best <- findBestParam(X, L)
-proba <- permutationTest(permN, X, L, kernelStat, distfunc, best)
-
-# ---------------------------------------------------------------------
-
-# 3. Energy kernel.
-distfunc <- bottleneckDist
-proba <- permutationTest(permN, X, L, energyStat, distfunc, 1)
-
-# ---------------------------------------------------------------------
- 
-# 4. Rossenbaum kernel.
-# No need for permutation tests for still takes the annoying distance func.
-distfunc <- bottleneckDist
-proba <- rosenbaumStat(X, L, distfunc)
-
-# ---------------------------------------------------------------------
-
-# 5. Euler's constant. 
-proba <- permutationTest(permN, X, L, eulerStat)
 

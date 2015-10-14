@@ -12,3 +12,4 @@ wassersteinDist <- function(X, Y, dimension=1, p=2) {
   d <- wasserstein(X, Y, p=p, dimension=dimension)
   return(d)
 }
+

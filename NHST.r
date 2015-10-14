@@ -3,7 +3,7 @@
 # Randomization-style Null Hypothesis Significance Tests for Persistence Diagrams
 
 library(TDA)
-source('/Users/grub/Desktop/Cisewski-Lab/homology.r')
+source('homology.r')
 
 # Create all perms or 1..a, 1..b. 
 # Dups are preserved.

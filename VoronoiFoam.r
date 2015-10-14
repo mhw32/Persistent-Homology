@@ -17,21 +17,51 @@ source("voronoi3dfct.r")
 # percFil: percentage of particles on the filaments
 # percClust: percentage of particles on the clusters
 
-Boxlim <- c(0,10)
-Xlim <- Boxlim
-Ylim <- Boxlim
-Zlim <- Boxlim
-resolution <- 0.5  ## grid space for approximating the voronoi cells.
-perturb <- 1 ## variance around the filaments
-N <- 1000   ## number of particles
+# Example of a call to voronoi.
+voronoi_example <- function() {
+  Boxlim <- c(0,20)
+  Xlim <- Boxlim
+  Ylim <- Boxlim
+  Zlim <- Boxlim
+  resolution <- 0.5  ## grid space for approximating the voronoi cells.
+  perturb <- 1 ## variance around the filaments
+  N <- 1000   ## number of particles
 
-percFil <- 0.9
-vf1 <- voronoi3d(Boxlim, resolution, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
+  percFil <- 0.1
+  vf1 <- voronoi3d(Boxlim, resolution, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
 
-diag1 <- gridDiag(vf1, dtm, lim=cbind(Xlim,Ylim,Zlim), by=resolution, sublevel=T, printProgress=T, m0=0.001)
+  diag1 <- gridDiag(vf1, dtm, lim=cbind(Xlim,Ylim,Zlim), by=resolution, sublevel=T, printProgress=T, m0=0.001)
 
-scatterplot3d(vf1, pch=19, cex.symbol=.5, xlab="", ylab="", zlab="")
-plot(diag1$diagram)
+  scatterplot3d(vf1, pch=19, cex.symbol=.5, xlab="", ylab="", zlab="")
+  plot(diag1$diagram)
+}
+
+# Function to create diagonal matrixes. 
+voronoi_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
+  set <- sapply(seq(1:G), function(i) {
+    vf <- voronoi3d(boxlim, res, err, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
+    diag <- gridDiag(vf, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
+    return(diag$diagram)
+  })
+}
+
+voronoi_compilation <- function() {
+  # Set a pretty big scope. 
+  Boxlim <- c(0,5)
+  resolution <- 0.5  # grid space for approximating the voronoi cells.
+  perturb <- 1 # variance around the filaments.
+  N <- 5000   # number of particles.
+  groupN <- 15 # size of each set.
+  # Do something with it.
+  percFils <- seq(from=0.1, to=0.9, by=0.1)
+  numSet <- length(percFils)
+  storage <- vector("list", numSet)
+  for (i in 1:numSet) {
+    currSet <- voronoi_set(percFils[i], N, groupN, resolution, perturb, Boxlim)
+    storage[[i]] = currSet
+  }
+  saveRDS(storage, "./voronoifoam.rds")
+}
 
 
 
