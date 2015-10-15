@@ -3,12 +3,12 @@ library(pracma)
 
 eulerChar <- function(tseq, diagram, maxdimension, threshold=0) {
 	eulerFct <- function(t) {
-		if (threshold>0){
+		if (threshold>0) {
 			persistence <- diagram[,3]-diagram[,2]
 			diagram <- diagram[which(persistence>=threshold),]
 		}
 		betti <- numeric(maxdimension)
-		for (i in 0:maxdimension){
+		for (i in 0:maxdimension) {
 			betti[i+1]=((-1)^i)*sum(diagram[,1]==i & diagram[,2]<=t & diagram[,3]>t)
 		}
 		out <- sum(betti)
@@ -25,7 +25,7 @@ eulerChar <- function(tseq, diagram, maxdimension, threshold=0) {
 
 eulerCharDim <- function(tseq, diagram, which.dim, threshold=0) {
 	eulerFct <- function(t) {
-		if (threshold > 0){
+		if (threshold > 0) {
 			persistence <- diagram[,3] - diagram[,2]
 			diagram <- diagram[which(persistence>=threshold),]
 		}

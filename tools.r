@@ -10,6 +10,7 @@ pick <- function(n, k) {
   factorial(n) / factorial(n-k)
 }
 
+# A generic function for performing operations across sequences of foam structures. 
 gridOperation <- function(foam, fxn) {
   # Get dimension of foams.
   setnum <- length(foam)
@@ -28,5 +29,14 @@ gridOperation <- function(foam, fxn) {
   }
   colnames(matrix) <- NULL
   return(matrix)
+}
+
+# Take only a single dimension out of a persistence diagram.
+sliceDim <- function(diag, dim) {
+  multi <- if (length(dim) > 1) TRUE else FALSE
+  logic <- if (multi) diag[,1] %in% dim else diag[,1] == dim
+  bd <- cbind(diag[,2][logic], diag[,3][logic])
+  colnames(bd) <- c('Birth', 'Death')
+  return(bd)
 }
 

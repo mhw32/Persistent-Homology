@@ -1,6 +1,8 @@
 # Fxns related to landscapes.
 library(TDA)
 
+# Landscape / Silhouette Functions
+# ---------------------------------------------------------------
 # Get area under the curve.
 landscapeAUC <- function(diagram, KK=1, dim=1) {
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=1000)
@@ -15,14 +17,27 @@ silhouetteAUC <- function(diagram, p=1, dim=1) {
   return(integrate(tseq, silh))
 }
 
-# Wrapper function to do area for all dim
-dimWrapper <- function(fxn) {
-  calculate <- function(diagram, mindim=0, maxdim=2) {
+# This wrapper function returns a fxnized single dimension.
+dimWrapper <- function(dim, fxn) {
+  inner <- function(diagram) { return(fxn(diagram, dim=dim)) }
+  return(inner)
+}
+
+# This wrapper function loops through all dimensions.
+allWrapper <- function(fxn) {
+  inner <- function(diagram, mindim=0, maxdim=2) {
     areas <- sapply(seq(from=mindim, to=maxdim, by=1), function(i) {
       fxn(diagram, dim=i)
     })
     return(areas)
   }
-  return(calculate)
+  return(inner)
 }
+
+# ---------------------------------------------------------------
+# Local Significant Difference Functions
+# kde.local.test()
+
+
+
 
