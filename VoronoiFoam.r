@@ -49,7 +49,7 @@ voronoi_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
   set <- sapply(seq(1:G), function(i) {
     vf <- voronoi3d(boxlim, res, err, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
     diag <- gridDiag(vf, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
-    return(clean(diag$diagram))
+    return(diag$diagram)
   })
 }
 
@@ -68,7 +68,7 @@ voronoi_compilation <- function() {
     currSet <- voronoi_set(percFils[i], N, groupN, resolution, perturb, Boxlim)
     storage[[i]] = currSet
   }
-  saveRDS(storage, "./voronoifoam.rds")
+  saveRDS(storage, "./voronoifoam2.rds")
 }
 
 
