@@ -25,3 +25,4 @@ distribDimStat <- function(set, dim) {
   return(vector)
 }
 
+

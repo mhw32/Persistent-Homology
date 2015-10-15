@@ -1,0 +1,11 @@
+10,000 particles.
+15 datasets each.
+50 volumed box size.
+get the 0.1 baseline separately generated.
+max landscape, 
+silhoutte
+euler
+distribution
+local significant (chi2)
+
+Repeat times over and over to get chi squared. (20)
