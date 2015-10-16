@@ -54,7 +54,7 @@ voronoi_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
 }
 
 voronoi_compilation <- function() {
-  # Set a pretty big scope.
+  # Set a pretty big scope. 
   Boxlim <- c(0,50)
   resolution <- 0.5  # grid space for approximating the voronoi cells.
   perturb <- 1 # variance around the filaments.
@@ -72,7 +72,7 @@ voronoi_compilation <- function() {
 }
 
 voronoi_baseline <- function() {
-  Boxlim <- c(0,50)
+  Boxlim <- c(0, 50)
   resolution <- 0.5
   perturb <- 1
   N <- 10000
