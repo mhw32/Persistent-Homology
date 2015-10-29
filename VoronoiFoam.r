@@ -1,7 +1,7 @@
 #rm(list=ls(all=TRUE))
 library(TDA)
 library(scatterplot3d)
-source("voronoi3dfct.r")
+source("Voronoi3Dfct.r")
 # -------------------------------------
 # Generate VF Data
 # -------------------------------------
