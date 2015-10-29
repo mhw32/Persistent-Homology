@@ -24,7 +24,6 @@ voronoi3d <- function(Boxlim, resolution, perturb, Ncells, N, percClutter=0.05, 
 				runif(Ncells,Ylim[1],Ylim[2]),
 				runif(Ncells,Zlim[1],Zlim[2]))
 
-
 	## construct the grid over which we will evaluate voronoi cells
 	by <- resolution
 	Xseq <- seq(Xlim[1],Xlim[2], by=by)

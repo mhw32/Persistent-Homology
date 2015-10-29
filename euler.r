@@ -48,7 +48,7 @@ integrate <- function(xarr, yarr) {
 }
 
 eulerKernel <- function(P, N=1000) {
-	tseq <- seq(attributes(P)$scale[1],attributes(P)$scale[2],length=N)
+	tseq <- seq(min(test[,2:3]),max(test[,2:3]),length=N)
 	euler <- eulerChar(tseq, P, maxdimension=max(P[,1]), threshold=0)
 	auc <- integrate(tseq, euler)
 	return(auc)
@@ -67,7 +67,7 @@ eulerStat <- function(X, L) {
 
 # Wrapper fxn to combine generation and integration.
 eulerIntegration <- function(diagram) {
-  tseq <- seq(attributes(diagram)$scale[1],attributes(diagram)$scale[2],length=1000)
+  tseq <- seq(min(test[,2:3]),max(test[,2:3]),length=1000)
   euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
   auc <- integrate(tseq, euler)
   return(auc)
@@ -87,7 +87,7 @@ eulerIntegration <- function(diagram) {
 # diagram <- Diag$d
 # plot(diagram)
 
-# tseq <- seq(attributes(diagram)$scale[1],attributes(diagram)$scale[2],length=1000)
+# tseq <- seq(min(test[,2:3]),max(test[,2:3]),length=1000)
 # euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
 # plot(tseq, euler, type="l", main="Euler Characteristic")
 
@@ -108,7 +108,7 @@ eulerIntegration <- function(diagram) {
 # diagram <-gridDiag(XX, kde, lim, by=by, sublevel=F, printProgress=T, h=h)$diag
 
 # plot(diagram)
-# tseq <- seq(attributes(diagram)$scale[1],attributes(diagram)$scale[2],length=1000)
+# tseq <- seq(min(test[,2:3]),max(test[,2:3]),length=1000)
 # euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
 # plot(tseq, euler, type="l", main="Euler Characteristic")
 

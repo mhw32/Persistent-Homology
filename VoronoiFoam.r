@@ -68,7 +68,7 @@ voronoi_compilation <- function() {
     currSet <- voronoi_set(percFils[i], N, groupN, resolution, perturb, Boxlim)
     storage[[i]] = currSet
   }
-  saveRDS(storage, "./voronoifoamfull.rds")
+  saveRDS(storage, "./voronoifoamfull2.rds")
 }
 
 voronoi_baseline <- function() {
@@ -78,7 +78,7 @@ voronoi_baseline <- function() {
   N <- 10000
   groupN <- 15
   baseline <- voronoi_set(0.1, N, groupN, resolution, perturb, Boxlim)
-  saveRDS(baseline, "./voronoibaseline.rds")
+  saveRDS(baseline, "./voronoibaseline2.rds")
 }
 
 

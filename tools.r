@@ -40,3 +40,15 @@ sliceDim <- function(diag, dim) {
   return(bd)
 }
 
+# Remove the first 0th dimension component from every single nested persistence diagram in the foam object (nested list).
+cleanFoam <- function(foam) {
+  # Cleaning a single persistence diagram.
+  cleanDiag <- function(diag) { diag[2:nrow(diag),] }
+  # Applying cleanDiag to an entire vector.
+  cleanVec <- function(vec) {
+    vector <- lapply(vec, function(diag) { cleanDiag(diag) })
+    return(vector)
+  }
+  newfoam <- lapply(foam, function(vec) { cleanVec(vec) })
+  return(newfoam)
+}

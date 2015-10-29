@@ -13,8 +13,11 @@ library(abind)
 library(Hotelling)
 library(ks)
 
-# voronoi_compilation() 
-foam <- readRDS('./voronoifoam.rds')
+# We made a giant foam generation. Combine the foam[[10]] as the base line. So the last one is 0.1 percFil (but an independent sample).
+foam <- readRDS('./voronoifoamfull.rds')
+baseline <- readRDS('./voronoibaseline.rds')
+foam[[10]] = baseline
+foam <- cleanFoam(foam) # Remove the first 0th homology point.
 
 # Everything will be compared to baseline of 0.1
 setnum <- length(foam)
@@ -31,9 +34,6 @@ for (i in 1:setnum) {
   currproba <- t.test(eulerMat[,1], eulerMat[,i])
   eulerProba[i] <- currproba$p.value
 }
-# Plot the probabilities.
-plot(seq(1:setnum), proba)
-lines(seq(1:setnum), proba, type="b")
 
 # Trial 1 (size 5 grid)
 # [1] 1.00000000 0.47366485 0.18146536 0.05285394 0.20642641 0.45542569 
@@ -42,6 +42,10 @@ lines(seq(1:setnum), proba, type="b")
 # Trial 2 (size 20 grid)
 # [1] 1.000000e+00 7.139153e-01 3.722447e-01 1.938558e-01 8.116045e-03
 # [6] 8.876126e-06 1.377133e-02 1.326899e-06 2.326814e-05
+
+# Trial 3 (size 50 grid, 10k particles, removed outlier.)
+# [1] 1.000000e+00 6.669889e-02 3.506863e-05 2.097664e-07 9.100366e-09
+# [6] 4.485769e-15 8.174813e-18 3.680558e-15 5.486470e-22 2.476125e-01
 
 # =====================================================================
 # Try landscapes: Individual dimension at a time.
@@ -143,6 +147,20 @@ for (i in 0:2) {
 # [8,] 4.353056e-04 2.393692e-04 0.5926335
 # [9,] 5.002512e-10 3.674042e-06 0.9206319
 
+# Trial 3 (size 50 grid, 10k particles, removed outlier.)
+#             [,1]         [,2]         [,3]
+# [1,] 1.000000e+00 1.000000e+00 1.0000000000
+# [2,] 7.240694e-02 4.362882e-05 0.0739629423
+# [3,] 1.776881e-06 5.975643e-11 0.6462000624
+# [4,] 9.516119e-06 2.987558e-12 0.7049165940
+# [5,] 3.245846e-06 1.563172e-12 0.8349860776
+# [6,] 4.165985e-08 2.841770e-11 0.0850386598
+# [7,] 1.519206e-05 6.158313e-16 0.0008663968
+# [8,] 3.698749e-04 4.714918e-14 0.0003421091
+# [9,] 1.645924e-04 4.468696e-13 0.0003544215
+# [10,] 3.527798e-01 2.723179e-01 0.3958034100
+
+
 # =====================================================================
 # Try silhouttes: Combining all 3 dimensions (multi-D test)
 # Silhouttes are so freaking fast!
@@ -164,6 +182,10 @@ for (i in 1:setnum) {
 # Trial 2 (size 20 grid)
 # [1] 1.000000e+00 1.295513e-01 7.601015e-01 5.830569e-01 5.307828e-02
 # [6] 1.557875e-02 1.587168e-06 6.446052e-07 1.758393e-09
+
+# Trial 3 (size 50 grid, 10k particles, removed outlier.)
+# [1] 1.000000e+00 2.047602e-04 2.468581e-11 1.041389e-13 0.000000e+00
+# [6] 1.776357e-15 0.000000e+00 0.000000e+00 0.000000e+00 4.322806e-01
 
 # =====================================================================
 # Kernel density based local two-sample comparison test 
@@ -214,5 +236,31 @@ for (d in 0:2) {
 # [8,]  0.000000e+00 1.739559e-227 5.568554e-51
 # [9,]  0.000000e+00  0.000000e+00 6.389747e-60
 
-# Combining these into one is a little harder. Concatenating across dimensions here makes much less sense. And I would have to assume normality which is just false (to do a hotelling test).
+# Trial 3 (size 50 grid, 10k particles, removed outlier.)
+#                [,1]          [,2]          [,3]
+#  [1,]  1.000000e+00  1.000000e+00  1.000000e+00
+#  [2,]  2.850133e-59  6.630248e-01  3.716201e-04
+#  [3,] 1.627787e-198  2.127742e-01  2.475116e-07
+#  [4,]  0.000000e+00  9.812215e-04  1.036986e-19
+#  [5,]  0.000000e+00  7.630445e-09  9.161538e-70
+#  [6,]  0.000000e+00  2.987253e-01  4.401864e-87
+#  [7,]  0.000000e+00  1.530538e-19 1.212260e-105
+#  [8,]  0.000000e+00  5.854761e-60 3.747478e-165
+#  [9,]  0.000000e+00 2.828989e-114 8.928295e-155
+# [10,]  2.072744e-02  1.619691e-01  3.522129e-01
 
+# Combining these into one is a little harder. Concatenating across dimensions here makes much less sense. And I would have to assume normality which is just false (to do a hotelling test). But another way to combine things but lose even more information is just compare distribution of all points regardless of dimension (treat them as equivalent features).
+distrProba <- rep(0, setnum)
+distrList <- vector("list", setnum)
+for (i in 1:setnum) { 
+  distrList[[i]] <- c(distribDimStat(foam[[i]], 0), distribDimStat(foam[[i]], 1), distribDimStat(foam[[i]], 2))
+}
+baseline <- distrList[[1]] 
+for (i in 1:setnum) {
+  currproba <- wilcox.test(baseline, distrList[[i]])
+  distrProba[i] <- currproba$p.value
+}
+
+# [1]  1.000000e+00  2.257676e-26  8.315331e-57 8.321309e-122 3.797138e-231
+# [6]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  1.145516e-03
+# Useless... not good.
