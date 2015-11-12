@@ -43,7 +43,8 @@ permutationTest <- function(N, X, L, lossfunc, ...) {
 # h is a smoothing parameter.
 gaussianKernel <- function(P, Q, ...) {
   # This only needs 1 parameter.
-  distfunc, h %=% c(...)[1], c(...)[2] 
+  distfunc <- c(...)[1]
+  h <- c(...)[2]
   k <- exp(-distfunc(P, Q)^2 / h^2)
   return(k)
 }
@@ -95,7 +96,8 @@ findBestParam <- function(X, L, kernel, distfunc, min=0, max=5, by=0.1) {
 # Energy Test
 # ---------------------------------------------
 energyKernel <- function(P, Q,  ...) {
-  distfunc, alpha %=% c(...)[1], c(...)[2]
+  distfunc <- c(...)[1]
+  alpha <- c(...)[2]
   k <- distfunc(P, Q)^alpha
   return(k)
 }
@@ -123,7 +125,8 @@ rosenbaumStat <- function(X, L, distfunc) {
 }
 
 distanceMat <- function(X, distfunc) {
-  n, m %=% nrow(X), ncol(X)
+  n <- nrow(X)
+  m <- ncol(X)
   grid <- permutate(n, m)
   dgrid <- sapply(seq(1:length(grid)), function(i) {
     return(distfunc(grid[i,1], grid[i,2]))

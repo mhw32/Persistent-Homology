@@ -32,7 +32,7 @@ eulerMat <- gridOperation(foam, eulerIntegration)
 eulerProba <- rep(0, setnum)
 for (i in 1:setnum) {
   currproba <- t.test(eulerMat[,1], eulerMat[,i])
-  eulerProba[i] <- currproba$p.value
+  eulerProba[i] <- log(currproba$p.value)
 }
 
 # Trial 1 (size 5 grid)
@@ -58,7 +58,7 @@ for (i in 0:2) {
   # Calculate probabilities with t-test
   for (j in 1:setnum) {
     currproba <- t.test(landDimMat[,1], landDimMat[,j])
-    landDimProba[j, i+1] <- currproba$p.value
+    landDimProba[j, i+1] <- log(currproba$p.value)
   }
 }
 
@@ -98,7 +98,7 @@ landMat <- gridOperation(foam, landfxn)
 landProba <- rep(0, setnum)
 for (i in 1:setnum) {
   currproba <- hotelling.test(t(landMat[,,1]), t(landMat[,,i]))
-  landProba[i] <- currproba$pval
+  landProba[i] <- log(currproba$pval)
 }
 
 # Trial 1 (size 5 grid)
@@ -108,6 +108,10 @@ for (i in 1:setnum) {
 # Trial 2 (size 20 grid)
 # [1] 1.000000e+00 2.948253e-01 2.651703e-01 3.475018e-02 1.182310e-05
 # [6] 1.594319e-05 5.215882e-06 2.463658e-10 3.824774e-09]
+
+# Trial 3 (size 50 grid)
+#  [1] 1.000000e+00 1.231139e-01 6.526770e-08 5.028286e-07 5.781315e-10
+ # [6] 1.571498e-11 1.112888e-12 3.730349e-14 2.886580e-15 1.215550e-01
 
 # =====================================================================
 # Try Silhouettes: Individual dimension at a time.
@@ -119,7 +123,7 @@ for (i in 0:2) {
   # Calculate probabilities with t-test
   for (j in 1:setnum) {
     currproba <- t.test(silhDimMat[,1], silhDimMat[,j])
-    silhDimProba[j, i+1] <- currproba$p.value
+    silhDimProba[j, i+1] <- log(currproba$p.value)
   }
 }
 
@@ -172,7 +176,7 @@ silhMat <- gridOperation(foam, silhfxn)
 silhProba <- rep(0, setnum)
 for (i in 1:setnum) {
   currproba <- hotelling.test(t(silhMat[,,1]), t(silhMat[,,i]))
-  silhProba[i] <- currproba$pval
+  silhProba[i] <- log(currproba$pval)
 }
 
 # Trial 1 (size 5 grid)
@@ -191,7 +195,14 @@ for (i in 1:setnum) {
 # Kernel density based local two-sample comparison test 
 # http://www.mvstat.net/tduong/research/publications/duong-2013-jns.pdf
 # =====================================================================
-# Ask Jessi Cisewski. Not sure how to handle grid-based p-values.
+test <- kde.local.test(foam[[10]][[1]], foam[[10]][[2]])
+testmat <- matrix(test$pvalue, ncol=ncol(test$pvalue), nrow=nrow(test$pvalue))
+test2 <- kde.local.test(foam[[10]][[1]], foam[[9]][[2]])
+testmat2 <- matrix(test2$pvalue, ncol=ncol(test2$pvalue), nrow=nrow(test2$pvalue))
+
+visualize <- function(df) {
+  image(matrix(df, ncol=ncol(df), nrow=nrow(df)))
+}
 
 # =====================================================================
 # Distribution Testing (Separate): Given diagrams, split it into 0, 1, 2 dimensions and compare their distributions via nonparametric test.
@@ -209,7 +220,7 @@ for (d in 0:2) {
   baseline <- distrDimList[[1]] 
   for (i in 1:setnum) {
     currproba <- wilcox.test(baseline, distrDimList[[i]])
-    distrDimProba[i, d+1] <- currproba$p.value
+    distrDimProba[i, d+1] <- log(currproba$p.value)
   }
 }
 
@@ -258,9 +269,39 @@ for (i in 1:setnum) {
 baseline <- distrList[[1]] 
 for (i in 1:setnum) {
   currproba <- wilcox.test(baseline, distrList[[i]])
-  distrProba[i] <- currproba$p.value
+  distrProba[i] <- log(currproba$p.value)
 }
 
 # [1]  1.000000e+00  2.257676e-26  8.315331e-57 8.321309e-122 3.797138e-231
 # [6]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  1.145516e-03
 # Useless... not good.
+
+
+##########
+# KS test
+##########
+distrDimProba <- matrix(NA, nrow=setnum, ncol=3)
+for (d in 0:2) {
+  # Loop through the set and do the distribDimStat for each.
+  distrDimList <- vector("list", setnum)
+  for (i in 1:setnum) { distrDimList[[i]] <- distribDimStat(foam[[i]], d) }
+  # Do a wilcox test for each with the baseline being the 0.1.
+  baseline <- distrDimList[[1]] 
+  for (i in 1:setnum) {
+    currproba <- ks.test(baseline, distrDimList[[i]])
+    distrDimProba[i, d+1] <- log(currproba$p.value)
+  }
+}
+
+#               [,1]         [,2]         [,3]
+#  [1,] 1.0000000000 1.000000e+00 1.000000e+00
+#  [2,] 0.0000000000 8.306134e-12 1.743079e-08
+#  [3,] 0.0000000000 0.000000e+00 0.000000e+00
+#  [4,] 0.0000000000 0.000000e+00 0.000000e+00
+#  [5,] 0.0000000000 0.000000e+00 0.000000e+00
+#  [6,] 0.0000000000 0.000000e+00 0.000000e+00
+#  [7,] 0.0000000000 0.000000e+00 0.000000e+00
+#  [8,] 0.0000000000 0.000000e+00 0.000000e+00
+#  [9,] 0.0000000000 0.000000e+00 0.000000e+00
+# [10,] 0.0005928798 1.016147e-01 1.117919e-01
+

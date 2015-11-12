@@ -34,9 +34,7 @@ allWrapper <- function(fxn) {
   return(inner)
 }
 
-# ---------------------------------------------------------------
-# Local Significant Difference Functions
-# kde.local.test()
+
 
 
 
