@@ -53,33 +53,22 @@ voronoi_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
   })
 }
 
-voronoi_compilation <- function() {
-  # Set a pretty big scope. 
-  Boxlim <- c(0,50)
-  resolution <- 0.5  # grid space for approximating the voronoi cells. (change this to be bigger).
-  perturb <- 1 # variance around the filaments.
-  N <- 10000   # number of particles.
-  groupN <- 15 # size of each set.
-  # Do something with it.
+# Function to generate a foam.
+voronoi_compilation <- function(N, Boxlim, res, perturb=1, groupN=15) {
   percFils <- seq(from=0.1, to=0.9, by=0.1)
   numSet <- length(percFils)
   storage <- vector("list", numSet)
   for (i in 1:numSet) {
-    currSet <- voronoi_set(percFils[i], N, groupN, resolution, perturb, Boxlim)
+    currSet <- voronoi_set(percFils[i], N, groupN, res, perturb, Boxlim)
     storage[[i]] = currSet
   }
-  saveRDS(storage, "./voronoifoamfull2.rds")
+  saveRDS(storage, "./saved_states/foam.rds")
+  # Run and save the baseline.
+  baseline <- voronoi_set(percFils[1], N, groupN, res, perturb, Boxlim)
+  saveRDS(baseline, "./saved_states/baseline.rds")
 }
 
-voronoi_baseline <- function() {
-  Boxlim <- c(0, 50)
-  resolution <- 0.5
-  perturb <- 1
-  N <- 10000
-  groupN <- 15
-  baseline <- voronoi_set(0.1, N, groupN, resolution, perturb, Boxlim)
-  saveRDS(baseline, "./voronoibaseline2.rds")
-}
+
 
 
 
