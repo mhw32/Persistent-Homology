@@ -23,7 +23,6 @@ distribDimStat <- function(set, dim) {
   return(reducedset)
 }
 
-
 # Contour Test. This tests for the different in densities of the kernel density estimates of two things. 
 contourDimStat <- function(set, dim) {
   setnum <- length(set)
@@ -31,6 +30,7 @@ contourDimStat <- function(set, dim) {
     input <- sliceDim(set[[i]], dim)
     inputx <- input[,1]
     inputy <- input[,2]
+    # 2D KDE to get the density.
     return(kde2d(inputx, inputy)$z)
   })
   return(sliceset)

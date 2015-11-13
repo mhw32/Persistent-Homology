@@ -3,6 +3,7 @@ source('euler.r')
 source('summarize.r')
 source('distribution.r')
 source('tools.r')
+library(FNN)
 library(abind)
 library(Hotelling)
 
@@ -85,8 +86,11 @@ voronoi_tests <- function(foam, baseline) {
       # Do a wilcox test for each with the baseline being the 0.1.
       baseline <- distrDimList[[1]] # first index.
       for (i in 1:setnum) {
-        currproba <- ks.test(baseline, distrDimList[[i]])
-        distrDimProba[i, d+1] <- log(currproba$p.value)
+        counter <- 0
+        for (j in 1:colnum) {
+          counter <- counter + ks.test(baseline[[j]], distrDimList[[i]][[j]])$p.value
+        }
+        distrDimProba[i, d+1] <- log(counter / colnum)
       }
     }
     return(distrDimProba)
@@ -105,9 +109,9 @@ voronoi_tests <- function(foam, baseline) {
       for (i in 1:setnum) {
         counter <- 0
         for (j in 1:colnum) {
-          counter <- counter + sum((contourDimList[[i]][[j]] - baseline[[j]])^2)
+          counter <- counter + max(KL.divergence(baseline[[j]], contourDimList[[i]][[j]]))
         }
-        contourDimProba[i, d+1] <- counter 
+        contourDimProba[i, d+1] <- counter / colnum
       }
     }
     return(contourDimProba)
