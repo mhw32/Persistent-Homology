@@ -52,3 +52,4 @@ cleanFoam <- function(foam) {
   newfoam <- lapply(foam, function(vec) { cleanVec(vec) })
   return(newfoam)
 }
+
