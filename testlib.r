@@ -6,9 +6,9 @@ source('tools.r')
 library(abind)
 library(Hotelling)
 
-voronoi_tests <- function(foam, baseline, ticker=1:6) {
+voronoi_tests <- function(foam, baseline) {
   # Pre-setup on baseline.
-  foam[[length(foam)]] = baseline
+  foam[[length(foam)+1]] = baseline
   foam <- cleanFoam(foam)
   setnum <- length(foam)
   colnum <- length(foam[[1]])
@@ -75,7 +75,7 @@ voronoi_tests <- function(foam, baseline, ticker=1:6) {
     return(silhProba)
   }
   # Distribution Test.
-  distr_test <- function(test='wilcox') {
+  distr_test <- function() {
     # Loop through dimensions.
     distrDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (d in 0:2) {
@@ -83,29 +83,44 @@ voronoi_tests <- function(foam, baseline, ticker=1:6) {
       distrDimList <- vector("list", setnum)
       for (i in 1:setnum) { distrDimList[[i]] <- distribDimStat(foam[[i]], d) }
       # Do a wilcox test for each with the baseline being the 0.1.
-      baseline <- distrDimList[[1]] 
+      baseline <- distrDimList[[1]] # first index.
       for (i in 1:setnum) {
-        if (test == 'wilcox') {
-          currproba <- wilcox.test(baseline, distrDimList[[i]])
-        } else {
-          currproba <- ks.test(baseline, distrDimList[[i]])
-        } 
+        currproba <- ks.test(baseline, distrDimList[[i]])
         distrDimProba[i, d+1] <- log(currproba$p.value)
       }
     }
     return(distrDimProba)
   }
-  # Run the tests.
-  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'distr-test')
-  tests <- c(euler_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, distr_test)
-  # Create an empty list and initialize it.
-  tests_results <- vector(mode="list", length=length(keys))
-  names(tests_results) <- keys
-  # Loop through them.
-  for (i in ticker) { 
-    tests_results[[keys[i]]] <- tests[i]() 
+  # Contour Test.
+  contour_test <- function() {
+    contourDimProba <- matrix(NA, nrow=setnum, ncol=3)
+    for (d in 0:2) {
+      # Loop through the set and grab the stat for each. 
+      contourDimList <- vector("list", setnum)
+      for (i in 1:setnum) { 
+        contourDimList[[i]] <- contourDimStat(foam[[i]], d)
+      }
+      baseline <- contourDimList[[1]]
+      # Loop through each set and each diag, calculate the differences.
+      for (i in 1:setnum) {
+        counter <- 0
+        for (j in 1:colnum) {
+          counter <- counter + sum((contourDimList[[i]][[j]] - baseline[[j]])^2)
+        }
+        contourDimProba[i, d+1] <- counter 
+      }
+    }
+    return(contourDimProba)
   }
-  return(tests_results)
+  # Return the tests.
+  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'distr', 'contour')
+  tests <- c(euler_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, distr_test, contour_test)
+  testsfxns <- vector(mode="list", length=length(keys))
+  names(testsfxns) <- keys
+  for (i in 1:length(keys)) {
+    testsfxns[keys[i]] <- tests[i]
+  }
+  return(testsfxns)
 }
 
 

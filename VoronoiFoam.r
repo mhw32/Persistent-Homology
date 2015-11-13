@@ -18,22 +18,13 @@ source("Voronoi3Dfct.r")
 # percClust: percentage of particles on the clusters
 
 # Example of a call to voronoi.
-voronoi_example <- function() {
-  Boxlim <- c(0,20)
-  Xlim <- Boxlim
-  Ylim <- Boxlim
-  Zlim <- Boxlim
-  resolution <- 0.5  ## grid space for approximating the voronoi cells.
-  perturb <- 1 ## variance around the filaments
-  N <- 10000   ## number of particles
-
-  percFil <- 0.1
-  vf1 <- voronoi3d(Boxlim, resolution, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
-
-  diag1 <- gridDiag(vf1, dtm, lim=cbind(Xlim,Ylim,Zlim), by=resolution, sublevel=T, printProgress=T, m0=0.001)
-
-  scatterplot3d(vf1, pch=19, cex.symbol=.5, xlab="", ylab="", zlab="")
-  plot(diag1$diagram)
+voronoi_example <- function(boxlim, percFil=0.1, res=0.5, perturb=1, N=10000) {
+  Xlim <- boxlim
+  Ylim <- boxlim
+  Zlim <- boxlim
+  vf<- voronoi3d(boxlim, res, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
+  diag <- gridDiag(vf, dtm, lim=cbind(Xlim,Ylim,Zlim), by=res, sublevel=T, printProgress=T, m0=0.001)
+  return(diag)
 }
 
 # Given a voronsoi diagram, remove the first one of the 0th homologies, because it is always going to be infinity and thereby distracting. 

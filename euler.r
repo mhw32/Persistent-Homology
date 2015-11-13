@@ -48,7 +48,7 @@ integrate <- function(xarr, yarr) {
 }
 
 eulerKernel <- function(P, N=1000) {
-	tseq <- seq(min(test[,2:3]),max(test[,2:3]),length=N)
+	tseq <- seq(min(P[,2:3]),max(P[,2:3]),length=N)
 	euler <- eulerChar(tseq, P, maxdimension=max(P[,1]), threshold=0)
 	auc <- integrate(tseq, euler)
 	return(auc)
@@ -67,7 +67,7 @@ eulerStat <- function(X, L) {
 
 # Wrapper fxn to combine generation and integration.
 eulerIntegration <- function(diagram) {
-  tseq <- seq(min(test[,2:3]),max(test[,2:3]),length=1000)
+  tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=1000)
   euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
   auc <- integrate(tseq, euler)
   return(auc)

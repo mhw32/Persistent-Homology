@@ -16,13 +16,24 @@ reduce <- function(mat) {
 # Given a persistence diagram. Pick out a single dimension. Reduce dimension. Run a Manning Whitney U test (nonparametric 1-d).
 distribDimStat <- function(set, dim) {
   setnum <- length(set)
-  reducedset <- sapply(1:setnum, function(i) {
+  reducedset <- lapply(1:setnum, function(i) {
     # Reduce specific dimension(s).
     reduce(sliceDim(set[[i]], dim)) 
   })
-  # Because these are all from a single high dimensional distribution, I will combine them together.
-  vector <- unlist(reducedset)
-  return(vector)
+  return(reducedset)
+}
+
+
+# Contour Test. This tests for the different in densities of the kernel density estimates of two things. 
+contourDimStat <- function(set, dim) {
+  setnum <- length(set)
+  sliceset <- lapply(1:setnum, function(i) {
+    input <- sliceDim(set[[i]], dim)
+    inputx <- input[,1]
+    inputy <- input[,2]
+    return(kde2d(inputx, inputy)$z)
+  })
+  return(sliceset)
 }
 
 
