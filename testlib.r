@@ -135,17 +135,32 @@ test_wrapper <- function(foam, base1, base9) {
   print("--------------------------------")
   t1 <- voronoi_tests(foam, base1)
   for i in keys {
+    print(paste("Test for", i, ":"))
     currfxn <- t1[[i]]
-    currfxn()
+    response <- currfxn()
+    print(format_response(response))
   }
   print("\n")
   print("Starting Tests with Baseline 0.9")
   print("--------------------------------")
   t2 <- voronoi_tests(foam, base9)
   for i in keys {
+    print(paste("Test for", i, ":"))
     currfxn <- t2[[i]]
-    currfxn()
+    response <- currfxn()
+    print(format_response(response))
   }
   sink()
 }
 
+format_response <- function(mat) {
+  response <- ""
+  if dim(mat) == NULL {
+    for (i in mat) { response <- paste(response, i) }
+  } else {
+    for (i in mat) {
+      for (j in i) { response <- paste(response, j) }
+      response <- paste(response, i, sep="\n")
+    }
+  }
+}
