@@ -138,10 +138,8 @@ test_wrapper <- function(foam, base1, base9) {
   for (i in keys) {
     print(paste("Test for", i, ":"))
     currfxn <- t1[[i]]
-    print(currfxn)
     response <- currfxn()
     print(response)
-    print(format_response(response))
   }
   print("\n")
   print("Starting Tests with Baseline 0.9")
@@ -151,7 +149,7 @@ test_wrapper <- function(foam, base1, base9) {
     print(paste("Test for", i, ":"))
     currfxn <- t2[[i]]
     response <- currfxn()
-    print(format_response(response))
+    print(response)
   }
   sink()
 }
