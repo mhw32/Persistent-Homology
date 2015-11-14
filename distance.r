@@ -13,3 +13,8 @@ wassersteinDist <- function(X, Y, dimension=1, p=2) {
   return(d)
 }
 
+# Provided two contours.
+contourDist <- function(X, Y) {
+  d <- mean(abs(X - Y))
+  return(d)
+}
