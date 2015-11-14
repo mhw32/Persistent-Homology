@@ -99,21 +99,23 @@ voronoi_tests <- function(foam, baseline) {
   contour_test <- function() {
     contourDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (d in 0:2) {
-      # Loop through the set and grab the stat for each.
-      contourDimList <- vector("list", setnum)
+      # Loop through the set and grab a kernel density for each.
+      contourDimMat <- matrix(NA, nrow=setnum, ncol=colnum)
+      baseline <- contourDimStat(foam[[1]], d)
       for (i in 1:setnum) {
-        contourDimList[[i]] <- contourDimStat(foam[[i]], d)
+        for (j in 1:colnum) # Take the mean of the density difference.
+          contourDimMat[setnum, colnum] <- mean(contourDimStat(foam[[i]][[j]], d) - baseline[[j]])
       }
-      baseline <- contourDimList[[1]]
-      # Loop through each set and each diag, calculate the differences.
+      # Now I have a "distance" matrix for each diag.
+      # Perform a gaussian distance permutation test for each thing in setnum.
       for (i in 1:setnum) {
-        counter <- 0
-        for (j in 1:colnum) {
-          counter <- counter + max(KL.divergence(baseline[[j]], contourDimList[[i]][[j]]))
-        }
-        contourDimProba[i, d+1] <- counter / colnum
+        # Artificial labels: 0 (base), 1 (percFil)
+        L <- c(rep(0, colnum), rep(1, colnum))
+        D <- c(contourDimMat[1,], contourDimMat[i,])
+        contourDimProba[i, d+1] <- permutationDistTest(colnum, L, D)
       }
     }
+    # Here, we have 2 sample t-test results comparing each 2D shape with the baseline.
     return(contourDimProba)
   }
   # Return the tests.
@@ -131,7 +133,7 @@ test_wrapper <- function(foam, base, ext) {
   # 'indiv-land', 'all-land' not included.
   keys <- c('euler', 'indiv_silh', 'all-silh', 'distr', 'contour')
   # Direct output to a file.
-  sink(paste("./saved_states/results-", ext, ".txt"), append=FALSE, split=FALSE)
+  sink(paste("./saved_states/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
   print("--------------------------------")
   t <- voronoi_tests(foam, base)
   for (i in keys) {
@@ -139,9 +141,9 @@ test_wrapper <- function(foam, base, ext) {
     currfxn <- t[[i]]
     response <- currfxn()
     print(response)
+    print("")
   }
   print("--------------------------------")
-  print("\n")
   sink()
 }
 
