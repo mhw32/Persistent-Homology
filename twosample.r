@@ -19,7 +19,7 @@ source('distance.r')
 # N = number of permutations to do.
 permutationTest <- function(N, X, L, h=NULL) {
   # If no prior on h, find MLE.
-  if (h == NULL)
+  if (is.null(h))
     h <- findBestParam(X, L)
   Z <- 0 # Initialization
   loss_orig <- kernelStat(X, L, h)
