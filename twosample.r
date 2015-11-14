@@ -17,7 +17,10 @@ source('distance.r')
 # We need a global sort of permutation test.
 # (A generation of nhst in NHST.r)
 # N = number of permutations to do.
-permutationTest <- function(N, X, L, h) {
+permutationTest <- function(N, X, L, h=NULL) {
+  # If no prior on h, find MLE.
+  if (h == NULL)
+    h <- findBestParam(X, L)
   Z <- 0 # Initialization
   loss_orig <- kernelStat(X, L, h)
   # Preserve some amount of order.
@@ -77,10 +80,10 @@ kernelStat <- function(X, L, h) {
 
 # What is the best value for parameter h?
 # IDK, so do a dumb search over a predefined space and take the suprenum.
-findBestParam <- function(X, L, kernel, distfunc, min=0, max=5, by=0.1) {
+findBestParam <- function(X, L, min=0, max=5, by=0.1) {
   hspace <- seq(min, max, by=by)
   v <- sapply(hspace, function(i) {
-    t <- kernelStat(X, L, kernel, distfunc, i)
+    t <- kernelStat(X, L, i)
     return(c(i, t))
   })
   # Suprenum is the max(abs())
