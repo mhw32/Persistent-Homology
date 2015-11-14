@@ -116,7 +116,7 @@ voronoi_tests <- function(foam, baseline) {
         # Artificial labels: 0 (base), 1 (percFil)
         L <- c(rep(0, colnum), rep(1, colnum))
         D <- contourDimMat[i,,] # represents distance.
-        contourDimProba[i, d+1] <- permutationDistTest(1000, L, D)
+        contourDimProba[i, d+1] <- permutationDistTest(250, L, D)
       }
     }
     # Here, we have 2 sample t-test results comparing each 2D shape with the baseline.
