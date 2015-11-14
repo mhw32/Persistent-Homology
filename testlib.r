@@ -1,6 +1,7 @@
 source('VoronoiFoam.r')
 source('euler.r')
 source('summarize.r')
+source('twosample.r')
 source('distribution.r')
 source('tools.r')
 library(FNN)
@@ -103,15 +104,16 @@ voronoi_tests <- function(foam, baseline) {
       contourDimMat <- matrix(NA, nrow=setnum, ncol=colnum)
       baseline <- contourDimStat(foam[[1]], d)
       for (i in 1:setnum) {
+        contours <- contourDimStat(foam[[i]], d)
         for (j in 1:colnum) # Take the mean of the density difference.
-          contourDimMat[setnum, colnum] <- mean(contourDimStat(foam[[i]][[j]], d) - baseline[[j]])
+          contourDimMat[i, j] <- mean(contours[[j]] - baseline[[j]])
       }
       # Now I have a "distance" matrix for each diag.
       # Perform a gaussian distance permutation test for each thing in setnum.
       for (i in 1:setnum) {
         # Artificial labels: 0 (base), 1 (percFil)
         L <- c(rep(0, colnum), rep(1, colnum))
-        D <- c(contourDimMat[1,], contourDimMat[i,])
+        D <- cbind(contourDimMat[1,], contourDimMat[i,])
         contourDimProba[i, d+1] <- permutationDistTest(colnum, L, D)
       }
     }
