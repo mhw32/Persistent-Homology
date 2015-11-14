@@ -2,4 +2,7 @@ images/
 *.rds
 *.ipynb
 *.ipynb_checkpoints/
-
+/saved_states
+*.bsub
+*.RData
+*.Rout
