@@ -156,7 +156,7 @@ test_wrapper <- function(foam, base1, base9) {
 
 format_response <- function(mat) {
   response <- ""
-  if dim(mat) == NULL {
+  if (dim(mat) == NULL) {
     for (i in mat) { response <- paste(response, i) }
   } else {
     for (i in mat) {
