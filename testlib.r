@@ -131,7 +131,7 @@ test_wrapper <- function(foam, base1, base9) {
   # 'indiv-land', 'all-land' not included.
   keys <- c('euler', 'indiv_silh', 'all-silh', 'distr', 'contour')
   # Direct output to a file.
-  sink("./results.txt", append=FALSE, split=FALSE)
+  sink("./saved_states/results.txt", append=FALSE, split=FALSE)
   print("Starting Tests with Baseline 0.1")
   print("--------------------------------")
   t1 <- voronoi_tests(foam, base1)
