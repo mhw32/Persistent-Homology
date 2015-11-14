@@ -99,9 +99,9 @@ voronoi_tests <- function(foam, baseline) {
   contour_test <- function() {
     contourDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (d in 0:2) {
-      # Loop through the set and grab the stat for each. 
+      # Loop through the set and grab the stat for each.
       contourDimList <- vector("list", setnum)
-      for (i in 1:setnum) { 
+      for (i in 1:setnum) {
         contourDimList[[i]] <- contourDimStat(foam[[i]], d)
       }
       baseline <- contourDimList[[1]]
@@ -128,13 +128,14 @@ voronoi_tests <- function(foam, baseline) {
 }
 
 test_wrapper <- function(foam, base1, base9) {
-  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'distr', 'contour') 
+  # 'indiv-land', 'all-land' not included.
+  keys <- c('euler', 'indiv_silh', 'all-silh', 'distr', 'contour')
   # Direct output to a file.
   sink("./results.txt", append=FALSE, split=FALSE)
   print("Starting Tests with Baseline 0.1")
   print("--------------------------------")
   t1 <- voronoi_tests(foam, base1)
-  for i in keys {
+  for (i in keys) {
     print(paste("Test for", i, ":"))
     currfxn <- t1[[i]]
     response <- currfxn()
@@ -144,7 +145,7 @@ test_wrapper <- function(foam, base1, base9) {
   print("Starting Tests with Baseline 0.9")
   print("--------------------------------")
   t2 <- voronoi_tests(foam, base9)
-  for i in keys {
+  for (i in keys) {
     print(paste("Test for", i, ":"))
     currfxn <- t2[[i]]
     response <- currfxn()
