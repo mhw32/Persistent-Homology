@@ -101,20 +101,22 @@ voronoi_tests <- function(foam, baseline) {
     contourDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (d in 0:2) {
       # Loop through the set and grab a kernel density for each.
-      contourDimMat <- matrix(NA, nrow=setnum, ncol=colnum)
+      contourDimMat <- array(NA, dim=c(setnum, colnum, colnum))
       baseline <- contourDimStat(foam[[1]], d)
       for (i in 1:setnum) {
         contours <- contourDimStat(foam[[i]], d)
-        for (j in 1:colnum) # Take the mean of the density difference.
-          contourDimMat[i, j] <- mean(contours[[j]] - baseline[[j]])
+        for (j in 1:colnum) {# Take the mean of the density difference.
+          for (k in 1:colnum)
+            contourDimMat[i, j, k] <- mean(contours[[k]] - baseline[[j]])
+        }
       }
       # Now I have a "distance" matrix for each diag.
       # Perform a gaussian distance permutation test for each thing in setnum.
       for (i in 1:setnum) {
         # Artificial labels: 0 (base), 1 (percFil)
         L <- c(rep(0, colnum), rep(1, colnum))
-        D <- cbind(contourDimMat[1,], contourDimMat[i,])
-        contourDimProba[i, d+1] <- permutationDistTest(colnum, L, D)
+        D <- contourDimMat[i,,] # represents distance.
+        contourDimProba[i, d+1] <- permutationDistTest(1000, L, D)
       }
     }
     # Here, we have 2 sample t-test results comparing each 2D shape with the baseline.

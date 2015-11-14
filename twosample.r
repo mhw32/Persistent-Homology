@@ -136,7 +136,7 @@ permutationDistTest <- function(N, L, D) {
   Z <- 0 # Initialization
   loss_orig <- kernelDistStat(L, D)
   # Preserve some amount of order.
-  order <- c(1:length(X))
+  order <- c(1:length(L))
   filler <- lapply(c(1:N), function(i) {
     random <- sample(order)
     # Only vary the order of the labels!
