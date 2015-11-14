@@ -104,7 +104,7 @@ voronoi_tests <- function(foam, baseline) {
         # Artificial labels: 0 (base), 1 (percFil)
         L <- c(rep(0, colnum), rep(1, colnum))
         # Pass a contatenated vector of contours maps.
-        X <- c(contourDimStat(foam[[1]]), contourDimStat(foam[[i]]))
+        X <- c(contourDimStat(foam[[1]], d), contourDimStat(foam[[i]], d))
         contourDimProba[i, d+1] <- permutationTest(250, X, L, 1)
       }
     }

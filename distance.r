@@ -13,8 +13,8 @@ wassersteinDist <- function(X, Y, dimension=1, p=2) {
   return(d)
 }
 
-# Provided two contours.
+# Provided two contours, get MSE between them.
 contourDist <- function(X, Y) {
-  d <- mean(abs(X - Y))
+  d <- mean((X - Y)^2)
   return(d)
 }

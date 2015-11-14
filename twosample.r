@@ -5,7 +5,6 @@ source('NHST.r')
 source('multiassign.r')
 source('tools.r')
 source('distance.r')
-library(crossmatch)
 
 # The code below is based on the link:
 # https://normaldeviate.wordpress.com/2012/07/14/modern-two-sample-tests/
@@ -49,8 +48,7 @@ gaussianKernel <- function(P, Q, distfunc, h) {
 
 # X are the merged persistence diagrams.
 # L are the merged persistence labels.
-# KERNEL is the kernel we are using.
-# ... is a placeholder for arbitrary number of parameters.
+# h is the smoothing parameter
 kernelStat <- function(X, L, h) {
   # Split the persistence diagrams into 2 groups.
   G1 <- X[L == 0]
