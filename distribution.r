@@ -5,7 +5,7 @@
 # This is actually a matrix transformation. We also need to scale the standard deviation properly: A <- 1/sqrt(2)*matrix(c(1,1,1,-1),2,2). This should preserve all distances and essentially equals SVD. Then we can remove the 2nd dimension and be left with a scaled dimension. This is the first principle component!
 
 source('tools.r')
-library(FNN)
+library(MASS)
 
 # 2-to-1 Dimensionality reduction based on
 reduce <- function(mat) {

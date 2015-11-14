@@ -127,30 +127,21 @@ voronoi_tests <- function(foam, baseline) {
   return(testsfxns)
 }
 
-test_wrapper <- function(foam, base1, base9) {
+test_wrapper <- function(foam, base, ext) {
   # 'indiv-land', 'all-land' not included.
   keys <- c('euler', 'indiv_silh', 'all-silh', 'distr', 'contour')
   # Direct output to a file.
-  sink("./saved_states/results.txt", append=FALSE, split=FALSE)
-  print("Starting Tests with Baseline 0.1")
+  sink(paste("./saved_states/results-", ext, ".txt"), append=FALSE, split=FALSE)
   print("--------------------------------")
-  t1 <- voronoi_tests(foam, base1)
+  t <- voronoi_tests(foam, base)
   for (i in keys) {
     print(paste("Test for", i, ":"))
-    currfxn <- t1[[i]]
+    currfxn <- t[[i]]
     response <- currfxn()
     print(response)
   }
+  print("--------------------------------")
   print("\n")
-  print("Starting Tests with Baseline 0.9")
-  print("--------------------------------")
-  t2 <- voronoi_tests(foam, base9)
-  for (i in keys) {
-    print(paste("Test for", i, ":"))
-    currfxn <- t2[[i]]
-    response <- currfxn()
-    print(response)
-  }
   sink()
 }
 
