@@ -64,3 +64,41 @@ def parse(filepath):
         else: # This is for all the other types.
             parsed[k] = np.array([np.array(filter(lambda a: a != '', row.split(' '))).astype('float') for row in v])
     return parsed
+
+# Changes to contour I forgot to make.
+def fixcontour(parsed, key):
+    for r in parsed:
+        r[key] = np.log(1 - r[key])
+    return parsed
+
+def exponentiate(parsed, key):
+    for r in parsed:
+        r[key] = np.exp(r[key])
+    return parsed
+
+# Extra functions to plot things.
+def prepare1d(resArr, key):
+    obj = np.array([[r[key][i] for r in resArr] for i in range(len(resArr[0][key]))])[1:]
+    obj = np.vstack((obj[-1], obj[:-1]))
+    return obj
+
+# For 2-d matrices, parse by dimension.
+def prepare2d(resArr, key, dim):
+    newArr = np.array([r[key][:,dim] for r in resArr])
+    obj = np.array([[r[i] for r in newArr] for i in range(len(newArr[0]))])[1:]
+    obj = np.vstack((obj[-1], obj[:-1]))
+    return obj
+
+def plottest(p, key, save=True):
+    meanobj = [np.average(i) for i in p]
+    minobj = [min(i) for i in p]
+    maxobj = [max(i) for i in p]
+    percFils = np.arange(0.1, 1, 0.1)
+    plt.figure()
+    plt.xlabel('Percent Filled')
+    plt.ylabel('Log Proba')
+    plt.title(key + ' characteristic (20 iter)')
+    plt.plot(percFils, meanobj, '-o')
+    plt.fill_between(percFils, minobj, maxobj, facecolor='green', interpolate=True, alpha=0.2)
+    plt.savefig('../images/cluster-results/'+key+'-test.pdf')
+    plt.show()

@@ -8,3 +8,4 @@ images/
 *.RData
 *.Rout
 /scratch
+*.pyc
