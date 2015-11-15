@@ -6,3 +6,4 @@ images/
 *.bsub
 *.RData
 *.Rout
+/scratch
