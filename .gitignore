@@ -3,6 +3,7 @@ images/
 *.ipynb
 *.ipynb_checkpoints/
 /saved_states
+/notebooks
 *.bsub
 *.RData
 *.Rout
