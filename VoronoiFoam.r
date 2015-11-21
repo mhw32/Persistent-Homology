@@ -23,11 +23,12 @@ voronoi_example <- function(boxlim, percFil=0.1, res=0.5, perturb=1, N=10000) {
   Ylim <- boxlim
   Zlim <- boxlim
   vf<- voronoi3d(boxlim, res, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
+  # scatterplot3d(vf1, pch = 19, cex.symbol = .5, xlab = "", ylab = "", zlab = "")
   diag <- gridDiag(vf, dtm, lim=cbind(Xlim,Ylim,Zlim), by=res, sublevel=T, printProgress=T, m0=0.001)
   return(diag)
 }
 
-# Given a voronsoi diagram, remove the first one of the 0th homologies, because it is always going to be infinity and thereby distracting. 
+# Given a voronsoi diagram, remove the first one of the 0th homologies, because it is always going to be infinity and thereby distracting.
 # This somehow messes up plotting.
 clean <- function(diag) {
   infinity <- diag[1,]
@@ -35,7 +36,7 @@ clean <- function(diag) {
   return(diag)
 }
 
-# Function to create diagonal matrixes. 
+# Function to create diagonal matrixes.
 voronoi_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
   set <- sapply(seq(1:G), function(i) {
     vf <- voronoi3d(boxlim, res, err, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
@@ -58,13 +59,3 @@ voronoi_compilation <- function(N, Boxlim, res=0.5, perturb=1, groupN=15, baseli
   baseline <- voronoi_set(baseline, N, groupN, res, perturb, Boxlim)
   saveRDS(baseline, paste("./saved_states/baseline", toString(nameId), ".rds", sep=""))
 }
-
-
-
-
-
-
-
-
-
-
