@@ -23,7 +23,7 @@ voronoi_example <- function(boxlim, percFil=0.1, res=0.5, perturb=1, N=10000) {
   Ylim <- boxlim
   Zlim <- boxlim
   vf<- voronoi3d(boxlim, res, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
-  # scatterplot3d(vf1, pch = 19, cex.symbol = .5, xlab = "", ylab = "", zlab = "")
+  # scatterplot3d(vf, pch = 19, cex.symbol = .5, xlab = "", ylab = "", zlab = "")
   diag <- gridDiag(vf, dtm, lim=cbind(Xlim,Ylim,Zlim), by=res, sublevel=T, printProgress=T, m0=0.001)
   return(diag)
 }
@@ -33,6 +33,20 @@ voronoi_example <- function(boxlim, percFil=0.1, res=0.5, perturb=1, N=10000) {
 clean <- function(diag) {
   infinity <- diag[1,]
   if (infinity[[1]] == 0) { diag <- diag[2:length(diag[,1]),] }
+  return(diag)
+}
+
+normalize <- function(diag) {
+  births <- diag[,2]
+  deaths <- diag[,3]
+  minbirths <- min(births)
+  maxbirths <- max(births)
+  mindeaths <- min(deaths)
+  maxdeaths <- max(deaths)
+  normbirths <- (births - minbirths) / (maxbirths - minbirths)
+  normdeaths <- (deaths - mindeaths) / (maxdeaths - mindeaths)
+  diag[,2] <- normbirths
+  diag[,3] <- normdeaths
   return(diag)
 }
 
