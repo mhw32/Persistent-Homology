@@ -107,7 +107,7 @@ voronoi_tests <- function(foam, baseline) {
         L <- c(rep(0, colnum), rep(1, colnum))
         # Pass a contatenated vector of contours maps.
         X <- c(contourDimStat(baseline, d), contourDimStat(foam[[i]], d))
-        contourDimProba[i, d+1] <- permutationTest(500, X, L, 1)
+        contourDimProba[i, d+1] <- log(1 - permutationTest(500, X, L, 1))
       }
     }
     # Here, we have 2 sample t-test results comparing each 2D shape with the baseline.
@@ -119,7 +119,10 @@ voronoi_tests <- function(foam, baseline) {
     baseline <- foam[[1]]
     for (d in 0:2) {
       for (i in 1:setnum) {
-        globalDimProba[i, d+1] <- kde.test(globalDimStat(baseline, d), globalDimStat(foam[[i]], d))$pvalue
+        counter <- 0
+        for (j in 1:colnum)
+          counter <- counter + kde.test(globalDimStat(baseline, d), globalDimStat(foam[[i]], d))$pvalue
+        globalDimProba[i, d+1] <- log(counter / colnum)
       }
     }
     return(globalDimProba)

@@ -65,12 +65,6 @@ def parse(filepath):
             parsed[k] = np.array([np.array(filter(lambda a: a != '', row.split(' '))).astype('float') for row in v])
     return parsed
 
-# Changes to contour I forgot to make.
-def fixcontour(parsed, key):
-    for r in parsed:
-        r[key] = np.log(1 - r[key])
-    return parsed
-
 def exponentiate(parsed, key):
     for r in parsed:
         r[key] = np.exp(r[key])
