@@ -121,7 +121,7 @@ voronoi_tests <- function(foam, baseline) {
       for (i in 1:setnum) {
         counter <- 0
         for (j in 1:colnum)
-          counter <- counter + kde.test(globalDimStat(baseline, d), globalDimStat(foam[[i]], d))$pvalue
+          counter <- counter + ks::kde.test(globalDimStat(baseline[[j]], d), globalDimStat(foam[[i]][[j]], d))$pvalue
         globalDimProba[i, d+1] <- log(counter / colnum)
       }
     }
