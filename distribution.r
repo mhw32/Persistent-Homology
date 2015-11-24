@@ -7,7 +7,7 @@
 source('tools.r')
 library(MASS)
 
-# 2-to-1 Dimensionality reduction based on
+# 2-to-1 Dimensionality reduction (SVD).
 reduce <- function(mat) {
   A <- 1/sqrt(2)*matrix(c(1,1,1,-1),2,2)
   z <- mat %*% A # Reparametrization
@@ -33,6 +33,15 @@ contourDimStat <- function(set, dim) {
     inputy <- input[,2]
     # 2D KDE to get the density.
     return(kde2d(inputx, inputy)$z)
+  })
+  return(sliceset)
+}
+
+# Global KDE Test.
+globalDimStat <- function(set, dim) {
+  setnum <- length(set)
+  sliceset <- lapply(1:setnum, function(i) {
+    input <- sliceDim(set[[i]], dim)
   })
   return(sliceset)
 }

@@ -7,6 +7,7 @@ source('tools.r')
 library(FNN)
 library(abind)
 library(Hotelling)
+library(ks)
 
 voronoi_tests <- function(foam, baseline) {
   # Pre-setup on baseline.
@@ -112,9 +113,21 @@ voronoi_tests <- function(foam, baseline) {
     # Here, we have 2 sample t-test results comparing each 2D shape with the baseline.
     return(contourDimProba)
   }
+  # global kde test. Similar to contour but a chi^2 instead.
+  global_kde_test <- function() {
+    globalDimProba <- matrix(NA, nrow=setnum, ncol=3)
+    baseline <- foam[[1]]
+    for (d in 0:2) {
+      for (i in 1:setnum) {
+        globalDimProba[i, d+1] <- kde.test(globalDimStat(baseline, d), globalDimStat(foam[[i]], d))$pvalue
+      }
+    }
+    return(globalDimProba)
+  }
+
   # Return the tests.
-  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'distr', 'contour')
-  tests <- c(euler_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, distr_test, contour_test)
+  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'distr', 'contour', 'global-kde')
+  tests <- c(euler_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, distr_test, contour_test, global_kde_test)
   testsfxns <- vector(mode="list", length=length(keys))
   names(testsfxns) <- keys
   for (i in 1:length(keys)) {
@@ -125,7 +138,7 @@ voronoi_tests <- function(foam, baseline) {
 
 test_wrapper <- function(foam, base, ext) {
   # 'indiv-land', 'all-land' not included.
-  keys <- c('euler', 'indiv_silh', 'all-silh', 'distr', 'contour')
+  keys <- c('euler', 'indiv_silh', 'all-silh', 'distr', 'contour', 'global-kde')
   # Direct output to a file.
   sink(paste("./saved_states/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
   print("--------------------------------")
