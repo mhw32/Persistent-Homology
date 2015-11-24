@@ -120,8 +120,10 @@ voronoi_tests <- function(foam, baseline) {
     for (d in 0:2) {
       for (i in 1:setnum) {
         counter <- 0
+        base_edit <- globalDimStat(baseline, d)
+        foam_edit <- globalDimStat(foam[[i]], d)
         for (j in 1:colnum)
-          counter <- counter + ks::kde.test(globalDimStat(baseline[[j]], d), globalDimStat(foam[[i]][[j]], d))$pvalue
+          counter <- counter + ks::kde.test(base_edit[[j]], foam_edit[[j]])$pvalue
         globalDimProba[i, d+1] <- log(counter / colnum)
       }
     }

@@ -17,7 +17,7 @@ reduce <- function(mat) {
 # Given a persistence diagram. Pick out a single dimension. Reduce dimension. Run a Manning Whitney U test (nonparametric 1-d).
 distribDimStat <- function(set, dim) {
   setnum <- length(set)
-  reducedset <- lapply(1:setnum, function(i) {
+  reducedset <- lapply(1:length(set), function(i) {
     # Reduce specific dimension(s).
     reduce(sliceDim(set[[i]], dim))
   })
@@ -27,7 +27,7 @@ distribDimStat <- function(set, dim) {
 # Contour Test. This returns the density estimate.
 contourDimStat <- function(set, dim) {
   setnum <- length(set)
-  sliceset <- lapply(1:setnum, function(i) {
+  sliceset <- lapply(1:length(set), function(i) {
     input <- sliceDim(set[[i]], dim)
     inputx <- input[,1]
     inputy <- input[,2]
@@ -40,7 +40,7 @@ contourDimStat <- function(set, dim) {
 # Global KDE Test.
 globalDimStat <- function(set, dim) {
   setnum <- length(set)
-  sliceset <- lapply(1:setnum, function(i) {
+  sliceset <- lapply(1:length(set), function(i) {
     input <- sliceDim(set[[i]], dim)
   })
   return(sliceset)
