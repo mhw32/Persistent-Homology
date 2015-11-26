@@ -72,15 +72,13 @@ def exponentiate(parsed, key):
 
 # Extra functions to plot things.
 def prepare1d(resArr, key):
-    obj = np.array([[r[key][i] for r in resArr] for i in range(len(resArr[0][key]))])[1:]
-    obj = np.vstack((obj[-1], obj[:-1]))
+    obj = np.array([[r[key][i] for r in resArr] for i in range(len(resArr[0][key]))])[:-1]
     return obj
 
 # For 2-d matrices, parse by dimension.
 def prepare2d(resArr, key, dim):
     newArr = np.array([r[key][:,dim] for r in resArr])
-    obj = np.array([[r[i] for r in newArr] for i in range(len(newArr[0]))])[1:]
-    obj = np.vstack((obj[-1], obj[:-1]))
+    obj = np.array([[r[i] for r in newArr] for i in range(len(newArr[0]))])[:-1]
     return obj
 
 def plottest(p, key, save=True):
