@@ -15,12 +15,13 @@ voronoi_tests <- function(foam, baseline) {
   foam <- cleanFoam(foam)
   setnum <- length(foam)
   colnum <- length(foam[[1]])
+  basenum <- setnum # This represents the added baseline.
   # Euler Characteristic.
   euler_test <- function() {
     eulerMat <- gridOperation(foam, eulerIntegration)
     eulerProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- t.test(eulerMat[,1], eulerMat[,i])
+      currproba <- t.test(eulerMat[,basenum], eulerMat[,i])
       eulerProba[i] <- log(currproba$p.value)
     }
     return(eulerProba)
@@ -33,7 +34,7 @@ voronoi_tests <- function(foam, baseline) {
       landDimMat <- gridOperation(foam, landDimFxn)
       # Calculate probabilities with t-test
       for (j in 1:setnum) {
-        currproba <- t.test(landDimMat[,1], landDimMat[,j])
+        currproba <- t.test(landDimMat[,basenum], landDimMat[,j])
         landDimProba[j, i+1] <- log(currproba$p.value)
       }
     }
@@ -46,7 +47,7 @@ voronoi_tests <- function(foam, baseline) {
     # Calculate probabilities through multi-D t-test
     landProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- hotelling.test(t(landMat[,,1]), t(landMat[,,i]))
+      currproba <- hotelling.test(t(landMat[,,basenum]), t(landMat[,,i]))
       landProba[i] <- log(currproba$pval)
     }
     return(landProba)
@@ -59,7 +60,7 @@ voronoi_tests <- function(foam, baseline) {
       silhDimMat <- gridOperation(foam, silhDimFxn)
       # Calculate probabilities with t-test
       for (j in 1:setnum) {
-        currproba <- t.test(silhDimMat[,1], silhDimMat[,j])
+        currproba <- t.test(silhDimMat[,basenum], silhDimMat[,j])
         silhDimProba[j, i+1] <- log(currproba$p.value)
       }
     }
@@ -72,7 +73,7 @@ voronoi_tests <- function(foam, baseline) {
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- hotelling.test(t(silhMat[,,1]), t(silhMat[,,i]))
+      currproba <- hotelling.test(t(silhMat[,,basenum]), t(silhMat[,,i]))
       silhProba[i] <- log(currproba$pval)
     }
     return(silhProba)
@@ -86,7 +87,7 @@ voronoi_tests <- function(foam, baseline) {
       distrDimList <- vector("list", setnum)
       for (i in 1:setnum) { distrDimList[[i]] <- distribDimStat(foam[[i]], d) }
       # Do a wilcox test for each with the baseline being the 0.1.
-      baseline <- distrDimList[[1]] # first index.
+      baseline <- distrDimList[[basenum]] # baseline index.
       for (i in 1:setnum) {
         counter <- 0
         for (j in 1:colnum)
@@ -99,7 +100,7 @@ voronoi_tests <- function(foam, baseline) {
   # Contour Test.
   contour_test <- function() {
     contourDimProba <- matrix(NA, nrow=setnum, ncol=3)
-    baseline <- foam[[1]]
+    baseline <- foam[[basenum]]
     for (d in 0:2) {
       # Perform a permutation test for each thing.
       for (i in 1:setnum) {
@@ -116,7 +117,7 @@ voronoi_tests <- function(foam, baseline) {
   # global kde test. Similar to contour but a chi^2 instead.
   global_kde_test <- function() {
     globalDimProba <- matrix(NA, nrow=setnum, ncol=3)
-    baseline <- foam[[1]]
+    baseline <- foam[[basenum]]
     for (d in 0:2) {
       for (i in 1:setnum) {
         counter <- 0

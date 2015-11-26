@@ -90,7 +90,7 @@ def plottest(p, key, save=True):
     percFils = np.arange(0.1, 1, 0.1)
     plt.figure()
     plt.xlabel('Percent Filled')
-    plt.ylabel('Log Proba')
+    plt.ylabel('Proba')
     plt.title(key + ' characteristic (20 iter)')
     plt.plot(percFils, meanobj, '-o')
     plt.fill_between(percFils, minobj, maxobj, facecolor='green', interpolate=True, alpha=0.2)
