@@ -4,17 +4,18 @@ library(rgl)
 library(scatterplot3d)
 
 load_eagle <- function() {
-  d = t(h5read("Output_Eagle_Volume.hdf5", "P1/SubhaloPositions"))
+  d = t(h5read("./simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloPositions"))
   return(d)
+}
+
+# Generate a single dataset.
+generate_one_sample <- function(dataset, samplenum) {
+  idx = sample(1:nrow(dataset), samplenum, replace=FALSE)
+  return(dataset[idx,])
 }
 
 # Create a list of setnum of samples from the eagle structure.
 generate_sample_set <- function(dataset, setnum, samplenum) {
-  # Generate a single dataset.
-  generate_one_sample <- function(dataset, samplenum) {
-    idx = sample(1:nrow(dataset), samplenum, replace=FALSE)
-    return(dataset[idx,])
-  }
   # Now we can generate a bunch of them.
   set <- sapply(1:setnum, generate_one_sample(dataset, samplenum))
   return(set)
