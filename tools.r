@@ -53,6 +53,9 @@ cleanFoam <- function(foam) {
   return(newfoam)
 }
 
+# ----------------------------------------------------------------------
+# Operations/Tools for a single diagram.
+
 # Applied to a single diag.
 normalize <- function(diag) {
   births <- diag[,2]

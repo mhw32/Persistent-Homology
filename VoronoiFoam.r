@@ -28,28 +28,6 @@ voronoi_example <- function(boxlim, percFil=0.1, res=0.5, perturb=1, N=10000) {
   return(diag)
 }
 
-# Given a voronsoi diagram, remove the first one of the 0th homologies, because it is always going to be infinity and thereby distracting.
-# This somehow messes up plotting.
-clean <- function(diag) {
-  infinity <- diag[1,]
-  if (infinity[[1]] == 0) { diag <- diag[2:length(diag[,1]),] }
-  return(diag)
-}
-
-normalize <- function(diag) {
-  births <- diag[,2]
-  deaths <- diag[,3]
-  minbirths <- min(births)
-  maxbirths <- max(births)
-  mindeaths <- min(deaths)
-  maxdeaths <- max(deaths)
-  normbirths <- (births - minbirths) / (maxbirths - minbirths)
-  normdeaths <- (deaths - mindeaths) / (maxdeaths - mindeaths)
-  diag[,2] <- normbirths
-  diag[,3] <- normdeaths
-  return(diag)
-}
-
 # Function to create diagonal matrixes.
 voronoi_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
   set <- sapply(seq(1:G), function(i) {
