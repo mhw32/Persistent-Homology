@@ -17,7 +17,7 @@ generate_one_sample <- function(dataset, samplenum) {
 # Create a list of setnum of samples from the eagle structure.
 generate_sample_set <- function(dataset, setnum, samplenum) {
   # Now we can generate a bunch of them.
-  set <- sapply(1:setnum, generate_one_sample(dataset, samplenum))
+  set <- sapply(1:setnum, function() { generate_one_sample(dataset, samplenum) })
   return(set)
 }
 
