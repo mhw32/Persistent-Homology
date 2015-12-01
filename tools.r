@@ -10,7 +10,7 @@ pick <- function(n, k) {
   factorial(n) / factorial(n-k)
 }
 
-# A generic function for performing operations across sequences of foam structures. 
+# A generic function for performing operations across sequences of foam structures.
 gridOperation <- function(foam, fxn) {
   # Get dimension of foams.
   setnum <- length(foam)
@@ -53,3 +53,25 @@ cleanFoam <- function(foam) {
   return(newfoam)
 }
 
+# Applied to a single diag.
+normalize <- function(diag) {
+  births <- diag[,2]
+  deaths <- diag[,3]
+  minbirths <- min(births)
+  maxbirths <- max(births)
+  mindeaths <- min(deaths)
+  maxdeaths <- max(deaths)
+  normbirths <- (births - minbirths) / (maxbirths - minbirths)
+  normdeaths <- (deaths - mindeaths) / (maxdeaths - mindeaths)
+  diag[,2] <- normbirths
+  diag[,3] <- normdeaths
+  return(diag)
+}
+
+# Given a voronsoi diagram, remove the first one of the 0th homologies, because it is always going to be infinity and thereby distracting.
+# This somehow messes up plotting.
+clean <- function(diag) {
+  infinity <- diag[1,]
+  if (infinity[[1]] == 0) { diag <- diag[2:length(diag[,1]),] }
+  return(diag)
+}
