@@ -1,4 +1,4 @@
-images/
+images/*
 *.hdf5
 *.rds
 *.ipynb
