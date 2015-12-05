@@ -83,8 +83,9 @@ def prepare2d(resArr, key, dim):
 
 def plottest(p, key, save=True):
     meanobj = [np.average(i) for i in p]
-    minobj = [min(i) for i in p]
-    maxobj = [max(i) for i in p]
+    # plot IQR instead of max min
+    minobj = [np.percentile(i, 25) for i in p]
+    maxobj = [np.percentile(i, 75) for i in p]
     percFils = np.arange(0.1, 1, 0.1)
     plt.figure()
     plt.xlabel('Percent Filled')
