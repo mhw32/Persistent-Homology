@@ -23,9 +23,19 @@ voronoi_example <- function(boxlim, percFil=0.1, res=0.5, perturb=1, N=10000) {
   Ylim <- boxlim
   Zlim <- boxlim
   vf<- voronoi3d(boxlim, res, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
-  # scatterplot3d(vf, pch = 19, cex.symbol = .5, xlab = "", ylab = "", zlab = "")
+  # scatterplot3d(vf, pch = 19, cex.symbol = .5, xlab = "", ylab = "", zlab = "", main=main)
   diag <- gridDiag(vf, dtm, lim=cbind(Xlim,Ylim,Zlim), by=res, sublevel=T, printProgress=T, m0=0.001)
   return(diag)
+}
+
+voronoi_plot <- function(boxlim, percFil=0.1, res=0.5, perturb=1, N=10000, main="", path="") {
+  Xlim <- boxlim
+  Ylim <- boxlim
+  Zlim <- boxlim
+  vf<- voronoi3d(boxlim, res, perturb, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
+  png(filename=path)
+  scatterplot3d(vf, pch = 19, cex.symbol = .5, xlab = "", ylab = "", zlab = "", main=main)
+  dev.off()
 }
 
 # Function to create diagonal matrixes.

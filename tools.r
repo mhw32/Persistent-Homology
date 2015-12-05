@@ -55,18 +55,25 @@ cleanFoam <- function(foam) {
 
 # ----------------------------------------------------------------------
 # Operations/Tools for a single diagram.
+cleanDiag <- function(diag) { diag[2:nrow(diag),] }
 
 # Applied to a single diag.
 normalize <- function(diag) {
+  normdiag <- cleanDiag(diag)
+
   births <- diag[,2]
   deaths <- diag[,3]
-  minbirths <- min(births)
-  maxbirths <- max(births)
-  mindeaths <- min(deaths)
-  maxdeaths <- max(deaths)
-  normbirths <- (births - minbirths) / (maxbirths - minbirths)
-  normdeaths <- (deaths - mindeaths) / (maxdeaths - mindeaths)
-  diag[,2] <- normbirths
-  diag[,3] <- normdeaths
+  normbirths <- normdiag[,2]
+  normdeaths <- normdiag[,3]
+
+  minbirths <- min(normbirths)
+  maxbirths <- max(normbirths)
+  mindeaths <- min(normdeaths)
+  maxdeaths <- max(normdeaths)
+
+  newbirths <- (births - minbirths) / (maxbirths - minbirths)
+  newdeaths <- (deaths - mindeaths) / (maxdeaths - mindeaths)
+  diag[,2] <- newbirths
+  diag[,3] <- newdeaths
   return(diag)
 }

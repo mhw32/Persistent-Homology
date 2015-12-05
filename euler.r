@@ -1,5 +1,6 @@
 library(TDA)
 library(pracma)
+source('tools.r')
 
 eulerChar <- function(tseq, diagram, maxdimension, threshold=0) {
 	eulerFct <- function(t) {
@@ -73,6 +74,13 @@ eulerIntegration <- function(diagram) {
   return(auc)
 }
 
+eulerPlot <- function(diagram, main='', path='') {
+	tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=5000)
+	euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
+	png(filename=path)
+	plot(euler, type="l", main=main)
+	dev.off()
+}
 
 # # Example Usage
 # # -------------
