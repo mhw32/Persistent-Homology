@@ -53,6 +53,16 @@ cleanFoam <- function(foam) {
   return(newfoam)
 }
 
+# Prior to cleaning
+normFoam <- function(foam) {
+  normVec <- function(vec) {
+    vector <- lapply(vec, function(diag) { normalize(diag) })
+    return(vector)
+  }
+  newfoam <- lapply(foam, function(vec) { normVec(vec) })
+  return(newfoam)
+}
+
 # ----------------------------------------------------------------------
 # Operations/Tools for a single diagram.
 cleanDiag <- function(diag) { diag[2:nrow(diag),] }
@@ -71,8 +81,11 @@ normalize <- function(diag) {
   mindeaths <- min(normdeaths)
   maxdeaths <- max(normdeaths)
 
-  newbirths <- (births - minbirths) / (maxbirths - minbirths)
-  newdeaths <- (deaths - mindeaths) / (maxdeaths - mindeaths)
+  maxtotal <- max(maxbirths, maxdeaths)
+  mintotal <- min(minbirths, mindeaths)
+
+  newbirths <- (births - mintotal) / (maxtotal - mintotal)
+  newdeaths <- (deaths - mintotal) / (maxtotal - mintotal)
   diag[,2] <- newbirths
   diag[,3] <- newdeaths
   return(diag)

@@ -24,9 +24,9 @@ boxlimTest <- function() {
   # Save the diagrams.
   diagbase <- voronoi_example(boxlim=c(0,50),percFil=0.4,res=0.5,perturb=1,N=10000)$diagram
   diag10k05 <- voronoi_example(boxlim=c(0,10),percFil=0.4,res=0.5,perturb=1,N=10000)$diagram
-  diag10k01 <- voronoi_example(boxlim=c(0,50),percFil=0.4,res=0.1,perturb=1,N=10000)$diagram
-  diag2k05 <- voronoi_example(boxlim=c(0,50),percFil=0.4,res=0.5,perturb=1,N=2000)$diagram
-  diag2k01 <- voronoi_example(boxlim=c(0,50),percFil=0.4,res=0.1,perturb=1,N=2000)$diagram
+  diag10k01 <- voronoi_example(boxlim=c(0,10),percFil=0.4,res=0.1,perturb=1,N=10000)$diagram
+  diag2k05 <- voronoi_example(boxlim=c(0,10),percFil=0.4,res=0.5,perturb=1,N=2000)$diagram
+  diag2k01 <- voronoi_example(boxlim=c(0,10),percFil=0.4,res=0.1,perturb=1,N=2000)$diagram
   # Normalize the diagrams.
   diagbase <- normalize(diagbase)
   diag10k05 <- normalize(diag10k05)
