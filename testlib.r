@@ -151,7 +151,7 @@ test_wrapper <- function(foam, base, ext) {
   # Direct output to a file.
   sink(paste("./saved_states/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
   print("--------------------------------")
-  t <- voronoi_tests(foam, base)
+  t <- voronoi_tests(foam, base, norm=TRUE)
   for (i in keys) {
     print(paste("Test for", i, ":"))
     currfxn <- t[[i]]
