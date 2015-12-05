@@ -2,6 +2,7 @@
 library(rhdf5)
 library(rgl)
 library(scatterplot3d)
+library(TDA)
 
 load_eagle <- function() {
   d = t(h5read("./simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloPositions"))
@@ -24,8 +25,8 @@ generate_sample_set <- function(dataset, setnum, samplenum) {
 # With the set, create persistence diagrams from each one.
 persistify_set <- function(sampleset) {
   diagrams <- lapply(sampleset, function(set) {
-    res <- 0.1
-    boxlim <- c(0,100)
+    res <- 0.5
+    boxlim <- c(0,10)
     diag <- gridDiag(set, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
     return(diag$diagram)
   })

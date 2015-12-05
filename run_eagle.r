@@ -1,0 +1,5 @@
+source("process_eagle.r")
+dataset <- load_eagle()
+set <- generate_sample_set(dataset, 15, 1000000)
+diagrams <- persistify_set(set)
+saveRDS(diagrams, file="./saved_states/eagleanswer.rds", sep='')
