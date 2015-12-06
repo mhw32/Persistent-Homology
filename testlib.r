@@ -13,7 +13,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   # Pre-setup on baseline.
   foam[[length(foam)+1]] = baseline
   # Must do prior to cleaning.
-  if (norm=TRUE) { foam <- normFoam(foam) }
+  if (norm == TRUE) { foam <- normFoam(foam) }
   # Now clean
   foam <- cleanFoam(foam)
   setnum <- length(foam)
