@@ -4,9 +4,19 @@ library(rgl)
 library(scatterplot3d)
 library(TDA)
 
-load_eagle <- function() {
-  d = t(h5read("./simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloPositions"))
+load_CDM <- function() {
+  d <- t(h5read("./simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloPositions"))
   return(d)
+}
+
+# Increase a processing step to ensure only genuine objects.
+load_WDM <- function() {
+  d <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloPositions"))
+  HMspher <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloHMSpher"))
+  MaxMass <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloMaxMass"))
+  selection <- (MaxMass > 2.2e8) & (HMspher > 0.2)
+  reframe <- d[selection,]
+  return(reframe)
 }
 
 # Generate a single dataset.

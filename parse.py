@@ -92,6 +92,6 @@ def plottest(p, key, save=True):
     plt.ylabel('Proba')
     plt.title(key + ' characteristic (20 iter)')
     plt.plot(percFils, meanobj, '-o')
-    plt.fill_between(percFils, minobj, maxobj, facecolor='green', interpolate=True, alpha=0.2)
-    plt.savefig('../images/cluster-results/'+key+'-test.pdf')
+    plt.fill_between(percFils, minobj, maxobj, facecolor='#da70d6', interpolate=True, alpha=0.2)
+    plt.savefig('../saved_states/test_samples/'+key+'-test-base09.png')
     plt.show()
