@@ -19,18 +19,27 @@ load_WDM <- function() {
   return(reframe)
 }
 
-# Generate a single dataset.
-generate_one_sample <- function(dataset, samplenum) {
-  idx = sample(1:nrow(dataset), samplenum, replace=FALSE)
-  return(dataset[idx,])
+# we can't just take a sample. Instead we have to divide the cube itself into 27 smaller sets.
+# A cube is cubic, so n=3 --> 3 in each dimension = 27 slices.
+slice_cube <- function(cube) {
+  slices <- vector('list', 27)
+  slicenum <- 1
+  h <- c(1, 33, 66, 100)
+  for (i in 2:4) {
+    for (j in 2:4) {
+      for (k in 2:4) {
+        dim1 <- h[i-1:i]
+        dim2 <- h[j-1:j]
+        dim3 <- h[k-1:k]
+        logic <- (cube[,1] >= dim1[1] & cube[,1] <= dim1[2]) & (cube[,2] > dim2[1] & cube[,2] <= dim2[2]) & (cube[,3] > dim3[1] & cube[,3] <= dim3[2])
+        slices[[slicenum]] <- cube[logic,]
+        slicenum <- slicenum + 1
+      }
+    }
+  }
+  return(slices)
 }
 
-# Create a list of setnum of samples from the eagle structure.
-generate_sample_set <- function(dataset, setnum, samplenum) {
-  # Now we can generate a bunch of them.
-  set <- lapply(1:setnum, function(i) { generate_one_sample(dataset, samplenum) })
-  return(set)
-}
 
 # With the set, create persistence diagrams from each one.
 persistify_set <- function(sampleset) {
