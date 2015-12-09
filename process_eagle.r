@@ -24,15 +24,20 @@ load_WDM <- function() {
 slice_cube <- function(cube) {
   slices <- vector('list', 27)
   slicenum <- 1
-  h <- c(1, 33, 66, 100)
+  h <- c(0, 100/3, 2*100/3, 100)
   for (i in 2:4) {
     for (j in 2:4) {
       for (k in 2:4) {
-        dim1 <- h[i-1:i]
-        dim2 <- h[j-1:j]
-        dim3 <- h[k-1:k]
-        logic <- (cube[,1] >= dim1[1] & cube[,1] <= dim1[2]) & (cube[,2] > dim2[1] & cube[,2] <= dim2[2]) & (cube[,3] > dim3[1] & cube[,3] <= dim3[2])
-        slices[[slicenum]] <- cube[logic,]
+        dim1 <- c(h[i-1], h[i])
+        dim2 <- c(h[j-1], h[j])
+        dim3 <- c(h[k-1], h[k])
+        logic <- (cube[,1] > dim1[1] & cube[,1] <= dim1[2]) & (cube[,2] > dim2[1] & cube[,2] <= dim2[2]) & (cube[,3] > dim3[1] & cube[,3] <= dim3[2])
+        newcube <- cube[logic,]
+        # Renormalize everything
+        newcube[,1] <- newcube[,1] - (h[i-1])
+        newcube[,2] <- newcube[,2] - (h[j-1])
+        newcube[,3] <- newcube[,3] - (h[k-1])
+        slices[[slicenum]] <- newcube
         slicenum <- slicenum + 1
       }
     }
