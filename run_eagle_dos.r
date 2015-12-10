@@ -3,8 +3,8 @@ source("process_eagle.r")
 cdm <- load_CDM()
 wdm <- load_WDM()
 
-cdm_slices <- slice_cube(cdm, 4)
-wdm_slices <- slice_cube(wdm, 4)
+cdm_slices <- slice_cube_robust(cdm, 4)
+wdm_slices <- slice_cube_robust(wdm, 4)
 
 cdm_diags <- persistify_set(cdm_slices)
 wdm_diags <- persistify_set(wdm_slices)

@@ -59,13 +59,17 @@ slice_cube_robust <- function(cube, n) {
     item <- item + 100/n
     counter <- counter + 1
   }
+  h[counter] <- 100
   # Loop through each dimension
-  for (i in 2:n+1) {
-    for (j in 2:n+1) {
-      for (k in 2:n+1) {
+  for (i in seq(2,n+1)) {
+    for (j in seq(2,n+1)) {
+      for (k in seq(2,n+1)) {
         dim1 <- c(h[i-1], h[i])
         dim2 <- c(h[j-1], h[j])
         dim3 <- c(h[k-1], h[k])
+        print(i)
+        print(j)
+        print(k)
         # Get a boolean array of each splice.
         logic <- (cube[,1] > dim1[1] & cube[,1] <= dim1[2]) & (cube[,2] > dim2[1] & cube[,2] <= dim2[2]) & (cube[,3] > dim3[1] & cube[,3] <= dim3[2])
         newcube <- cube[logic,]
