@@ -1,5 +1,14 @@
 source("process_eagle.r")
-dataset <- load_eagle()
-set <- generate_sample_set(dataset, 15, 1000000)
-diagrams <- persistify_set(set)
-saveRDS(diagrams, file="./saved_states/eagleanswer.rds", sep='')
+
+cdm <- load_CDM()
+wdm <- load_WDM()
+
+cdm_slices <- slice_cube(cdm)
+wdm_slices <- slice_cube(wdm)
+
+cdm_diags <- persistify_set(cdm_slices)
+wdm_diags <- persistify_set(wdm_slices)
+
+saveRDS(cdm_diags, "/home/fas/cisewski/mhw32/scratch/homology/saved_states/cdm_diags.rds")
+saveRDS(wdm_diags, "/home/fas/cisewski/mhw32/scratch/homology/saved_states/wdm_diags.rds")
+
