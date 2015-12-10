@@ -45,6 +45,41 @@ slice_cube <- function(cube) {
   return(slices)
 }
 
+slice_cube_robust <- function(cube, n) {
+  # This is the final slices.
+  slices <- vector('list', n^3)
+  slicenum <- 1
+  # initialize some item/counters
+  item <- 0
+  counter <- 1
+  # create an array of splits
+  h <- rep(NA, n+1)
+  while (item < 99) {
+    h[counter] <- item
+    item <- item + 100/n
+    counter <- counter + 1
+  }
+  # Loop through each dimension
+  for (i in 2:n+1) {
+    for (j in 2:n+1) {
+      for (k in 2:n+1) {
+        dim1 <- c(h[i-1], h[i])
+        dim2 <- c(h[j-1], h[j])
+        dim3 <- c(h[k-1], h[k])
+        # Get a boolean array of each splice.
+        logic <- (cube[,1] > dim1[1] & cube[,1] <= dim1[2]) & (cube[,2] > dim2[1] & cube[,2] <= dim2[2]) & (cube[,3] > dim3[1] & cube[,3] <= dim3[2])
+        newcube <- cube[logic,]
+        # Renormalize everything (0, 100/n)
+        newcube[,1] <- newcube[,1] - (h[i-1])
+        newcube[,2] <- newcube[,2] - (h[j-1])
+        newcube[,3] <- newcube[,3] - (h[k-1])
+        slices[[slicenum]] <- newcube
+        slicenum <- slicenum + 1
+      }
+    }
+  }
+  return(slices)
+}
 
 # With the set, create persistence diagrams from each one.
 persistify_set <- function(sampleset) {
