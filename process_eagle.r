@@ -50,7 +50,7 @@ slice_cube <- function(cube) {
 persistify_set <- function(sampleset) {
   diagrams <- lapply(sampleset, function(set) {
     res <- 0.5
-    boxlim <- c(0,10)
+    boxlim <- c(0,100/3)
     diag <- gridDiag(set, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
     return(diag$diagram)
   })
