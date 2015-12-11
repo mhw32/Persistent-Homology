@@ -22,7 +22,7 @@ wdm_diag <- gridDiag(wdm, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublev
 saveRDS(cdm_diag, "./saved_states/full_cdm_diag.rds")
 saveRDS(wdm_diag, "./saved_states/full_wdm_diag.rds")
 # Run the single test we need  -- global kde test.
-pval <- kd::kde.test(cdm_diag, wdm_diag)$pvalue
+pval <- ks::kde.test(cdm_diag, wdm_diag)$pvalue
 print(paste("Full global kde test result:",pval,sep=" "))
 # Run the local kde test.
 localdiagplot(cdm_diag, wdm_diag, 0, "CDM/WDM 0 dim", "./saved_states/localks-0-dim.pdf")
