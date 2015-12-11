@@ -90,3 +90,11 @@ normalize <- function(diag) {
   diag[,3] <- newdeaths
   return(diag)
 }
+
+# Often it is easier to make my own plotting function to allow editing.
+plotDiag <- function(X){
+  # X is the persistence diagram
+  plot(X[,2], X[,3], pch = c(X[,1]+1), col = c(X[,1]+1), xlab = "Birth", ylab = "Death", main = "")
+  abline(a = 0, b = 1)
+  legend("topleft", c("0","1","2"), pch = c(1,2,3), col = c(1,2,3))
+}
