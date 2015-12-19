@@ -1,4 +1,5 @@
 images/*
+test_set
 *.hdf5
 *.rds
 *.ipynb
