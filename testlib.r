@@ -147,9 +147,10 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
 
 test_wrapper <- function(foam, base, ext, norm=FALSE) {
   # 'indiv-land', 'all-land' not included.
-  keys <- c('euler', 'indiv_silh', 'all-silh', 'contour', 'global-kde')
+  # keys <- c('euler', 'indiv_silh', 'all-silh', 'contour', 'global-kde')
+  keys <- c('euler')
   # Direct output to a file.
-  sink(paste("./saved_states/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
+  sink(paste("./saved_states/euler_results/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
   print("--------------------------------")
   t <- voronoi_tests(foam, base, norm=norm)
   for (i in keys) {
