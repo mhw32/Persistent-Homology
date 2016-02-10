@@ -74,8 +74,16 @@ silh_all_test <- function(p) {
 
 for (i in 1:5) {
   for (p in seq(1,5,0.1)) {
+    print(paste("Processing for tuning parameter ", p, " and iteration ", i))
+    
     foam <- readRDS(paste('./saved_states/test_set/foam', i, '.rds', sep=''))
     base <- readRDS(paste('./saved_states/test_set/baseline', i, '-0.1.rds', sep=''))
+
+    foam[[length(foam)+1]] = base
+    foam <- cleanFoam(foam)
+    setnum <- length(foam)
+    colnum <- length(foam[[1]])
+    basenum <- setnum
 
     sink(paste("./saved_states/silh_results/results-iter-", i, "-tune-", p, sep=""), append=FALSE, split=FALSE)
     print("--------------------------------")
