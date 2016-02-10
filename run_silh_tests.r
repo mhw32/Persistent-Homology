@@ -1,3 +1,8 @@
+library(TDA)
+library(FNN)
+library(Hotelling)
+library(abind)
+
 silhouetteAUC <- function(diagram, p=1, dim=1) {
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=1000)
   silh <- silhouette(diagram, p=p, dimension=dim, tseq)
