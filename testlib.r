@@ -56,10 +56,10 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     return(landProba)
   }
   # Individual Silhouette Test.
-  silh_indiv_test <- function() {
+  silh_indiv_test <- function(p=1) {
     silhDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (i in 0:2) {
-      silhDimFxn <- dimWrapper(i, silhouetteAUC)
+      silhDimFxn <- dimWrapper(i, silhouetteAUC(p=p))
       silhDimMat <- gridOperation(foam, silhDimFxn)
       # Calculate probabilities with t-test
       for (j in 1:setnum) {
@@ -70,8 +70,8 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     return(silhDimProba)
   }
   # Combined Silhouette Test.
-  silh_all_test <- function() {
-    silhfxn <- allWrapper(silhouetteAUC)
+  silh_all_test <- function(p=1) {
+    silhfxn <- allWrapper(silhouetteAUC(p=p))
     silhMat <- gridOperation(foam, silhfxn)
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
@@ -145,18 +145,18 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   return(testsfxns)
 }
 
-test_wrapper <- function(foam, base, ext, norm=FALSE) {
+test_wrapper <- function(foam, base, ext, p, norm=FALSE) {
   # 'indiv-land', 'all-land' not included.
   # keys <- c('euler', 'indiv_silh', 'all-silh', 'contour', 'global-kde')
-  keys <- c('euler')
+  keys <- c('indiv_silh', 'all-silh')
   # Direct output to a file.
-  sink(paste("./saved_states/euler_results/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
+  sink(paste("./saved_states/silh_results/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
   print("--------------------------------")
   t <- voronoi_tests(foam, base, norm=norm)
   for (i in keys) {
     print(paste("Test for", i, ":"))
     currfxn <- t[[i]]
-    response <- currfxn()
+    response <- currfxn(p=p)
     print(response)
     print("")
   }
