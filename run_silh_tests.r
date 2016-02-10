@@ -2,6 +2,7 @@ library(TDA)
 library(FNN)
 library(Hotelling)
 library(abind)
+source("euler.r")
 
 silhouetteAUC <- function(diagram, p=1, dim=1) {
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=1000)
@@ -30,14 +31,14 @@ gridOperation <- function(foam, fxn) {
 }
 
 dimWrapper <- function(p, dim, fxn) {
-  inner <- function(diagram) { return(fxn(diagram, p=p, dim=dim)) }
+  inner <- function(diagram) { return(fxn(diagram, p, dim)) }
   return(inner)
 }
 
 allWrapper <- function(p, fxn) {
   inner <- function(diagram, mindim=0, maxdim=2) {
     areas <- sapply(seq(from=mindim, to=maxdim, by=1), function(i) {
-      fxn(diagram, p=p, dim=i)
+      fxn(diagram, p, i)
     })
     return(areas)
   }
@@ -48,7 +49,7 @@ silh_tests <- function(foam, baseline, p) {
   # Pre-setup on baseline.
   foam[[length(foam)+1]] = baseline
   # Must do prior to cleaning.
-  if (norm == TRUE) { foam <- normFoam(foam) }
+  # if (norm == TRUE) { foam <- normFoam(foam) }
   # Now clean
   foam <- cleanFoam(foam)
   setnum <- length(foam)
@@ -58,7 +59,7 @@ silh_tests <- function(foam, baseline, p) {
   silh_indiv_test <- function(p) {
     silhDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (i in 0:2) {
-      silhDimFxn <- dimWrapper(p, i, silhouetteAUC())
+      silhDimFxn <- dimWrapper(p, i, silhouetteAUC)
       silhDimMat <- gridOperation(foam, silhDimFxn)
       # Calculate probabilities with t-test
       for (j in 1:setnum) {
@@ -71,7 +72,7 @@ silh_tests <- function(foam, baseline, p) {
 
   # Combined Silhouette Test.
   silh_all_test <- function(p) {
-    silhfxn <- allWrapper(p, silhouetteAUC())
+    silhfxn <- allWrapper(p, silhouetteAUC)
     silhMat <- gridOperation(foam, silhfxn)
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
@@ -94,28 +95,33 @@ silh_tests <- function(foam, baseline, p) {
   return(testsfxns)
 }
 
-for (i in 1:5) {
-  for (p in seq(1,5,0.1)) {
-    print(paste("Processing for tuning parameter ", p, " and iteration ", i))
 
-    foam <- readRDS(paste('./saved_states/test_set/foam', i, '.rds', sep=''))
-    base <- readRDS(paste('./saved_states/test_set/baseline', i, '-0.1.rds', sep=''))
+silh_wrapper <- function() {
+  for (i in 1:5) {
+    for (p in seq(1,5,0.1)) {
+      print(paste("Processing for tuning parameter ", p, " and iteration ", i))
 
-    keys <- c('indiv_silh', 'all-silh')
-    sink(paste("./saved_states/silh_results/results-iter-", i, "-tune-", p, sep=""), append=FALSE, split=FALSE)
+      foam <- readRDS(paste('./saved_states/test_set/foam', i, '.rds', sep=''))
+      base <- readRDS(paste('./saved_states/test_set/baseline', i, '-0.1.rds', sep=''))
 
-    print("--------------------------------")
-    t <- silh_tests(foam, base)
+      keys <- c('indiv_silh', 'all-silh')
+      sink(paste("./saved_states/silh_results/results-iter-", i, "-tune-", p, sep=""), append=FALSE, split=FALSE)
 
-    for (i in keys) {
-      print(paste("Test for", i, ":"))
-      currfxn <- t[[i]]
-      response <- currfxn()
-      print(response)
-      print("")
+      print("--------------------------------")
+      t <- silh_tests(foam, base, p)
+
+      for (i in keys) {
+        print(paste("Test for", i, ":"))
+        currfxn <- t[[i]]
+        response <- currfxn(p)
+        print(response)
+        print("")
+      }
+      print("--------------------------------")
+      sink()
     }
-    print("--------------------------------")
-    sink()
   }
 }
+
+silh_wrapper()
 
