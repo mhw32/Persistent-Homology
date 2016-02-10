@@ -56,10 +56,10 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     return(landProba)
   }
   # Individual Silhouette Test.
-  silh_indiv_test <- function(p=1) {
+  silh_indiv_test <- function() {
     silhDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (i in 0:2) {
-      silhDimFxn <- dimWrapper(i, silhouetteAUC(p=p))
+      silhDimFxn <- dimWrapper(i, silhouetteAUC())
       silhDimMat <- gridOperation(foam, silhDimFxn)
       # Calculate probabilities with t-test
       for (j in 1:setnum) {
@@ -70,8 +70,8 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     return(silhDimProba)
   }
   # Combined Silhouette Test.
-  silh_all_test <- function(p=1) {
-    silhfxn <- allWrapper(silhouetteAUC(p=p))
+  silh_all_test <- function() {
+    silhfxn <- allWrapper(silhouetteAUC())
     silhMat <- gridOperation(foam, silhfxn)
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
@@ -145,7 +145,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   return(testsfxns)
 }
 
-test_wrapper <- function(foam, base, ext, p, norm=FALSE) {
+test_wrapper <- function(foam, base, ext, norm=FALSE) {
   # 'indiv-land', 'all-land' not included.
   # keys <- c('euler', 'indiv_silh', 'all-silh', 'contour', 'global-kde')
   keys <- c('indiv_silh', 'all-silh')
@@ -156,7 +156,7 @@ test_wrapper <- function(foam, base, ext, p, norm=FALSE) {
   for (i in keys) {
     print(paste("Test for", i, ":"))
     currfxn <- t[[i]]
-    response <- currfxn(p=p)
+    response <- currfxn()
     print(response)
     print("")
   }
