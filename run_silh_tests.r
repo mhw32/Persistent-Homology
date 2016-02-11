@@ -110,9 +110,9 @@ silh_wrapper <- function() {
       print("--------------------------------")
       t <- silh_tests(foam, base, p)
 
-      for (i in keys) {
-        print(paste("Test for", i, ":"))
-        currfxn <- t[[i]]
+      for (k in keys) {
+        print(paste("Test for", k, ":"))
+        currfxn <- t[[k]]
         response <- currfxn(p)
         print(response)
         print("")
