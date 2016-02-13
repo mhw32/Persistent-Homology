@@ -1,5 +1,6 @@
 # Fxns related to landscapes.
 library(TDA)
+library(pracma)
 
 # Landscape / Silhouette Functions
 # ---------------------------------------------------------------
@@ -17,6 +18,11 @@ silhouetteAUC <- function(diagram, p=1, dim=1) {
   return(integrate(tseq, silh))
 }
 
+integrate <- function(xarr, yarr) {
+  auc <- trapz(xarr, yarr)
+  return(auc)
+}
+
 sileuler <- function(diagram, p=1, length=1000) {
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=length)
 
@@ -28,7 +34,7 @@ sileuler <- function(diagram, p=1, length=1000) {
   # Calculate the alternating 'betti'.
   seuler <- rep(0, length)
   for (i in seq(length)) {
-    seuler(i) = s0(i) - s1(i) + s2(i)
+    seuler[i] = s0[i] - s1[i] + s2[i]
   }
 
   # Integrate the absolute value.

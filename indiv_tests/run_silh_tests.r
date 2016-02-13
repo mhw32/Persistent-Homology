@@ -10,6 +10,25 @@ silhouetteAUC <- function(diagram, p=1, dim=1) {
   return(integrate(tseq, silh))
 }
 
+sileuler <- function(diagram, p=1, length=1000) {
+  tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=length)
+
+  # Calculate silhouette for each dimension.
+  s0 <- silhouette(diagram, p=p, dimension=0, tseq)
+  s1 <- silhouette(diagram, p=p, dimension=1, tseq)
+  s2 <- silhouette(diagram, p=p, dimension=2, tseq)
+
+  # Calculate the alternating 'betti'.
+  seuler <- rep(0, length)
+  for (i in seq(length)) {
+    seuler[i] = s0[i] - s1[i] + s2[i]
+  }
+
+  # Integrate the absolute value.
+  score <- integrate(tseq, abs(seuler))
+  return(score)
+}
+
 gridOperation <- function(foam, fxn) {
   # Get dimension of foams.
   setnum <- length(foam)
@@ -83,8 +102,23 @@ silh_tests <- function(foam, baseline, p) {
     return(silhProba)
   }
 
-  keys <- c('indiv_silh', 'all-silh')
-  tests <- c(silh_indiv_test, silh_all_test)
+  silh_euler_test <- function() {
+    silhEulerFxn <- allWrapper(sileuler)
+    silhEulerMat <- gridOperation(foam, silhEulerFxn)
+
+    silhEulerProba <- rep(0, setnum)
+    for (i in 1:setnum) {
+      currproba <- hotelling.test(
+        t(silhEulerMat[,,basenum]), 
+        t(silhEulerMat[,,i])
+      )
+      silhEulerProba[i] <- log(currproba$pval)
+    }
+    return silhEulerProba
+  }
+
+  keys <- c('indiv_silh', 'all-silh', 'silh-euler')
+  tests <- c(silh_indiv_test, silh_all_test, silh_euler_test)
   testsfxns <- vector(mode="list", length=length(keys))
   names(testsfxns) <- keys
 
@@ -100,12 +134,11 @@ silh_wrapper <- function() {
   for (i in 1:5) {
     for (p in seq(0,1,0.1)) {
       print(paste("Processing for tuning parameter ", p, " and iteration ", i))
-
       foam <- readRDS(paste('./saved_states/test_set/foam', i, '.rds', sep=''))
       base <- readRDS(paste('./saved_states/test_set/baseline', i, '-0.1.rds', sep=''))
 
-      keys <- c('indiv_silh', 'all-silh')
-      sink(paste("./saved_states/silh_results/results-iter-", i, "-tune-", p, sep=""), append=FALSE, split=FALSE)
+      keys <- c('silh-euler')
+      sink(paste("./saved_states/silh_euler_results/results-iter-", i, "-tune-", p, sep=""), append=FALSE, split=FALSE)
 
       print("--------------------------------")
       t <- silh_tests(foam, base, p)
