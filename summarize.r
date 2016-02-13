@@ -17,6 +17,25 @@ silhouetteAUC <- function(diagram, p=1, dim=1) {
   return(integrate(tseq, silh))
 }
 
+sileuler <- function(diagram, p=1, length=1000) {
+  tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=length)
+
+  # Calculate silhouette for each dimension.
+  s0 <- silhouette(diagram, p=p, dimension=0, tseq)
+  s1 <- silhouette(diagram, p=p, dimension=1, tseq)
+  s2 <- silhouette(diagram, p=p, dimension=2, tseq)
+
+  # Calculate the alternating 'betti'.
+  seuler <- rep(0, length)
+  for (i in seq(length)) {
+    seuler(i) = s0(i) - s1(i) + s2(i)
+  }
+
+  # Integrate the absolute value.
+  score <- integrate(tseq, abs(seuler))
+  return(score)
+}
+
 # This wrapper function returns a fxnized single dimension.
 dimWrapper <- function(dim, fxn) {
   inner <- function(diagram) { return(fxn(diagram, dim=dim)) }
@@ -33,6 +52,8 @@ allWrapper <- function(fxn) {
   }
   return(inner)
 }
+
+
 
 
 

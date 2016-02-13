@@ -59,7 +59,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   silh_indiv_test <- function() {
     silhDimProba <- matrix(NA, nrow=setnum, ncol=3)
     for (i in 0:2) {
-      silhDimFxn <- dimWrapper(i, silhouetteAUC())
+      silhDimFxn <- dimWrapper(i, silhouetteAUC)
       silhDimMat <- gridOperation(foam, silhDimFxn)
       # Calculate probabilities with t-test
       for (j in 1:setnum) {
@@ -71,7 +71,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   }
   # Combined Silhouette Test.
   silh_all_test <- function() {
-    silhfxn <- allWrapper(silhouetteAUC())
+    silhfxn <- allWrapper(silhouetteAUC)
     silhMat <- gridOperation(foam, silhfxn)
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
@@ -81,6 +81,22 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     }
     return(silhProba)
   }
+  # Silhouette Euler Test.
+  silh_euler_test <- function() {
+    silhEulerFxn <- allWrapper(sileuler)
+    silhEulerMat <- gridOperation(foam, silhEulerFxn)
+
+    silhEulerProba <- rep(0, setnum)
+    for (i in 1:setnum) {
+      currproba <- hotelling.test(
+        t(silhEulerMat[,,basenum]), 
+        t(silhEulerMat[,,i])
+      )
+      silhEulerProba[i] <- log(currproba$pval)
+    }
+    return silhEulerProba
+  }
+
   # Distribution Test.
   distr_test <- function() {
     # Loop through dimensions.
@@ -135,8 +151,8 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   }
 
   # Return the tests.
-  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'distr', 'contour', 'global-kde')
-  tests <- c(euler_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, distr_test, contour_test, global_kde_test)
+  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'silh-euler', 'distr', 'contour', 'global-kde')
+  tests <- c(euler_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, silh_euler_test, distr_test, contour_test, global_kde_test)
   testsfxns <- vector(mode="list", length=length(keys))
   names(testsfxns) <- keys
   for (i in 1:length(keys)) {
@@ -147,7 +163,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
 
 test_wrapper <- function(foam, base, ext, norm=FALSE) {
   # 'indiv-land', 'all-land' not included.
-  # keys <- c('euler', 'indiv_silh', 'all-silh', 'contour', 'global-kde')
+  # keys <- c('euler', 'indiv_silh', 'all-silh', 'silh-euler', 'contour', 'global-kde')
   keys <- c('indiv_silh', 'all-silh')
   # Direct output to a file.
   sink(paste("./saved_states/silh_results/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
