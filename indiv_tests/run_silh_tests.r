@@ -64,6 +64,11 @@ allWrapper <- function(p, fxn) {
   return(inner)
 }
 
+customWrapper <- function(p, fxn) {
+  inner <- function(diagram) { return(fxn(diagram, p=p)) }
+  return(inner)
+}
+
 silh_tests <- function(foam, baseline, p) {
   # Pre-setup on baseline.
   foam[[length(foam)+1]] = baseline
@@ -102,8 +107,8 @@ silh_tests <- function(foam, baseline, p) {
     return(silhProba)
   }
 
-  silh_euler_test <- function() {
-    silhEulerFxn <- allWrapper(sileuler)
+  silh_euler_test <- function(p) {
+    silhEulerFxn <- customWrapper(p, sileuler)
     silhEulerMat <- gridOperation(foam, silhEulerFxn)
 
     silhEulerProba <- rep(0, setnum)
