@@ -3,6 +3,7 @@ library(FNN)
 library(Hotelling)
 library(abind)
 source("euler.r")
+source("tools.r")
 
 silhouetteAUC <- function(diagram, p=1, dim=1) {
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=1000)
@@ -117,7 +118,7 @@ silh_tests <- function(foam, baseline, p) {
         silhEulerMat[,basenum], 
         silhEulerMat[,i]
       )
-      silhEulerProba[i] <- log(currproba$pval)
+      silhEulerProba[i] <- log(currproba$p.value)
     }
     return(silhEulerProba)
   }
