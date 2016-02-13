@@ -114,8 +114,8 @@ silh_tests <- function(foam, baseline, p) {
     silhEulerProba <- rep(0, setnum)
     for (i in 1:setnum) {
       currproba <- t.test(
-        t(silhEulerMat[,basenum]), 
-        t(silhEulerMat[,i])
+        silhEulerMat[,basenum], 
+        silhEulerMat[,i]
       )
       silhEulerProba[i] <- log(currproba$pval)
     }
