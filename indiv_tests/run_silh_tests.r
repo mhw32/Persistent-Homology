@@ -98,7 +98,7 @@ silh_tests <- function(foam, baseline, p) {
 
 silh_wrapper <- function() {
   for (i in 1:5) {
-    for (p in seq(1,5,0.1)) {
+    for (p in seq(0,1,0.1)) {
       print(paste("Processing for tuning parameter ", p, " and iteration ", i))
 
       foam <- readRDS(paste('./saved_states/test_set/foam', i, '.rds', sep=''))
