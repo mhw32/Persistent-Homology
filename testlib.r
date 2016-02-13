@@ -94,7 +94,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
       )
       silhEulerProba[i] <- log(currproba$pval)
     }
-    return silhEulerProba
+    return(silhEulerProba)
   }
 
   # Distribution Test.

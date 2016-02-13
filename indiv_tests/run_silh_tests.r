@@ -114,7 +114,7 @@ silh_tests <- function(foam, baseline, p) {
       )
       silhEulerProba[i] <- log(currproba$pval)
     }
-    return silhEulerProba
+    return(silhEulerProba)
   }
 
   keys <- c('indiv_silh', 'all-silh', 'silh-euler')
