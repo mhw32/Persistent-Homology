@@ -12,7 +12,7 @@ landscapeAUC <- function(diagram, KK=1, dim=1) {
 }
 
 # Get area under the curve.
-silhouetteAUC <- function(diagram, p=1, dim=1) {
+silhouetteAUC <- function(diagram, p=0.3, dim=1) {
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=1000)
   silh <- silhouette(diagram, p=p, dimension=dim, tseq)
   return(integrate(tseq, silh))
@@ -23,7 +23,8 @@ integrate <- function(xarr, yarr) {
   return(auc)
 }
 
-sileuler <- function(diagram, p=1, length=1000) {
+sileuler <- function(diagram, p=1.3, dim=1) {
+  length <- 1000
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=length)
 
   # Calculate silhouette for each dimension.
@@ -37,6 +38,9 @@ sileuler <- function(diagram, p=1, length=1000) {
     seuler[i] = s0[i] - s1[i] + s2[i]
   }
 
+  if (dim > 0) {
+    score = 0
+  }
   # Integrate the absolute value.
   score <- integrate(tseq, abs(seuler))
   return(score)
