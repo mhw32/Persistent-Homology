@@ -23,7 +23,7 @@ integrate <- function(xarr, yarr) {
   return(auc)
 }
 
-sileuler <- function(diagram, p=1.3, dim=1) {
+sileuler <- function(diagram, p=0.1, dim=1) {
   length <- 1000
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=length)
 
@@ -35,11 +35,11 @@ sileuler <- function(diagram, p=1.3, dim=1) {
   # Calculate the alternating 'betti'.
   seuler <- rep(0, length)
   for (i in seq(length)) {
-    seuler[i] = s0[i] - s1[i] + s2[i]
+    seuler[i] <- s0[i] - s1[i] + s2[i]
   }
 
   if (dim > 0) {
-    score = 0
+    score <- 0
   }
   # Integrate the absolute value.
   score <- integrate(tseq, abs(seuler))
