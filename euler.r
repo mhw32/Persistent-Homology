@@ -75,6 +75,14 @@ eulerIntegration <- function(diagram) {
   return(auc)
 }
 
+eulerDimIntegration <- function(diagram, dim=1) {
+	tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=1000)
+  euler <- eulerCharDim(tseq, diagram, dim, threshold=0)
+  # Always return absolute value of the euler characteristic.
+  auc <- integrate(tseq, abs(euler))
+  return(auc)
+}
+
 eulerPlot <- function(diagram, main='', path='') {
 	tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=5000)
 	euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)

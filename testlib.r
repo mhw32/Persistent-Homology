@@ -29,6 +29,34 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     }
     return(eulerProba)
   }
+  # Individual Euler Test.
+  euler_indiv_test <- function() {
+    eulerDimProba <- matrix(NA, nrow=setnum, ncol=3)
+    for (i in 0:2) {
+      eulerDimFxn <- dimWrapper(i, eulerDimIntegration)
+      eulerDimMat <- gridOperation(foam, eulerDimFxn)
+      # Calculate probabilities with t-test
+      for (j in 1:setnum) {
+        currproba <- t.test(eulerDimMat[,basenum], eulerDimMat[,j])
+        eulerDimProba[j, i+1] <- log(currproba$p.value)
+      }
+    }
+    return(eulerDimProba)
+  }
+
+  # Combined Euler Test.
+  euler_all_test <- function() {
+    eulerfxn <- allWrapper(eulerDimIntegration)
+    eulerMat <- gridOperation(foam, eulerfxn)
+    # Calculate probabilities through multi-D t-test
+    eulerProba <- rep(0, setnum)
+    for (i in 1:setnum) {
+      currproba <- hotelling.test(t(eulerMat[,,basenum]), t(eulerMat[,,i]))
+      eulerProba[i] <- log(currproba$pval)
+    }
+    return(eulerProba)
+  }
+
   # Individual Landscape Test.
   land_indiv_test <- function() {
     landDimProba <- matrix(NA, nrow=setnum, ncol=3)
@@ -43,6 +71,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     }
     return(landDimProba)
   }
+
   # Combined Landscape Test.
   land_all_test <- function() {
     landfxn <- allWrapper(landscapeAUC)
@@ -151,8 +180,8 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   }
 
   # Return the tests.
-  keys <- c('euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'silh-euler', 'distr', 'contour', 'global-kde')
-  tests <- c(euler_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, silh_euler_test, distr_test, contour_test, global_kde_test)
+  keys <- c('euler', 'indiv-euler', 'all-euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'silh-euler', 'distr', 'contour', 'global-kde')
+  tests <- c(euler_test, euler_indiv_test, euler_all_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, silh_euler_test, distr_test, contour_test, global_kde_test)
   testsfxns <- vector(mode="list", length=length(keys))
   names(testsfxns) <- keys
   for (i in 1:length(keys)) {
