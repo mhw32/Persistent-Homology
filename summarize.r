@@ -23,7 +23,7 @@ integrate <- function(xarr, yarr) {
   return(auc)
 }
 
-sileuler <- function(diagram, p=0.1, dim=1) {
+sileuler <- function(diagram, p=0.1) {
   length <- 1000
   tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=length)
 
@@ -38,9 +38,6 @@ sileuler <- function(diagram, p=0.1, dim=1) {
     seuler[i] <- s0[i] - s1[i] + s2[i]
   }
 
-  if (dim > 0) {
-    score <- 0
-  }
   # Integrate the absolute value.
   score <- integrate(tseq, abs(seuler))
   return(score)
@@ -49,6 +46,11 @@ sileuler <- function(diagram, p=0.1, dim=1) {
 # This wrapper function returns a fxnized single dimension.
 dimWrapper <- function(dim, fxn) {
   inner <- function(diagram) { return(fxn(diagram, dim=dim)) }
+  return(inner)
+}
+
+customWrapper <- function(fxn) {
+  inner <- function(diagram) { return(fxn(diagram)) }
   return(inner)
 }
 

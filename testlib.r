@@ -112,16 +112,16 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   }
   # Silhouette Euler Test.
   silh_euler_test <- function() {
-    silhEulerFxn <- allWrapper(sileuler)
+    silhEulerFxn <- customWrapper(sileuler)
     silhEulerMat <- gridOperation(foam, silhEulerFxn)
 
     silhEulerProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- hotelling.test(
-        t(silhEulerMat[,,basenum]), 
-        t(silhEulerMat[,,i])
+      currproba <- t.test(
+        silhEulerMat[,basenum], 
+        silhEulerMat[,i]
       )
-      silhEulerProba[i] <- log(currproba$pval)
+      silhEulerProba[i] <- log(currproba$p.value)
     }
     return(silhEulerProba)
   }
@@ -191,6 +191,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
 }
 
 test_wrapper <- function(foam, base, ext, norm=FALSE) {
+  print('entered test_wrapper')
   # 'indiv-land', 'all-land' not included.
   keys <- c('euler', 'indiv-euler', 'all-euler', 'indiv_silh', 'all-silh', 'silh-euler', 'contour', 'global-kde')
   # Direct output to a file.
