@@ -1,0 +1,100 @@
+
+R version 3.2.2 (2015-08-14) -- "Fire Safety"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> source("process_eagle.r")
+Warning messages:
+1: In rgl.init(initValue, onlyNULL) : RGL: unable to open X11 display
+2: In fun(libname, pkgname) : Error in 'rgl_init'
+> source("testlib.r")
+Loading required package: corpcor
+Loading required package: KernSmooth
+KernSmooth 2.23 loaded
+Copyright M. P. Wand 1997-2009
+Loading required package: misc3d
+
+Attaching package: ‘ks’
+
+The following object is masked from ‘package:TDA’:
+
+    kde
+
+> source("localtest.r")
+Loading required package: spam
+Loading required package: grid
+Spam version 1.3-0 (2015-10-24) is loaded.
+Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+and overview of this package.
+Help for individual functions is also obtained by adding the
+suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+Attaching package: ‘spam’
+
+The following objects are masked from ‘package:base’:
+
+    backsolve, forwardsolve
+
+Loading required package: maps
+
+ # ATTENTION: maps v3.0 has an updated 'world' map.        #
+ # Many country borders and names have changed since 1990. #
+ # Type '?world' or 'news(package="maps")'. See README_v3. #
+
+
+> library(ks)
+> # Loading the data
+> cdm <- load_CDM()
+> wdm <- load_WDM()
+> # Plot these actual diagrams
+> png(filename="./saved_states/cdmplot.png")
+> scatterplot3d(cdm, pch=19, cex.symbols=0.005)
+> dev.off()
+null device 
+          1 
+> png(filename="./saved_states/wdmplot.png")
+> scatterplot3d(cdm, pch=19, cex.symbols=0.005)
+> dev.off()
+null device 
+          1 
+> # Settings for generating diagrams
+> res <- 2
+> boxlim <- c(0, 100) # Full size for the box.
+> # Create the one persistence diagram
+> cdm_diag <- gridDiag(cdm, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
+# Generated complex of size: 2795301 
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+# Persistence timer: Elapsed time [ 18.540000 ] seconds
+> wdm_diag <- gridDiag(wdm, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
+# Generated complex of size: 2795301 
+
+0%   10   20   30   40   50   60   70   80   90   100%
+|----|----|----|----|----|----|----|----|----|----|
+***************************************************
+# Persistence timer: Elapsed time [ 18.460000 ] seconds
+> # Save these diagrams.
+> saveRDS(cdm_diag, "./saved_states/full_cdm_diag.rds")
+> saveRDS(wdm_diag, "./saved_states/full_wdm_diag.rds")
+> # Run the single test we need  -- global kde test.
+> pval <- ks::kde.test(cdm_diag, wdm_diag)$pvalue
+Error: is.atomic(x) is not TRUE
+Execution halted

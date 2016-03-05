@@ -1,0 +1,70 @@
+
+R version 3.2.2 (2015-08-14) -- "Fire Safety"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> source('testlib.r')
+Loading required package: corpcor
+Loading required package: KernSmooth
+KernSmooth 2.23 loaded
+Copyright M. P. Wand 1997-2009
+Loading required package: misc3d
+Loading required package: rgl
+
+Attaching package: ‘ks’
+
+The following object is masked from ‘package:TDA’:
+
+    kde
+
+Warning messages:
+1: In rgl.init(initValue, onlyNULL) : RGL: unable to open X11 display
+2: In fun(libname, pkgname) : Error in 'rgl_init'
+> source('process_eagle.r')
+> 
+> # Unnormalized with wdm baseline.
+> cdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/cdm_diags_4.rds")
+> wdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/wdm_diags_4.rds")
+> bigset <- vector('list', 1)
+> bigset[[1]] <- cdm
+> test_wrapper(bigset, wdm, "split4-dmtest-wdmbase", FALSE)
+> # Unnormalized with cdm baseline.
+> cdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/cdm_diags_4.rds")
+> wdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/wdm_diags_4.rds")
+> bigset <- vector('list', 1)
+> bigset[[1]] <- wdm
+> test_wrapper(bigset, cdm, "split4-dmtest-cdmbase", FALSE)
+> # Normalized with wdm baseline.
+> cdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/cdm_diags_4.rds")
+> wdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/wdm_diags_4.rds")
+> bigset <- vector('list', 1)
+> bigset[[1]] <- cdm
+> test_wrapper(bigset, wdm, "split4-dmtest-norm-wdmbase", TRUE)
+> # Normalized with cdm baseline.
+> cdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/cdm_diags_4.rds")
+> wdm <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/wdm_diags_4.rds")
+> bigset <- vector('list', 1)
+> bigset[[1]] <- wdm
+> test_wrapper(bigset, cdm, "split4-dmtest-norm-cdmbase", TRUE)
+> 
+> 
+> 
+> proc.time()
+    user   system  elapsed 
+7844.049    1.609 7857.928 
