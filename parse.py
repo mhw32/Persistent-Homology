@@ -58,7 +58,7 @@ def parse(filepath):
     # Loop through the keys, and convert to arrays.
     for k in parsed:
         v = parsed[k]
-        if k in ['all-silh', 'euler']:
+        if k in ['all-silh', 'euler', 'all-euler', 'silh-euler']:
             c = list(itertools.chain(*[row.split(' ') for row in v]))
             parsed[k] = np.array(filter(lambda a: a != '', c)).astype('float')
         else: # This is for all the other types.
