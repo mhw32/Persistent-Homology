@@ -6,7 +6,7 @@ source('distribution.r')
 source('tools.r')
 library(FNN)
 library(abind)
-library(Hotelling)
+library(rrcov)
 library(ks)
 
 voronoi_tests <- function(foam, baseline, norm=FALSE) {
@@ -51,8 +51,8 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     # Calculate probabilities through multi-D t-test
     eulerProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- hotelling.test(t(eulerMat[,,basenum]), t(eulerMat[,,i]))
-      eulerProba[i] <- log(currproba$pval)
+      currproba <- T2.test(t(eulerMat[,,basenum]), t(eulerMat[,,i]))
+      eulerProba[i] <- log(hotelling_pval(currproba))
     }
     return(eulerProba)
   }
@@ -79,8 +79,8 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     # Calculate probabilities through multi-D t-test
     landProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- hotelling.test(t(landMat[,,basenum]), t(landMat[,,i]))
-      landProba[i] <- log(currproba$pval)
+      currproba <- T2.test(t(landMat[,,basenum]), t(landMat[,,i]))
+      landProba[i] <- log(hotelling_pval(currproba))
     }
     return(landProba)
   }
@@ -105,8 +105,8 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- hotelling.test(t(silhMat[,,basenum]), t(silhMat[,,i]))
-      silhProba[i] <- log(currproba$pval)
+      currproba <- T2.test(t(silhMat[,,basenum]), t(silhMat[,,i]))
+      silhProba[i] <- log(hotelling_pval(currproba))
     }
     return(silhProba)
   }

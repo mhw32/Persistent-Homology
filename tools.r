@@ -10,6 +10,11 @@ pick <- function(n, k) {
   factorial(n) / factorial(n-k)
 }
 
+hotelling_pval <- function(p) {
+  pval <- pf(1/p$statistic[2],p$parameter[2], p$parameter[1])
+  return(pval)
+}
+
 # A generic function for performing operations across sequences of foam structures.
 gridOperation <- function(foam, fxn) {
   # Get dimension of foams.

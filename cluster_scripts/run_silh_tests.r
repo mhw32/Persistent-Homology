@@ -1,6 +1,6 @@
 library(TDA)
 library(FNN)
-library(Hotelling)
+library(rrcov)
 library(abind)
 source("euler.r")
 source("tools.r")
@@ -102,8 +102,8 @@ silh_tests <- function(foam, baseline, p) {
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- hotelling.test(t(silhMat[,,basenum]), t(silhMat[,,i]))
-      silhProba[i] <- log(currproba$pval)
+      currproba <- T2.test(t(silhMat[,,basenum]), t(silhMat[,,i]))
+      silhProba[i] <- log(hotelling_pval(currproba))
     }
     return(silhProba)
   }
