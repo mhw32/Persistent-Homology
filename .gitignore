@@ -1,6 +1,8 @@
 images/*
 test_set
 *.hdf5
+*.output
+*.error
 *.rds
 *.ipynb
 *.ipynb_checkpoints/
