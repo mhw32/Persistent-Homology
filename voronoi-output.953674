@@ -1,0 +1,50 @@
+Sender: LSF System <lsfadmin@c10n10>
+Subject: Job 953674: <voronoi> in cluster <grace> Exited
+
+Job <voronoi> was submitted from host <grace1> by user <mhw32> in cluster <grace>.
+Job was executed on host(s) <c10n10>, in queue <shared>, as user <mhw32> in cluster <grace>.
+</home/fas/cisewski/mhw32> was used as the home directory.
+</home/fas/cisewski/mhw32/scratch/homology> was used as the working directory.
+Started at Sun Mar 27 11:40:07 2016
+Results reported on Mon Mar 28 11:10:43 2016
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -W 23:30                # wall-clock time (hrs:mins)
+#BSUB -e voronoi-errors.%J    # error file name in which %J is replaced by the job ID
+#BSUB -o voronoi-output.%J    # output file name in which %J is replaced by the job ID
+#BSUB -M 10000
+#BSUB -J voronoi
+#BSUB -u mike.wu@yale.edu
+
+# Run R non-interactively.
+cd /home/fas/cisewski/mhw32/scratch/homology
+R CMD BATCH run_voronoi.r
+
+
+------------------------------------------------------------
+
+TERM_RUNLIMIT: job killed after reaching LSF run time limit.
+Exited with exit code 140.
+
+Resource usage summary:
+
+    CPU time :                                   84622.60 sec.
+    Max Memory :                                 576 MB
+    Average Memory :                             571.98 MB
+    Total Requested Memory :                     5120.00 MB
+    Delta Memory :                               4544.00 MB
+    Max Processes :                              5
+    Max Threads :                                6
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <voronoi-errors.953674> for stderr output of this job.
+

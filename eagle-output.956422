@@ -1,0 +1,45 @@
+Sender: LSF System <lsfadmin@c04n04>
+Subject: Job 956422: <eagle> in cluster <grace> Exited
+
+Job <eagle> was submitted from host <grace1> by user <mhw32> in cluster <grace>.
+Job was executed on host(s) <c04n04>, in queue <shared>, as user <mhw32> in cluster <grace>.
+</home/fas/cisewski/mhw32> was used as the home directory.
+</home/fas/cisewski/mhw32/scratch/homology> was used as the working directory.
+Started at Tue Mar 29 18:17:55 2016
+Results reported on Tue Mar 29 18:17:56 2016
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -W 23:30                # wall-clock time (hrs:mins)
+#BSUB -e eagle-errors.%J    # error file name in which %J is replaced by the job ID
+#BSUB -o eagle-output.%J    # output file name in which %J is replaced by the job ID
+#BSUB -M 100000
+#BSUB -J eagle
+#BSUB -u mike.wu@yale.edu
+
+# Run R non-interactively.
+cd /home/fas/cisewski/mhw32/scratch/homology/
+R CMD BATCH save_eagle_diags.r
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.53 sec.
+    Total Requested Memory :                     5120.00 MB
+    Delta Memory :                               -
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <eagle-errors.956422> for stderr output of this job.
+
