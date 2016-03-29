@@ -13,10 +13,10 @@ for (i in 2:4) {
   cdm_slices <- slice_cube_robust(cdm, i)
   wdm_slices <- slice_cube_robust(wdm, i)
   # Get persistence diagrams
-  cdm_diags <- persistify_set(cdm_slices)
-  wdm_diags <- persistify_set(wdm_slices)
+  cdm_diags <- persistify_set(cdm_slices, i)
+  wdm_diags <- persistify_set(wdm_slices, i)
   # Save the data
-  saveRDS(cdm_slices, paste(savepath, "cdm", i, ".rds", sep=""))
-  saveRDS(wdm_slices, paste(savepath, "wdm", i, ".rds", sep=""))
+  saveRDS(cdm_diags, paste(savepath, "cdm", i, ".rds", sep=""))
+  saveRDS(wdm_diags, paste(savepath, "wdm", i, ".rds", sep=""))
 }
 
