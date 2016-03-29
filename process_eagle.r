@@ -83,10 +83,10 @@ slice_cube_robust <- function(cube, n) {
 }
 
 # With the set, create persistence diagrams from each one.
-persistify_set <- function(sampleset) {
+persistify_set <- function(sampleset, n) {
   diagrams <- lapply(sampleset, function(set) {
-    res <- 0.5
-    boxlim <- c(0,100/3)
+    res <- 1.0
+    boxlim <- c(0,100/n)
     diag <- gridDiag(set, dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
     return(diag$diagram)
   })
