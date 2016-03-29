@@ -56,8 +56,8 @@ voronoi_compilation <- function(N, Boxlim, res=0.5, perturb=1, groupN=15, baseli
     currSet <- voronoi_set(percFils[i], N, groupN, res, perturb, Boxlim)
     storage[[i]] = currSet
   }
-  saveRDS(storage, paste("./saved_states/foam", toString(nameId), ".rds", sep=""))
+  saveRDS(storage, paste("./saved_states/large_set/foam", toString(nameId), ".rds", sep=""))
   # Run and save the baseline.
   baseline <- voronoi_set(baseline, N, groupN, res, perturb, Boxlim)
-  saveRDS(baseline, paste("./saved_states/baseline", toString(nameId), ".rds", sep=""))
+  saveRDS(baseline, paste("./saved_states/large_set/baseline", toString(nameId), ".rds", sep=""))
 }
