@@ -42,10 +42,10 @@ Warning messages:
 +     wdmdiag <- wdmobj[[j]]
 +     # plot respective persistence diagrams.
 +     png(filename=paste(savepath, "cdmplot(", i, ",", j, ")", ".png", sep=""))
-+     plot(cdmdiag)
++     plotDiag(cdmdiag)
 +     dev.off()
 +     png(filename=paste(savepath, "wdmplot(", i, ",", j, ")", ".png", sep=""))
-+     plot(wdmdiag)
++     plotDiag(wdmdiag)
 +     dev.off()
 +     # calculate the pval.
 +     pval <- ks::kde.test(cdmdiag, wdmdiag)$pvalue
@@ -154,4 +154,4 @@ Warning messages:
 > 
 > proc.time()
    user  system elapsed 
-190.984   0.773 192.849 
+191.223   0.928 203.656 

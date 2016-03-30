@@ -12,10 +12,10 @@ for (i in 2:4) {
     wdmdiag <- wdmobj[[j]]
     # plot respective persistence diagrams.
     png(filename=paste(savepath, "cdmplot(", i, ",", j, ")", ".png", sep=""))
-    plot(cdmdiag)
+    plotDiag(cdmdiag)
     dev.off()
     png(filename=paste(savepath, "wdmplot(", i, ",", j, ")", ".png", sep=""))
-    plot(wdmdiag)
+    plotDiag(wdmdiag)
     dev.off()
     # calculate the pval.
     pval <- ks::kde.test(cdmdiag, wdmdiag)$pvalue
