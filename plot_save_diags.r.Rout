@@ -1,0 +1,157 @@
+
+R version 3.2.2 (2015-08-14) -- "Fire Safety"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> source("tools.r")
+> library(ks)
+Loading required package: KernSmooth
+KernSmooth 2.23 loaded
+Copyright M. P. Wand 1997-2009
+Loading required package: misc3d
+Loading required package: mvtnorm
+Loading required package: rgl
+Warning messages:
+1: In rgl.init(initValue, onlyNULL) : RGL: unable to open X11 display
+2: In fun(libname, pkgname) : Error in 'rgl_init'
+> 
+> savepath <- "/home/fas/cisewski/mhw32/scratch/homology/saved_states/real_data/cut_diags/"
+> 
+> for (i in 2:4) {
++   num <- i * i * i
++   cdmobj <- readRDS(paste(savepath, "cdm", i, ".rds", sep=""))
++   wdmobj <- readRDS(paste(savepath, "wdm", i, ".rds", sep=""))
++   for (j in 1:num) {
++     cdmdiag <- cdmobj[[j]]
++     wdmdiag <- wdmobj[[j]]
++     # plot respective persistence diagrams.
++     png(filename=paste(savepath, "cdmplot(", i, ",", j, ")", ".png", sep=""))
++     plot(cdmdiag)
++     dev.off()
++     png(filename=paste(savepath, "wdmplot(", i, ",", j, ")", ".png", sep=""))
++     plot(wdmdiag)
++     dev.off()
++     # calculate the pval.
++     pval <- ks::kde.test(cdmdiag, wdmdiag)$pvalue
++     print(paste("pvalue (", i, "cuts, ", j, "th cut: ", pval, sep=""))
++   }
++ }
+[1] "pvalue (2cuts, 1th cut: 0.587260715448699"
+[1] "pvalue (2cuts, 2th cut: 0.259741029911449"
+[1] "pvalue (2cuts, 3th cut: 0.55351551387304"
+[1] "pvalue (2cuts, 4th cut: 0.351076927835855"
+[1] "pvalue (2cuts, 5th cut: 0.28539661683728"
+[1] "pvalue (2cuts, 6th cut: 0.437440419963394"
+[1] "pvalue (2cuts, 7th cut: 0.509736594540032"
+[1] "pvalue (2cuts, 8th cut: 0.516615190142993"
+[1] "pvalue (3cuts, 1th cut: 0.0291052618500615"
+[1] "pvalue (3cuts, 2th cut: 0.0377147273255298"
+[1] "pvalue (3cuts, 3th cut: 0.135591235845173"
+[1] "pvalue (3cuts, 4th cut: 0.249461105715306"
+[1] "pvalue (3cuts, 5th cut: 0.398367320866389"
+[1] "pvalue (3cuts, 6th cut: 0.160706263516897"
+[1] "pvalue (3cuts, 7th cut: 0.260181795604687"
+[1] "pvalue (3cuts, 8th cut: 0.412940818138419"
+[1] "pvalue (3cuts, 9th cut: 0.000611058292505517"
+[1] "pvalue (3cuts, 10th cut: 0.270511173273678"
+[1] "pvalue (3cuts, 11th cut: 0.326318522093002"
+[1] "pvalue (3cuts, 12th cut: 0.0438493688568593"
+[1] "pvalue (3cuts, 13th cut: 0.24733933028565"
+[1] "pvalue (3cuts, 14th cut: 0.164257000632107"
+[1] "pvalue (3cuts, 15th cut: 0.405480615065998"
+[1] "pvalue (3cuts, 16th cut: 0.214202879908122"
+[1] "pvalue (3cuts, 17th cut: 0.868696119429072"
+[1] "pvalue (3cuts, 18th cut: 0.22728518879685"
+[1] "pvalue (3cuts, 19th cut: 0.248055658290453"
+[1] "pvalue (3cuts, 20th cut: 0.285736484967535"
+[1] "pvalue (3cuts, 21th cut: 0.476587149079415"
+[1] "pvalue (3cuts, 22th cut: 0.0300387959737978"
+[1] "pvalue (3cuts, 23th cut: 0.113011944869573"
+[1] "pvalue (3cuts, 24th cut: 0.347221990868321"
+[1] "pvalue (3cuts, 25th cut: 0.118181426537543"
+[1] "pvalue (3cuts, 26th cut: 0.289918057234659"
+[1] "pvalue (3cuts, 27th cut: 0.28367648818218"
+[1] "pvalue (4cuts, 1th cut: 0.019706509062945"
+[1] "pvalue (4cuts, 2th cut: 2.4582632512038e-05"
+[1] "pvalue (4cuts, 3th cut: 0.00655004567805095"
+[1] "pvalue (4cuts, 4th cut: 0.117683931811523"
+[1] "pvalue (4cuts, 5th cut: 0.0702248929527998"
+[1] "pvalue (4cuts, 6th cut: 0.0634017315810464"
+[1] "pvalue (4cuts, 7th cut: 0.63549177399715"
+[1] "pvalue (4cuts, 8th cut: 0.866785911934408"
+[1] "pvalue (4cuts, 9th cut: 8.27873519293476e-07"
+[1] "pvalue (4cuts, 10th cut: 0.113389827849983"
+[1] "pvalue (4cuts, 11th cut: 1.33327260343208e-09"
+[1] "pvalue (4cuts, 12th cut: 2.02481055688875e-06"
+[1] "pvalue (4cuts, 13th cut: 8.65461263765965e-08"
+[1] "pvalue (4cuts, 14th cut: 0.573037793100264"
+[1] "pvalue (4cuts, 15th cut: 0.896977949270823"
+[1] "pvalue (4cuts, 16th cut: 1.15757403662542e-11"
+[1] "pvalue (4cuts, 17th cut: 0.239246535778168"
+[1] "pvalue (4cuts, 18th cut: 0.0445791750586623"
+[1] "pvalue (4cuts, 19th cut: 1.18267781479275e-06"
+[1] "pvalue (4cuts, 20th cut: 2.57294174635936e-05"
+[1] "pvalue (4cuts, 21th cut: 1.9837516679333e-06"
+[1] "pvalue (4cuts, 22th cut: 0.000104511299360066"
+[1] "pvalue (4cuts, 23th cut: 0.0982955497678714"
+[1] "pvalue (4cuts, 24th cut: 0.0593688534903178"
+[1] "pvalue (4cuts, 25th cut: 0.379885056814471"
+[1] "pvalue (4cuts, 26th cut: 0.0724909629891819"
+[1] "pvalue (4cuts, 27th cut: 0.000583570828603275"
+[1] "pvalue (4cuts, 28th cut: 0.00354829335118523"
+[1] "pvalue (4cuts, 29th cut: 4.39716784117472e-06"
+[1] "pvalue (4cuts, 30th cut: 0.000683362269295773"
+[1] "pvalue (4cuts, 31th cut: 7.17852790038025e-29"
+[1] "pvalue (4cuts, 32th cut: 0.000383259661922097"
+[1] "pvalue (4cuts, 33th cut: 0.695819318484139"
+[1] "pvalue (4cuts, 34th cut: 0.166804766796332"
+[1] "pvalue (4cuts, 35th cut: 0.00823566625509475"
+[1] "pvalue (4cuts, 36th cut: 0.0595590087669108"
+[1] "pvalue (4cuts, 37th cut: 0.272744822895071"
+[1] "pvalue (4cuts, 38th cut: 0.853150770155436"
+[1] "pvalue (4cuts, 39th cut: 0.546823606580035"
+[1] "pvalue (4cuts, 40th cut: 0.00344689762616968"
+[1] "pvalue (4cuts, 41th cut: 0.024246915099845"
+[1] "pvalue (4cuts, 42th cut: 0.00320244196993957"
+[1] "pvalue (4cuts, 43th cut: 0.0234466621662993"
+[1] "pvalue (4cuts, 44th cut: 0.043758129964596"
+[1] "pvalue (4cuts, 45th cut: 0.00045873305913724"
+[1] "pvalue (4cuts, 46th cut: 0.13632951957917"
+[1] "pvalue (4cuts, 47th cut: 0.086615649166924"
+[1] "pvalue (4cuts, 48th cut: 0.122535016603115"
+[1] "pvalue (4cuts, 49th cut: 0.0220064837397927"
+[1] "pvalue (4cuts, 50th cut: 0.000471295045022635"
+[1] "pvalue (4cuts, 51th cut: 0.301920783989315"
+[1] "pvalue (4cuts, 52th cut: 3.46072449031176e-06"
+[1] "pvalue (4cuts, 53th cut: 0.0548823895870029"
+[1] "pvalue (4cuts, 54th cut: 0.203960016840324"
+[1] "pvalue (4cuts, 55th cut: 0.129727632943727"
+[1] "pvalue (4cuts, 56th cut: 0.00144259150015125"
+[1] "pvalue (4cuts, 57th cut: 0.699371512518835"
+[1] "pvalue (4cuts, 58th cut: 0.390620306794772"
+[1] "pvalue (4cuts, 59th cut: 0.560482147247213"
+[1] "pvalue (4cuts, 60th cut: 0.000984715358694377"
+[1] "pvalue (4cuts, 61th cut: 0.000265004539591995"
+[1] "pvalue (4cuts, 62th cut: 0.937369332701643"
+[1] "pvalue (4cuts, 63th cut: 0.0423497698628097"
+[1] "pvalue (4cuts, 64th cut: 2.71438959877912e-05"
+> 
+> proc.time()
+   user  system elapsed 
+190.984   0.773 192.849 

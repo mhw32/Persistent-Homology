@@ -4,12 +4,12 @@ library(ks)
 savepath <- "/home/fas/cisewski/mhw32/scratch/homology/saved_states/real_data/cut_diags/"
 
 for (i in 2:4) {
-  num <- i * i
+  num <- i * i * i
   cdmobj <- readRDS(paste(savepath, "cdm", i, ".rds", sep=""))
   wdmobj <- readRDS(paste(savepath, "wdm", i, ".rds", sep=""))
   for (j in 1:num) {
-    cdmdiag <- cdmobj[[i]]
-    wdmdiag <- wdmobj[[i]]
+    cdmdiag <- cdmobj[[j]]
+    wdmdiag <- wdmobj[[j]]
     # plot respective persistence diagrams.
     png(filename=paste(savepath, "cdmplot(", i, ",", j, ")", ".png", sep=""))
     plot(cdmdiag)
