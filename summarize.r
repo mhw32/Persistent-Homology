@@ -18,6 +18,14 @@ silhouetteAUC <- function(diagram, p=0.3, dim=1) {
   return(integrate(tseq, silh))
 }
 
+silhouettePlot <- function(diagram, p=0.3, dim=1, main='', path='') {
+  tseq <- seq(min(diagram[,2:3]), max(diagram[,2:3]), length=1000)
+  silh <- silhouette(diagram, p=p, dimension=dim, tseq)
+  png(filename=path)
+  plot(silh, type="l", main=main)
+  dev.off()
+}
+
 integrate <- function(xarr, yarr) {
   auc <- trapz(xarr, yarr)
   return(auc)
