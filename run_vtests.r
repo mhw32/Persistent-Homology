@@ -1,5 +1,5 @@
 source('testlib.r')
-for (i in 1:100) {
+for (i in 41:100) {
   foam <- readRDS(paste('./saved_states/large_set/foam', i, '.rds', sep=''))
   base <- readRDS(paste('./saved_states/large_set/baseline', i, '.rds', sep=''))
   print(paste('Iteration: ', i))
