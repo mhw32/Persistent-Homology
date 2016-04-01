@@ -26,7 +26,7 @@ silhouettePlot <- function(diagram, p=0.3, dim=1, main='', path='') {
   dev.off()
 }
 
-silhouetteDualPlot <- function(diagram1, diagram2, p=0.3, dim=1, main1='', main2='', path='') {
+silhouetteDualPlot <- function(diagram1, diagram2, p=0.3, dim=1, main='', path='') {
   tseq1 <- seq(min(diagram1[,2:3]), max(diagram1[,2:3]), length=1000)
   silh1 <- silhouette(diagram1, p=p, dimension=dim, tseq1)
 
@@ -34,9 +34,9 @@ silhouetteDualPlot <- function(diagram1, diagram2, p=0.3, dim=1, main1='', main2
   silh2 <- silhouette(diagram2, p=p, dimension=dim, tseq2)
  
   png(filename=path)
-  par(mfrow=c(2,1))
-  plot(silh1, type="l", main=main1)
-  plot(silh2, type="l", main=main2)
+  plot(silh1, type="l", xlab="Grid Sequence", ylab="Silhouette", col="blue", main=main)
+  lines(silh2, type="l", col="red")
+  legend("topright", c("CDM", "WDM"), col=c("blue", "red"), lty=1)
   dev.off()
 }
 
