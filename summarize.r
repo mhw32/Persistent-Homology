@@ -33,7 +33,7 @@ silhouetteDualPlot <- function(diagram1, diagram2, p=0.3, dim=1, main1='', main2
   tseq2 <- seq(min(diagram2[,2:3]), max(diagram2[,2:3]), length=1000)
   silh2 <- silhouette(diagram2, p=p, dimension=dim, tseq2)
  
-  pdf(filename=path)
+  png(filename=path)
   par(mfrow=c(2,1))
   plot(silh1, type="l", main=main1)
   plot(silh2, type="l", main=main2)
