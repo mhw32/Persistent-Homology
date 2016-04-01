@@ -91,7 +91,7 @@ eulerPlot <- function(diagram, main='', path='') {
 	dev.off()
 }
 
-eulerDualPlot <- function(diagram1, diagram2, main1='', main2='', path='') {
+eulerDualPlot <- function(diagram1, diagram2, main='', path='') {
   tseq1 <- seq(min(diagram1[,2:3]),max(diagram1[,2:3]),length=5000)
   euler1 <- eulerChar(tseq1, diagram1, maxdimension=max(diagram1[,1]), threshold=0)
 
@@ -99,9 +99,9 @@ eulerDualPlot <- function(diagram1, diagram2, main1='', main2='', path='') {
   euler2 <- eulerChar(tseq2, diagram2, maxdimension=max(diagram2[,1]), threshold=0)
 
   png(filename=path)
-  par(mfrow=c(2,1))
-  plot(euler1, type="l", main=main1)
-  plot(euler2, type="l", main=main2)
+  plot(euler1, type="l", xlab="Grid Sequence", ylab="Euler Char.", col="blue", main=main)
+  lines(euler2, col="red")
+  legend("topright", c("CDM", "WDM"), col=c("blue", "red"), lty=1)
   dev.off()
 }
 
