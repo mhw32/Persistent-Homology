@@ -26,6 +26,20 @@ silhouettePlot <- function(diagram, p=0.3, dim=1, main='', path='') {
   dev.off()
 }
 
+silhouetteDualPlot <- function(diagram1, diagram2, p=0.3, dim=1, main1='', main2='', path='') {
+  tseq1 <- seq(min(diagram1[,2:3]), max(diagram1[,2:3]), length=1000)
+  silh1 <- silhouette(diagram1, p=p, dimension=dim, tseq1)
+
+  tseq2 <- seq(min(diagram2[,2:3]), max(diagram2[,2:3]), length=1000)
+  silh2 <- silhouette(diagram2, p=p, dimension=dim, tseq2)
+ 
+  pdf(filename=path)
+  par(mfrow=c(2,1))
+  plot(silh1, type="l", main=main1)
+  plot(silh2, type="l", main=main2)
+  dev.off()
+}
+
 integrate <- function(xarr, yarr) {
   auc <- trapz(xarr, yarr)
   return(auc)

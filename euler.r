@@ -91,6 +91,20 @@ eulerPlot <- function(diagram, main='', path='') {
 	dev.off()
 }
 
+eulerDualPlot <- function(diagram1, diagram2, main1='', main2='', path='') {
+  tseq1 <- seq(min(diagram1[,2:3]),max(diagram1[,2:3]),length=5000)
+  euler1 <- eulerChar(tseq1, diagram1, maxdimension=max(diagram1[,1]), threshold=0)
+
+  tseq2 <- seq(min(diagram2[,2:3]),max(diagram2[,2:3]),length=5000)
+  euler2 <- eulerChar(tseq2, diagram2, maxdimension=max(diagram2[,1]), threshold=0)
+
+  pdf(filename=path)
+  par(mfrow=c(2,1))
+  plot(euler1, type="l", main=main1)
+  plot(euler2, type="l", main=main2)
+  dev.off()
+}
+
 # # Example Usage
 # # -------------
 # n <- 50
