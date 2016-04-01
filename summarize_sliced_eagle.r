@@ -12,12 +12,12 @@ for (i in 2:4) {
     cdmdiag <- cdmobj[[j]]
     wdmdiag <- wdmobj[[j]]
 
-    eulerPlot(cdmdiag, main=paste('CDM Slice (', j, '/', num, ') Euler Characteristic'), path=savepath)
-    eulerPlot(wdmdiag, main=paste('WDM Slice (', j, '/', num, ') Euler Characteristic'), path=savepath)
+    eulerPlot(cdmdiag, main=paste('CDM Slice (', j, '/', num, ') Euler Characteristic'), path=paste(savepath, "cdm_euler_", j, "_out_of_", num, ".png", sep=""))
+    eulerPlot(wdmdiag, main=paste('WDM Slice (', j, '/', num, ') Euler Characteristic'), path=paste(savepath, "wdm_euler_", j, "_out_of_", num, ".png", sep=""))
 
     for (k in 1:3) {
-      silhouettePlot(cdmdiag, dim=k, main=paste('CDM Slice (', j, '/', num, ')  Silhouette Dimension', k), path=savepath)
-      silhouettePlot(wdmdiag, dim=k, main=paste('WDM Slice (', j, '/', num, ')  Silhouette Dimension', k), path=savepath)
+      silhouettePlot(cdmdiag, dim=k, main=paste('CDM Slice (', j, '/', num, ')  Silhouette Dimension', k), path=paste(savepath, "cdm_silh_", j, "_out_of_", num, "_dim_", k, ".png", sep=""))
+      silhouettePlot(wdmdiag, dim=k, main=paste('WDM Slice (', j, '/', num, ')  Silhouette Dimension', k), path=paste(savepath, "wdm_silh_", j, "_out_of_", num, "_dim_", k, ".png", sep=""))
     }
   }   
 }
