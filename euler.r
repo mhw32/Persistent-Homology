@@ -62,7 +62,7 @@ eulerStat <- function(X, L) {
   m <- length(G2)
   G1arr <- sapply(seq(1:n), function(i) { eulerKernel(G1) })
   G2arr <- sapply(seq(1:m), function(i) { eulerKernel(G2) })
-  proba <- t.test(G1arr, G2arr, conf.level=0.95)
+  proba <- t.test(G1arr, G2arr, conf.level=0.95, paired=TRUE)
   return(proba$p.value)
 }
 
