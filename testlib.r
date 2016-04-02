@@ -9,7 +9,7 @@ library(abind)
 library(rrcov)
 library(ks)
 
-voronoi_tests <- function(foam, baseline, norm=FALSE) {
+voronoi_tests <- function(foam, baseline, norm=FALSE, run_base=TRUE) {
   # Pre-setup on baseline.
   foam[[length(foam)+1]] = baseline
   # Must do prior to cleaning.
@@ -17,8 +17,10 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   # Now clean
   foam <- cleanFoam(foam)
   setnum <- length(foam)
+  if (run_base == FALSE) { setnum <- setnum - 1 }
   colnum <- length(foam[[1]])
   basenum <- setnum # This represents the added baseline.
+  
   # Euler Characteristic.
   euler_test <- function() {
     eulerMat <- gridOperation(foam, eulerIntegration)
@@ -29,6 +31,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
     }
     return(eulerProba)
   }
+
   # Individual Euler Test.
   euler_indiv_test <- function() {
     eulerDimProba <- matrix(NA, nrow=setnum, ncol=3)
@@ -191,14 +194,14 @@ voronoi_tests <- function(foam, baseline, norm=FALSE) {
   return(testsfxns)
 }
 
-test_wrapper <- function(foam, base, ext, norm=FALSE) {
+test_wrapper <- function(foam, base, ext, norm=FALSE, run_base=TRUE) {
   print('entered test_wrapper')
   # 'indiv-land', 'all-land' not included.
   keys <- c('euler', 'indiv-euler', 'all-euler', 'indiv_silh', 'all-silh', 'silh-euler', 'contour', 'global-kde')
   # Direct output to a file.
   sink(paste("./saved_states/large_set_test/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
   print("--------------------------------")
-  t <- voronoi_tests(foam, base, norm=norm)
+  t <- voronoi_tests(foam, base, norm=norm, run_base=run_base)
   for (i in keys) {
     print(paste("Test for", i, ":"))
     currfxn <- t[[i]]

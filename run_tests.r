@@ -9,23 +9,23 @@ for i in (2:4):
   wdm <- readRDS(paste(source, "wdm", i, ".rds", sep=""))
   bigset <- vector('list', 1)
   bigset[[1]] <- cdm
-  test_wrapper(bigset, wdm, paste("Split", i, "WDMbaseNormFalse", sep=""), FALSE)
+  test_wrapper(bigset, wdm, paste("Split", i, "WDMbaseNormFalse", sep=""), norm=FALSE, run_base=FALSE)
 
   cdm <- readRDS(paste(source, "cdm", i, ".rds", sep=""))
   wdm <- readRDS(paste(source, "wdm", i, ".rds", sep=""))
   bigset <- vector('list', 1)
   bigset[[1]] <- cdm
-  test_wrapper(bigset, wdm, paste("Split", i, "WDMbaseNormTrue", sep=""), TRUE)
+  test_wrapper(bigset, wdm, paste("Split", i, "WDMbaseNormTrue", sep=""), norm=TRUE, run_base=FALSE)
 
   cdm <- readRDS(paste(source, "cdm", i, ".rds", sep=""))
   wdm <- readRDS(paste(source, "wdm", i, ".rds", sep=""))
   bigset <- vector('list', 1)
   bigset[[1]] <- wdm
-  test_wrapper(bigset, cdm, paste("Split", i, "CDMbaseNormFalse", sep=""), FALSE)
+  test_wrapper(bigset, cdm, paste("Split", i, "CDMbaseNormFalse", sep=""), norm=FALSE, run_base=FALSE)
 
   cdm <- readRDS(paste(source, "cdm", i, ".rds", sep=""))
   wdm <- readRDS(paste(source, "wdm", i, ".rds", sep=""))
   bigset <- vector('list', 1)
   bigset[[1]] <- wdm
-  test_wrapper(bigset, cdm, paste("Split", i, "CDMbaseNormTrue", sep=""), TRUE)
+  test_wrapper(bigset, cdm, paste("Split", i, "CDMbaseNormTrue", sep=""), norm=TRUE, run_base=FALSE)
 
