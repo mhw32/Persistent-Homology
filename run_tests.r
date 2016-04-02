@@ -1,7 +1,6 @@
 source('testlib.r')
 source('process_eagle.r')
 
-
 source <- "/home/fas/cisewski/mhw32/scratch/homology/saved_states/real_data/cut_diags/"
 
 for (i in 2:4) {

@@ -17,9 +17,9 @@ voronoi_tests <- function(foam, baseline, norm=FALSE, run_base=TRUE) {
   # Now clean
   foam <- cleanFoam(foam)
   setnum <- length(foam)
-  if (run_base == FALSE) { setnum <- setnum - 1 }
   colnum <- length(foam[[1]])
   basenum <- setnum # This represents the added baseline.
+  if (run_base == FALSE) { setnum <- setnum - 1 }
   
   # Euler Characteristic.
   euler_test <- function() {
