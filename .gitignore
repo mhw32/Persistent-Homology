@@ -4,6 +4,7 @@ test_set
 *.output
 *.error
 *.rds
+*.zip
 *.ipynb
 *.ipynb_checkpoints/
 /saved_states

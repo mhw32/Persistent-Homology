@@ -88,7 +88,7 @@ silh_tests <- function(foam, baseline, p) {
       silhDimMat <- gridOperation(foam, silhDimFxn)
       # Calculate probabilities with t-test
       for (j in 1:setnum) {
-        currproba <- t.test(silhDimMat[,basenum], silhDimMat[,j])
+        currproba <- t.test(silhDimMat[,basenum], silhDimMat[,j], paired=TRUE)
         silhDimProba[j, i+1] <- log(currproba$p.value)
       }
     }
@@ -102,7 +102,7 @@ silh_tests <- function(foam, baseline, p) {
     # Calculate probabilities through multi-D t-test
     silhProba <- rep(0, setnum)
     for (i in 1:setnum) {
-      currproba <- T2.test(t(silhMat[,,basenum]), t(silhMat[,,i]))
+      currproba <- T2.test(t(silhMat[,,basenum]) - t(silhMat[,,i]))
       silhProba[i] <- log(hotelling_pval(currproba))
     }
     return(silhProba)
@@ -116,7 +116,8 @@ silh_tests <- function(foam, baseline, p) {
     for (i in 1:setnum) {
       currproba <- t.test(
         silhEulerMat[,basenum], 
-        silhEulerMat[,i]
+        silhEulerMat[,i],
+        paired=TRUE
       )
       silhEulerProba[i] <- log(currproba$p.value)
     }
