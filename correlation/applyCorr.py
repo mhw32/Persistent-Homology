@@ -1,4 +1,7 @@
 from treeCorr import get_corr_stat
+from translate import rds_to_np
+from translate import read_foam, read_baseline
+import numpy as np
 
 def corr_test_suite(base_file, foam_file):
 	# read all the data
@@ -10,7 +13,7 @@ def corr_test_suite(base_file, foam_file):
 
 	# define some useful constants
 	num_samples = len(base_data)
-	num_percfil = len(foam_data[0])
+	num_percfil = len(foam_data)
 	num_dims    = len(np.unique(base_data[0][:, 0]))
 
 	# storage for this stuff
@@ -27,3 +30,17 @@ def corr_test_suite(base_file, foam_file):
 			foam_stats[p, i, :] = get_corr_stat(cur_foam)
 
 	return base_stats, foam_stats
+
+if __name__ == '__main__':
+	all_base_corr = np.zeros((100, 15, 3))
+	all_foam_corr = np.zeros((100, 9, 15, 3))
+
+	for i in range(1, 101):
+		base_corr, foam_corr = corr_test_suite('data/baseline%d.rds', 'data/foam%d.rds')
+		all_base_corr[i, :, :] = base_corr
+		all_foam_corr[i, :, :, :] = foam_corr
+
+	np.save('output/base_corr.npy', all_base_corr)
+	np.save('output/foam_corr.npy', all_foam_corr)
+
+

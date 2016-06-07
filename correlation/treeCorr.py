@@ -22,7 +22,7 @@ import numpy.random as npr
 import treecorr
 from scipy.integrate import simps
 
-def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=100000):
+def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000):
 	'''
 	Use a simple probability distribution for the galaxies:
 
@@ -69,21 +69,21 @@ def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=100000):
 	xi, varxi = dd.calculateXi(rr, dr)
 	return xi, varxi 
 
-def get_corr_dim(z, d, min_r=1., max_r=100., L=500., ngal=100000):
+def get_corr_dim(z, d, min_r=1., max_r=100., L=500., ngal=10000):
 	x = z[z[:, 0] == d][:, 1]
 	y = z[z[:, 0] == d][:, 2]
 	# get correlation function
 	corr_mu, corr_var = get_corr(x, y, min_r=min_r, max_r=max_r, L=L, ngal=ngal)
 	return corr_mu
 
-def get_corr_stat(z):
+def get_corr_stat(z, min_r=1., max_r=100., L=500., ngal=10000):
 	areas = np.zeros(3)
 	# loop through dimensions
 	for d in range(3):
-		corr_fun = get_corr_dim(z, d)
+		corr_fun = get_corr_dim(z, d, min_r=min_r, max_r=max_r, L=L, ngal=ngal)
 		corr_fun = np.abs(corr_fun)
 		areas[d] = simps(corr_fun, dx=0.01)
 
-	return area
+	return areas
 
 
