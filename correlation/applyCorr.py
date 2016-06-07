@@ -2,14 +2,24 @@ from treeCorr import get_corr_stat
 from translate import rds_to_np
 from translate import read_foam, read_baseline
 import numpy as np
+from tools import cleanVec, normVec
+from tools import cleanFoam, normFoam
 
-def corr_test_suite(base_file, foam_file):
+def corr_test_suite(base_file, foam_file, normalize=False):
 	# read all the data
-	base_raw = rds_to_np(base_file)
+	base_raw  = rds_to_np(base_file)
 	base_data = read_baseline(base_raw)
+	# clean the base
+	base_data = cleanVec(base_data)
+	if normalize:
+		base_data = normVec(base_data)
 
-	foam_raw = rds_to_np(foam_file)
+	foam_raw  = rds_to_np(foam_file)
 	foam_data = read_foam(foam_raw)
+	# clean the foam
+	foam_data = cleanFoam(foam_data)
+	if normalize:
+		foam_data = normForm(foam_data)
 
 	# define some useful constants
 	num_samples = len(base_data)
