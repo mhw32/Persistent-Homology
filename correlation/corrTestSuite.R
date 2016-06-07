@@ -23,7 +23,7 @@ corrTestSuite <- function(baseStats, foamStats) {
 				}
 			}
 		}
-		return(corrDimTest)
+		return(corrDimProba)
 	}
 
 	corrParallelTest <- function(baseStats, foamStats) {
@@ -34,7 +34,7 @@ corrTestSuite <- function(baseStats, foamStats) {
 				corrProba[i, j] <- log(hotelling_pval(pval))
 			}
 		}
-		return(corrParallelTest)
+		return(corrProba)
 	}
 
 	# prep the functions and return them 
