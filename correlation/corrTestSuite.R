@@ -46,8 +46,25 @@ corrTestSuite <- function(baseStats, foamStats) {
   	fxns <- vector(mode="list", length=length(keys))
   	names(fxns) <- keys
 	for (i in 1:length(keys)) {
-		fxns[keys[i]] <- fxns[i]
+		fxns[keys[i]] <- tests[i]
 	}
   
   	return(fxns)
 }
+
+applyCorrTestSuite <- function() {
+	load('output/base_corr.gzip')
+	load('output/foam_corr.gzip')
+	
+	tlibs <- corrTestSuite(base, foam)
+	corrDimTest <- tlibs$`indiv-corr`
+	corrParallelTest <- tlibs$`all-corr`
+
+	corrDimProba <- corrDimTest(base, foam)
+	corrParallelProba <- corrParallelTest(base, foam)
+
+	saveRDS(corrDimProba, file='output/base_proba.rds')
+	saveRDS(corrParallelProba, file='output/foam_proba.rds')
+}
+
+
