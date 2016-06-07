@@ -53,3 +53,12 @@ def np_to_bin(inputfile, outputfile='/tmp/data.bin'):
 	    binfile.write(data)
 	binfile.close()
 
+def np_to_rds(inputfile, outputfile, robjname):
+	''' Save numpy file to rds file.
+	'''
+	a = np.load(inputfile)
+	a = np.array(a, dtype='float64')
+	ro = numpy2ri(a)
+	robjects.assign(robjname, ro)
+	robjects("save(%s, file='%s', compress=TRUE)" % (robjname, outputfile))
+
