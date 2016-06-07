@@ -38,8 +38,8 @@ if __name__ == '__main__':
 	for i in range(1, 101):
 		print('Operating on set %d' % i)
 		base_corr, foam_corr = corr_test_suite('data/baseline%d.rds' % i, 'data/foam%d.rds' % i)
-		all_base_corr[i, :, :] = base_corr
-		all_foam_corr[i, :, :, :] = foam_corr
+		all_base_corr[i-1, :, :] = base_corr
+		all_foam_corr[i-1, :, :, :] = foam_corr
 
 	np.save('output/base_corr.npy', all_base_corr)
 	np.save('output/foam_corr.npy', all_foam_corr)
