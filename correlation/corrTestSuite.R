@@ -63,8 +63,8 @@ applyCorrTestSuite <- function() {
 	corrDimProba <- corrDimTest(base, foam)
 	corrParallelProba <- corrParallelTest(base, foam)
 
-	saveRDS(corrDimProba, file='output/base_proba.rds')
-	saveRDS(corrParallelProba, file='output/foam_proba.rds')
+	saveRDS(corrDimProba, file='output/indiv_proba.rds')
+	saveRDS(corrParallelProba, file='output/parallel_proba.rds')
 }
 
 

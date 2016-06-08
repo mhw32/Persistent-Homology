@@ -19,7 +19,7 @@ def corr_test_suite(base_file, foam_file, normalize=False):
 	# clean the foam
 	foam_data = cleanFoam(foam_data)
 	if normalize:
-		foam_data = normForm(foam_data)
+		foam_data = normFoam(foam_data)
 
 	# define some useful constants
 	num_samples = len(base_data)
@@ -42,16 +42,19 @@ def corr_test_suite(base_file, foam_file, normalize=False):
 	return base_stats, foam_stats
 
 if __name__ == '__main__':
-	all_base_corr = np.zeros((100, 15, 3))
-	all_foam_corr = np.zeros((100, 9, 15, 3))
+	for normalize in [True]:
+		all_base_corr = np.zeros((100, 15, 3))
+		all_foam_corr = np.zeros((100, 9, 15, 3))
 
-	for i in range(1, 101):
-		print('Operating on set %d' % i)
-		base_corr, foam_corr = corr_test_suite('data/baseline%d.rds' % i, 'data/foam%d.rds' % i)
-		all_base_corr[i-1, :, :] = base_corr
-		all_foam_corr[i-1, :, :, :] = foam_corr
+		for i in range(1, 101):
+			print('Operating on set %d' % i)
+			base_corr, foam_corr = corr_test_suite('data/baseline%d.rds' % i, 
+													'data/foam%d.rds' % i,
+													normalize=normalize)
+			all_base_corr[i-1, :, :] = base_corr
+			all_foam_corr[i-1, :, :, :] = foam_corr
 
-	np.save('output/base_corr.npy', all_base_corr)
-	np.save('output/foam_corr.npy', all_foam_corr)
+		np.save('output/base_corr_norm(%d).npy' % normalize, all_base_corr)
+		np.save('output/foam_corr_norm(%d).npy' % normalize, all_foam_corr)
 
 
