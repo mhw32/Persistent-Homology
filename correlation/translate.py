@@ -23,6 +23,9 @@ def read_baseline(raw):
 def read_foam(raw):
 	return [read_baseline(x) for x in raw]
 
+def read_fake_foam(raw):
+	return [read_baseline(raw)]
+
 def np_to_bin(inputfile, outputfile='/tmp/data.bin'):
 	'''
 	inputfile := npy file path

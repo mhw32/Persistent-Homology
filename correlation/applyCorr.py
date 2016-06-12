@@ -5,7 +5,7 @@ import numpy as np
 from tools import cleanVec, normVec
 from tools import cleanFoam, normFoam
 
-def corr_test_suite(base_file, foam_file, normalize=False):
+def corr_voronoi_test_suite(base_file, foam_file, normalize=False):
 	# read all the data
 	base_raw  = rds_to_np(base_file)
 	base_data = read_baseline(base_raw)
@@ -41,20 +41,70 @@ def corr_test_suite(base_file, foam_file, normalize=False):
 
 	return base_stats, foam_stats
 
+def corr_simu_test_suite(cdm_file, wdm_file, normalize=False):
+	# read all the data
+	cdm_raw  = rds_to_np(cdm_file)
+	cdm_data = read_baseline(cdm_raw)
+	# clean the cdm
+	cdm_data = cleanVec(cdm_data)
+	if normalize:
+		cdm_data = normVec(cdm_data)
+
+	wdm_raw  = rds_to_np(wdm_file)
+	wdm_data = read_baseline(wdm_raw)
+	# clean the wdm
+	wdm_data = cleanVec(wdm_data)
+	if normalize:
+		wdm_data = normVec(wdm_data)
+
+	# define some useful constants
+	num_samples = len(cdm_data)
+	num_dims    = len(np.unique(cdm_data[0][:, 0]))
+
+	# storage for this stuff
+	cdm_stats = np.zeros((num_samples, num_dims))
+	wdm_stats = np.zeros((num_samples, num_dims))
+
+	for i in range(num_samples):
+		cur_cdm = cdm_data[i]
+		cdm_stats[i, :] = get_corr_stat(cur_cdm)
+		
+		cur_wdm = wdm_data[i]
+		wdm_stats[i, :] = get_corr_stat(cur_wdm)
+
+	return cdm_stats, wdm_stats
+
+
 if __name__ == '__main__':
-	for normalize in [True]:
-		all_base_corr = np.zeros((100, 15, 3))
-		all_foam_corr = np.zeros((100, 9, 15, 3))
+	# for normalize in [True]:
+	# 	all_base_corr = np.zeros((100, 15, 3))
+	# 	all_foam_corr = np.zeros((100, 9, 15, 3))
 
-		for i in range(1, 101):
+	# 	for i in range(1, 101):
+	# 		print('Operating on set %d' % i)
+	# 		base_corr, foam_corr = corr_voronoi_test_suite( 'data/baseline%d.rds' % i, 
+	# 														'data/foam%d.rds' % i,
+	# 														normalize=normalize)
+	# 		all_base_corr[i-1, :, :] = base_corr
+	# 		all_foam_corr[i-1, :, :, :] = foam_corr
+
+	# 	np.save('output/base_corr_norm(%d).npy' % normalize, all_base_corr)
+	# 	np.save('output/foam_corr_norm(%d).npy' % normalize, all_foam_corr)
+
+	for normalize in [False, True]:
+		all_cdm_corr = np.zeros((4, 64, 3))
+		all_wdm_corr = np.zeros((4, 64, 3))
+
+		for i in range(1, 5):
 			print('Operating on set %d' % i)
-			base_corr, foam_corr = corr_test_suite('data/baseline%d.rds' % i, 
-													'data/foam%d.rds' % i,
-													normalize=normalize)
-			all_base_corr[i-1, :, :] = base_corr
-			all_foam_corr[i-1, :, :, :] = foam_corr
+			cdm_corr, wdm_corr = corr_simu_test_suite(	'data_sim/cdm%d.rds' % i, 
+														'data_sim/wdm%d.rds' % i,
+														normalize=normalize)
+			all_cdm_corr[i-1, :i**3, :] = cdm_corr
+			all_wdm_corr[i-1, :i**3, :] = wdm_corr
 
-		np.save('output/base_corr_norm(%d).npy' % normalize, all_base_corr)
-		np.save('output/foam_corr_norm(%d).npy' % normalize, all_foam_corr)
+		np.save('output/cdm_corr_norm(%d).npy' % normalize, all_cdm_corr)
+		np.save('output/wdm_corr_norm(%d).npy' % normalize, all_wdm_corr)
+
 
 
