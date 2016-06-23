@@ -26,6 +26,19 @@ def read_foam(raw):
 def read_fake_foam(raw):
 	return [read_baseline(raw)]
 
+def read_pure_baseline(raw):
+	data = np.array(raw)
+	new_data = np.zeros((data.shape[0] / 3, 3, data.shape[1]))
+	for i in range(data.shape[0]):
+		new_data[int(np.floor(i/3)),i%3,:] = data[i, :]
+	return(list(new_data))
+
+def read_pure_foam(raw):
+	new_data = [] # can't be array, not all same length
+	for i in range(len(raw)):
+		new_data.append(read_pure_baseline(raw[i]))
+	return new_data
+
 def np_to_bin(inputfile, outputfile='/tmp/data.bin'):
 	'''
 	inputfile := npy file path

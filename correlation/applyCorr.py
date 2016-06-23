@@ -1,23 +1,20 @@
 from treeCorr import get_corr_stat
 from translate import rds_to_np
-from translate import read_foam, read_baseline
+from translate import read_pure_foam, read_pure_baseline
+from tools import normFoam, normVec
 import numpy as np
-from tools import cleanVec, normVec
-from tools import cleanFoam, normFoam
 
 def corr_voronoi_test_suite(base_file, foam_file, normalize=False):
 	# read all the data
 	base_raw  = rds_to_np(base_file)
-	base_data = read_baseline(base_raw)
-	# clean the base
-	base_data = cleanVec(base_data)
+	base_data = read_pure_baseline(base_raw)
+
 	if normalize:
 		base_data = normVec(base_data)
 
 	foam_raw  = rds_to_np(foam_file)
-	foam_data = read_foam(foam_raw)
-	# clean the foam
-	foam_data = cleanFoam(foam_data)
+	foam_data = read_pure_foam(foam_raw)
+	
 	if normalize:
 		foam_data = normFoam(foam_data)
 
@@ -44,16 +41,14 @@ def corr_voronoi_test_suite(base_file, foam_file, normalize=False):
 def corr_simu_test_suite(cdm_file, wdm_file, normalize=False):
 	# read all the data
 	cdm_raw  = rds_to_np(cdm_file)
-	cdm_data = read_baseline(cdm_raw)
-	# clean the cdm
-	cdm_data = cleanVec(cdm_data)
+	cdm_data = read_pure_baseline(cdm_raw)
+
 	if normalize:
 		cdm_data = normVec(cdm_data)
 
 	wdm_raw  = rds_to_np(wdm_file)
-	wdm_data = read_baseline(wdm_raw)
-	# clean the wdm
-	wdm_data = cleanVec(wdm_data)
+	wdm_data = read_pure_baseline(wdm_raw)
+	
 	if normalize:
 		wdm_data = normVec(wdm_data)
 
