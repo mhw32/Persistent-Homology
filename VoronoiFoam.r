@@ -61,3 +61,31 @@ voronoi_compilation <- function(N, Boxlim, res=0.5, perturb=1, groupN=15, baseli
   baseline <- voronoi_set(baseline, N, groupN, res, perturb, Boxlim)
   saveRDS(baseline, paste("./saved_states/large_set/baseline", toString(nameId), ".rds", sep=""))
 }
+
+# ---------------------------------------------------
+
+voronoi_only_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
+  set <- sapply(seq(1:G), function(i) {
+    vf <- voronoi3d(boxlim, res, err, Ncells=64, N, percClutter=0, percWall=1-0.02-percFil, percFil=percFil, percClust=0.02)
+    return(vf)
+  })
+}
+
+voronoi_only_compilation <- function(N, Boxlim, res=0.5, perturb=1, groupN=15, baseline=0.1, nameId=1) {
+  percFils <- seq(from=0.1, to=0.9, by=0.1)
+  numSet <- length(percFils)
+  storage <- vector("list", numSet)
+  for (i in 1:numSet) {
+    currSet <- voronoi_only_set(percFils[i], N, groupN, res, perturb, Boxlim)
+    storage[[i]] = currSet
+  }
+  saveRDS(storage, paste("./voronoi_data/foam", toString(nameId), ".rds", sep=""))
+  # Run and save the baseline.
+  baseline <- voronoi_only_set(baseline, N, groupN, res, perturb, Boxlim)
+  saveRDS(baseline, paste("./voronoi_data/baseline", toString(nameId), ".rds", sep=""))
+}
+
+
+
+
+

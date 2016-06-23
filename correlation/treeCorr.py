@@ -22,7 +22,7 @@ import numpy.random as npr
 import treecorr
 from scipy.integrate import simps
 
-def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000):
+def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 	'''
 	Use a simple probability distribution for the galaxies:
 
@@ -60,27 +60,31 @@ def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000):
 	# process the rr
 	rr.process(rand)
 
-	# relate the dd and rr
-	dr = treecorr.NNCorrelation(bin_size=0.1, min_sep=min_r, max_sep=max_r, 
-								sep_units='arcmin', verbose=2)
-	dr.process(cat, rand)
+	if simple: 
+		# calculate the correlation function (simple version)
+		xi, varxi = dd.calculateXi(rr)
+	else:
+		# relate the dd and rr
+		dr = treecorr.NNCorrelation(bin_size=0.1, min_sep=min_r, max_sep=max_r, 
+									sep_units='arcmin', verbose=2)
+		dr.process(cat, rand)
 
-	# calculate the correlation function
-	xi, varxi = dd.calculateXi(rr, dr)
+		# calculate the correlation function
+		xi, varxi = dd.calculateXi(rr, dr)
 	return xi, varxi 
 
-def get_corr_dim(z, d, min_r=1., max_r=100., L=500., ngal=10000):
+def get_corr_dim(z, d, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 	x = z[z[:, 0] == d][:, 1]
 	y = z[z[:, 0] == d][:, 2]
 	# get correlation function
-	corr_mu, corr_var = get_corr(x, y, min_r=min_r, max_r=max_r, L=L, ngal=ngal)
+	corr_mu, corr_var = get_corr(x, y, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
 	return corr_mu
 
-def get_corr_stat(z, min_r=1., max_r=100., L=500., ngal=10000):
+def get_corr_stat(z, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 	areas = np.zeros(3)
 	# loop through dimensions
 	for d in range(3):
-		corr_fun = get_corr_dim(z, d, min_r=min_r, max_r=max_r, L=L, ngal=ngal)
+		corr_fun = get_corr_dim(z, d, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
 		corr_fun = np.abs(corr_fun)
 		areas[d] = simps(corr_fun, dx=0.01)
 

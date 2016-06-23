@@ -87,7 +87,7 @@ eulerPlot <- function(diagram, main='', path='') {
 	tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=5000)
 	euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
 	png(filename=path)
-	plot(euler, type="l", main=main)
+	plot(euler, type="l", cex=2.0)
 	dev.off()
 }
 
