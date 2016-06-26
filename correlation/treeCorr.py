@@ -22,7 +22,7 @@ import numpy.random as npr
 import treecorr
 from scipy.integrate import simps
 
-def get_corr(x, y, z, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
+def get_corr(x, y, z, min_r=1., max_r=100., L=500., Lc=-0.5, ngal=10000, simple=False):
 	'''
 	Use a simple probability distribution for the galaxies:
 
@@ -49,9 +49,9 @@ def get_corr(x, y, z, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 	dd.process(cat)
 
 	# initialize some random states
-	rx = (npr.random_sample(nrand)-0.5) * L
-	ry = (npr.random_sample(nrand)-0.5) * L
-	rz = (npr.random_sample(nrand)-0.5) * L
+	rx = npr.random_sample(nrand) * L + Lc
+	ry = npr.random_sample(nrand) * L + Lc
+	rz = npr.random_sample(nrand) * L + Lc
 
 	# calculate catalog and NN for random one
 	rand = treecorr.Catalog(x=rx, y=ry, z=rz, x_units='arcmin', y_units='arcmin', z_units='arcmin')
@@ -74,7 +74,7 @@ def get_corr(x, y, z, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 		xi, varxi = dd.calculateXi(rr, dr)
 	return xi, varxi 
 
-def get_corr_stat(data, min_r=1., max_r=100., L=30., ngal=5000, simple=False):
+def get_corr_stat(data, min_r=1., max_r=100., L=30., Lc=-0.5, ngal=5000, simple=False):
 	x, y, z = data[:, 0], data[:, 1], data[:, 2]
 	corr_fun, corr_var = get_corr(x, y, z, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
 	corr_fun = np.abs(corr_fun)
