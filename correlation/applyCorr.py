@@ -28,11 +28,11 @@ def corr_voronoi_test_suite(base_file, foam_file, normalize=False):
 	foam_stats = np.zeros((num_percfil, num_samples, num_dims))
 
 	for i in range(num_samples):
-		cur_base = base_data[i]
+		cur_base = base_data[i].T
 		base_stats[i, :] = get_corr_stat(cur_base)
 		
 		for p in range(num_percfil):
-			cur_foam = foam_data[p][i]
+			cur_foam = foam_data[p][i].T
 			# get the stats store them.
 			foam_stats[p, i, :] = get_corr_stat(cur_foam)
 
@@ -61,10 +61,10 @@ def corr_simu_test_suite(cdm_file, wdm_file, normalize=False):
 	wdm_stats = np.zeros((num_samples, num_dims))
 
 	for i in range(num_samples):
-		cur_cdm = cdm_data[i]
+		cur_cdm = cdm_data[i].T
 		cdm_stats[i, :] = get_corr_stat(cur_cdm)
 		
-		cur_wdm = wdm_data[i]
+		cur_wdm = wdm_data[i].T
 		wdm_stats[i, :] = get_corr_stat(cur_wdm)
 
 	return cdm_stats, wdm_stats

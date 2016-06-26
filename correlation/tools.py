@@ -1,3 +1,5 @@
+import numpy as np
+
 # Some tools.r converted to Python.
 
 # clean a single persistence diagram
