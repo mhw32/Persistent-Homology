@@ -68,12 +68,20 @@ intensityDiagFunc <- function(diag, dim, delta, tau, sigma) {
     x <- xrange[i]
     f <- function(j) {
       y <- yrange[j]
-      return(intensityeqn(x, y, xvec, yvec, tau, sigma))
+      if (y >= x) {
+        return(intensityeqn(x, y, xvec, yvec, tau, sigma))
+      } else {
+        return(0)
+      }
     }
     return(sapply(seq(1:numy), f))
   }
   stats <- sapply(seq(1:numx), g)
-  return(stats)
+  con <- list()
+  con$x <- xrange
+  con$y <- yrange
+  con$z <- stats
+  return(con)
 }
 
 intensityeqn <- function(x, y, births, deaths, tau, sigma) {
@@ -95,7 +103,7 @@ gaussianKernel1D <- function(x, h=1) {
 }
 
 gaussianKernel2D <- function(x, y, h=1) {
-  k <- (1 / (2 * pi * h)) & exp(-(x^2 * y^2) / 2 * h^2)
+  k <- (1 / (2 * pi * h)) * exp(-(x^2 * y^2) / 2 * h^2)
 }
 
 # -------------------------------------------------
