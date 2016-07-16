@@ -2,6 +2,8 @@
 '''
 
 import rpy2.robjects as robjects
+import rpy2.robjects.numpy2ri
+rpy2.robjects.numpy2ri.activate()
 from rpy2.robjects.numpy2ri import numpy2ri
 import numpy as np
 
@@ -73,7 +75,7 @@ def np_to_rds(inputfile, outputfile, robjname):
 	''' Save numpy file to rds file.
 	'''
 	a = np.load(inputfile)
-	a = np.array(a, dtype='float64')
+	a = np.array(a)
 	ro = numpy2ri(a)
 	robjects.r.assign(robjname, ro)
 	robjects.r("save(%s, file='%s', compress=TRUE)" % (robjname, outputfile))

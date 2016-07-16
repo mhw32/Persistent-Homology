@@ -38,7 +38,7 @@ def get_corr(x, y, z, min_r=1., max_r=100., L=500., Lc=-0.5, ngal=10000, simple=
 
 	xi(r) = 1/4pi (L/s)^2 exp(-r^2/4s^2) - 1
 	'''
-	nrand = 2 * ngal
+	nrand = ngal
 
 	# initialize a catalog
 	cat = treecorr.Catalog(x=x, y=y, z=z, x_units='arcmin', y_units='arcmin', z_units='arcmin')
@@ -73,6 +73,11 @@ def get_corr(x, y, z, min_r=1., max_r=100., L=500., Lc=-0.5, ngal=10000, simple=
 		# calculate the correlation function
 		xi, varxi = dd.calculateXi(rr, dr)
 	return xi, varxi 
+
+def get_corr_func(data, min_r=1., max_r=100., L=30., Lc=-0.5, ngal=5000, simple=False):
+	x, y, z = data[:, 0], data[:, 1], data[:, 2]
+	corr_fun, corr_var = get_corr(x, y, z, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
+	return corr_fun
 
 def get_corr_stat(data, min_r=1., max_r=100., L=30., Lc=-0.5, ngal=5000, simple=False):
 	x, y, z = data[:, 0], data[:, 1], data[:, 2]
