@@ -18,3 +18,8 @@ contourDist <- function(X, Y) {
   d <- mean((X - Y)^2)
   return(d)
 }
+
+euclidDist <- function(X, Y) {
+  d <- sqrt(sum((X - Y)^2))
+  return(d)
+}
