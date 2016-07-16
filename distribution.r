@@ -45,48 +45,57 @@ contourDimStat <- function(set, dim) {
 # -------------------------------------------------
 # Persistence Intensity Functions
 # -- uses weighting (based on height)
-intensityDimStat <- function(set, dim, tau) {
+intensityDimStat <- function(set, dim, delta, tau, sigma) {
   setnum <- length(set)
   sliceset <- lapply(1:length(set), function(i) {
     input <- sliceDim(set[[i]], dim)
-    return(intensityDiagFunc(input, dim, tau))
+    return(intensityDiagFunc(input, dim, delta, tau, sigma))
   })
   return(sliceset)
 }
 
-intensityDiagFunc <- function(diag, dim, tau) {
+intensityDiagFunc <- function(diag, dim, delta, tau, sigma) {
   input <- sliceDim(diag, dim)
   xvec <- input[,1]
   yvec <- input[,2]
-  xrange <- seq(min(xvec), max(xvec), by=0.01)
-  yrange <- seq(min(yvec), max(yvec), by=0.01)
+  xrange <- seq(min(xvec), max(xvec), by=delta)
+  yrange <- seq(min(yvec), max(yvec), by=delta)
   numx <- length(xrange)
   numy <- length(yrange)
 
-  stats <- as.matrix(rep(0, numx*numy), nrow=numx, ncol=numy)
-  for (i=1:numx) {
-    for (j=1:numy) {
-      x <- xrange(i)
-      y <- yrange(j)
-      stats[i,j] <- intensityeqn(x, y, xvec, yvec, tau)
+  g <- function(i) {
+    print(i)
+    x <- xrange[i]
+    f <- function(j) {
+      y <- yrange[j]
+      return(intensityeqn(x, y, xvec, yvec, tau, sigma))
     }
+    return(sapply(seq(1:numy), f))
   }
+  stats <- sapply(seq(1:numx), g)
   return(stats)
 }
 
-intensityeqn <- function(x, y, births, deaths, tau) {
-  z <- rep(0, length(x))
-  f <- function(x, y, b, d, tau) {
-    ans <- (d - b) * (1 / tau^2) * gaussianKernel((x - b) / tau) * gaussianKernel((y - d) / tau)
-    return(ans)
+intensityeqn <- function(x, y, births, deaths, tau, sigma) {
+  num <- length(births)
+  sum_intensity <- 0
+  f <- function(i) {
+    b <- births[i]
+    d <- deaths[i]
+    intensity <- (d - b) * (1 / tau^2) * gaussianKernel1D((x - b) / tau, h=sigma) * gaussianKernel1D((y - d) / tau, h=sigma)
+    return(intensity) 
   }
-  loopans <- mapply(f, x=x, y=y, b=births, d=deaths, tau=tau)
-  return(sum(loopans))
+  sum_intensity <- sum(apply(matrix(seq(1:num)), 1, f))
+  return(sum_intensity)
 }
 
-gaussianKernel <- function(x, y, h=1) {
-  k <- exp(-euclidDist(x, y)^2 / h^2)
+gaussianKernel1D <- function(x, h=1) {
+  k <- (1 / (sqrt(2 * pi) * h)) * exp(-x^2 / 2 * h^2)
   return(k)
+}
+
+gaussianKernel2D <- function(x, y, h=1) {
+  k <- (1 / (2 * pi * h)) & exp(-(x^2 * y^2) / 2 * h^2)
 }
 
 # -------------------------------------------------
