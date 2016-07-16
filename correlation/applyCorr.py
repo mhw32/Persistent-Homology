@@ -102,17 +102,19 @@ def corr_voronoi_func_suite(base_file, foam_file, normalize=False):
 	num_radius  = 100
 
 	# storage for this stuff
-	base_func = np.zeros(num_samples, num_radius)
+	base_func = np.zeros((num_samples, num_radius))
 	foam_func = np.zeros((num_percfil, num_samples, num_radius))
 
 	for i in range(num_samples):
 		cur_base = base_data[i].T
-		base_func[i, :] = get_corr_func(cur_base, L=35, Lc=-5, ngal=5000)
+		tmp_func = get_corr_func(cur_base, L=35, Lc=-5, ngal=5000, max_r=num_radius)
+		base_func[i, :tmp_func.shape[0]] = tmp_func
 		
 		for p in range(num_percfil):
 			cur_foam = foam_data[p][i].T
 			# get the stats store them.
-			foam_func[p, i, :] = get_corr_func(cur_foam, L=35, Lc=-5, ngal=5000)
+			tmp_func = get_corr_func(cur_foam, L=35, Lc=-5, ngal=5000, max_r=num_radius)
+			foam_func[p, i, :tmp_func.shape[0]] = tmp_func 
 
 	return base_func, foam_func
 
@@ -141,48 +143,78 @@ def corr_simu_func_suite(cdm_file, wdm_file, normalize=False):
 	num_radius  = 100
 
 	# storage for this stuff
-	cdm_func = np.zeros(num_samples, num_radius)
-	wdm_func = np.zeros(num_samples, num_radius)
+	cdm_func = np.zeros((num_samples, num_radius))
+	wdm_func = np.zeros((num_samples, num_radius))
 
 	for i in range(num_samples):
 		cur_cdm = cdm_data[i].T
-		cdm_func[i, :] = get_corr_func(cur_cdm, L=100, Lc=0, ngal=cur_cdm.shape[0])
+		tmp_func = get_corr_func(cur_cdm, L=100, Lc=0, ngal=cur_cdm.shape[0], max_r=num_radius)
+		cdm_func[i, :tmp_func.shape[0]] = tmp_func 
 		
 		cur_wdm = wdm_data[i].T
-		wdm_func[i, :] = get_corr_func(cur_wdm, L=100, Lc=0, ngal=cur_wdm.shape[0])
+		tmp_func = get_corr_func(cur_wdm, L=100, Lc=0, ngal=cur_wdm.shape[0], max_r=num_radius)
+		wdm_func[i, :tmp_func.shape[0]] = tmp_func 
 
 	return cdm_func, wdm_func
 
 if __name__ == '__main__':
+	# for normalize in [False, True]:
+	# 	all_base_corr = np.zeros((100, 15))
+	# 	all_foam_corr = np.zeros((100, 9, 15))
+
+	# 	for i in range(1, 101):
+	# 		print('Operating on set %d' % i)
+	# 		base_corr, foam_corr = corr_voronoi_test_suite( 'pure_data/baseline%d.rds' % i, 
+	# 														'pure_data/foam%d.rds' % i,
+	# 														normalize=normalize)
+	# 		all_base_corr[i-1, :] = base_corr
+	# 		all_foam_corr[i-1, :, :] = foam_corr
+
+	# 	np.save('output/base_corr_norm(%d).npy' % normalize, all_base_corr)
+	# 	np.save('output/foam_corr_norm(%d).npy' % normalize, all_foam_corr)
+
+	# for normalize in [False, True]:
+	# 	all_cdm_corr = np.zeros((4, 64))
+	# 	all_wdm_corr = np.zeros((4, 64))
+
+	# 	for i in np.arange(1,5)[::-1]:
+	# 		print('Operating on set %d' % i)
+	# 		cdm_corr, wdm_corr = corr_simu_test_suite(	'pure_simu/cdm_%d.rds' % i, 
+	# 													'pure_simu/wdm_%d.rds' % i,
+	# 													normalize=normalize)
+	# 		all_cdm_corr[i-1, :i**3] = cdm_corr
+	# 		all_wdm_corr[i-1, :i**3] = wdm_corr
+
+	# 	np.save('output/cdm_corr_norm(%d).npy' % normalize, all_cdm_corr)
+	# 	np.save('output/wdm_corr_norm(%d).npy' % normalize, all_wdm_corr)
+
 	for normalize in [False, True]:
-		all_base_corr = np.zeros((100, 15))
-		all_foam_corr = np.zeros((100, 9, 15))
+		all_base_corr = np.zeros((100, 15, 100))
+		all_foam_corr = np.zeros((100, 9, 15, 100))
 
 		for i in range(1, 101):
 			print('Operating on set %d' % i)
-			base_corr, foam_corr = corr_voronoi_test_suite( 'pure_data/baseline%d.rds' % i, 
+			base_corr, foam_corr = corr_voronoi_func_suite( 'pure_data/baseline%d.rds' % i, 
 															'pure_data/foam%d.rds' % i,
 															normalize=normalize)
-			all_base_corr[i-1, :] = base_corr
-			all_foam_corr[i-1, :, :] = foam_corr
+			all_base_corr[i-1, :, :] = base_corr
+			all_foam_corr[i-1, :, :, :] = foam_corr
 
-		np.save('output/base_corr_norm(%d).npy' % normalize, all_base_corr)
-		np.save('output/foam_corr_norm(%d).npy' % normalize, all_foam_corr)
+		np.save('output/funcs/base_corr_func_norm(%d).npy' % normalize, all_base_corr)
+		np.save('output/funcs/foam_corr_func_norm(%d).npy' % normalize, all_foam_corr)
 
 	for normalize in [False, True]:
-		all_cdm_corr = np.zeros((4, 64))
-		all_wdm_corr = np.zeros((4, 64))
+		all_cdm_corr = np.zeros((4, 64, 100))
+		all_wdm_corr = np.zeros((4, 64, 100))
 
 		for i in np.arange(1,5)[::-1]:
 			print('Operating on set %d' % i)
-			cdm_corr, wdm_corr = corr_simu_test_suite(	'pure_simu/cdm_%d.rds' % i, 
+			cdm_corr, wdm_corr = corr_simu_func_suite(	'pure_simu/cdm_%d.rds' % i, 
 														'pure_simu/wdm_%d.rds' % i,
 														normalize=normalize)
-			all_cdm_corr[i-1, :i**3] = cdm_corr
-			all_wdm_corr[i-1, :i**3] = wdm_corr
+			all_cdm_corr[i-1, :i**3, :] = cdm_corr
+			all_wdm_corr[i-1, :i**3, :] = wdm_corr
 
-		np.save('output/cdm_corr_norm(%d).npy' % normalize, all_cdm_corr)
-		np.save('output/wdm_corr_norm(%d).npy' % normalize, all_wdm_corr)
-
-
+		np.save('output/funcs/cdm_corr_func_norm(%d).npy' % normalize, all_cdm_corr)
+		np.save('output/funcs/wdm_corr_func_norm(%d).npy' % normalize, all_wdm_corr)
 
