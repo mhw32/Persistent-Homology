@@ -91,3 +91,13 @@ def makePixels(surf, n):
             img[i,j] = np.sum(surf[i:i+n, j:j+n])
 
     return img 
+
+def vectorize(A, padn, padm):
+    ''' Pad A to be of size padn by padm, and then flatten.
+    '''
+    numn, numm = A.shape
+    if numn < padn:
+        A = np.hstack(np.zeros(padn - numn, numm), A)
+    if numm < padm:
+        A = np.vstack(np.zeros(numn, padm - numm), A)
+    return A.flatten()
