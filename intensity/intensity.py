@@ -45,9 +45,10 @@ def intensityEqn(x, y, births, deaths, tau, sigma):
         # print(x, b, y, d, intensity)
         sum_intensity += intensity
 
-    return(sum_intensity)
+    return sum_intensity
 
 def intensityDiagFunc(diag, dim, delta, tau, sigma):
+    diag = cleanDiag(diag)
     input = sliceDim(diag, dim)
     xvec, yvec = input[:, 1], input[:, 2]
 
@@ -93,6 +94,7 @@ def surfaceEqn(x, y, births, deaths, sigma):
     return space      
 
 def surfaceDiagFunc(diag, dim, delta, sigma):
+    diag = cleanDiag(diag)
     input = sliceDim(diag, dim)
     births, deaths = input[:, 1], input[:, 2]
 
@@ -105,8 +107,7 @@ def surfaceDiagFunc(diag, dim, delta, sigma):
         x = xlist[i]
         for j in range(ylist.shape[0]):
             y = ylist[j]
-            if (y >= x):
-                stats[i, j] = surfaceEqn(x, y, births, deaths, sigma)
+            stats[i, j] = surfaceEqn(x, y, births, deaths, sigma)
 
     return (xlist, ylist, np.rot90(stats))
 
