@@ -3,6 +3,18 @@ import numpy as np
 from copy import copy
 import matplotlib.pyplot as plt
 
+# clean a single persistence diagram
+def cleanDiag(diag):
+    return diag[2:,:]
+
+# apply to each of the nsample ones
+def cleanVec(vec):
+    return [cleanDiag(d) for d in vec]
+
+def cleanFoam(foam):
+    cleaned = [cleanVec(v) for v in foam]
+    return cleaned
+
 # -----------------------------------------------------------
 # implementing a test statistic based on intensity
 # images on persistence diagrams. 
@@ -68,18 +80,37 @@ def linearTransformDiag(diag):
      newdiag[:, 2] = newdiag[:, 2] - newdiag[:, 1]
      return newdiag
 
-def makeSurface(diag, x, y):
-    space = 0
-    for i, j in zip(diag[:, 1:]):
-        space += weightFunc(j, b=1) * gaussianKernel2D(x, y, mux=i, muy=j, h=1)
-    return space      
-
 def weightFunc(t, b):
     if t <= 0: return 0
     elif t < b: return t / float(b)
     else: return 1
 
-def makePixels(surf, n):
+def surfaceEqn(x, y, births, deaths, sigma):
+    space = 0
+    bias = np.max(deaths)
+    for i, j in zip(births, deaths):
+        space += weightFunc(j, b=bias) * gaussianKernel2D(x, y, mux=i, muy=j, h=sigma)
+    return space      
+
+def surfaceDiagFunc(diag, dim, delta, sigma):
+    input = sliceDim(diag, dim)
+    births, deaths = input[:, 1], input[:, 2]
+
+    xlist = np.arange(min(births), max(births), delta)
+    ylist = np.arange(min(deaths), max(deaths), delta)
+    numx, numy = len(xlist), len(ylist)
+
+    stats = np.zeros((numx, numy))
+    for i in range(xlist.shape[0]):
+        x = xlist[i]
+        for j in range(ylist.shape[0]):
+            y = ylist[j]
+            if (y >= x):
+                stats[i, j] = surfaceEqn(x, y, births, deaths, sigma)
+
+    return (xlist, ylist, np.rot90(stats))
+
+def surfaceToPixels(surf, n):
     # create image 
     numrows, numcols = surf.shape
     img = np.zeros((numrows - n, numcols - n))
