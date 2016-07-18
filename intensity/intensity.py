@@ -106,17 +106,17 @@ def linearTransformDiag(diag):
 
 def weightFunc(t, b):
     if t <= 0: return 0
-    elif t < b: return t**2 / float(b)
+    elif t < b: return t / float(b)
     else: return 1
 
-def surfaceEqn(x, y, births, deaths):
+def surfaceEqn(x, y, births, deaths, tau):
     space = 0
     bias = np.max(deaths)
     for i, j in zip(births, deaths):
-        space += weightFunc(j, b=bias) * gaussianKernel2D(x, y, mux=i, muy=j, hx=np.std(births), hy=np.std(deaths))
+        space += weightFunc(j, b=bias) * (1 / tau**2) * gaussianKernel2D((x - i) / tau, (y - j) / tau, mux=0, muy=0, hx=np.std(births), hy=np.std(deaths))
     return space      
 
-def surfaceDiagFunc(diag, dim, delta):
+def surfaceDiagFunc(diag, dim, delta, tau):
     diag = cleanDiag(diag)
     diag = linearTransformDiag(diag)
     input = sliceDim(diag, dim)
@@ -131,7 +131,7 @@ def surfaceDiagFunc(diag, dim, delta):
         x = xlist[i]
         for j in range(ylist.shape[0]):
             y = ylist[j]
-            stats[i, j] = surfaceEqn(x, y, births, deaths)
+            stats[i, j] = surfaceEqn(x, y, births, deaths, tau)
 
     return (xlist, ylist, stats)
 
@@ -155,12 +155,12 @@ def surfaceToPixels(surf, n, m):
 def vectorize(A):
     return A.flatten()
 
-def pimageDiagFunc(diag, delta, n, m):
-    p0 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 0, 0.01), n, m))
-    p1 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 1, 0.01), n, m))
-    p2 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 2, 0.01), n, m))
+def pimageDiagFunc(diag, delta, tau, n, m):
+    p0 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 0, delta, tau), n, m))
+    p1 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 1, delta, tau), n, m))
+    p2 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 2, delta, tau), n, m))
     return np.concatenate([p0, p1, p2])
 
-def pimageVecFunc(diagset, delta, n, m):
-    f = lambda diag: pimageDiagFunc(diag, delta, n, m)
+def pimageVecFunc(diagset, delta, tau, n, m):
+    f = lambda diag: pimageDiagFunc(diag, delta, tau, n, m)
     return apply_to_vector(diagset, f)
