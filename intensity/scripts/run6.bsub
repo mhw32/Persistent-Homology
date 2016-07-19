@@ -1,7 +1,7 @@
 #!/bin/bash
 #BSUB -W 23:30                # wall-clock time (hrs:mins)
-#BSUB -e voronoi-errors.%J    # error file name in which %J is replaced by the job ID
-#BSUB -o voronoi-output.%J    # output file name in which %J is replaced by the job ID
+#BSUB -e run6-errors.%J    # error file name in which %J is replaced by the job ID
+#BSUB -o run6-output.%J    # output file name in which %J is replaced by the job ID
 #BSUB -M 10000
 #BSUB -J run6
 #BSUB -u mike.wu@yale.edu
