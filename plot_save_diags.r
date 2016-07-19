@@ -2,14 +2,14 @@ source("tools.r")
 library(ks)
 
 savepath <- "/home/fas/cisewski/mhw32/scratch/homology/saved_states/real_data/cut_diags/"
-normFlag <- FALSE
+normFlag <- TRUE
 
 # Do the big one first
 print("Everything was generated now with the SAME stats. 1.5 resolution, 10k particles")
 cdmdiag <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/full_cdm_diag.rds")
 wdmdiag <- readRDS("/home/fas/cisewski/mhw32/scratch/homology/saved_states/full_wdm_diag.rds")
 
-pval <- ks::kde.test(cdm_diag$diagram, wdm_diag$diagram)$pvalue
+pval <- ks::kde.test(cdmdiag$diagram, wdmdiag$diagram)$pvalue
 print(paste("GKD Symmtric WDM-CDM Comparison pvalue (all): ", pval, sep=" "))
 print("---------------------------------------------------------------------------")
 
