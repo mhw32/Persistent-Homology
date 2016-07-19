@@ -268,16 +268,16 @@ def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
     # xmin, xmax, ymin, ymax = getDiagMinMax(base_data, foam_data)
 
     num_samples, num_percfil, num_dim = base_data.shape[0], foam_data.shape[0], base_data.shape[1] 
-    base_stats = np.zeros((num_dim, num_samples, 25**2))
-    foam_stats = np.zeros((num_dim, num_percfil, num_samples, 25**2))
+    base_stats = np.zeros((num_dim, num_samples, 30**2))
+    foam_stats = np.zeros((num_dim, num_percfil, num_samples, 30**2))
 
     for d in range(num_dim):
         # vectorized operations (do we need to transpose?)
-        base_stats[d, :, :] = intensityVecFunc(base_data, d, 25, 0.1)
+        base_stats[d, :, :] = intensityVecFunc(base_data, d, 30, 0.1)
 
         # define some useful constants
         for p in range(num_percfil):
-            foam_stats[d, p, :, :] = intensityVecFunc(foam_data[p, :], d, 25, 0.1)
+            foam_stats[d, p, :, :] = intensityVecFunc(foam_data[p, :], d, 30, 0.1)
 
     return base_stats, foam_stats
 
@@ -288,13 +288,13 @@ def intensity_simu_test_suite(cdm_file, wdm_file, dim, normalize=False):
 
     # define storage containers
     num_samples, num_dim = cdm_data.shape[0], cdm_data.shape[1]
-    cdm_stats = np.zeros((num_dim, num_samples, 25**2))
-    wdm_stats = np.zeros((num_dim, num_samples, 25**2))
+    cdm_stats = np.zeros((num_dim, num_samples, 30**2))
+    wdm_stats = np.zeros((num_dim, num_samples, 30**2))
 
     # calculate statistics
     for d in range(num_dim):
-        cdm_stats[d, :, :] = intensityVecFunc(cdm_data, d, 25, 0.1)
-        wdm_stats[d, :, :] = intensityVecFunc(wdm_data, d, 25, 0.1)
+        cdm_stats[d, :, :] = intensityVecFunc(cdm_data, d, 30, 0.1)
+        wdm_stats[d, :, :] = intensityVecFunc(wdm_data, d, 30, 0.1)
 
     return cdm_stats, wdm_stats
 
@@ -305,10 +305,10 @@ def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
 
     # define some useful constants
     num_samples, num_percfil = len(base_data), len(foam_data)
-    base_stats = pimageVecFunc(base_data, 25, 0.1, ymax, 25)
-    foam_stats = np.zeros((num_percfil, num_samples, 25**2))
+    base_stats = pimageVecFunc(base_data, 30, 0.1, ymax, 10)
+    foam_stats = np.zeros((num_percfil, num_samples, 30**2))
     for p in range(num_percfil):
-        foam_stats[p, :, :] = pimageVecFunc(foam_data[p, :], 25, 0.1, ymax, 25)
+        foam_stats[p, :, :] = pimageVecFunc(foam_data[p, :], 30, 0.1, ymax, 10)
 
     return base_stats, foam_stats    
 
@@ -318,7 +318,7 @@ def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     _, _, _, ymax = getDiagMinMax(cdm_data, wdm_data, by_dim=False)
 
     # storage for this stuff
-    cdm_stats = pimageVecFunc(cdm_data, 25, 0.1, ymax, 25)
-    wdm_stats = pimageVecFunc(wdm_data, 25, 0.1, ymax, 25)
+    cdm_stats = pimageVecFunc(cdm_data, 30, 0.1, ymax, 30)
+    wdm_stats = pimageVecFunc(wdm_data, 30, 0.1, ymax, 30)
 
     return cdm_stats, wdm_stats
