@@ -155,20 +155,41 @@ def surfaceDiagFunc(diag, dim, delta, tau, xmin, xmax, ymin, ymax):
 
     return (xlist, ylist, stats)
 
+def safeGroup(totalsize, groupsize, loosefrac=0.5):
+    ''' Given a number (assume a range up to it), how to 
+        safely split into groups of size groupsize while
+        losing as little information as possible.
+    '''
+
+    # divide and get the gractional part.
+    frac, integral = np.modf(totalsize / float(groupsize))
+    integral = int(integral)
+
+    # breakpoints (naive)
+    bkpts = range(0, totalsize, integral)
+
+    # if there is any overflow, make it its own group if 
+    # at least loosefrac * the size of the spacing
+    if (totalsize - bkpts[-1]) >= (integral * loosefrac):
+        bkpts.append(totalsize)
+
+    return np.array(bkpts)
+
 # n, m should be divisble 
 def surfaceToPixels(surf, n, m):
     # create image 
     rows, cols = surf.shape
-    grid = np.zeros((n, m))
-    grid_row = int(np.floor(rows / n))
-    grid_col = int(np.floor(cols / n))
+
+    rowgroupsizes = safeGroup(rows, n)
+    colgroupsizes = safeGroup(cols, m)
+    gridrows, gridcols = rowgroupsizes.shape[0] - 1, colgroupsizes.shape[0] - 1 
+    grid = np.zeros((gridrows, gridcols))
 
     # its persistence image is the collection of pixels I
     # is the double integral of the slice.
-    for i in range(n):
-        for j in range(m):
-            grid[i,j] = np.sum(surf[grid_row*(i):grid_row*(i+1), 
-                                    grid_col*(j):grid_col*(j+1)])
+    for i in range(gridrows):
+        for j in range(gridcols):
+            grid[i,j] = np.sum(surf[rowgroupsizes[i]:rowgroupsizes[i+1], colgroupsizes[j]:colgroupsizes[j+1]])
 
     return grid
 
