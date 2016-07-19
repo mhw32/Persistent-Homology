@@ -8,4 +8,4 @@
 
 # Run R non-interactively.
 cd /home/fas/cisewski/mhw32/scratch/homology/intensity
-python -u scripy.py --min 71 --max 81
+python -u script.py --min 71 --max 81
