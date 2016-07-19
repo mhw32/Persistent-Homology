@@ -15,6 +15,17 @@ def cleanFoam(foam):
     cleaned = [cleanVec(v) for v in foam]
     return cleaned
 
+def normSet(x):
+    return (x - np.min(x)) / (np.max(x) - np.min(x))
+
+# # normalize each of the nsample ones
+def normVec(x):
+    return [normSet(d) for d in x]
+
+def normFoam(x):
+    normed = [normVec(v) for v in x]
+    return normed
+
 # def plotDiag(diag):
 #     plt.figure()
 #     plt.plot(diag[:, 1], diag[:, 2], 'o', color='k')
@@ -219,9 +230,25 @@ def pimageVecFunc(diagset, gridnum, tau, bias, n):
 # main scripts to apply the intensity tests.
 import sys
 sys.path.append('../correlation')
-from translate import read_pure_foam, read_pure_baseline
-from translate import read_foam, read_baseline
-from tools import normFoam, normVec
+
+def read_baseline(raw):
+    return [np.array(x) for x in raw]
+
+def read_foam(raw):
+    return [read_baseline(x) for x in raw]
+
+def read_pure_baseline(raw):
+    data = np.array(raw)
+    new_data = np.zeros((data.shape[0] / 3, 3, data.shape[1]))
+    for i in range(data.shape[0]):
+        new_data[int(np.floor(i/3)),i%3,:] = data[i, :]
+    return(list(new_data))
+
+def read_pure_foam(raw):
+    new_data = [] # can't be array, not all same length
+    for i in range(len(raw)):
+        new_data.append(read_pure_baseline(raw[i]))
+    return new_data
 
 def process_voronoi_file(base_file, foam_file, normalize):
     # read all the data
