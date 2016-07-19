@@ -104,3 +104,4 @@ plotDiag <- function(X){
   abline(a = 0, b = 1)
   legend("topleft", c("0","1","2"), pch = c(1,2,3), col = c(1,2,3), cex=2.0)
 }
+

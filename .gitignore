@@ -1,5 +1,8 @@
 images/*
+**.npy
+**.DS_Store
 test_set
+.vscode
 *.hdf5
 *.output
 *.error

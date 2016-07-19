@@ -22,7 +22,7 @@ import numpy.random as npr
 import treecorr
 from scipy.integrate import simps
 
-def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
+def get_corr(x, y, z, min_r=1., max_r=100., L=500., Lc=-0.5, ngal=10000, simple=False):
 	'''
 	Use a simple probability distribution for the galaxies:
 
@@ -38,10 +38,10 @@ def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 
 	xi(r) = 1/4pi (L/s)^2 exp(-r^2/4s^2) - 1
 	'''
-	nrand = 2 * ngal
+	nrand = ngal
 
 	# initialize a catalog
-	cat = treecorr.Catalog(x=x, y=y, x_units='arcmin', y_units='arcmin')
+	cat = treecorr.Catalog(x=x, y=y, z=z, x_units='arcmin', y_units='arcmin', z_units='arcmin')
 	# initialize a NN correlation
 	dd = treecorr.NNCorrelation(bin_size=0.1, min_sep=min_r, max_sep=max_r, 
 								sep_units='arcmin', verbose=2)
@@ -49,11 +49,12 @@ def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 	dd.process(cat)
 
 	# initialize some random states
-	rx = (npr.random_sample(nrand)-0.5) * L
-	ry = (npr.random_sample(nrand)-0.5) * L
+	rx = npr.random_sample(nrand) * L + Lc
+	ry = npr.random_sample(nrand) * L + Lc
+	rz = npr.random_sample(nrand) * L + Lc
 
 	# calculate catalog and NN for random one
-	rand = treecorr.Catalog(x=rx,y=ry, x_units='arcmin', y_units='arcmin')
+	rand = treecorr.Catalog(x=rx, y=ry, z=rz, x_units='arcmin', y_units='arcmin', z_units='arcmin')
 	rr = treecorr.NNCorrelation(bin_size=0.1, min_sep=min_r, max_sep=max_r, 
 								sep_units='arcmin', verbose=2)
 
@@ -73,21 +74,15 @@ def get_corr(x, y, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
 		xi, varxi = dd.calculateXi(rr, dr)
 	return xi, varxi 
 
-def get_corr_dim(z, d, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
-	x = z[z[:, 0] == d][:, 1]
-	y = z[z[:, 0] == d][:, 2]
-	# get correlation function
-	corr_mu, corr_var = get_corr(x, y, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
-	return corr_mu
+def get_corr_func(data, min_r=1., max_r=100., L=30., Lc=-0.5, ngal=5000, simple=False):
+	x, y, z = data[:, 0], data[:, 1], data[:, 2]
+	corr_fun, corr_var = get_corr(x, y, z, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
+	return corr_fun
 
-def get_corr_stat(z, min_r=1., max_r=100., L=500., ngal=10000, simple=False):
-	areas = np.zeros(3)
-	# loop through dimensions
-	for d in range(3):
-		corr_fun = get_corr_dim(z, d, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
-		corr_fun = np.abs(corr_fun)
-		areas[d] = simps(corr_fun, dx=0.01)
-
-	return areas
+def get_corr_stat(data, min_r=1., max_r=100., L=30., Lc=-0.5, ngal=5000, simple=False):
+	x, y, z = data[:, 0], data[:, 1], data[:, 2]
+	corr_fun, corr_var = get_corr(x, y, z, min_r=min_r, max_r=max_r, L=L, ngal=ngal, simple=simple)
+	corr_fun = np.abs(corr_fun)
+	return simps(corr_fun, dx=0.01)
 
 
