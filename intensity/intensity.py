@@ -142,7 +142,7 @@ def surfaceEqn(x, y, births, deaths, tau, bias):
         space += weightFunc(j, b=bias) * (1 / tau**2) * gaussianKernel2D((x - i) / tau, (y - j) / tau, mux=0, muy=0, hx=np.std(births), hy=np.std(deaths))
     return space      
 
-def surfaceDiagFunc(diag, dim, gridnum, tau, bias):
+def surfaceDiagFunc(diag, dim, gridnum, tau, bias=None):
     diag = cleanDiag(diag)
     diag = linearTransformDiag(diag)
     inputs = sliceDim(diag, dim)
@@ -151,6 +151,7 @@ def surfaceDiagFunc(diag, dim, gridnum, tau, bias):
     xlist = np.linspace(births.min(), births.max(), gridnum)
     ylist = np.linspace(deaths.min(), deaths.max(), gridnum)
     numx, numy = len(xlist), len(ylist)
+    if bias is None: bias = deaths.max()
 
     stats = np.zeros((numx, numy))
     for i in range(xlist.shape[0]):
@@ -181,12 +182,15 @@ def safeGroup(totalsize, groupsize, loosefrac=0.5):
     return np.array(bkpts)
 
 # n, m should be divisble 
-def surfaceToPixels(surf, n, m):
+def surfaceToPixels(surf, n):
     # create image 
     rows, cols = surf.shape
 
+    if rows <= n or cols <= n:
+        return surf
+
     rowgroupsizes = safeGroup(rows, n)
-    colgroupsizes = safeGroup(cols, m)
+    colgroupsizes = safeGroup(cols, n)
     gridrows, gridcols = rowgroupsizes.shape[0] - 1, colgroupsizes.shape[0] - 1 
     grid = np.zeros((gridrows, gridcols))
 
@@ -201,14 +205,14 @@ def surfaceToPixels(surf, n, m):
 def vectorize(A):
     return A.flatten()
 
-def pimageDiagFunc(diag, gridnum, tau, bias, n, m):
-    p0 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 0, gridnum, tau, bias)[2], n, m))
-    p1 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 1, gridnum, tau, bias)[2], n, m))
-    p2 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 2, gridnum, tau, bias)[2], n, m))
+def pimageDiagFunc(diag, gridnum, tau, bias, n):
+    p0 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 0, gridnum, tau, bias)[2], n))
+    p1 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 1, gridnum, tau, bias)[2], n))
+    p2 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 2, gridnum, tau, bias)[2], n))
     return np.concatenate([p0, p1, p2])
 
-def pimageVecFunc(diagset, gridnum, tau, bias, n, m):
-    f = lambda diag: pimageDiagFunc(diag, gridnum, tau, bias, n, m)
+def pimageVecFunc(diagset, gridnum, tau, bias, n):
+    f = lambda diag: pimageDiagFunc(diag, gridnum, tau, bias, n)
     return apply_to_vector(diagset, f)
 
 # -----------------------------------------------------------
@@ -264,16 +268,16 @@ def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
     # xmin, xmax, ymin, ymax = getDiagMinMax(base_data, foam_data)
 
     num_samples, num_percfil, num_dim = base_data.shape[0], foam_data.shape[0], base_data.shape[1] 
-    base_stats = np.zeros((num_samples, num_dim))
-    foam_stats = np.zeros((num_percfil, num_samples, num_dim))
+    base_stats = np.zeros((num_dim, num_samples, 25**2))
+    foam_stats = np.zeros((num_dim, num_percfil, num_samples, 25**2))
 
     for d in range(num_dim):
         # vectorized operations (do we need to transpose?)
-        base_stats[:, d] = intensityVecFunc(base_data, d, 50, 0.1)
+        base_stats[d, :, :] = intensityVecFunc(base_data, d, 25, 0.1)
 
         # define some useful constants
         for p in range(num_percfil):
-            foam_stats[p, :, d] = intensityVecFunc(foam_data[p, :], d, 50, 0.1)
+            foam_stats[d, p, :, :] = intensityVecFunc(foam_data[p, :], d, 25, 0.1)
 
     return base_stats, foam_stats
 
@@ -284,13 +288,13 @@ def intensity_simu_test_suite(cdm_file, wdm_file, dim, normalize=False):
 
     # define storage containers
     num_samples, num_dim = cdm_data.shape[0], cdm_data.shape[1]
-    cdm_stats = np.zeros((num_samples, num_dim))
-    wdm_stats = np.zeros((num_samples, num_dim))
+    cdm_stats = np.zeros((num_dim, num_samples, 25**2))
+    wdm_stats = np.zeros((num_dim, num_samples, 25**2))
 
     # calculate statistics
     for d in range(num_dim):
-        cdm_stats[:, d] = intensityVecFunc(cdm_data, d, 50, 0.1)
-        wdm_stats[:, d] = intensityVecFunc(wdm_data, d, 50, 0.1)
+        cdm_stats[d, :, :] = intensityVecFunc(cdm_data, d, 25, 0.1)
+        wdm_stats[d, :, :] = intensityVecFunc(wdm_data, d, 25, 0.1)
 
     return cdm_stats, wdm_stats
 
@@ -299,14 +303,12 @@ def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
     base_data, foam_data = process_voronoi_file(base_file, foam_file, normalize)
     _, _, _, ymax = getDiagMinMax(base_data, foam_data, by_dim=False)
 
-    # vectorized operations (do we need to transpose?)
-    base_stats = pimageVecFunc(base_data, 50, 0.1, ymax, 10, 10)
-
     # define some useful constants
     num_samples, num_percfil = len(base_data), len(foam_data)
-    foam_stats = np.zeros((num_percfil, num_samples))
+    base_stats = pimageVecFunc(base_data, 25, 0.1, ymax, 25)
+    foam_stats = np.zeros((num_percfil, num_samples, 25**2))
     for p in range(num_percfil):
-        foam_stats[p, :] = pimageVecFunc(foam_data[p, :], 50, 0.1, ymax, 10, 10)
+        foam_stats[p, :, :] = pimageVecFunc(foam_data[p, :], 25, 0.1, ymax, 25)
 
     return base_stats, foam_stats    
 
@@ -316,7 +318,7 @@ def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     _, _, _, ymax = getDiagMinMax(cdm_data, wdm_data, by_dim=False)
 
     # storage for this stuff
-    cdm_stats = pimageVecFunc(cdm_data, 50, 0.1, ymax, 10, 10)
-    wdm_stats = pimageVecFunc(wdm_data, 50, 0.1, ymax, 10, 10)
+    cdm_stats = pimageVecFunc(cdm_data, 25, 0.1, ymax, 25)
+    wdm_stats = pimageVecFunc(wdm_data, 25, 0.1, ymax, 25)
 
     return cdm_stats, wdm_stats
