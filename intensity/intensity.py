@@ -228,8 +228,6 @@ def pimageVecFunc(diagset, gridnum, tau, bias, n):
 
 # -----------------------------------------------------------
 # main scripts to apply the intensity tests.
-import sys
-sys.path.append('../correlation')
 
 def read_baseline(raw):
     return [np.array(x) for x in raw]
