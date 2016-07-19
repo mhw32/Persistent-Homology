@@ -219,20 +219,19 @@ def pimageVecFunc(diagset, gridnum, tau, bias, n):
 # main scripts to apply the intensity tests.
 import sys
 sys.path.append('../correlation')
-from translate import rds_to_np
 from translate import read_pure_foam, read_pure_baseline
 from translate import read_foam, read_baseline
 from tools import normFoam, normVec
 
 def process_voronoi_file(base_file, foam_file, normalize):
     # read all the data
-    base_raw  = rds_to_np(base_file)
+    base_raw  = np.load(base_file)
     base_data = read_baseline(base_raw)
 
     if normalize:
         base_data = normVec(base_data)
 
-    foam_raw  = rds_to_np(foam_file)
+    foam_raw  = np.load(foam_file)
     foam_data = read_foam(foam_raw)
 
     if normalize:
@@ -242,7 +241,7 @@ def process_voronoi_file(base_file, foam_file, normalize):
 
 def process_simu_file(cdm_file, wdm_file, normalize):
     # read all the data
-    cdm_raw  = rds_to_np(cdm_file)
+    cdm_raw  = np.load(cdm_file)
     if type(cdm_raw[0]) == np.float:
         cdm_data = [np.array( cdm_raw ).T]
     else:
@@ -251,7 +250,7 @@ def process_simu_file(cdm_file, wdm_file, normalize):
     if normalize:
         cdm_data = normVec(cdm_data)
 
-    wdm_raw  = rds_to_np(wdm_file)
+    wdm_raw  = np.load(wdm_file)
     if type(wdm_raw[0]) == np.float:
         wdm_data = [np.array( wdm_raw ).T]
     else:
@@ -267,7 +266,7 @@ def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
     base_data, foam_data = process_voronoi_file(base_file, foam_file, normalize)
     # xmin, xmax, ymin, ymax = getDiagMinMax(base_data, foam_data)
 
-    num_samples, num_percfil, num_dim = base_data.shape[0], foam_data.shape[0], base_data.shape[1] 
+    num_samples, num_percfil, num_dim = len(base_data), len(foam_data), 3
     base_stats = np.zeros((num_dim, num_samples, 30**2))
     foam_stats = np.zeros((num_dim, num_percfil, num_samples, 30**2))
 
@@ -277,7 +276,7 @@ def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
 
         # define some useful constants
         for p in range(num_percfil):
-            foam_stats[d, p, :, :] = intensityVecFunc(foam_data[p, :], d, 30, 0.1)
+            foam_stats[d, p, :, :] = intensityVecFunc(foam_data[p], d, 30, 0.1)
 
     return base_stats, foam_stats
 
@@ -287,7 +286,7 @@ def intensity_simu_test_suite(cdm_file, wdm_file, dim, normalize=False):
     # xmin, xmax, ymin, ymax = getDiagMinMax(cdm_data, wdm_data)
 
     # define storage containers
-    num_samples, num_dim = cdm_data.shape[0], cdm_data.shape[1]
+    num_samples, num_dim = len(cdm_data), 3
     cdm_stats = np.zeros((num_dim, num_samples, 30**2))
     wdm_stats = np.zeros((num_dim, num_samples, 30**2))
 
@@ -308,7 +307,7 @@ def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
     base_stats = pimageVecFunc(base_data, 30, 0.1, ymax, 10)
     foam_stats = np.zeros((num_percfil, num_samples, 30**2))
     for p in range(num_percfil):
-        foam_stats[p, :, :] = pimageVecFunc(foam_data[p, :], 30, 0.1, ymax, 10)
+        foam_stats[p, :, :] = pimageVecFunc(foam_data[p], 30, 0.1, ymax, 10)
 
     return base_stats, foam_stats    
 
