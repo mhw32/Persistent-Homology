@@ -10,7 +10,7 @@ intensity_stats_unnorm = []
 pimage_stats_norm      = []
 pimage_stats_unnorm    = []
 
-for iter in range(0, 100):
+for iter in range(1, 101):
     print("processing iteration %d" % iter)
     base_file = 'data/voronoi/baseline%d.npy' % iter
     foam_file = 'data/voronoi/foam%d.npy' % iter
