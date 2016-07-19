@@ -1,7 +1,7 @@
 from helper import apply_to_vector
 import numpy as np
 from copy import copy
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 # clean a single persistence diagram
 def cleanDiag(diag):
@@ -15,10 +15,10 @@ def cleanFoam(foam):
     cleaned = [cleanVec(v) for v in foam]
     return cleaned
 
-def plotDiag(diag):
-    plt.figure()
-    plt.plot(diag[:, 1], diag[:, 2], 'o', color='k')
-    plt.show()
+# def plotDiag(diag):
+#     plt.figure()
+#     plt.plot(diag[:, 1], diag[:, 2], 'o', color='k')
+#     plt.show()
 
 def normalize1D(x):
     const = np.sum(x)
@@ -29,16 +29,16 @@ def map0to1(x):
     mini = np.min(x)
     return (x - mini) / maxi
 
-def plotIntensity(x, y, z):
-    (xgrid, ygrid), zgrid = np.meshgrid(x, y), z.T
-    zgrid_min, zgrid_max = zgrid.min(), zgrid.max()
+# def plotIntensity(x, y, z):
+#     (xgrid, ygrid), zgrid = np.meshgrid(x, y), z.T
+#     zgrid_min, zgrid_max = zgrid.min(), zgrid.max()
 
-    plt.figure()
-    plt.pcolor(xgrid, ygrid, zgrid, cmap='jet', vmin=zgrid_min, vmax=zgrid_max)
-    # set the limits of the plot to the limits of the data
-    plt.axis([xgrid.min(), xgrid.max(), ygrid.min(), ygrid.max()])
-    plt.colorbar()    
-    plt.show()   
+#     plt.figure()
+#     plt.pcolor(xgrid, ygrid, zgrid, cmap='jet', vmin=zgrid_min, vmax=zgrid_max)
+#     # set the limits of the plot to the limits of the data
+#     plt.axis([xgrid.min(), xgrid.max(), ygrid.min(), ygrid.max()])
+#     plt.colorbar()    
+#     plt.show()   
 
 def safe_concatenate(x):
     y = np.concatenate(x) 
