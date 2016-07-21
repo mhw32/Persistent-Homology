@@ -14,14 +14,17 @@ def run(mini=1, maxi=101):
     pimage_stats_unnorm    = []
 
     for iters in range(mini, maxi):
-        print("processing iteration %d" % iters)
         base_file = 'data/voronoi/baseline%d.npy' % iters
         foam_file = 'data/voronoi/foam%d.npy' % iters
 
+        print("iteration %d: unstandardized intensity calculation...")
         intensity_stats_unnorm.append(intensity_voronoi_test_suite(base_file, foam_file, False))
+        print("iteration %d: standardized intensity calculation...")
         intensity_stats_norm.append(intensity_voronoi_test_suite(base_file, foam_file, True))
 
+        print("iteration %d: unstandardized persistent image calculation...")
         pimage_stats_unnorm.append(pimage_voronoi_test_suite(base_file, foam_file, False))
+        print("iteration %d: standardized persistent image calculation...")
         pimage_stats_norm.append(pimage_voronoi_test_suite(base_file, foam_file, True))
 
     np.save('output/voronoi/intensity_stats_unnorm.npy', intensity_stats_unnorm)
