@@ -340,7 +340,7 @@ def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
     # define some useful constants
     num_samples, num_percfil = len(base_data), len(foam_data)
     base_stats = pimageVecFunc(base_data, 25, 0.2, 10, xmin, xmax, ymin, ymax)
-    foam_stats = np.zeros((num_percfil, num_samples, 25**2))
+    foam_stats = np.zeros((num_percfil, num_samples, base_stats.shape[-1]))
     for p in range(num_percfil):
         foam_stats[p, :, :] = pimageVecFunc(foam_data[p], 25, 0.2, 10, xmin, xmax, ymin, ymax)
 
