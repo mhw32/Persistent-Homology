@@ -4,6 +4,7 @@
 
 from intensity import intensity_voronoi_test_suite, pimage_voronoi_test_suite
 import numpy as np
+import cPickle 
 import argparse
 
 def run(mini=1, maxi=101):
@@ -27,10 +28,10 @@ def run(mini=1, maxi=101):
         print("iteration %d: standardized persistent image calculation..." % iters)
         pimage_stats_norm.append(pimage_voronoi_test_suite(base_file, foam_file, True))
 
-    np.save('output/voronoi/intensity_stats_unnorm.npy', intensity_stats_unnorm)
-    np.save('output/voronoi/intensity_stats_norm.npy', intensity_stats_norm)
-    np.save('output/voronoi/pimage_stats_unnorm.npy', pimage_stats_unnorm)
-    np.save('output/voronoi/pimage_stats_norm.npy', pimage_stats_norm)
+    cPickle.dump(intensity_stats_unnorm, open('output/voronoi/intensity_stats_unnorm.npy', 'wb'))
+    cPickle.dump(intensity_stats_norm, open('output/voronoi/intensity_stats_norm.npy', 'wb'))
+    cPickle.dump(pimage_stats_unnorm, open('output/voronoi/pimage_stats_unnorm.npy', 'wb'))
+    cPickle.dump(pimage_stats_norm, open('output/voronoi/pimage_stats_norm.npy', 'wb'))
 
 if __name__ == '__main__':
     # Construct the argument parse and parse the arguments
