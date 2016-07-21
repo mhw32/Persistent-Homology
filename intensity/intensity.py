@@ -241,23 +241,16 @@ def read_pure_foam(raw):
         new_data.append(read_pure_baseline(raw[i]))
     return new_data
 
-def process_voronoi_file(base_file, foam_file, normalize):
+def process_voronoi_file(base_file, foam_file):
     # read all the data
     base_raw  = np.load(base_file)
     base_data = read_baseline(base_raw)
-
-    if normalize:
-        base_data = normVec(base_data)
-
     foam_raw  = np.load(foam_file)
     foam_data = read_foam(foam_raw)
 
-    if normalize:
-        foam_data = normFoam(foam_data)
-    
     return base_data, foam_data
 
-def process_simu_file(cdm_file, wdm_file, normalize):
+def process_simu_file(cdm_file, wdm_file):
     # read all the data
     cdm_raw  = np.load(cdm_file)
     if type(cdm_raw[0]) == np.float:
@@ -265,26 +258,26 @@ def process_simu_file(cdm_file, wdm_file, normalize):
     else:
         cdm_data = [np.array( i ).T for i in cdm_raw]
 
-    if normalize:
-        cdm_data = normVec(cdm_data)
-
     wdm_raw  = np.load(wdm_file)
     if type(wdm_raw[0]) == np.float:
         wdm_data = [np.array( wdm_raw ).T]
     else:
         wdm_data = [np.array( i ).T for i in wdm_raw]
 
-    if normalize:
-        wdm_data = normVec(wdm_data)
-    
     return cdm_data, wdm_data
 
 def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
     # process the voronoi files into arrays
     base_data, foam_data = process_voronoi_file(base_file, foam_file, normalize)
+    
     # remove known anomalies
     base_data = cleanVec(base_data)
     foam_data = cleanFoam(foam_data)
+
+    # normalize the thing if need be
+    if normalize:
+        base_data = normVec(base_data)
+        foam_data = normFoam(foam_data)
 
     xmin, xmax, ymin, ymax = getDiagMinMax(base_data, foam_data)
 
@@ -304,8 +297,13 @@ def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
 
 def intensity_simu_test_suite(cdm_file, wdm_file, dim, normalize=False):
     # process the simulation files into arrays
-    cdm_data, wdm_data = process_simu_file(cdm_file, wdm_file, normalize)
+    cdm_data, wdm_data = process_simu_file(cdm_file, wdm_file)
     cdm_data, wdm_data = cleanVec(cdm_data), cleanVec(wdm_data)
+
+    # normalize the thing if need be
+    if normalize:
+        cdm_data, wdm_data = normVec(cdm_data), normVec(wdm_data)
+
     xmin, xmax, ymin, ymax = getDiagMinMax(cdm_data, wdm_data)
 
     # define storage containers
@@ -322,9 +320,14 @@ def intensity_simu_test_suite(cdm_file, wdm_file, dim, normalize=False):
 
 def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
     # process the voronoi files into data
-    base_data, foam_data = process_voronoi_file(base_file, foam_file, normalize)
+    base_data, foam_data = process_voronoi_file(base_file, foam_file)    
     base_data = cleanVec(base_data)
     foam_data = cleanFoam(foam_data)
+
+    # normalize the thing if need be
+    if normalize:
+        base_data = normVec(base_data)
+        foam_data = normFoam(foam_data)
 
     # get important numbers for reshaping
     xmin, xmax, ymin, ymax = getDiagMinMax(base_data, foam_data, by_dim=False)
@@ -340,8 +343,13 @@ def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
 
 def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     # process the simulation files into arrays
-    cdm_data, wdm_data = process_simu_file(cdm_file, wdm_file, normalize)
+    cdm_data, wdm_data = process_simu_file(cdm_file, wdm_file)
     cdm_data, wdm_data = cleanVec(cdm_data), cleanVec(wdm_data)
+    
+    # normalize the thing if need be
+    if normalize:
+        cdm_data, wdm_data = normVec(cdm_data), normVec(wdm_data)
+    
     xmin, xmax, ymin, ymax = getDiagMinMax(cdm_data, wdm_data, by_dim=False)
 
     # storage for this stuff
