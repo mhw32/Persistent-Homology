@@ -58,17 +58,17 @@ def safe_concatenate(x):
     return y
 
 def getDiagMinMax(base_data, foam_data, by_dim=True):
-    data = np.vstack([np.concatenate(base_data), np.concatenate(np.concatenate(foam_data))])
+    data = np.concatenate(([np.concatenate(base_data), np.concatenate(np.concatenate(foam_data))]))
     num_dim = np.unique(base_data[0][:, 0]).shape[0]
 
     xmin, xmax = np.zeros(num_dim), np.zeros(num_dim)
     ymin, ymax = np.zeros(num_dim), np.zeros(num_dim)
 
     for d in range(num_dim):
-        xmin[d] = np.min(sliceDim(data, d), 1)
-        xmax[d] = np.max(sliceDim(data, d), 1)
-        ymin[d] = np.min(sliceDim(data, d), 2)
-        ymax[d] = np.max(sliceDim(data, d), 2)
+        xmin[d] = np.min(sliceDim(data, d)[:, 1])
+        xmax[d] = np.max(sliceDim(data, d)[:, 1])
+        ymin[d] = np.min(sliceDim(data, d)[:, 2])
+        ymax[d] = np.max(sliceDim(data, d)[:, 2])
 
     if not by_dim:
         xmin = min(xmin)
@@ -97,12 +97,8 @@ def sliceDim(diag, dim):
     return diag[diag[:, 0] == dim, :]
 
 def intensityEqn(x, y, births, deaths, tau):
-    sum_intensity = 0
-    for b, d in zip(births, deaths):
-        intensity = (d - b) * (1 / tau**2) * gaussianKernel1D((x - b) / tau, h=np.std(births)) * gaussianKernel1D((y - d) / tau, h=np.std(deaths))
-        sum_intensity += intensity
-
-    return sum_intensity
+    intensity = (deaths - births) * (1 / tau**2) * gaussianKernel1D((x - births) / tau, h=np.std(births)) * gaussianKernel1D((y - deaths) / tau, h=np.std(deaths))
+    return np.sum(intensity)
 
 def intensityDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax):
     inputs = sliceDim(diag, dim)
@@ -141,16 +137,16 @@ def linearTransformDiag(diag):
      newdiag[:, 2] = newdiag[:, 2] - newdiag[:, 1]
      return newdiag
 
-def weightFunc(t, b):
-    if t <= 0: return 0
-    elif t < b: return t / float(b)
-    else: return 1
+def weightFunc(s, b):
+    t = copy(s)
+    t[t <= 0] = 0
+    t[t < b] = t[t < b] / float(b)
+    t[t >= b] = 1
+    return t
 
 def surfaceEqn(x, y, births, deaths, tau, bias):
-    space = 0
-    for i, j in zip(births, deaths):
-        space += weightFunc(j, b=bias) * (1 / tau**2) * gaussianKernel2D((x - i) / tau, (y - j) / tau, mux=0, muy=0, hx=np.std(births), hy=np.std(deaths))
-    return space      
+    space = weightFunc(deaths, b=bias) * (1 / tau**2) * gaussianKernel2D((x - births) / tau, (y - deaths) / tau, mux=0, muy=0, hx=np.std(births), hy=np.std(deaths))
+    return np.sum(space)      
 
 def surfaceDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax):
     diag = linearTransformDiag(diag)
