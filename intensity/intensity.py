@@ -18,9 +18,14 @@ def cleanFoam(foam):
 def normSet(x):
     return (x - np.min(x)) / (np.max(x) - np.min(x))
 
+def normDiag(x):
+    x[:, 1] = normSet(x[:, 1])
+    x[:, 2] = normSet(x[:, 2])
+    return x
+
 # # normalize each of the nsample ones
 def normVec(x):
-    return [normSet(d) for d in x]
+    return [normDiag(d) for d in x]
 
 def normFoam(x):
     normed = [normVec(v) for v in x]
@@ -268,7 +273,7 @@ def process_simu_file(cdm_file, wdm_file):
 
 def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
     # process the voronoi files into arrays
-    base_data, foam_data = process_voronoi_file(base_file, foam_file, normalize)
+    base_data, foam_data = process_voronoi_file(base_file, foam_file)
     
     # remove known anomalies
     base_data = cleanVec(base_data)
