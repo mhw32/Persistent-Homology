@@ -281,15 +281,15 @@ def process_simu_file(cdm_file, wdm_file):
     # read all the data
     cdm_raw  = np.load(cdm_file)
     if type(cdm_raw[0]) == np.float:
-        cdm_data = [np.array( cdm_raw ).T]
+        cdm_data = [np.array( cdm_raw )]
     else:
-        cdm_data = [np.array( i ).T for i in cdm_raw]
+        cdm_data = [np.array( i ) for i in cdm_raw]
 
     wdm_raw  = np.load(wdm_file)
     if type(wdm_raw[0]) == np.float:
-        wdm_data = [np.array( wdm_raw ).T]
+        wdm_data = [np.array( wdm_raw )]
     else:
-        wdm_data = [np.array( i ).T for i in wdm_raw]
+        wdm_data = [np.array( i ) for i in wdm_raw]
 
     return cdm_data, wdm_data
 
