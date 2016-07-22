@@ -1,6 +1,6 @@
 import numpy as np
-import sys
-sys.path.append('../correlation')
+# import sys
+# sys.path.append('../correlation')
 from os import listdir
 from os.path import isfile, join
 # import translate
