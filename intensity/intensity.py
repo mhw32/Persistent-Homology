@@ -83,6 +83,28 @@ def getDiagMinMax(base_data, foam_data, by_dim=True):
 
     return (xmin, xmax, ymin, ymax)        
 
+def getDiagMinMaxSimu(cdm_data, wdm_data, by_dim=True):
+    data = np.concatenate([np.concatenate(cdm_data), np.concatenate(wdm_data)])
+    num_dim = np.unique(cdm_data[0][:, 0]).shape[0]
+
+    xmin, xmax = np.zeros(num_dim), np.zeros(num_dim)
+    ymin, ymax = np.zeros(num_dim), np.zeros(num_dim)
+
+    for d in range(num_dim):
+        xmin[d] = np.min(sliceDim(data, d)[:, 1])
+        xmax[d] = np.max(sliceDim(data, d)[:, 1])
+        ymin[d] = np.min(sliceDim(data, d)[:, 2])
+        ymax[d] = np.max(sliceDim(data, d)[:, 2])
+
+    if not by_dim:
+        xmin = min(xmin)
+        xmax = max(xmax)
+        ymin = min(ymin)
+        ymax = max(ymax)
+
+    return (xmin, xmax, ymin, ymax)        
+
+
 # -----------------------------------------------------------
 # implementing a test statistic based on intensity
 # images on persistence diagrams. 
@@ -309,7 +331,7 @@ def intensity_simu_test_suite(cdm_file, wdm_file, dim, normalize=False):
     if normalize:
         cdm_data, wdm_data = normVec(cdm_data), normVec(wdm_data)
 
-    xmin, xmax, ymin, ymax = getDiagMinMax(cdm_data, wdm_data)
+    xmin, xmax, ymin, ymax = getDiagMinMaxSimu(cdm_data, wdm_data)
 
     # define storage containers
     num_samples, num_dim = len(cdm_data), 3
@@ -355,7 +377,7 @@ def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     if normalize:
         cdm_data, wdm_data = normVec(cdm_data), normVec(wdm_data)
     
-    xmin, xmax, ymin, ymax = getDiagMinMax(cdm_data, wdm_data, by_dim=False)
+    xmin, xmax, ymin, ymax = getDiagMinMaxSimu(cdm_data, wdm_data, by_dim=False)
 
     # storage for this stuff
     cdm_stats = pimageVecFunc(cdm_data, 25, 0.2, 10, xmin, xmax, ymin, ymax)
