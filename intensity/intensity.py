@@ -448,8 +448,8 @@ def kernel_stat(X, Y, h):
 
     # For each of the double for loops, loop through the grid.
     sum1 = np.sum(gaussianKernel1D(X[nn_grid[:, 0]], X[nn_grid[:, 1]], h))
-    sum2 = np.sum(gaussianKernel1D(X[nn_grid[:, 0]], Y[nn_grid[:, 1]], h))
-    sum3 = np.sum(gaussianKernel1D(Y[nn_grid[:, 0]], Y[nn_grid[:, 1]], h))
+    sum2 = np.sum(gaussianKernel1D(X[nm_grid[:, 0]], Y[nm_grid[:, 1]], h))
+    sum3 = np.sum(gaussianKernel1D(Y[mm_grid[:, 0]], Y[mm_grid[:, 1]], h))
 
     # Now that we have all out sums, calculate the Tstat.
     T = float(1)/(n**2)*sum1 - float(2)/(m*n)*sum2 + float(1)/(m**2)*sum3    
@@ -467,7 +467,7 @@ def grid_search(fun, X, Y, mini=0, maxi=5, step=0.1):
     return maxp
 
 def permute(X, Y):
-    n, m = X.shape, Y.shape
+    n = X.shape[0]
     Z = np.vstack((X, Y))
     np.random.shuffle(Z)
     return Z[:n], Z[n:]
@@ -482,7 +482,7 @@ def permutation_method(X, Y, N=10000, h=None):
     
     p = 0 # estimated pval
     loss_orig = kernel_stat(X, Y, h=h)
-    for iter in range(N):
+    for _ in range(N):
         X, Y = permute(X, Y)
         loss_new = kernel_stat(X, Y, h=h)
         if (loss_new <= loss_orig):
@@ -491,5 +491,53 @@ def permutation_method(X, Y, N=10000, h=None):
     p = p / float(N)
     return p
 
+# ------------
+# apply the permutation test onto the voronoi and the 
+# simulation data. This wil return logged values. 
 
+def voronoi_bydim_hypo_suite(base_stats, foam_stats):
+    num_iters = base_stats.shape[0]
+    num_dims  = base_stats.shape[1]
+    num_percfil = foam_stats.shape[2]
+
+    log_p_grid = np.zeros(num_iters, num_dims, num_percfil)
+    for i in range(log_p_grid.shape[0]):
+        for d in range(num_dims):
+            for j in range(num_percfil):
+                log_p = np.log(permutation_method(base_stats[i, d, :], foam_stats[i, d, j, :]))
+                log_p_grid[i, d, j] = log_p
+
+    return log_p_grid
+
+def simu_bydim_hypo_suite(cdm_stats, wdm_stats):
+    num_iters = cdm_stats.shape[0]
+    num_dims  = cdm_stats.shape[1]
     
+    log_p_grid = np.zeros(num_iters, num_dims)
+    for i in range(log_p_grid.shape[0]):
+        for d in range(num_dims):
+            log_p = np.log(permutation_method(cdm_stats[i, d, :], wdm_stats[i, d, :]))
+            log_p_grid[i, d] = log_p
+    
+    return log_p_grid
+
+def voronoi_nodim_hypo_suite(base_stats, foam_stats):
+    num_iters = base_stats.shape[0]
+    num_percfil = foam_stats.shape[1]
+
+    log_p_grid = np.zeros(num_iters, num_percfil)
+    for i in range(log_p_grid.shape[0]):
+        for j in range(num_percfil):
+            log_p = np.log(permutation_method(base_stats[i, :], foam_stats[i, j, :]))
+            log_p_grid[i, j] = log_p
+
+    return log_p_grid
+
+def simu_nodim_hypo_suite(cdm_stats, wdm_stats):
+    num_iters = cdm_stats.shape[0]
+    log_p_grid = np.zeros(num_iters)
+    for i in range(log_p_grid.shape[0]):
+        log_p = np.log(permutation_method(cdm_stats[i, :], wdm_stats[i, :]))
+        log_p_grid[i] = log_p
+
+    return log_p_grid
