@@ -384,3 +384,112 @@ def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     wdm_stats = pimageVecFunc(wdm_data, 25, 0.2, 10, xmin, xmax, ymin, ymax)
 
     return cdm_stats, wdm_stats
+
+# ----------------
+
+def euclideanDist(X, Y):
+    return np.sqrt(np.sum((X - Y)**2))
+
+def cartesian(arrays, out=None):
+    """
+    Generate a cartesian product of input arrays.
+
+    Parameters
+    ----------
+    arrays : list of array-like
+        1-D arrays to form the cartesian product of.
+    out : ndarray
+        Array to place the cartesian product in.
+
+    Returns
+    -------
+    out : ndarray
+        2-D array of shape (M, len(arrays)) containing cartesian products
+        formed of input arrays.
+
+    Examples
+    --------
+    >>> cartesian(([1, 2, 3], [4, 5], [6, 7]))
+    array([[1, 4, 6],
+           [1, 4, 7],
+           [1, 5, 6],
+           [1, 5, 7],
+           [2, 4, 6],
+           [2, 4, 7],
+           [2, 5, 6],
+           [2, 5, 7],
+           [3, 4, 6],
+           [3, 4, 7],
+           [3, 5, 6],
+           [3, 5, 7]])
+
+    """
+
+    arrays = [np.asarray(x) for x in arrays]
+    dtype = arrays[0].dtype
+
+    n = np.prod([x.size for x in arrays])
+    if out is None:
+        out = np.zeros([n, len(arrays)], dtype=dtype)
+
+    m = n / arrays[0].size
+    out[:,0] = np.repeat(arrays[0], m)
+    if arrays[1:]:
+        cartesian(arrays[1:], out=out[0:m,1:])
+        for j in xrange(1, arrays[0].size):
+            out[j*m:(j+1)*m,1:] = out[0:m,1:]
+    return out
+
+def kernel_stat(X, Y, h):
+    n, m = len(X), len(Y)
+    nn_grid = cartesian(n, n)
+    nm_grid = cartesian(n, m)
+    mm_grid = cartesian(m, m)
+
+    # For each of the double for loops, loop through the grid.
+    sum1 = np.sum(gaussianKernel1D(X[nn_grid[:, 0]], X[nn_grid[:, 1]], h))
+    sum2 = np.sum(gaussianKernel1D(X[nn_grid[:, 0]], Y[nn_grid[:, 1]], h))
+    sum3 = np.sum(gaussianKernel1D(Y[nn_grid[:, 0]], Y[nn_grid[:, 1]], h))
+
+    # Now that we have all out sums, calculate the Tstat.
+    T = float(1)/(n**2)*sum1 - float(2)/(m*n)*sum2 + float(1)/(m**2)*sum3    
+    return T
+
+def grid_search(fun, X, Y, mini=0, maxi=5, step=0.1):
+    grid = np.arange(mini, maxi, step)
+    maxp = 0
+    maxval = 0
+    for p in grid:
+        curval = np.abs(fun(X, Y, p))
+        if curval > maxval:
+            maxval = curval
+            maxp = p
+    return maxp
+
+def permute(X, Y):
+    n, m = X.shape, Y.shape
+    Z = np.vstack((X, Y))
+    np.random.shuffle(Z)
+    return Z[:n], Z[n:]
+
+# Permutation method:
+# It estimates the p-value through sampling. Asymptotically correct.
+# https://normaldeviate.wordpress.com/2012/07/14/modern-two-sample-tests/
+# N --> number of permutations to do (should be a big number).
+def permutation_method(X, Y, N=10000, h=None):
+    if h is None:
+        h = grid_search(kernel_stat, X, Y, 0, 2, 0.1)
+    
+    p = 0 # estimated pval
+    loss_orig = kernel_stat(X, Y, h=h)
+    for iter in range(N):
+        X, Y = permute(X, Y)
+        loss_new = kernel_stat(X, Y, h=h)
+        if (loss_new <= loss_orig):
+            p += 1
+    
+    p = p / float(N)
+    return p
+
+
+    
