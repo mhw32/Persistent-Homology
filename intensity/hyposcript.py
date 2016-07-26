@@ -40,6 +40,7 @@ if __name__ == '__main__':
 
     # parse args and run stuff
     args = vars(ap.parse_args())
-    run(args['type'], args['norm'])
+    ans = run(args['type'], args['norm'])
+    np.save(open('output/proba/ans-%s.npy' % args['type'], 'wb'), ans)
 
 
