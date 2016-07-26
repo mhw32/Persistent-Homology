@@ -459,13 +459,12 @@ def kernel_stat(X, Y, h):
     T = float(1)/(n**2)*sum1 - float(2)/(m*n)*sum2 + float(1)/(m**2)*sum3    
     return T
 
-def grid_search(fun, X, Y, mini=0.1, maxi=5, step=0.1):
+def grid_search(fun, X, Y, mini=0.1, maxi=5.0, step=0.1):
     grid = np.arange(mini, maxi, step)
     maxp = mini
     maxval = np.abs(fun(X, Y, mini))
     for p in grid:
         curval = np.abs(fun(X, Y, p))
-        print(p, curval)
         if curval > maxval:
             maxval = curval
             maxp = p
@@ -483,7 +482,7 @@ def permute(X, Y):
 # N --> number of permutations to do (should be a big number).
 def permutation_method(X, Y, N=10000, h=None):
     if h is None:
-        h = grid_search(kernel_stat, X, Y, 0, 2, 0.1)
+        h = grid_search(kernel_stat, X, Y, 0.1, 5.0, 0.1)
     
     p = 0 # estimated pval
     loss_orig = kernel_stat(X, Y, h=h)
@@ -595,9 +594,10 @@ def voronoi_bydim_hypo_suite(base_stats, foam_stats):
 
     log_p_grid = np.zeros((num_iters, num_dims, num_percfil))
     for i in range(log_p_grid.shape[0]):
+        print('iter: %d' % i)
         for d in range(num_dims):
             for j in range(num_percfil):
-                log_p = np.log(permutation_method(base_stats[i, d, :], foam_stats[i, d, j, :]))
+                log_p = np.log(permutation_method(base_stats[i, d, :], foam_stats[i, d, j, :], N=1500))
                 log_p_grid[i, d, j] = log_p
 
     return log_p_grid
@@ -608,8 +608,9 @@ def simu_bydim_hypo_suite(cdm_stats, wdm_stats):
     
     log_p_grid = np.zeros((num_iters, num_dims))
     for i in range(log_p_grid.shape[0]):
+        print('iter: %d' % i)
         for d in range(num_dims):
-            log_p = np.log(permutation_method(cdm_stats[i, d, :], wdm_stats[i, d, :]))
+            log_p = np.log(permutation_method(cdm_stats[i, d, :], wdm_stats[i, d, :], N=1500))
             log_p_grid[i, d] = log_p
     
     return log_p_grid
@@ -620,8 +621,9 @@ def voronoi_nodim_hypo_suite(base_stats, foam_stats):
 
     log_p_grid = np.zeros((num_iters, num_percfil))
     for i in range(log_p_grid.shape[0]):
+        print('iter: %d' % i)
         for j in range(num_percfil):
-            log_p = np.log(permutation_method(base_stats[i, :], foam_stats[i, j, :]))
+            log_p = np.log(permutation_method(base_stats[i, :], foam_stats[i, j, :], N=1500))
             log_p_grid[i, j] = log_p
 
     return log_p_grid
@@ -630,7 +632,8 @@ def simu_nodim_hypo_suite(cdm_stats, wdm_stats):
     num_iters = cdm_stats.shape[0]
     log_p_grid = np.zeros(num_iters)
     for i in range(log_p_grid.shape[0]):
-        log_p = np.log(permutation_method(cdm_stats[i, :], wdm_stats[i, :]))
+        print('iter: %d' % i)
+        log_p = np.log(permutation_method(cdm_stats[i, :], wdm_stats[i, :], N=1500))
         log_p_grid[i] = log_p
 
     return log_p_grid
