@@ -442,9 +442,9 @@ def cartesian(arrays, out=None):
 
 def kernel_stat(X, Y, h):
     n, m = len(X), len(Y)
-    nn_grid = cartesian(range(n), range(n))
-    nm_grid = cartesian(range(n), range(m))
-    mm_grid = cartesian(range(m), range(m))
+    nn_grid = cartesian((range(n), range(n)))
+    nm_grid = cartesian((range(n), range(m)))
+    mm_grid = cartesian((range(m), range(m)))
 
     # For each of the double for loops, loop through the grid.
     sum1 = np.sum(gaussianKernel1D(X[nn_grid[:, 0]], X[nn_grid[:, 1]], h))
