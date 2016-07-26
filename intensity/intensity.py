@@ -120,6 +120,10 @@ def gaussianKernel2D(x, y, mux=0, muy=0, hx=1, hy=1):
     k = np.exp(-((x - mux)**2 / (2 * hx**2) + (y - muy)**2 / (2 * hy**2)))
     return k
 
+def gaussianKernel1DNoConst(x, mu=0, h=1):
+    k = np.exp(-(x - mu)**2 / (h**2))
+    return k
+
 def sliceDim(diag, dim):
     return diag[diag[:, 0] == dim, :]
 
@@ -447,20 +451,21 @@ def kernel_stat(X, Y, h):
     mm_grid = cartesian((range(m), range(m)))
 
     # For each of the double for loops, loop through the grid.
-    sum1 = np.sum(gaussianKernel1D(X[nn_grid[:, 0]], X[nn_grid[:, 1]], h))
-    sum2 = np.sum(gaussianKernel1D(X[nm_grid[:, 0]], Y[nm_grid[:, 1]], h))
-    sum3 = np.sum(gaussianKernel1D(Y[mm_grid[:, 0]], Y[mm_grid[:, 1]], h))
+    sum1 = np.sum(gaussianKernel1DNoConst(X[nn_grid[:, 0]], X[nn_grid[:, 1]], h))
+    sum2 = np.sum(gaussianKernel1DNoConst(X[nm_grid[:, 0]], Y[nm_grid[:, 1]], h))
+    sum3 = np.sum(gaussianKernel1DNoConst(Y[mm_grid[:, 0]], Y[mm_grid[:, 1]], h))
 
     # Now that we have all out sums, calculate the Tstat.
     T = float(1)/(n**2)*sum1 - float(2)/(m*n)*sum2 + float(1)/(m**2)*sum3    
     return T
 
-def grid_search(fun, X, Y, mini=0, maxi=5, step=0.1):
+def grid_search(fun, X, Y, mini=0.1, maxi=5, step=0.1):
     grid = np.arange(mini, maxi, step)
-    maxp = 0
-    maxval = 0
+    maxp = mini
+    maxval = np.abs(fun(X, Y, mini))
     for p in grid:
         curval = np.abs(fun(X, Y, p))
+        print(p, curval)
         if curval > maxval:
             maxval = curval
             maxp = p
