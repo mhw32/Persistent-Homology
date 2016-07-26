@@ -442,9 +442,9 @@ def cartesian(arrays, out=None):
 
 def kernel_stat(X, Y, h):
     n, m = len(X), len(Y)
-    nn_grid = cartesian(n, n)
-    nm_grid = cartesian(n, m)
-    mm_grid = cartesian(m, m)
+    nn_grid = cartesian(range(n), range(n))
+    nm_grid = cartesian(range(n), range(m))
+    mm_grid = cartesian(range(m), range(m))
 
     # For each of the double for loops, loop through the grid.
     sum1 = np.sum(gaussianKernel1D(X[nn_grid[:, 0]], X[nn_grid[:, 1]], h))
@@ -492,6 +492,94 @@ def permutation_method(X, Y, N=10000, h=None):
     return p
 
 # ------------
+
+def reshape_data(data, by_dim=False):
+    num_iters = len(data)
+    if by_dim:
+        num_dims = len(data[0][1])
+        num_percfil = len(data[0][1][0])
+        num_reps = len(data[0][1][0][0])
+        num_size = len(data[0][1][0][0][0])
+        base_data = np.zeros((num_iters, num_dims, num_reps, num_size))
+        foam_data = np.zeros((num_iters, num_dims, num_percfil, num_reps, num_size))
+
+        for i in range(num_iters):
+            for j in range(num_dims):
+                base_data[i, j, :, :] = data[i][0][j]
+                foam_data[i, j, :, :, :] = data[i][1][j]  
+    else:
+        num_percfil = len(data[0][1])
+        num_reps = len(data[0][1][0])
+        num_size = len(data[0][1][0][0])
+        base_data = np.zeros((num_iters, num_reps, num_size))
+        foam_data = np.zeros((num_iters, num_percfil, num_reps, num_size))
+
+        for i in range(num_iters):
+            base_data[i, :, :] = data[i][0]
+            foam_data[i, :, :, :] = data[i][1]
+
+    return base_data, foam_data
+
+def reshape_simu_data(data, by_dim=False):
+    num_iters = 4
+    if by_dim:
+        num_dims = len(data[0][0])
+        num_reps = 64 # hardcoded max
+        num_size = len(data[0][0][0][0])
+        cdm_data = np.zeros((num_iters, num_dims, num_reps, num_size))
+        wdm_data = np.zeros((num_iters, num_dims, num_reps, num_size))
+
+        for i in range(num_iters):
+            cur_reps = len(data[i][0][0])
+            cdm_data[i, :, :cur_reps, :] = data[i][0]
+            wdm_data[i, :, :cur_reps, :] = data[i][1]
+    else:
+        num_reps = 64
+        num_size = len(data[0][0][0])
+        cdm_data = np.zeros((num_iters, num_reps, num_size))
+        wdm_data = np.zeros((num_iters, num_reps, num_size))
+
+        for i in range(num_iters):
+            cur_reps = len(data[i][0])
+            cdm_data[i, :cur_reps, :] = data[i][0]
+            wdm_data[i, :cur_reps, :] = data[i][1]
+
+    return cdm_data, wdm_data
+
+# -- script to convert raw data into base/foam seps --
+# import cPickle
+# data_by_dim = ['intensity_stats_norm.pkl', 'intensity_stats_unnorm.pkl']
+# data_no_dim = ['pimage_stats_norm.pkl', 'pimage_stats_unnorm.pkl']
+
+# for dfile in data_by_dim:
+#     data = cPickle.load(open(dfile, 'rb'))
+#     base_data, foam_data = reshape_data(data, by_dim=True)
+#     np.save(open('base_' + dfile[:-4] + '.npy', 'wb'), base_data)
+#     np.save(open('foam_' + dfile[:-4] + '.npy', 'wb'), foam_data)
+
+# for dfile in data_no_dim:
+#     data = cPickle.load(open(dfile, 'rb'))
+#     base_data, foam_data = reshape_data(data, by_dim=False)
+#     np.save(open('base_' + dfile[:-4] + '.npy', 'wb'), base_data)
+#     np.save(open('foam_' + dfile[:-4] + '.npy', 'wb'), foam_data)
+# -- script to convert raw data into cdm/wdm seps --
+# import cPickle
+# data_by_dim = ['intensity_stats_norm.pkl', 'intensity_stats_unnorm.pkl']
+# data_no_dim = ['pimage_stats_norm.pkl', 'pimage_stats_unnorm.pkl']
+
+# for dfile in data_by_dim:
+#     data = cPickle.load(open(dfile, 'rb'))
+#     cdm_data, wdm_data = reshape_simu_data(data, by_dim=True)
+#     np.save(open('cdm_' + dfile[:-4] + '.npy', 'wb'), cdm_data)
+#     np.save(open('wdm_' + dfile[:-4] + '.npy', 'wb'), wdm_data)
+
+# for dfile in data_no_dim:
+#     data = cPickle.load(open(dfile, 'rb'))
+#     cdm_data, wdm_data = reshape_simu_data(data, by_dim=False)
+#     np.save(open('cdm_' + dfile[:-4] + '.npy', 'wb'), cdm_data)
+#     np.save(open('wdm_' + dfile[:-4] + '.npy', 'wb'), wdm_data)
+# -- end script --
+
 # apply the permutation test onto the voronoi and the 
 # simulation data. This wil return logged values. 
 
@@ -500,7 +588,7 @@ def voronoi_bydim_hypo_suite(base_stats, foam_stats):
     num_dims  = base_stats.shape[1]
     num_percfil = foam_stats.shape[2]
 
-    log_p_grid = np.zeros(num_iters, num_dims, num_percfil)
+    log_p_grid = np.zeros((num_iters, num_dims, num_percfil))
     for i in range(log_p_grid.shape[0]):
         for d in range(num_dims):
             for j in range(num_percfil):
@@ -513,7 +601,7 @@ def simu_bydim_hypo_suite(cdm_stats, wdm_stats):
     num_iters = cdm_stats.shape[0]
     num_dims  = cdm_stats.shape[1]
     
-    log_p_grid = np.zeros(num_iters, num_dims)
+    log_p_grid = np.zeros((num_iters, num_dims))
     for i in range(log_p_grid.shape[0]):
         for d in range(num_dims):
             log_p = np.log(permutation_method(cdm_stats[i, d, :], wdm_stats[i, d, :]))
@@ -525,7 +613,7 @@ def voronoi_nodim_hypo_suite(base_stats, foam_stats):
     num_iters = base_stats.shape[0]
     num_percfil = foam_stats.shape[1]
 
-    log_p_grid = np.zeros(num_iters, num_percfil)
+    log_p_grid = np.zeros((num_iters, num_percfil))
     for i in range(log_p_grid.shape[0]):
         for j in range(num_percfil):
             log_p = np.log(permutation_method(base_stats[i, :], foam_stats[i, j, :]))
