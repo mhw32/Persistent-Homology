@@ -68,7 +68,7 @@ kernelStat <- function(X, L, h) {
     sum1 <<- sum1 + gaussianKernel(G1[[nn_grid[i, 1]]], G1[[nn_grid[i, 2]]], contourDist, h)
   })
   tmp <- lapply(seq(1:nm_grid_count), function(i) {
-    sum2 <<- sum2 + gaussianKernel(G1[[mm_grid[i, 1]]], G2[[mm_grid[i, 2]]], contourDist, h)
+    sum2 <<- sum2 + gaussianKernel(G1[[nm_grid[i, 1]]], G2[[nm_grid[i, 2]]], contourDist, h)
   })
   tmp <- lapply(seq(1:mm_grid_count), function(i) {
     sum3 <<- sum3 + gaussianKernel(G2[[mm_grid[i, 1]]], G2[[mm_grid[i, 2]]], contourDist, h)
