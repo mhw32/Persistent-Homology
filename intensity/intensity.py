@@ -15,6 +15,12 @@ def cleanFoam(foam):
     cleaned = [cleanVec(v) for v in foam]
     return cleaned
 
+def rotateVec(vec):
+    return [linearTransformDiag(d) for d in vec]
+
+def rotateFoam(foam):
+    return [rotateVec(v) for v in foam]
+
 def normSet(x):
     return (x - np.min(x)) / (np.max(x) - np.min(x))
 
@@ -180,7 +186,7 @@ def surfaceEqn(x, y, births, deaths, tau, bias):
     return np.sum(space)      
 
 def surfaceDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax):
-    diag = linearTransformDiag(diag)
+    # diag = linearTransformDiag(diag)
     inputs = sliceDim(diag, dim)
     births, deaths = inputs[:, 1], inputs[:, 2]
 
@@ -194,7 +200,8 @@ def surfaceDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax):
         for j in range(ylist.shape[0]):
             y = ylist[j]
             stats[i, j] = surfaceEqn(x, y, births, deaths, tau, bias=ymax)
-
+            # stats[i, j] = intensityEqn(x, y, births, deaths, tau)
+     
     return (xlist, ylist, stats)
 
 def safeGroup(totalsize, groupsize, loosefrac=0.5):
@@ -355,6 +362,9 @@ def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
     base_data = cleanVec(base_data)
     foam_data = cleanFoam(foam_data)
 
+    base_data = rotateVec(base_data)
+    foam_data = rotateFoam(foam_data)
+
     # normalize the thing if need be
     if normalize:
         base_data = normVec(base_data)
@@ -376,7 +386,8 @@ def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     # process the simulation files into arrays
     cdm_data, wdm_data = process_simu_file(cdm_file, wdm_file)
     cdm_data, wdm_data = cleanVec(cdm_data), cleanVec(wdm_data)
-    
+    cdm_data, wdm_data = rotateVec(cdm_data), rotateVec(wdm_data)
+
     # normalize the thing if need be
     if normalize:
         cdm_data, wdm_data = normVec(cdm_data), normVec(wdm_data)
