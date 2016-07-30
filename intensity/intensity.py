@@ -635,7 +635,7 @@ def simu_nodim_hypo_suite(cdm_stats, wdm_stats):
     for i in range(log_p_grid.shape[0]):
         print('iter: %d' % i)
         cur_length = (i+1)**3
-        log_p = np.log(permutation_method(cdm_stats[i, :cur_length, :], wdm_stats[i, :cur_length, :], N=1000))
+        log_p = np.log(permutation_method(cdm_stats[i, :cur_length, :], wdm_stats[i, :cur_length, :], N=10000))
         log_p_grid[i] = log_p
 
     return log_p_grid

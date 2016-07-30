@@ -1,21 +1,27 @@
 source("process_eagle.r")
-library(ks)
+source("distance.r")
+source("tools.r")
 
-cdm <- load_CDM()
-wdm <- load_WDM()
+dists <- array(0,dim=c(4, 64, 3))
+norm <- False
 
-cdm_slices <- slice_cube_robust(cdm, 3)
-wdm_slices <- slice_cube_robust(wdm, 3)
+for (i in 1:4) {
+  cdm_slices <- readRDS(paste('cdm_diags_', i, '.rds', sep=''))
+  wdm_slices <- readRDS(paste('wdm_diags_', i, '.rds', sep=''))
+  for (l in 1:i^3) {
+    cdm_diag <- cleanDiag(cdm_slices[[l]])
+    wdm_diag <- cleanDiag(wdm_slices[[l]])
 
-resArr <- c(1, 0.5, 0.25, 0.1)
-boxlim <- c(0, 33)
-len <- length(cdm_slices)
+    if (norm) { # optionally normalize
+      cdm_diag <- normalize(cdm_diag)
+      wdm_diag <- normalize(wdm_diag)
+    }
 
-for (res in resArr) {
-  for (l in 1:len) {
-    cdm_diag <- gridDiag(cdm_slices[[l]], dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
-    wdm_diag <- gridDiag(wdm_slices[[l]], dtm, lim=cbind(boxlim, boxlim, boxlim), by=res, sublevel=T, printProgress=T, m0=0.001)
-    pval <- ks::kde.test(cdm_diag$diagram, wdm_diag$diagram)$pvalue
-    print(paste("res: ", res, " idx: ", l, " pval: ", pval, sep=" "))
+    # get the bottle neck distances.
+    dists[i,l,1] <- bottleneckDist(cdm_diag, wdm_diag, dimension=1)
+    dists[i,l,2] <- bottleneckDist(cdm_diag, wdm_diag, dimension=2)
+    dists[i,l,3] <- bottleneckDist(cdm_diag, wdm_diag, dimension=3)
   }
 }
+
+saveRDS(dists, file='outputs/dists/dists.rds')
