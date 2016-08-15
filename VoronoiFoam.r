@@ -49,17 +49,17 @@ voronoi_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,10)) {
 
 # Function to generate a foam.
 voronoi_compilation <- function(N, Boxlim, res=0.5, perturb=1, groupN=15, baseline=0.1, nameId=1) {
-  percFils <- seq(from=0.1, to=0.9, by=0.1)
+  percFils <- seq(from=0.1, to=0.3, by=0.05)
   numSet <- length(percFils)
   storage <- vector("list", numSet)
   for (i in 1:numSet) {
     currSet <- voronoi_set(percFils[i], N, groupN, res, perturb, Boxlim)
     storage[[i]] = currSet
   }
-  saveRDS(storage, paste("./saved_states/large_set/foam", toString(nameId), ".rds", sep=""))
+  saveRDS(storage, paste("./saved_states/large_sub_set/foam", toString(nameId), ".rds", sep=""))
   # Run and save the baseline.
   baseline <- voronoi_set(baseline, N, groupN, res, perturb, Boxlim)
-  saveRDS(baseline, paste("./saved_states/large_set/baseline", toString(nameId), ".rds", sep=""))
+  saveRDS(baseline, paste("./saved_states/large_sub_set/baseline", toString(nameId), ".rds", sep=""))
 }
 
 # ---------------------------------------------------
@@ -72,17 +72,17 @@ voronoi_only_set <- function(percFil, N=1000, G=15, res=0.5, err=1, boxlim=c(0,1
 }
 
 voronoi_only_compilation <- function(N, Boxlim, res=0.5, perturb=1, groupN=15, baseline=0.1, nameId=1) {
-  percFils <- seq(from=0.1, to=0.9, by=0.1)
+  percFils <- seq(from=0.1, to=0.3, by=0.05)
   numSet <- length(percFils)
   storage <- vector("list", numSet)
   for (i in 1:numSet) {
     currSet <- voronoi_only_set(percFils[i], N, groupN, res, perturb, Boxlim)
     storage[[i]] = currSet
   }
-  saveRDS(storage, paste("./voronoi_data/foam", toString(nameId), ".rds", sep=""))
+  saveRDS(storage, paste("./sub_voronoi_data/foam", toString(nameId), ".rds", sep=""))
   # Run and save the baseline.
   baseline <- voronoi_only_set(baseline, N, groupN, res, perturb, Boxlim)
-  saveRDS(baseline, paste("./voronoi_data/baseline", toString(nameId), ".rds", sep=""))
+  saveRDS(baseline, paste("./sub_voronoi_data/baseline", toString(nameId), ".rds", sep=""))
 }
 
 
