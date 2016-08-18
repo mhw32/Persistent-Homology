@@ -203,7 +203,7 @@ test_wrapper <- function(foam, base, ext, norm=FALSE, run_base=TRUE) {
   print("--------------------------------")
   t <- voronoi_tests(foam, base, norm=norm, run_base=run_base)
   for (i in keys) {
-    print("Test for", i, ":")
+    print(paste("Test for", i, ":"))
     currfxn <- t[[i]]
     response <- currfxn()
     print(response)
