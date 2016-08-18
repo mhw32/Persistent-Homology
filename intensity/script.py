@@ -15,8 +15,8 @@ def run(mini=1, maxi=101):
     pimage_stats_unnorm    = []
 
     for iters in range(mini, maxi):
-        base_file = 'data/voronoi/baseline%d.npy' % iters
-        foam_file = 'data/voronoi/foam%d.npy' % iters
+        base_file = 'data/sub_voronoi/baseline%d.npy' % iters
+        foam_file = 'data/sub_voronoi/foam%d.npy' % iters
 
         print("iteration %d: unstandardized intensity calculation..." % iters)
         intensity_stats_unnorm.append(intensity_voronoi_test_suite(base_file, foam_file, False))
@@ -28,10 +28,10 @@ def run(mini=1, maxi=101):
         print("iteration %d: standardized persistent image calculation..." % iters)
         pimage_stats_norm.append(pimage_voronoi_test_suite(base_file, foam_file, True))
 
-    cPickle.dump(intensity_stats_unnorm, open('output/voronoi/intensity_stats_unnorm.pkl', 'wb'))
-    cPickle.dump(intensity_stats_norm, open('output/voronoi/intensity_stats_norm.pkl', 'wb'))
-    cPickle.dump(pimage_stats_unnorm, open('output/voronoi/pimage_stats_unnorm.pkl', 'wb'))
-    cPickle.dump(pimage_stats_norm, open('output/voronoi/pimage_stats_norm.pkl', 'wb'))
+    cPickle.dump(intensity_stats_unnorm, open('output/sub_voronoi/intensity_stats_unnorm.pkl', 'wb'))
+    cPickle.dump(intensity_stats_norm, open('output/sub_voronoi/intensity_stats_norm.pkl', 'wb'))
+    cPickle.dump(pimage_stats_unnorm, open('output/sub_voronoi/pimage_stats_unnorm.pkl', 'wb'))
+    cPickle.dump(pimage_stats_norm, open('output/sub_voronoi/pimage_stats_norm.pkl', 'wb'))
 
 if __name__ == '__main__':
     # Construct the argument parse and parse the arguments
