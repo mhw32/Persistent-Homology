@@ -12,12 +12,12 @@ def run(testtype, norm):
     normstr = 'norm' if norm else 'unnorm' 
 
     if testtype == 'voronoi-bydim': 
-        base_stats = np.load('output/voronoi/base_intensity_stats_%s.npy' % normstr)
-        foam_stats = np.load('output/voronoi/foam_intensity_stats_%s.npy' % normstr)
+        base_stats = np.load('output/sub_voronoi/base_intensity_stats_%s.npy' % normstr)
+        foam_stats = np.load('output/sub_voronoi/foam_intensity_stats_%s.npy' % normstr)
         log_p_grid = voronoi_bydim_hypo_suite(base_stats, foam_stats)
     elif testtype == 'voronoi-nodim':
-        base_stats = np.load('output/voronoi/base_pimage_stats_%s.npy' % normstr)
-        foam_stats = np.load('output/voronoi/foam_pimage_stats_%s.npy' % normstr)
+        base_stats = np.load('output/sub_voronoi/base_pimage_stats_%s.npy' % normstr)
+        foam_stats = np.load('output/sub_voronoi/foam_pimage_stats_%s.npy' % normstr)
         log_p_grid = voronoi_nodim_hypo_suite(base_stats, foam_stats)
     elif testtype == 'simu-bydim':
         cdm_stats = np.load('output/simu/cdm_intensity_stats_%s.npy' % normstr)
@@ -41,6 +41,6 @@ if __name__ == '__main__':
     # parse args and run stuff
     args = vars(ap.parse_args())
     ans = run(args['type'], args['norm'])
-    np.save(open('output/proba/ans-%s.npy' % args['type'], 'wb'), ans)
+    np.save(open('output/sub_proba/ans-%s.npy' % args['type'], 'wb'), ans)
 
 
