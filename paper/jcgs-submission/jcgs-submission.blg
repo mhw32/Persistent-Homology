@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: jcgs-submission.aux
+The style file: agsm.bst
+Database file #1: mybib.bib
+Repeated entry---line 317 of file mybib.bib
+ : @article{chen2015statistical
+ :                             ,
+I'm skipping whatever remains of this entry
+You've used 25 entries,
+            2909 wiz_defined-function locations,
+            802 strings with 10065 characters,
+and the built_in function-call counts, 188998 in all, are:
+= -- 31319
+> -- 2721
+< -- 0
++ -- 15641
+- -- 854
+* -- 17096
+:= -- 36574
+add.period$ -- 25
+call.type$ -- 25
+change.case$ -- 350
+chr.to.int$ -- 25
+cite$ -- 25
+duplicate$ -- 420
+empty$ -- 877
+format.name$ -- 939
+if$ -- 34023
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 25
+newline$ -- 78
+num.names$ -- 269
+pop$ -- 75
+preamble$ -- 1
+purify$ -- 375
+quote$ -- 0
+skip$ -- 368
+stack$ -- 0
+substring$ -- 45438
+swap$ -- 86
+text.length$ -- 350
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 100
+warning$ -- 0
+while$ -- 568
+width$ -- 0
+write$ -- 346
+(There was 1 error message)

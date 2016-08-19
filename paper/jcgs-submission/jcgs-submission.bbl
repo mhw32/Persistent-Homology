@@ -1,0 +1,165 @@
+\begin{thebibliography}{xx}
+
+\harvarditem[Adams et~al.]{Adams, Chepushtanova, Emerson, Hanson, Kirby, Motta,
+  Neville, Peterson, Shipman \harvardand\
+  Ziegelmeier}{2015}{adams2015persistent}
+Adams, H., Chepushtanova, S., Emerson, T., Hanson, E., Kirby, M., Motta, F.,
+  Neville, R., Peterson, C., Shipman, P. \harvardand\ Ziegelmeier, L.
+  \harvardyearleft 2015\harvardyearright , `Persistent images: A stable vector
+  representation of persistent homology', {\em arXiv preprint arXiv:1507.06217}
+  .
+
+\harvarditem[Bendich et~al.]{Bendich, Marron, Miller, Pieloch \harvardand\
+  Skwerer}{2014}{bendich2014persistent}
+Bendich, P., Marron, J., Miller, E., Pieloch, A. \harvardand\ Skwerer, S.
+  \harvardyearleft 2014\harvardyearright , `Persistent homology analysis of
+  brain artery trees', {\em arXiv preprint arXiv:1411.6652} .
+
+\harvarditem[Bond et~al.]{Bond, Kofman \harvardand\
+  Pogosyan}{1996}{bond1996filaments}
+Bond, J.~R., Kofman, L. \harvardand\ Pogosyan, D.  \harvardyearleft
+  1996\harvardyearright , `How filaments of galaxies are woven into the cosmic
+  web', {\em Nature} {\bf 380},~603--606.
+
+\harvarditem{Bubenik}{2015}{bubenik2015statistical}
+Bubenik, P.  \harvardyearleft 2015\harvardyearright , `Statistical topological
+  data analysis using persistence landscapes', {\em Journal of Machine Learning
+  Research} {\bf 16}(1),~77--102.
+
+\harvarditem[Cantalupo et~al.]{Cantalupo, Arrigoni-Battaia, Prochaska, Hennawi
+  \harvardand\ Madau}{2014}{cantalupo2014cosmic}
+Cantalupo, S., Arrigoni-Battaia, F., Prochaska, J.~X., Hennawi, J.~F.
+  \harvardand\ Madau, P.  \harvardyearleft 2014\harvardyearright , `A cosmic
+  web filament revealed in lyman-[agr] emission around a luminous high-redshift
+  quasar', {\em Nature} {\bf 506}(7486),~63--66.
+
+\harvarditem[Chazal et~al.]{Chazal, Cohen-Steiner \harvardand\
+  M{\'e}rigot}{2011}{chazal2011geometric}
+Chazal, F., Cohen-Steiner, D. \harvardand\ M{\'e}rigot, Q.  \harvardyearleft
+  2011\harvardyearright , `Geometric inference for probability measures', {\em
+  Foundations of Computational Mathematics} {\bf 11}(6),~733--751.
+
+\harvarditem[Chazal et~al.]{Chazal, Fasy, Lecci, Rinaldo \harvardand\
+  Wasserman}{2014}{chazal2014stochastic}
+Chazal, F., Fasy, B.~T., Lecci, F., Rinaldo, A. \harvardand\ Wasserman, L.
+  \harvardyearleft 2014\harvardyearright , Stochastic convergence of
+  persistence landscapes and silhouettes, {\em in} `Proceedings of the
+  thirtieth annual symposium on Computational geometry', ACM, p.~474.
+
+\harvarditem[Chen et~al.]{Chen, Wang, Rinaldo \harvardand\
+  Wasserman}{2015}{chen2015statistical}
+Chen, Y.-C., Wang, D., Rinaldo, A. \harvardand\ Wasserman, L.  \harvardyearleft
+  2015\harvardyearright , `Statistical analysis of persistence intensity
+  functions', {\em arXiv preprint arXiv:1510.02502} .
+
+\harvarditem[Cisewski et~al.]{Cisewski, Croft, Freeman, Genovese, Khandai,
+  Ozbek \harvardand\ Wasserman}{2014}{cisewski2014non}
+Cisewski, J., Croft, R.~A., Freeman, P.~E., Genovese, C.~R., Khandai, N.,
+  Ozbek, M. \harvardand\ Wasserman, L.  \harvardyearleft 2014\harvardyearright
+  , `Non-parametric 3d map of the intergalactic medium using the lyman-alpha
+  forest', {\em Monthly Notices of the Royal Astronomical Society} {\bf
+  440}(3),~2599--2609.
+
+\harvarditem[Duong et~al.]{Duong, Goud \harvardand\
+  Schauer}{2012}{duong2012closed}
+Duong, T., Goud, B. \harvardand\ Schauer, K.  \harvardyearleft
+  2012\harvardyearright , `Closed-form density-based framework for automatic
+  detection of cellular morphology changes', {\em Proceedings of the National
+  Academy of Sciences} {\bf 109}(22),~8382--8387.
+
+\harvarditem{Geller \harvardand\ HUCHRA}{1989}{geller1989mapping}
+Geller, M. \harvardand\ HUCHRA, J.  \harvardyearleft 1989\harvardyearright ,
+  `Mapping the universe', {\em Science} {\bf 246}(4932),~897--903.
+
+\harvarditem[Gott~III et~al.]{Gott~III, Schlegel, Hoyle, Vogeley, Tegmark,
+  Bahcall, Brinkmann et~al.}{2005}{gott2005map}
+Gott~III, J.~R., Schlegel, D., Hoyle, F., Vogeley, M., Tegmark, M., Bahcall,
+  N., Brinkmann, J. et~al.  \harvardyearleft 2005\harvardyearright , `A map of
+  the universe', {\em The Astrophysical Journal} {\bf 624}(2),~463.
+
+\harvarditem[Gretton et~al.]{Gretton, Borgwardt, Rasch, Sch{\"o}lkopf
+  \harvardand\ Smola}{2012}{gretton2012kernel}
+Gretton, A., Borgwardt, K.~M., Rasch, M.~J., Sch{\"o}lkopf, B. \harvardand\
+  Smola, A.  \harvardyearleft 2012\harvardyearright , `A kernel two-sample
+  test', {\em The Journal of Machine Learning Research} {\bf 13}(1),~723--773.
+
+\harvarditem[Hilbe et~al.]{Hilbe, Riggs, Wandelt, de~Souza, Ishida, Cisewski,
+  Surdin, Killedar, Trotta, Bassett et~al.}{2014}{HilbeEtAl2014}
+Hilbe, J.~M., Riggs, J., Wandelt, B.~D., de~Souza, R.~S., Ishida, E.~E.,
+  Cisewski, J., Surdin, V., Killedar, M., Trotta, R., Bassett, B. et~al.
+  \harvardyearleft 2014\harvardyearright , `Life, the universe, and
+  everything', {\em Significance} {\bf 11}(5),~48--75.
+
+\harvarditem{Icke \harvardand\ van~de Weygaert}{1987}{icke1987fragmenting}
+Icke, V. \harvardand\ van~de Weygaert, R.  \harvardyearleft
+  1987\harvardyearright , `Fragmenting the universe', {\em Astronomy and
+  Astrophysics} {\bf 184},~16--32.
+
+\harvarditem{Icke \harvardand\ van~de Weygaert}{1991}{icke1991galaxy}
+Icke, V. \harvardand\ van~de Weygaert, R.  \harvardyearleft
+  1991\harvardyearright , `The galaxy distribution as a voronoi foam', {\em
+  Quarterly Journal of the Royal Astronomical Society} {\bf 32},~85--112.
+
+\harvarditem{Landy \harvardand\ Szalay}{1993}{landy1993bias}
+Landy, S.~D. \harvardand\ Szalay, A.~S.  \harvardyearleft 1993\harvardyearright
+  , `Bias and variance of angular correlation functions', {\em The
+  Astrophysical Journal} {\bf 412},~64--71.
+
+\harvarditem[Lovell et~al.]{Lovell, Frenk, Eke, Jenkins, Gao \harvardand\
+  Theuns}{2014}{lovell2014properties}
+Lovell, M.~R., Frenk, C.~S., Eke, V.~R., Jenkins, A., Gao, L. \harvardand\
+  Theuns, T.  \harvardyearleft 2014\harvardyearright , `The properties of warm
+  dark matter haloes', {\em Monthly Notices of the Royal Astronomical Society}
+  {\bf 439}(1),~300--317.
+
+\harvarditem[Schaye et~al.]{Schaye, Crain, Bower, Furlong, Schaller, Theuns,
+  Dalla~Vecchia, Frenk, McCarthy, Helly et~al.}{2015}{schaye2015eagle}
+Schaye, J., Crain, R.~A., Bower, R.~G., Furlong, M., Schaller, M., Theuns, T.,
+  Dalla~Vecchia, C., Frenk, C.~S., McCarthy, I., Helly, J.~C. et~al.
+  \harvardyearleft 2015\harvardyearright , `The eagle project: simulating the
+  evolution and assembly of galaxies and their environments', {\em Monthly
+  Notices of the Royal Astronomical Society} {\bf 446}(1),~521--554.
+
+\harvarditem[Schneider et~al.]{Schneider, Smith, Macci{\`o} \harvardand\
+  Moore}{2012}{SchneiderEtAl2012}
+Schneider, A., Smith, R.~E., Macci{\`o}, A.~V. \harvardand\ Moore, B.
+  \harvardyearleft 2012\harvardyearright , `Non-linear evolution of
+  cosmological structures in warm dark matter models', {\em Monthly Notices of
+  the Royal Astronomical Society} {\bf 424}(1),~684--698.
+
+\harvarditem[Springel et~al.]{Springel, Frenk \harvardand\
+  White}{2006}{springel2006large}
+Springel, V., Frenk, C.~S. \harvardand\ White, S.~D.  \harvardyearleft
+  2006\harvardyearright , `The large-scale structure of the universe', {\em
+  Nature} {\bf 440}(7088),~1137--1144.
+
+\harvarditem[Springel et~al.]{Springel, White, Tormen \harvardand\
+  Kauffmann}{2001}{springel2001populating}
+Springel, V., White, S.~D., Tormen, G. \harvardand\ Kauffmann, G.
+  \harvardyearleft 2001\harvardyearright , `Populating a cluster of
+  galaxies--i. results at z= 0', {\em Monthly Notices of the Royal Astronomical
+  Society} {\bf 328}(3),~726--750.
+
+\harvarditem{Van De~Weygaert}{2007}{van2007voronoi}
+Van De~Weygaert, R.  \harvardyearleft 2007\harvardyearright , Voronoi
+  tessellations and the cosmic web: Spatial patterns and clustering across the
+  universe, {\em in} `Voronoi Diagrams in Science and Engineering, 2007.
+  ISVD'07. 4th International Symposium on', IEEE, pp.~230--239.
+
+\harvarditem[Van De~Weygaert et~al.]{Van De~Weygaert, Vegter, Edelsbrunner,
+  Jones, Pranav, Park, Hellwing, Eldering, Kruithof, Bos
+  et~al.}{2011}{van2011alpha}
+Van De~Weygaert, R., Vegter, G., Edelsbrunner, H., Jones, B.~J., Pranav, P.,
+  Park, C., Hellwing, W.~A., Eldering, B., Kruithof, N., Bos, E. et~al.
+  \harvardyearleft 2011\harvardyearright , Alpha, betti and the megaparsec
+  universe: on the topology of the cosmic web, {\em in} `Transactions on
+  Computational Science XIV', Springer-Verlag, pp.~60--101.
+
+\harvarditem[Viel et~al.]{Viel, Becker, Bolton \harvardand\
+  Haehnelt}{2013}{viel2013warm}
+Viel, M., Becker, G.~D., Bolton, J.~S. \harvardand\ Haehnelt, M.~G.
+  \harvardyearleft 2013\harvardyearright , `Warm dark matter as a solution to
+  the small scale crisis: New constraints from high redshift lyman-$\alpha$
+  forest data', {\em Physical Review D} {\bf 88}(4),~043502.
+
+\end{thebibliography}

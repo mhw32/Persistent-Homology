@@ -98,10 +98,12 @@ normalize <- function(diag) {
 
 # Often it is easier to make my own plotting function to allow editing.
 plotDiag <- function(X){
+  pdf('~/Desktop/tmp5.pdf')
   # X is the persistence diagram
-  plot(X[,2], X[,3], pch = c(X[,1]+1), col = c(X[,1]+1), xlab = "Death", ylab = "Birth", main = "", cex.lab=2.0, cex.axis=2.0, cex.main=2.0, cex.sub=2.0, cex=2.0)
-  par(mar=c(1.1,1.1,1.1,1.1))
+  mar.default <- c(5,4,4,2) + 0.1
+  par(mar = mar.default + c(0, 1, 0, 0)) 
+  plot(X[,2], X[,3], pch = c(X[,1]+1), col = c(X[,1]+1), xlab = "Birth", ylab = "Death", main = "", cex.lab=2.0, cex.axis=2.0, cex.main=2.0, cex.sub=2.0, cex=2.0, xlim=c(0,0.30), ylim=c(0,0.30))
   abline(a = 0, b = 1)
-  legend("topleft", c("0","1","2"), pch = c(1,2,3), col = c(1,2,3), cex=2.0)
+  legend("bottomright", c("0","1","2"), pch = c(1,2,3), col = c(1,2,3), cex=2.0)
+  dev.off()
 }
-
