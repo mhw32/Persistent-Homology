@@ -81,9 +81,9 @@
 \citation{chen2015statistical}
 \citation{adams2015persistent}
 \@writefile{toc}{\contentsline {paragraph}{Weighted Kernel Test (WKC)}{15}}
-\@writefile{toc}{\contentsline {paragraph}{Persistent Image Test (PI)}{15}}
 \citation{adams2015persistent}
 \citation{adams2015persistent}
+\@writefile{toc}{\contentsline {paragraph}{Persistent Image Test (PI)}{16}}
 \citation{adams2015persistent}
 \citation{landy1993bias}
 \citation{landy1993bias}
@@ -106,8 +106,6 @@
 \newlabel{sub@subfig:wall}{{d}{20}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Simulation model construction. (a) A grid is defined and points are randomly selected to define the Voronoi tesselation - the Voronoi cells are the voids. (b) - (d) Based on the location of the voids and the grid, points are defined to be cluster points, filament points or wall points - these are the empty black circles. Based on the values assigned from Table~\ref  {table:voronoisettings}, a number of points are randomly selected from the assigned points to be in the dataset.\relax }}{20}}
 \newlabel{fig:vf}{{5}{20}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Simulation study results}{20}}
-\newlabel{sec:results1}{{4.2}{20}}
 \newlabel{fig:percfil01voronoi}{{6a}{21}}
 \newlabel{sub@fig:percfil01voronoi}{{a}{21}}
 \newlabel{fig:percfil09voronoi}{{6b}{21}}
@@ -122,12 +120,34 @@
 \newlabel{sub@fig:percfil09pd}{{f}{21}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces (a) PercFil 0.1; (b) PercFil 0.5; (c) PercFil 0.9; (d-f) Corresponding persistence diagrams (PD) for point clouds (a-c). All other parameters are defined based on Table~\ref  {table:voronoisettings}.\relax }}{21}}
 \newlabel{fig:percfilexample}{{6}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Simulation study results}{21}}
+\newlabel{sec:results1}{{4.2}{21}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Standardization of persistence diagrams}{22}}
 \newlabel{sec:standardize}{{4.2.1}{22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces $\qopname  \relax o{log}_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set; y-axis shows the p-values in $\textup  {1og}_{10}$ space. The lines plot the median $\qopname  \relax o{log}_{10}$ p-value of the 100 iterations. \relax }}{23}}
-\newlabel{fig:linesUnnorm}{{7}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Line plots of four classes of hypothesis testing frameworks: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. All axes were standardized prior to hypothesis testing.\relax }}{24}}
-\newlabel{fig:linesNorm}{{8}{24}}
+\newlabel{fig:sub_euler}{{7a}{23}}
+\newlabel{sub@fig:sub_euler}{{a}{23}}
+\newlabel{fig:sub_silh}{{7b}{23}}
+\newlabel{sub@fig:sub_silh}{{b}{23}}
+\newlabel{fig:sub_contour}{{7c}{23}}
+\newlabel{sub@fig:sub_contour}{{c}{23}}
+\newlabel{fig:sub_weight}{{7d}{23}}
+\newlabel{sub@fig:sub_weight}{{d}{23}}
+\newlabel{fig:sub_corr}{{7e}{23}}
+\newlabel{sub@fig:sub_corr}{{e}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces $\qopname  \relax o{log}_{10}$ p-values for the proposed test statistics in the simulation study: (a) EC-based, (b) SIL-based, (c) Kernel-based (KC), (d) Weighted Kernel-based (WKC), (e) CORR-based. X-axis represents the percent filament of the set being compared to the baseline set (0.1 to 0.3 by 0.05 increments); y-axis shows the p-values in $\textup  {1og}_{10}$ space. Each plot contains a line representing the median $\qopname  \relax o{log}_{10}$ p-value of the 100 iterations, while the shaded region represents a 97.5 confidence interval.\relax }}{23}}
+\newlabel{fig:sub_unstandardized_results}{{7}{23}}
+\newlabel{fig:sub_euler}{{8a}{24}}
+\newlabel{sub@fig:sub_euler}{{a}{24}}
+\newlabel{fig:sub_silh}{{8b}{24}}
+\newlabel{sub@fig:sub_silh}{{b}{24}}
+\newlabel{fig:sub_contour}{{8c}{24}}
+\newlabel{sub@fig:sub_contour}{{c}{24}}
+\newlabel{fig:sub_weight}{{8d}{24}}
+\newlabel{sub@fig:sub_weight}{{d}{24}}
+\newlabel{fig:sub_corr}{{8e}{24}}
+\newlabel{sub@fig:sub_corr}{{e}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces A similar set of results to Figure~\ref  {fig:sub_unstandardized_results} except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.\relax }}{24}}
+\newlabel{fig:sub_standardized_results}{{8}{24}}
 \citation{geller1989mapping}
 \citation{gott2005map}
 \citation{cantalupo2014cosmic}
@@ -149,7 +169,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The EAGLE project}{26}}
 \citation{viel2013warm}
 \citation{lovell2014properties}
-\newlabel{fig:eagleDiags}{{\caption@xref {fig:eagleDiags}{ on input line 707}}{27}}
+\newlabel{fig:eagleDiags}{{\caption@xref {fig:eagleDiags}{ on input line 748}}{27}}
 \newlabel{fig:eagleDiagsA}{{10a}{27}}
 \newlabel{sub@fig:eagleDiagsA}{{a}{27}}
 \newlabel{fig:eagleDiagsB}{{10b}{27}}
@@ -181,7 +201,7 @@
 \newlabel{sub@fig:valid3}{{c}{32}}
 \newlabel{fig:valid4}{{12d}{32}}
 \newlabel{sub@fig:valid4}{{d}{32}}
-\newlabel{fig:validationfigs}{{\caption@xref {fig:validationfigs}{ on input line 857}}{32}}
+\newlabel{fig:validationfigs}{{\caption@xref {fig:validationfigs}{ on input line 898}}{32}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces A comparison of the Euler Characteristic Function and the Correlation Function for Dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest.\relax }}{32}}
 \newlabel{fig:cubeHeatmapStand0}{{13a}{33}}
 \newlabel{sub@fig:cubeHeatmapStand0}{{a}{33}}
@@ -189,7 +209,7 @@
 \newlabel{sub@fig:cubeHeatmapStand1}{{b}{33}}
 \newlabel{fig:cubeHeatmapStand2}{{13c}{33}}
 \newlabel{sub@fig:cubeHeatmapStand2}{{c}{33}}
-\newlabel{fig:StandCubeHeatmap}{{\caption@xref {fig:StandCubeHeatmap}{ on input line 883}}{33}}
+\newlabel{fig:StandCubeHeatmap}{{\caption@xref {fig:StandCubeHeatmap}{ on input line 924}}{33}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Each sub-figure contains three horizontal heatmaps representing Bottleneck distances identical to those shown in figure \ref  {fig:cubeHeatmap} but standardized persistence diagrams were used instead.\relax }}{33}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{33}}
 \newlabel{sec:conc}{{6}{33}}
@@ -203,6 +223,10 @@
 \bibcite{chazal2011geometric}{{6}{2011}{{Chazal et~al.}}{{Chazal, Cohen-Steiner \&\ M{\'e}rigot}}}
 \bibcite{chazal2014stochastic}{{7}{2014}{{Chazal et~al.}}{{Chazal, Fasy, Lecci, Rinaldo \&\ Wasserman}}}
 \bibcite{chen2015statistical}{{8}{2015}{{Chen et~al.}}{{Chen, Wang, Rinaldo \&\ Wasserman}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces $\qopname  \relax o{log}_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set (from 0.1 to 0.9 by 0.1 increments); y-axis shows the p-values in $\textup  {1og}_{10}$ space. The lines plot the median $\qopname  \relax o{log}_{10}$ p-value of the 100 iterations. \relax }}{35}}
+\newlabel{fig:linesUnnorm}{{14}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces A similar set of results to Figure~\ref  {fig:linesUnnorm} (percfil 0.1 to 0.9) except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.\relax }}{36}}
+\newlabel{fig:linesNorm}{{15}{36}}
 \bibcite{cisewski2014non}{{9}{2014}{{Cisewski et~al.}}{{Cisewski, Croft, Freeman, Genovese, Khandai, Ozbek \&\ Wasserman}}}
 \bibcite{duong2012closed}{{10}{2012}{{Duong et~al.}}{{Duong, Goud \&\ Schauer}}}
 \bibcite{geller1989mapping}{{11}{1989}{{Geller \&\ HUCHRA}}{{}}}

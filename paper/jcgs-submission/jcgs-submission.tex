@@ -443,7 +443,7 @@ where $n$ and $m$ are the sizes of the two samples, and $\{X_1, \ldots, X_n\}$ a
 \paragraph{Weighted Kernel Test (WKC)}
 Two disadvantages of the Kernel Contour Test (KC) shown above are (1) the tendency of the test to heavily weight dense clusters near the diagonal rather than sparse persistent features with longer lifespans, and (2) the possibility of the smoothed intensity function to ``spill over'' the diagonal as a product of the Gaussian kernel. The Weighted Kernel Test \cite{chen2015statistical} addresses both concerns with an adjusted kernel function. 
 
-Let $b$ and $d$ denote the birth and death of a persistent feature, such that $\mathcal{D} = {(b_{j} , d_{j}) : j = 1, \cdots ,K}$ represents a persistence diagram where $K$ is the cardinality of persistent features. Given $\mathcal{D}$, we can estimate its intensity, $\kappa_{\tau}$ by
+Let $b$ and $d$ denote the birth and death of a persistent feature, such that \[ \mathcal{D} = {(b_{j} , d_{j}) : j = 1, \cdots ,K} \] represents a persistence diagram where $K$ is the cardinality of persistent features. Given $\mathcal{D}$, we can estimate its intensity, $\kappa_{\tau}$ by
 
 \[ \hat{\kappa}_{tau}(x,y) = \sum_{j}(d_{j} - b_{j})\frac{1}{\tau^{2}}K(\frac{x-b_{j}}{\tau})K(\frac{y-d_{j}}{\tau})\]
 
@@ -558,48 +558,42 @@ Figure~\ref{fig:vf} displays the construction procedure of one realization of ou
 Examples of three separate Voronoi foam models of percFil 0.1, 0.5, 0.9 are displayed in Figure~\ref{fig:percfilexample} along with their corresponding persistence diagrams. One can see that the as the percFil (the percentage of points that are part of filaments) increases, the web-like structure becomes more pronounced.
 
 \begin{center}
-\begin{figure}[htp!]
-  \centering
-  \begin{subfigure}{.32\textwidth}
+  \begin{figure}[htp!]
     \centering
-    \caption{PercFil 0.1 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil01voronoi.pdf}
-    \label{fig:percfil01voronoi}
-  \end{subfigure}
     \begin{subfigure}{.32\textwidth}
-    \centering
-    \caption{PercFil 0.5 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil09voronoi.pdf}
-    \label{fig:percfil09voronoi}
-  \end{subfigure}
-    \begin{subfigure}{.32\textwidth}
-    \centering
-    \caption{PercFil 0.9 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil09voronoi.pdf}
-    \label{fig:percfil09voronoi}
-  \end{subfigure}
-    \begin{subfigure}{.32\textwidth}
-    \centering
-    \caption{PercFil 0.1 (PD)}  \includegraphics[width=0.6\linewidth]{percfil01pd.pdf}
-    \label{fig:percfil01pd}
-  \end{subfigure}
-    \begin{subfigure}{.32\textwidth}
-    \centering
-    \caption{PercFil 0.5 (PD)}  \includegraphics[width=0.6\linewidth]{percfil09pd.pdf}
-    \label{fig:percfil09pd}
-  \end{subfigure}
-    \begin{subfigure}{.32\textwidth}
-    \centering
-    \caption{PercFil 0.9 (PD)}  \includegraphics[width=0.6\linewidth]{percfil09pd.pdf}
-    \label{fig:percfil09pd}
-  \end{subfigure}
-    \caption{(a) PercFil 0.1; (b) PercFil 0.5; (c) PercFil 0.9; (d-f) Corresponding persistence diagrams (PD) for point clouds (a-c). All other parameters are defined based on Table~\ref{table:voronoisettings}.}
-    \label{fig:percfilexample}
-\end{figure}
+      \centering
+      \caption{PercFil 0.1 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil01voronoi.pdf}
+      \label{fig:percfil01voronoi}
+    \end{subfigure}
+      \begin{subfigure}{.32\textwidth}
+      \centering
+      \caption{PercFil 0.5 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil09voronoi.pdf}
+      \label{fig:percfil09voronoi}
+    \end{subfigure}
+      \begin{subfigure}{.32\textwidth}
+      \centering
+      \caption{PercFil 0.9 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil09voronoi.pdf}
+      \label{fig:percfil09voronoi}
+    \end{subfigure}
+      \begin{subfigure}{.32\textwidth}
+      \centering
+      \caption{PercFil 0.1 (PD)}  \includegraphics[width=0.6\linewidth]{percfil01pd.pdf}
+      \label{fig:percfil01pd}
+    \end{subfigure}
+      \begin{subfigure}{.32\textwidth}
+      \centering
+      \caption{PercFil 0.5 (PD)}  \includegraphics[width=0.6\linewidth]{percfil09pd.pdf}
+      \label{fig:percfil09pd}
+    \end{subfigure}
+      \begin{subfigure}{.32\textwidth}
+      \centering
+      \caption{PercFil 0.9 (PD)}  \includegraphics[width=0.6\linewidth]{percfil09pd.pdf}
+      \label{fig:percfil09pd}
+    \end{subfigure}
+      \caption{(a) PercFil 0.1; (b) PercFil 0.5; (c) PercFil 0.9; (d-f) Corresponding persistence diagrams (PD) for point clouds (a-c). All other parameters are defined based on Table~\ref{table:voronoisettings}.}
+      \label{fig:percfilexample}
+  \end{figure}
 \end{center}
-
-
-
-
-
-
 
 \subsection{Simulation study results} \label{sec:results1} %--------------------------------------
 The simulation models used in this paper were generated under $1.25 \times  10^{5}$ box volume, $0.1$ resolution, $1 \times  10^{4}$ points, $64$ cells (voids), 0.02 percClust, and $[0.1, 0.9]$ percFil and $[0.08, 0.88]$ percWall. Persistent homology is calculated using distance-to-measure (DTM) with a $0.01$ tuning parameter. Persistence diagrams are preprocessed to remove the known 0-dimensional artifact wherein persistent homology algorithms produce a vestigial $H_{0}$ element with birth time of 0 and a death time of $\infty$ (with exception to the Euler characteristic function in which the artifact is preserved).  
@@ -615,19 +609,42 @@ P_1^{(1)}, \ldots, \mathcal P_{15}^{(1)}\}$ drawn from the model with percFil = 
 distributions of persistence diagrams for group 1 and 2, respectively.)  
 Similar tests were also completed against a control model with 0.9 percFil, and similar results were found. The simulation study results are displayed in Figure~\ref{fig:linesUnnorm}, which displays the median p-values from the proposed test statistics: (i) Euler-based tests, (ii) Silouette-based tests, (iii) Kernel-based  tests, (iv) Weighted Kernel-based tests, (v) Correlation-based tests and (vi) a comparison of the best results from each category.
 
-\begin{figure}[htp!]
-  \centering
-  \includegraphics[width=0.7\linewidth]{euler_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{silh_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{smooth_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{weight_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{corr_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{cross_lineplot_log10_norm_False.pdf}
-    \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set; y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value of the 100 iterations. }
-    \label{fig:linesUnnorm}
-\end{figure}
-
-
+\begin{center}
+  \begin{figure}[htp!]
+    \centering
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{EC-based Tests}
+      \includegraphics[width=\linewidth]{sub_euler_lineplot_log10_norm_False.pdf}
+      \label{fig:sub_euler}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{SIL-based Tests}
+      \includegraphics[width=\linewidth]{sub_silh_lineplot_log10_norm_False.pdf}
+      \label{fig:sub_silh}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{KC-based Tests}
+      \includegraphics[width=\linewidth]{sub_contour_lineplot_log10_norm_False.pdf}
+      \label{fig:sub_contour}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{WKC-based Tests}
+      \includegraphics[width=\linewidth]{sub_weight_lineplot_log10_norm_False.pdf}
+      \label{fig:sub_weight}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \caption{CORR-based Tests}
+      \includegraphics[width=\linewidth]{sub_corr_lineplot_log10_norm_False.pdf}
+      \label{fig:sub_corr}
+    \end{subfigure}
+  \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) EC-based, (b) SIL-based, (c) Kernel-based (KC), (d) Weighted Kernel-based (WKC), (e) CORR-based. X-axis represents the percent filament of the set being compared to the baseline set (0.1 to 0.3 by 0.05 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. Each plot contains a line representing the median $\log_{10}$ p-value of the 100 iterations, while the shaded region represents a 97.5 confidence interval.}
+  \label{fig:sub_unstandardized_results}
+  \end{figure}
+\end{center}
 
 {\color{red} Add a new discussion of the results here.} 
 
@@ -639,18 +656,42 @@ We repeated the simulation study from Section~\ref{sec:results1} except included
 Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness of several test statistics. Notice, however, that the best-performing test statistics remain the same as those from the unstandardized setting. 
 {\color{red} add a new discussion on this part.} 
 
-\begin{figure}[htp!]
-  \centering
-  \includegraphics[width=0.7\linewidth]{euler_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{silh_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{smooth_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{weight_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{corr_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{cross_lineplot_log10_norm_True.pdf}
-    \caption{Line plots of four classes of hypothesis testing frameworks: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. All axes were standardized prior to hypothesis testing.}
-    \label{fig:linesNorm}
-\end{figure}
-
+\begin{center}
+  \begin{figure}[htp!]
+    \centering
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{EC-based Tests}
+      \includegraphics[width=\linewidth]{sub_euler_lineplot_log10_norm_True.pdf}
+      \label{fig:sub_euler}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{SIL-based Tests}
+      \includegraphics[width=\linewidth]{sub_silh_lineplot_log10_norm_True.pdf}
+      \label{fig:sub_silh}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{KC-based Tests}
+      \includegraphics[width=\linewidth]{sub_contour_lineplot_log10_norm_True.pdf}
+      \label{fig:sub_contour}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{WKC-based Tests}
+      \includegraphics[width=\linewidth]{sub_weight_lineplot_log10_norm_True.pdf}
+      \label{fig:sub_weight}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+      \caption{CORR-based Tests}
+      \includegraphics[width=\linewidth]{sub_corr_lineplot_log10_norm_True.pdf}
+      \label{fig:sub_corr}
+    \end{subfigure}
+  \caption{A similar set of results to \figref{fig:sub_unstandardized_results} except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.}
+  \label{fig:sub_standardized_results}
+  \end{figure}
+\end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: APPLICATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -905,11 +946,33 @@ In this paper, we presented a hypothesis testing framework, build on persistent 
 
 \begin{description}
 
-\item[Title:] Brief description. (file type)
+\item[Additional voronoi simulations:] Hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesUnnorm}.
 
-\item[R-package for  MYNEW routine:] R-package ÒMYNEWÓ containing code to perform the diagnostic methods described in the article. The package also contains all datasets used as examples in the article. (GNU zipped tar file)
+\begin{figure}[htp!]
+  \centering
+  \includegraphics[width=0.7\linewidth]{euler_lineplot_log10_norm_False.pdf}
+    \includegraphics[width=0.7\linewidth]{silh_lineplot_log10_norm_False.pdf}
+    \includegraphics[width=0.7\linewidth]{smooth_lineplot_log10_norm_False.pdf}
+    \includegraphics[width=0.7\linewidth]{weight_lineplot_log10_norm_False.pdf}
+    \includegraphics[width=0.7\linewidth]{corr_lineplot_log10_norm_False.pdf}
+    \includegraphics[width=0.7\linewidth]{cross_lineplot_log10_norm_False.pdf}
+    \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set (from 0.1 to 0.9 by 0.1 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value of the 100 iterations. }
+    \label{fig:linesUnnorm}
+\end{figure}
 
-\item[HIV data set:] Data set used in the illustration of MYNEW method in Section~ 3.2. (.txt file)
+\item[Additional voronoi simulations:] Standardized hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesNorm}.
+
+\begin{figure}[htp!]
+  \centering
+  \includegraphics[width=0.7\linewidth]{euler_lineplot_log10_norm_True.pdf}
+    \includegraphics[width=0.7\linewidth]{silh_lineplot_log10_norm_True.pdf}
+    \includegraphics[width=0.7\linewidth]{smooth_lineplot_log10_norm_True.pdf}
+    \includegraphics[width=0.7\linewidth]{weight_lineplot_log10_norm_True.pdf}
+    \includegraphics[width=0.7\linewidth]{corr_lineplot_log10_norm_True.pdf}
+    \includegraphics[width=0.7\linewidth]{cross_lineplot_log10_norm_True.pdf}
+    \caption{A similar set of results to \figref{fig:linesUnnorm} (percfil 0.1 to 0.9) except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.}
+    \label{fig:linesNorm}
+\end{figure}
 
 \end{description}
 
