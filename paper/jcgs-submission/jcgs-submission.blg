@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: jcgs-submission.aux
 The style file: agsm.bst
 Database file #1: mybib.bib
-You've used 29 entries,
+You've used 33 entries,
             2909 wiz_defined-function locations,
-            826 strings with 10751 characters,
-and the built_in function-call counts, 211916 in all, are:
-= -- 35099
-> -- 3039
-< -- 0
-+ -- 17492
-- -- 952
-* -- 19141
-:= -- 41072
-add.period$ -- 29
-call.type$ -- 29
-change.case$ -- 406
-chr.to.int$ -- 29
-cite$ -- 29
-duplicate$ -- 483
-empty$ -- 1008
-format.name$ -- 1055
-if$ -- 38142
+            846 strings with 11222 characters,
+and the built_in function-call counts, 226089 in all, are:
+= -- 37402
+> -- 3204
+< -- 1
++ -- 18573
+- -- 1001
+* -- 20332
+:= -- 43968
+add.period$ -- 33
+call.type$ -- 33
+change.case$ -- 459
+chr.to.int$ -- 33
+cite$ -- 33
+duplicate$ -- 547
+empty$ -- 1131
+format.name$ -- 1117
+if$ -- 40679
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 29
-newline$ -- 90
-num.names$ -- 311
-pop$ -- 89
+missing$ -- 36
+newline$ -- 102
+num.names$ -- 352
+pop$ -- 117
 preamble$ -- 1
-purify$ -- 435
+purify$ -- 495
 quote$ -- 0
-skip$ -- 422
+skip$ -- 464
 stack$ -- 0
-substring$ -- 50856
-swap$ -- 96
-text.length$ -- 406
+substring$ -- 54087
+swap$ -- 103
+text.length$ -- 463
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 116
+type$ -- 126
 warning$ -- 0
-while$ -- 658
+while$ -- 744
 width$ -- 0
-write$ -- 397
+write$ -- 448

@@ -65,6 +65,12 @@ Cisewski, J., Croft, R.~A., Freeman, P.~E., Genovese, C.~R., Khandai, N.,
   forest', {\em Monthly Notices of the Royal Astronomical Society} {\bf
   440}(3),~2599--2609.
 
+\harvarditem[Cohen-Steiner et~al.]{Cohen-Steiner, Edelsbrunner \harvardand\
+  Harer}{2007}{cohen2007stability}
+Cohen-Steiner, D., Edelsbrunner, H. \harvardand\ Harer, J.  \harvardyearleft
+  2007\harvardyearright , `Stability of persistence diagrams', {\em Discrete \&
+  Computational Geometry} {\bf 37}(1),~103--120.
+
 \harvarditem{Cooray \harvardand\ Sheth}{2002}{cooray2002halo}
 Cooray, A. \harvardand\ Sheth, R.  \harvardyearleft 2002\harvardyearright ,
   `Halo models of large scale structure', {\em Physics Reports} {\bf
@@ -92,6 +98,11 @@ Duong, T., Goud, B. \harvardand\ Schauer, K.  \harvardyearleft
   detection of cellular morphology changes', {\em Proceedings of the National
   Academy of Sciences} {\bf 109}(22),~8382--8387.
 
+\harvarditem{Edelsbrunner \harvardand\
+  Harer}{2010}{edelsbrunner2010computational}
+Edelsbrunner, H. \harvardand\ Harer, J.  \harvardyearleft 2010\harvardyearright
+  , {\em Computational topology: an introduction}, American Mathematical Soc.
+
 \harvarditem{Geller \harvardand\ HUCHRA}{1989}{geller1989mapping}
 Geller, M. \harvardand\ HUCHRA, J.  \harvardyearleft 1989\harvardyearright ,
   `Mapping the universe', {\em Science} {\bf 246}(4932),~897--903.
@@ -107,6 +118,10 @@ Gott~III, J.~R., Schlegel, D., Hoyle, F., Vogeley, M., Tegmark, M., Bahcall,
 Gretton, A., Borgwardt, K.~M., Rasch, M.~J., Sch{\"o}lkopf, B. \harvardand\
   Smola, A.  \harvardyearleft 2012\harvardyearright , `A kernel two-sample
   test', {\em The Journal of Machine Learning Research} {\bf 13}(1),~723--773.
+
+\harvarditem{Hatcher}{2002}{hatcher2002algebraic}
+Hatcher, A.  \harvardyearleft 2002\harvardyearright , {\em Algebraic topology},
+  清华大学出版社有限公司.
 
 \harvarditem[Hilbe et~al.]{Hilbe, Riggs, Wandelt, de~Souza, Ishida, Cisewski,
   Surdin, Killedar, Trotta, Bassett et~al.}{2014}{HilbeEtAl2014}
@@ -136,6 +151,10 @@ Lovell, M.~R., Frenk, C.~S., Eke, V.~R., Jenkins, A., Gao, L. \harvardand\
   Theuns, T.  \harvardyearleft 2014\harvardyearright , `The properties of warm
   dark matter haloes', {\em Monthly Notices of the Royal Astronomical Society}
   {\bf 439}(1),~300--317.
+
+\harvarditem{Munkres}{1984}{munkres1984elements}
+Munkres, J.~R.  \harvardyearleft 1984\harvardyearright , {\em Elements of
+  algebraic topology}, Vol.~2, Addison-Wesley Menlo Park.
 
 \harvarditem[Schaye et~al.]{Schaye, Crain, Bower, Furlong, Schaller, Theuns,
   Dalla~Vecchia, Frenk, McCarthy, Helly et~al.}{2015}{schaye2015eagle}
