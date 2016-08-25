@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  25 AUG 2016 11:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  25 AUG 2016 13:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -749,62 +749,62 @@ Package pdftex.def Info: figs/tmp5.pdf used on input line 212.
 pdfTeX warning: pdflatex (file ./figs/tmp3.pdf): PDF inclusion: multiple pdfs w
 ith page group included in a single page
 > <./figs/tmp5.pdf>] [9]
-<figs/example_landscape.pdf, id=169, 587.19376pt x 244.915pt>
+<figs/example_landscape.pdf, id=169, 505.89pt x 180.675pt>
 File: figs/example_landscape.pdf Graphic file (type pdf)
 
 <use figs/example_landscape.pdf>
 Package pdftex.def Info: figs/example_landscape.pdf used on input line 253.
-(pdftex.def)             Requested size: 231.135pt x 96.40215pt.
+(pdftex.def)             Requested size: 369.8174pt x 132.0791pt.
  [10 <./figs/example_landscape.pdf>] [11]
-<figs/test_pics_1.pdf, id=196, 584.1825pt x 500.87125pt>
+<figs/test_pics_1.pdf, id=205, 584.1825pt x 500.87125pt>
 File: figs/test_pics_1.pdf Graphic file (type pdf)
 
 <use figs/test_pics_1.pdf>
 Package pdftex.def Info: figs/test_pics_1.pdf used on input line 319.
 (pdftex.def)             Requested size: 110.94733pt x 95.12067pt.
- <figs/test_pics_2.pdf, id=197, 493.845pt x 481.8pt>
+ <figs/test_pics_2.pdf, id=206, 493.845pt x 481.8pt>
 File: figs/test_pics_2.pdf Graphic file (type pdf)
 
 <use figs/test_pics_2.pdf>
 Package pdftex.def Info: figs/test_pics_2.pdf used on input line 324.
 (pdftex.def)             Requested size: 110.94733pt x 108.23857pt.
 
-<figs/test_pics_3.pdf, id=198, 496.85625pt x 496.85625pt>
+<figs/test_pics_3.pdf, id=207, 496.85625pt x 496.85625pt>
 File: figs/test_pics_3.pdf Graphic file (type pdf)
 
 <use figs/test_pics_3.pdf>
 Package pdftex.def Info: figs/test_pics_3.pdf used on input line 329.
 (pdftex.def)             Requested size: 110.94733pt x 110.94629pt.
 
-<figs/test_pics_4.pdf, id=199, 502.87875pt x 502.87875pt>
+<figs/test_pics_4.pdf, id=208, 502.87875pt x 502.87875pt>
 File: figs/test_pics_4.pdf Graphic file (type pdf)
 
 <use figs/test_pics_4.pdf>
 Package pdftex.def Info: figs/test_pics_4.pdf used on input line 334.
 (pdftex.def)             Requested size: 110.94733pt x 110.9406pt.
 
-<figs/test_pics_5.pdf, id=200, 599.23875pt x 450.68375pt>
+<figs/test_pics_5.pdf, id=209, 599.23875pt x 450.68375pt>
 File: figs/test_pics_5.pdf Graphic file (type pdf)
 
 <use figs/test_pics_5.pdf>
 Package pdftex.def Info: figs/test_pics_5.pdf used on input line 339.
 (pdftex.def)             Requested size: 110.94733pt x 83.43707pt.
 
-<figs/test_pics_6.pdf, id=201, 617.30624pt x 462.72874pt>
+<figs/test_pics_6.pdf, id=210, 617.30624pt x 462.72874pt>
 File: figs/test_pics_6.pdf Graphic file (type pdf)
 
 <use figs/test_pics_6.pdf>
 Package pdftex.def Info: figs/test_pics_6.pdf used on input line 344.
 (pdftex.def)             Requested size: 110.94733pt x 83.16048pt.
 
-<figs/test_pics_7.pdf, id=202, 422.57875pt x 417.56pt>
+<figs/test_pics_7.pdf, id=211, 422.57875pt x 417.56pt>
 File: figs/test_pics_7.pdf Graphic file (type pdf)
 
 <use figs/test_pics_7.pdf>
 Package pdftex.def Info: figs/test_pics_7.pdf used on input line 349.
 (pdftex.def)             Requested size: 110.94733pt x 109.62706pt.
 
-<figs/test_pics_8.pdf, id=203, 414.54875pt x 413.545pt>
+<figs/test_pics_8.pdf, id=212, 414.54875pt x 413.545pt>
 File: figs/test_pics_8.pdf Graphic file (type pdf)
 
 <use figs/test_pics_8.pdf>
@@ -814,116 +814,116 @@ Package pdftex.def Info: figs/test_pics_8.pdf used on input line 354.
 .pdf> <./figs/test_pics_4.pdf> <./figs/test_pics_5.pdf> <./figs/test_pics_6.pdf
 > <./figs/test_pics_7.pdf> <./figs/test_pics_8.pdf>]
 [14] [15] [16] [17] [18] [19] [20]
-<figs/vf_grid.png, id=403, 578.16pt x 578.16pt>
+<figs/vf_grid.png, id=413, 578.16pt x 578.16pt>
 File: figs/vf_grid.png Graphic file (type png)
  <use figs/vf_grid.png>
-Package pdftex.def Info: figs/vf_grid.png used on input line 485.
+Package pdftex.def Info: figs/vf_grid.png used on input line 484.
 (pdftex.def)             Requested size: 162.6071pt x 162.6075pt.
 
-<figs/vf_cluster.png, id=405, 578.16pt x 578.16pt>
+<figs/vf_cluster.png, id=415, 578.16pt x 578.16pt>
 File: figs/vf_cluster.png Graphic file (type png)
  <use figs/vf_cluster.png>
-Package pdftex.def Info: figs/vf_cluster.png used on input line 491.
+Package pdftex.def Info: figs/vf_cluster.png used on input line 490.
 (pdftex.def)             Requested size: 162.6071pt x 162.6075pt.
 
-Overfull \hbox (5.22217pt too wide) in paragraph at lines 483--493
+Overfull \hbox (5.22217pt too wide) in paragraph at lines 482--492
  [][]  [] 
  []
 
-<figs/vf_fil.png, id=406, 578.16pt x 578.16pt>
+<figs/vf_fil.png, id=416, 578.16pt x 578.16pt>
 File: figs/vf_fil.png Graphic file (type png)
  <use figs/vf_fil.png>
-Package pdftex.def Info: figs/vf_fil.png used on input line 497.
+Package pdftex.def Info: figs/vf_fil.png used on input line 496.
 (pdftex.def)             Requested size: 162.6071pt x 162.6075pt.
 
-<figs/vf_wall.png, id=407, 578.16pt x 578.16pt>
+<figs/vf_wall.png, id=417, 578.16pt x 578.16pt>
 File: figs/vf_wall.png Graphic file (type png)
  <use figs/vf_wall.png>
-Package pdftex.def Info: figs/vf_wall.png used on input line 503.
+Package pdftex.def Info: figs/vf_wall.png used on input line 502.
 (pdftex.def)             Requested size: 162.6071pt x 162.6075pt.
 
-Overfull \hbox (5.22217pt too wide) in paragraph at lines 495--506
+Overfull \hbox (5.22217pt too wide) in paragraph at lines 494--505
  [][]  [] 
  []
 
-<figs/percfil01voronoi.pdf, id=408, 426.59375pt x 378.41376pt>
+<figs/percfil01voronoi.pdf, id=418, 426.59375pt x 378.41376pt>
 File: figs/percfil01voronoi.pdf Graphic file (type pdf)
 
 <use figs/percfil01voronoi.pdf>
-Package pdftex.def Info: figs/percfil01voronoi.pdf used on input line 520.
+Package pdftex.def Info: figs/percfil01voronoi.pdf used on input line 519.
 (pdftex.def)             Requested size: 88.75876pt x 78.73013pt.
 
-<figs/percfil09voronoi.pdf, id=409, 429.605pt x 378.41376pt>
+<figs/percfil09voronoi.pdf, id=419, 429.605pt x 378.41376pt>
 File: figs/percfil09voronoi.pdf Graphic file (type pdf)
 
 <use figs/percfil09voronoi.pdf>
-Package pdftex.def Info: figs/percfil09voronoi.pdf used on input line 525.
+Package pdftex.def Info: figs/percfil09voronoi.pdf used on input line 524.
 (pdftex.def)             Requested size: 88.75876pt x 78.1816pt.
 File: figs/percfil09voronoi.pdf Graphic file (type pdf)
  <use figs/percfil09voronoi.pdf>
-Package pdftex.def Info: figs/percfil09voronoi.pdf used on input line 530.
+Package pdftex.def Info: figs/percfil09voronoi.pdf used on input line 529.
 (pdftex.def)             Requested size: 88.75876pt x 78.1816pt.
 
-<figs/percfil01pd.pdf, id=410, 416.55624pt x 377.41pt>
+<figs/percfil01pd.pdf, id=420, 416.55624pt x 377.41pt>
 File: figs/percfil01pd.pdf Graphic file (type pdf)
 
 <use figs/percfil01pd.pdf>
-Package pdftex.def Info: figs/percfil01pd.pdf used on input line 535.
+Package pdftex.def Info: figs/percfil01pd.pdf used on input line 534.
 (pdftex.def)             Requested size: 88.75876pt x 80.41595pt.
 
-<figs/percfil09pd.pdf, id=411, 418.56375pt x 377.41pt>
+<figs/percfil09pd.pdf, id=421, 418.56375pt x 377.41pt>
 File: figs/percfil09pd.pdf Graphic file (type pdf)
 
 <use figs/percfil09pd.pdf>
-Package pdftex.def Info: figs/percfil09pd.pdf used on input line 540.
+Package pdftex.def Info: figs/percfil09pd.pdf used on input line 539.
 (pdftex.def)             Requested size: 88.75876pt x 80.0301pt.
 File: figs/percfil09pd.pdf Graphic file (type pdf)
  <use figs/percfil09pd.pdf>
-Package pdftex.def Info: figs/percfil09pd.pdf used on input line 545.
+Package pdftex.def Info: figs/percfil09pd.pdf used on input line 544.
 (pdftex.def)             Requested size: 88.75876pt x 80.0301pt.
  [21]
-<figs/sub_euler_lineplot_log10_norm_False.pdf, id=415, 751.60799pt x 642.29965p
+<figs/sub_euler_lineplot_log10_norm_False.pdf, id=425, 751.60799pt x 642.29965p
 t>
 File: figs/sub_euler_lineplot_log10_norm_False.pdf Graphic file (type pdf)
  <use figs/sub_euler_lineplot_log10_norm_False.pdf>
 Package pdftex.def Info: figs/sub_euler_lineplot_log10_norm_False.pdf used on i
-nput line 573.
+nput line 569.
 (pdftex.def)             Requested size: 208.02008pt x 177.76492pt.
 
-<figs/sub_silh_lineplot_log10_norm_False.pdf, id=416, 751.60799pt x 642.29965pt
+<figs/sub_silh_lineplot_log10_norm_False.pdf, id=426, 751.60799pt x 642.29965pt
 >
 File: figs/sub_silh_lineplot_log10_norm_False.pdf Graphic file (type pdf)
  <use figs/sub_silh_lineplot_log10_norm_False.pdf>
 Package pdftex.def Info: figs/sub_silh_lineplot_log10_norm_False.pdf used on in
-put line 579.
+put line 575.
 (pdftex.def)             Requested size: 208.02008pt x 177.76492pt.
 
-<figs/sub_contour_lineplot_log10_norm_False.pdf, id=417, 751.60799pt x 413.9264
+<figs/sub_contour_lineplot_log10_norm_False.pdf, id=427, 751.60799pt x 413.9264
 4pt>
 File: figs/sub_contour_lineplot_log10_norm_False.pdf Graphic file (type pdf)
  <use figs/sub_contour_lineplot_log10_norm_False.pdf>
 Package pdftex.def Info: figs/sub_contour_lineplot_log10_norm_False.pdf used on
- input line 585.
+ input line 581.
 (pdftex.def)             Requested size: 208.02008pt x 114.55962pt.
 
-<figs/sub_weight_lineplot_log10_norm_False.pdf, id=418, 751.60799pt x 519.44063
+<figs/sub_weight_lineplot_log10_norm_False.pdf, id=428, 751.60799pt x 519.44063
 pt>
 File: figs/sub_weight_lineplot_log10_norm_False.pdf Graphic file (type pdf)
  <use figs/sub_weight_lineplot_log10_norm_False.pdf>
 Package pdftex.def Info: figs/sub_weight_lineplot_log10_norm_False.pdf used on 
-input line 591.
+input line 587.
 (pdftex.def)             Requested size: 208.02008pt x 143.76207pt.
 
-<figs/sub_corr_lineplot_log10_norm_False.pdf, id=419, 751.60799pt x 184.10782pt
+<figs/sub_corr_lineplot_log10_norm_False.pdf, id=429, 751.60799pt x 184.10782pt
 >
 File: figs/sub_corr_lineplot_log10_norm_False.pdf Graphic file (type pdf)
  <use figs/sub_corr_lineplot_log10_norm_False.pdf>
 Package pdftex.def Info: figs/sub_corr_lineplot_log10_norm_False.pdf used on in
-put line 596.
+put line 592.
 (pdftex.def)             Requested size: 208.02008pt x 50.95427pt.
 
 
-LaTeX Warning: Float too large for page by 8.41438pt on input line 601.
+LaTeX Warning: Float too large for page by 8.41438pt on input line 597.
 
 [22 <./figs/vf_grid.png> <./figs/vf_cluster.png> <./figs/vf_fil.png> <./figs/vf
 _wall.png>] [23 <./figs/percfil01voronoi.pdf> <./figs/percfil09voronoi.pdf> <./
@@ -945,45 +945,43 @@ pdfTeX warning: pdflatex (file ./figs/sub_weight_lineplot_log10_norm_False.pdf)
 pdfTeX warning: pdflatex (file ./figs/sub_corr_lineplot_log10_norm_False.pdf): 
 PDF inclusion: multiple pdfs with page group included in a single page
 >]
-<figs/sub_euler_lineplot_log10_norm_True.pdf, id=716, 751.60799pt x 642.29965pt
+<figs/sub_euler_lineplot_log10_norm_True.pdf, id=726, 751.60799pt x 642.29965pt
 >
 File: figs/sub_euler_lineplot_log10_norm_True.pdf Graphic file (type pdf)
  <use figs/sub_euler_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/sub_euler_lineplot_log10_norm_True.pdf used on in
-put line 620.
+put line 613.
 (pdftex.def)             Requested size: 208.02008pt x 177.76492pt.
 
-<figs/sub_silh_lineplot_log10_norm_True.pdf, id=717, 751.60799pt x 642.29965pt>
+<figs/sub_silh_lineplot_log10_norm_True.pdf, id=727, 751.60799pt x 642.29965pt>
 File: figs/sub_silh_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 <use figs/sub_silh_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/sub_silh_lineplot_log10_norm_True.pdf used on inp
-ut line 626.
+ut line 619.
 (pdftex.def)             Requested size: 208.02008pt x 177.76492pt.
 
-<figs/sub_contour_lineplot_log10_norm_True.pdf, id=718, 751.60799pt x 413.92644
+<figs/sub_contour_lineplot_log10_norm_True.pdf, id=728, 751.60799pt x 413.92644
 pt>
 File: figs/sub_contour_lineplot_log10_norm_True.pdf Graphic file (type pdf)
  <use figs/sub_contour_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/sub_contour_lineplot_log10_norm_True.pdf used on 
-input line 632.
+input line 625.
 (pdftex.def)             Requested size: 208.02008pt x 114.55962pt.
 
-<figs/sub_weight_lineplot_log10_norm_True.pdf, id=719, 751.60799pt x 519.44063p
+<figs/sub_weight_lineplot_log10_norm_True.pdf, id=729, 751.60799pt x 519.44063p
 t>
 File: figs/sub_weight_lineplot_log10_norm_True.pdf Graphic file (type pdf)
  <use figs/sub_weight_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/sub_weight_lineplot_log10_norm_True.pdf used on i
-nput line 638.
+nput line 631.
 (pdftex.def)             Requested size: 208.02008pt x 143.76207pt.
 
-<figs/sub_corr_lineplot_log10_norm_True.pdf, id=720, 751.60799pt x 184.10782pt>
+<figs/sub_corr_lineplot_log10_norm_True.pdf, id=730, 751.60799pt x 184.10782pt>
 File: figs/sub_corr_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 <use figs/sub_corr_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/sub_corr_lineplot_log10_norm_True.pdf used on inp
-ut line 643.
+ut line 636.
 (pdftex.def)             Requested size: 208.02008pt x 50.95427pt.
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 660.
  [25] [26 <./figs/sub_euler_lineplot_log10_norm_True.pdf> <./figs/sub_silh_line
 plot_log10_norm_True.pdf
 
@@ -1001,79 +999,82 @@ pdfTeX warning: pdflatex (file ./figs/sub_weight_lineplot_log10_norm_True.pdf):
 
 pdfTeX warning: pdflatex (file ./figs/sub_corr_lineplot_log10_norm_True.pdf): P
 DF inclusion: multiple pdfs with page group included in a single page
->] <figs/triplesplitA.pdf, id=914, 612.2875pt x 565.11125pt>
+>]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 654.
+ [27] <figs/triplesplitA.pdf, id=927, 612.2875pt x 565.11125pt>
 File: figs/triplesplitA.pdf Graphic file (type pdf)
 
 <use figs/triplesplitA.pdf>
-Package pdftex.def Info: figs/triplesplitA.pdf used on input line 677.
+Package pdftex.def Info: figs/triplesplitA.pdf used on input line 671.
 (pdftex.def)             Requested size: 115.56749pt x 106.65654pt.
 
-<figs/triplesplitB.pdf, id=915, 615.29875pt x 560.0925pt>
+<figs/triplesplitB.pdf, id=928, 615.29875pt x 560.0925pt>
 File: figs/triplesplitB.pdf Graphic file (type pdf)
 
 <use figs/triplesplitB.pdf>
-Package pdftex.def Info: figs/triplesplitB.pdf used on input line 683.
+Package pdftex.def Info: figs/triplesplitB.pdf used on input line 677.
 (pdftex.def)             Requested size: 115.56749pt x 105.19655pt.
 
-<figs/triplesplitC.pdf, id=916, 620.3175pt x 568.1225pt>
+<figs/triplesplitC.pdf, id=929, 620.3175pt x 568.1225pt>
 File: figs/triplesplitC.pdf Graphic file (type pdf)
 
 <use figs/triplesplitC.pdf>
-Package pdftex.def Info: figs/triplesplitC.pdf used on input line 689.
+Package pdftex.def Info: figs/triplesplitC.pdf used on input line 683.
 (pdftex.def)             Requested size: 115.56749pt x 105.83786pt.
- [27]
+ [28 <./figs/triplesplitA.pdf> <./figs/triplesplitB.pdf> <./figs/triplesplitC.p
+df>]
 File: figs/wdmfig.pdf Graphic file (type pdf)
  <use figs/wdmfig.pdf>
-Package pdftex.def Info: figs/wdmfig.pdf used on input line 706.
+Package pdftex.def Info: figs/wdmfig.pdf used on input line 700.
 (pdftex.def)             Requested size: 110.94733pt x 92.06778pt.
 File: figs/cdmfig.pdf Graphic file (type pdf)
  <use figs/cdmfig.pdf>
-Package pdftex.def Info: figs/cdmfig.pdf used on input line 711.
+Package pdftex.def Info: figs/cdmfig.pdf used on input line 705.
 (pdftex.def)             Requested size: 110.94733pt x 93.2932pt.
 
-<figs/cdmdiag.pdf, id=920, 471.7625pt x 422.57875pt>
+<figs/cdmdiag.pdf, id=991, 471.7625pt x 422.57875pt>
 File: figs/cdmdiag.pdf Graphic file (type pdf)
  <use figs/cdmdiag.pdf>
-Package pdftex.def Info: figs/cdmdiag.pdf used on input line 716.
+Package pdftex.def Info: figs/cdmdiag.pdf used on input line 710.
 (pdftex.def)             Requested size: 110.94733pt x 99.37694pt.
 
-<figs/wdmdiag.pdf, id=921, 475.7775pt x 426.59375pt>
+<figs/wdmdiag.pdf, id=992, 475.7775pt x 426.59375pt>
 File: figs/wdmdiag.pdf Graphic file (type pdf)
  <use figs/wdmdiag.pdf>
-Package pdftex.def Info: figs/wdmdiag.pdf used on input line 721.
+Package pdftex.def Info: figs/wdmdiag.pdf used on input line 715.
 (pdftex.def)             Requested size: 110.94733pt x 99.47493pt.
 
 
-Package caption Warning: \label without proper reference on input line 703.
+Package caption Warning: \label without proper reference on input line 698.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:eagleDiags' on page 28 undefined on input line 72
-7.
+LaTeX Warning: Reference `fig:eagleDiags' on page 29 undefined on input line 72
+1.
 
-[28 <./figs/triplesplitA.pdf> <./figs/triplesplitB.pdf> <./figs/triplesplitC.pd
-f> <./figs/cdmdiag.pdf> <./figs/wdmdiag.pdf>] [29] [30] [31]
-<figs/hmap_dim0_nonorm.pdf, id=1059, 930.1061pt x 182.48175pt>
+[29 <./figs/cdmdiag.pdf> <./figs/wdmdiag.pdf>]
+<figs/hmap_dim0_nonorm.pdf, id=1062, 930.1061pt x 182.48175pt>
 File: figs/hmap_dim0_nonorm.pdf Graphic file (type pdf)
 
 <use figs/hmap_dim0_nonorm.pdf>
-Package pdftex.def Info: figs/hmap_dim0_nonorm.pdf used on input line 806.
+Package pdftex.def Info: figs/hmap_dim0_nonorm.pdf used on input line 800.
 (pdftex.def)             Requested size: 277.3648pt x 54.41637pt.
 
-<figs/hmap_dim1_nonorm.pdf, id=1060, 930.1061pt x 182.48175pt>
+<figs/hmap_dim1_nonorm.pdf, id=1063, 930.1061pt x 182.48175pt>
 File: figs/hmap_dim1_nonorm.pdf Graphic file (type pdf)
 
 <use figs/hmap_dim1_nonorm.pdf>
-Package pdftex.def Info: figs/hmap_dim1_nonorm.pdf used on input line 812.
+Package pdftex.def Info: figs/hmap_dim1_nonorm.pdf used on input line 806.
 (pdftex.def)             Requested size: 277.3648pt x 54.41637pt.
 
-<figs/hmap_dim2_nonorm.pdf, id=1061, 930.1061pt x 182.48175pt>
+<figs/hmap_dim2_nonorm.pdf, id=1064, 930.1061pt x 182.48175pt>
 File: figs/hmap_dim2_nonorm.pdf Graphic file (type pdf)
 
 <use figs/hmap_dim2_nonorm.pdf>
-Package pdftex.def Info: figs/hmap_dim2_nonorm.pdf used on input line 818.
+Package pdftex.def Info: figs/hmap_dim2_nonorm.pdf used on input line 812.
 (pdftex.def)             Requested size: 277.3648pt x 54.41637pt.
- [32 <./figs/hmap_dim0_nonorm.pdf> <./figs/hmap_dim1_nonorm.pdf
+ [30] [31] [32] [33 <./figs/hmap_dim0_nonorm.pdf> <./figs/hmap_dim1_nonorm.pdf
 
 pdfTeX warning: pdflatex (file ./figs/hmap_dim1_nonorm.pdf): PDF inclusion: mul
 tiple pdfs with page group included in a single page
@@ -1081,117 +1082,69 @@ tiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figs/hmap_dim2_nonorm.pdf): PDF inclusion: mul
 tiple pdfs with page group included in a single page
->] <figs/valid1.pdf, id=1107, 392.46625pt x 350.30875pt>
+>] <figs/valid1.pdf, id=1120, 392.46625pt x 350.30875pt>
 File: figs/valid1.pdf Graphic file (type pdf)
  <use figs/valid1.pdf>
-Package pdftex.def Info: figs/valid1.pdf used on input line 832.
+Package pdftex.def Info: figs/valid1.pdf used on input line 826.
 (pdftex.def)             Requested size: 97.07979pt x 86.65224pt.
 
-<figs/valid2.pdf, id=1108, 449.68pt x 349.305pt>
+<figs/valid2.pdf, id=1121, 449.68pt x 349.305pt>
 File: figs/valid2.pdf Graphic file (type pdf)
  <use figs/valid2.pdf>
-Package pdftex.def Info: figs/valid2.pdf used on input line 838.
+Package pdftex.def Info: figs/valid2.pdf used on input line 832.
 (pdftex.def)             Requested size: 110.94733pt x 86.18008pt.
 
-<figs/valid3.pdf, id=1109, 393.47pt x 349.305pt>
+<figs/valid3.pdf, id=1122, 393.47pt x 349.305pt>
 File: figs/valid3.pdf Graphic file (type pdf)
  <use figs/valid3.pdf>
-Package pdftex.def Info: figs/valid3.pdf used on input line 844.
+Package pdftex.def Info: figs/valid3.pdf used on input line 838.
 (pdftex.def)             Requested size: 97.07979pt x 86.18008pt.
 
-<figs/valid4.pdf, id=1110, 449.68pt x 348.30125pt>
+<figs/valid4.pdf, id=1123, 449.68pt x 348.30125pt>
 File: figs/valid4.pdf Graphic file (type pdf)
  <use figs/valid4.pdf>
-Package pdftex.def Info: figs/valid4.pdf used on input line 850.
+Package pdftex.def Info: figs/valid4.pdf used on input line 844.
 (pdftex.def)             Requested size: 110.94733pt x 85.93245pt.
 
 
-Package caption Warning: \label without proper reference on input line 853.
+Package caption Warning: \label without proper reference on input line 848.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:validationfigs' on page 33 undefined on input lin
-e 857.
+LaTeX Warning: Reference `fig:validationfigs' on page 34 undefined on input lin
+e 851.
 
-<figs/hmap_dim0_yesnorm.pdf, id=1111, 940.15927pt x 182.48175pt>
+<figs/hmap_dim0_yesnorm.pdf, id=1124, 940.15927pt x 182.48175pt>
 File: figs/hmap_dim0_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/hmap_dim0_yesnorm.pdf>
-Package pdftex.def Info: figs/hmap_dim0_yesnorm.pdf used on input line 864.
+Package pdftex.def Info: figs/hmap_dim0_yesnorm.pdf used on input line 858.
 (pdftex.def)             Requested size: 277.3648pt x 53.83443pt.
 
-<figs/hmap_dim1_yesnorm.pdf, id=1112, 940.15927pt x 182.48175pt>
+<figs/hmap_dim1_yesnorm.pdf, id=1125, 940.15927pt x 182.48175pt>
 File: figs/hmap_dim1_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/hmap_dim1_yesnorm.pdf>
-Package pdftex.def Info: figs/hmap_dim1_yesnorm.pdf used on input line 870.
+Package pdftex.def Info: figs/hmap_dim1_yesnorm.pdf used on input line 864.
 (pdftex.def)             Requested size: 277.3648pt x 53.83443pt.
 
-<figs/hmap_dim2_yesnorm.pdf, id=1113, 940.15927pt x 182.48175pt>
+<figs/hmap_dim2_yesnorm.pdf, id=1126, 940.15927pt x 182.48175pt>
 File: figs/hmap_dim2_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/hmap_dim2_yesnorm.pdf>
-Package pdftex.def Info: figs/hmap_dim2_yesnorm.pdf used on input line 876.
+Package pdftex.def Info: figs/hmap_dim2_yesnorm.pdf used on input line 870.
 (pdftex.def)             Requested size: 277.3648pt x 53.83443pt.
 
 
-Package caption Warning: \label without proper reference on input line 879.
+Package caption Warning: \label without proper reference on input line 874.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:StandCubeHeatmap' on page 33 undefined on input l
-ine 883.
+LaTeX Warning: Reference `fig:StandCubeHeatmap' on page 34 undefined on input l
+ine 877.
 
-[33 <./figs/valid1.pdf> <./figs/valid2.pdf> <./figs/valid3.pdf> <./figs/valid4.
-pdf>]
-<figs/euler_lineplot_log10_norm_False.pdf, id=1194, 1438.3691pt x 353.24629pt>
-File: figs/euler_lineplot_log10_norm_False.pdf Graphic file (type pdf)
-
-<use figs/euler_lineplot_log10_norm_False.pdf>
-Package pdftex.def Info: figs/euler_lineplot_log10_norm_False.pdf used on input
- line 908.
-(pdftex.def)             Requested size: 323.58757pt x 79.4662pt.
-
-<figs/silh_lineplot_log10_norm_False.pdf, id=1195, 1438.29999pt x 353.24629pt>
-File: figs/silh_lineplot_log10_norm_False.pdf Graphic file (type pdf)
-
-<use figs/silh_lineplot_log10_norm_False.pdf>
-Package pdftex.def Info: figs/silh_lineplot_log10_norm_False.pdf used on input 
-line 909.
-(pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
-
-<figs/smooth_lineplot_log10_norm_False.pdf, id=1196, 1438.29999pt x 353.24629pt
->
-File: figs/smooth_lineplot_log10_norm_False.pdf Graphic file (type pdf)
- <use figs/smooth_lineplot_log10_norm_False.pdf>
-Package pdftex.def Info: figs/smooth_lineplot_log10_norm_False.pdf used on inpu
-t line 910.
-(pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
-
-<figs/weight_lineplot_log10_norm_False.pdf, id=1197, 1438.29999pt x 353.24629pt
->
-File: figs/weight_lineplot_log10_norm_False.pdf Graphic file (type pdf)
- <use figs/weight_lineplot_log10_norm_False.pdf>
-Package pdftex.def Info: figs/weight_lineplot_log10_norm_False.pdf used on inpu
-t line 911.
-(pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
-
-<figs/corr_lineplot_log10_norm_False.pdf, id=1198, 1438.3691pt x 353.24629pt>
-File: figs/corr_lineplot_log10_norm_False.pdf Graphic file (type pdf)
-
-<use figs/corr_lineplot_log10_norm_False.pdf>
-Package pdftex.def Info: figs/corr_lineplot_log10_norm_False.pdf used on input 
-line 912.
-(pdftex.def)             Requested size: 323.58757pt x 79.4662pt.
-
-<figs/cross_lineplot_log10_norm_False.pdf, id=1199, 1438.3691pt x 352.96556pt>
-File: figs/cross_lineplot_log10_norm_False.pdf Graphic file (type pdf)
-
-<use figs/cross_lineplot_log10_norm_False.pdf>
-Package pdftex.def Info: figs/cross_lineplot_log10_norm_False.pdf used on input
- line 913.
-(pdftex.def)             Requested size: 323.58757pt x 79.40305pt.
- [34 <./figs/hmap_dim0_yesnorm.pdf> <./figs/hmap_dim1_yesnorm.pdf
+[34 <./figs/valid1.pdf> <./figs/valid2.pdf> <./figs/valid3.pdf> <./figs/valid4.
+pdf>] [35 <./figs/hmap_dim0_yesnorm.pdf> <./figs/hmap_dim1_yesnorm.pdf
 
 pdfTeX warning: pdflatex (file ./figs/hmap_dim1_yesnorm.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
@@ -1200,53 +1153,101 @@ ltiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./figs/hmap_dim2_yesnorm.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<figs/euler_lineplot_log10_norm_True.pdf, id=1247, 1438.3691pt x 353.24629pt>
+<figs/euler_lineplot_log10_norm_False.pdf, id=1254, 1438.3691pt x 353.24629pt>
+File: figs/euler_lineplot_log10_norm_False.pdf Graphic file (type pdf)
+
+<use figs/euler_lineplot_log10_norm_False.pdf>
+Package pdftex.def Info: figs/euler_lineplot_log10_norm_False.pdf used on input
+ line 902.
+(pdftex.def)             Requested size: 323.58757pt x 79.4662pt.
+
+<figs/silh_lineplot_log10_norm_False.pdf, id=1255, 1438.29999pt x 353.24629pt>
+File: figs/silh_lineplot_log10_norm_False.pdf Graphic file (type pdf)
+
+<use figs/silh_lineplot_log10_norm_False.pdf>
+Package pdftex.def Info: figs/silh_lineplot_log10_norm_False.pdf used on input 
+line 903.
+(pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
+
+<figs/smooth_lineplot_log10_norm_False.pdf, id=1256, 1438.29999pt x 353.24629pt
+>
+File: figs/smooth_lineplot_log10_norm_False.pdf Graphic file (type pdf)
+ <use figs/smooth_lineplot_log10_norm_False.pdf>
+Package pdftex.def Info: figs/smooth_lineplot_log10_norm_False.pdf used on inpu
+t line 904.
+(pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
+
+<figs/weight_lineplot_log10_norm_False.pdf, id=1257, 1438.29999pt x 353.24629pt
+>
+File: figs/weight_lineplot_log10_norm_False.pdf Graphic file (type pdf)
+ <use figs/weight_lineplot_log10_norm_False.pdf>
+Package pdftex.def Info: figs/weight_lineplot_log10_norm_False.pdf used on inpu
+t line 905.
+(pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
+
+<figs/corr_lineplot_log10_norm_False.pdf, id=1258, 1438.3691pt x 353.24629pt>
+File: figs/corr_lineplot_log10_norm_False.pdf Graphic file (type pdf)
+
+<use figs/corr_lineplot_log10_norm_False.pdf>
+Package pdftex.def Info: figs/corr_lineplot_log10_norm_False.pdf used on input 
+line 906.
+(pdftex.def)             Requested size: 323.58757pt x 79.4662pt.
+
+<figs/cross_lineplot_log10_norm_False.pdf, id=1259, 1438.3691pt x 352.96556pt>
+File: figs/cross_lineplot_log10_norm_False.pdf Graphic file (type pdf)
+
+<use figs/cross_lineplot_log10_norm_False.pdf>
+Package pdftex.def Info: figs/cross_lineplot_log10_norm_False.pdf used on input
+ line 907.
+(pdftex.def)             Requested size: 323.58757pt x 79.40305pt.
+
+<figs/euler_lineplot_log10_norm_True.pdf, id=1260, 1438.3691pt x 353.24629pt>
 File: figs/euler_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 
 <use figs/euler_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/euler_lineplot_log10_norm_True.pdf used on input 
-line 922.
+line 916.
 (pdftex.def)             Requested size: 323.58757pt x 79.4662pt.
 
-<figs/silh_lineplot_log10_norm_True.pdf, id=1248, 1438.29999pt x 353.24629pt>
+<figs/silh_lineplot_log10_norm_True.pdf, id=1261, 1438.29999pt x 353.24629pt>
 File: figs/silh_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 
 <use figs/silh_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/silh_lineplot_log10_norm_True.pdf used on input l
-ine 923.
+ine 917.
 (pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
 
-<figs/smooth_lineplot_log10_norm_True.pdf, id=1249, 1438.29999pt x 353.24629pt>
+<figs/smooth_lineplot_log10_norm_True.pdf, id=1262, 1438.29999pt x 353.24629pt>
 File: figs/smooth_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 <use figs/smooth_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/smooth_lineplot_log10_norm_True.pdf used on input
- line 924.
+ line 918.
 (pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
 
-<figs/weight_lineplot_log10_norm_True.pdf, id=1250, 1438.29999pt x 353.24629pt>
+<figs/weight_lineplot_log10_norm_True.pdf, id=1263, 1438.29999pt x 353.24629pt>
 File: figs/weight_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 <use figs/weight_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/weight_lineplot_log10_norm_True.pdf used on input
- line 925.
+ line 919.
 (pdftex.def)             Requested size: 323.58757pt x 79.47159pt.
 
-<figs/corr_lineplot_log10_norm_True.pdf, id=1251, 1438.52899pt x 353.24629pt>
+<figs/corr_lineplot_log10_norm_True.pdf, id=1264, 1438.52899pt x 353.24629pt>
 File: figs/corr_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 
 <use figs/corr_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/corr_lineplot_log10_norm_True.pdf used on input l
-ine 926.
+ine 920.
 (pdftex.def)             Requested size: 323.58757pt x 79.46082pt.
 
-<figs/cross_lineplot_log10_norm_True.pdf, id=1252, 1438.3691pt x 352.96556pt>
+<figs/cross_lineplot_log10_norm_True.pdf, id=1265, 1438.3691pt x 352.96556pt>
 File: figs/cross_lineplot_log10_norm_True.pdf Graphic file (type pdf)
 
 <use figs/cross_lineplot_log10_norm_True.pdf>
 Package pdftex.def Info: figs/cross_lineplot_log10_norm_True.pdf used on input 
-line 927.
+line 921.
 (pdftex.def)             Requested size: 323.58757pt x 79.40305pt.
- (./jcgs-submission.bbl [35]
-[36 <./figs/euler_lineplot_log10_norm_False.pdf> <./figs/silh_lineplot_log10_no
+ (./jcgs-submission.bbl [36]
+[37 <./figs/euler_lineplot_log10_norm_False.pdf> <./figs/silh_lineplot_log10_no
 rm_False.pdf
 
 pdfTeX warning: pdflatex (file ./figs/silh_lineplot_log10_norm_False.pdf): PDF 
@@ -1267,7 +1268,7 @@ inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figs/cross_lineplot_log10_norm_False.pdf): PDF
  inclusion: multiple pdfs with page group included in a single page
->] [37 <./figs/euler_lineplot_log10_norm_True.pdf> <./figs/silh_lineplot_log10_
+>] [38 <./figs/euler_lineplot_log10_norm_True.pdf> <./figs/silh_lineplot_log10_
 norm_True.pdf
 
 pdfTeX warning: pdflatex (file ./figs/silh_lineplot_log10_norm_True.pdf): PDF i
@@ -1322,7 +1323,7 @@ Missing character: There is no ¬ in font cmr12!
 Missing character: There is no å in font cmr12!
 Missing character: There is no  in font cmr12!
 Missing character: There is no ¸ in font cmr12!
- [38] [39]) [40] (./jcgs-submission.aux)
+ [39] [40]) [41] (./jcgs-submission.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1333,11 +1334,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  15482 strings out of 493014
  301077 string characters out of 6133351
- 346478 words of memory out of 5000000
+ 349478 words of memory out of 5000000
  18658 multiletter control sequences out of 15000+600000
  14656 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,77p,1548b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,13n,77p,1544b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -1354,10 +1355,10 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
 6/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jcgs-submission.pdf (40 pages, 13730820 bytes).
+Output written on jcgs-submission.pdf (41 pages, 13711925 bytes).
 PDF statistics:
- 1955 PDF objects out of 2073 (max. 8388607)
- 696 compressed objects within 7 object streams
+ 1968 PDF objects out of 2073 (max. 8388607)
+ 691 compressed objects within 7 object streams
  0 named destinations out of 1000 (max. 500000)
  318 words of extra memory for PDF output out of 10000 (max. 10000000)
 
