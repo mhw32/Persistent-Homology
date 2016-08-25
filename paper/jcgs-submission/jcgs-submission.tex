@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage{caption}
+\usepackage{booktabs}
 \usepackage{natbib}
 \usepackage{subcaption}
 \usepackage{amssymb}
@@ -160,7 +161,7 @@ structure to understand, as the gravitational forces of these galaxies will attr
 \begin{center}
 \begin{figure}[htp!]
   \centering
-  \includegraphics[width=\linewidth]{homologyobjects.png}
+  \includegraphics[width=0.85\linewidth]{homologyobjects.png}
     \caption{This figure shows the formation of connected components as line segments, loops as shaded polygons, and voids as white enclosed regions. The bottom plot shows a barcode representation of a persistence diagram where y-axis labels the zeroth, one, and two dimensional homologies, and x-axis shows the lifespan of the homology feature.}
     \label{fig:homologydemo}
 \end{figure}
@@ -647,7 +648,7 @@ We repeated the simulation study from Section~\ref{sec:results1} except preproce
 \section{Application: Cosmological Simulation Data}
 \label{sec:application}
 
-Similar to the simulation models from Section~\ref{sec:sim_model}, the Megaparsec cosmic mass distributions are likewise characterized by intricate multiscale configuration of web-like filaments and voids.  We apply the proposed methodology to cosmological simulation data.
+Similar to the simulation models from Section~\ref{sec:sim_model}, the Megaparsec cosmic mass distributions are likewise characterized by intricate multiscale configuration of web-like filaments and voids. We apply the proposed methodology to cosmological simulation data.
 
 {\color{red}
 \begin{itemize}
@@ -656,12 +657,6 @@ Similar to the simulation models from Section~\ref{sec:sim_model}, the Megaparse
 \item  Discuss Warm vs. Cold DM
 \end{itemize}
 Real observations of cosmic web:  Great Wall \cite{geller1989mapping}, Sloan Great Wall \cite{gott2005map}, gas \cite{cantalupo2014cosmic}.}
-
-We analyze N-body simulations of structure formation. The simulation box is 100 co-moving Mpc on a side, and the numerical integration of the gravitational forces is run from redshift 127, when the age of the Universe is assumed to be less than 10Myr, to the present day (13.8 Gyr). The cosmological parameters are consistent with the 7-year results from the WMAP satellites: matter density $\Omega_0 = 0.272$, dark energy density $\Omega_{\Lambda} = 0.728$, Hubble parameter $h_0 = 0.704$, spectral index $n_s=0.967$, and power spectrum normalization $\sigma_8=0.81$. The mass of the simulation particle is $8.8x10^6$ $M_{sun}$. Haloes and subhaloes were identified using the SUBFIND algorithm {\color{red} Springel2001}, and the smallest halo that can be resolved has 20 particles. These runs were performed to be dark matter-only counterparts to the the hydrodynamical runs of the Eagle project \cite{schaye2015eagle}; we stress that the runs used in this paper use gravity alone. 
-
-We use two simulations in this study, one cold dark matter (CDM) and the other warm dark matter (WDM) (recall \figref{fig:introData}). They make use of the same initial phases, and differ in that the latter has wave amplitudes rescaled using the transfer function of a 3.3keV thermal relic, the relic mass chosen to be in agreement with the Lyman-alpha constraints of \cite{viel2013warm}. This results in the suppression of structure on the scale of dwarf galaxies. Spurious subhaloes have been removed using the algorithm of \cite{lovell2014properties}.
-
-In the simulation study, all test were standard two-sample T-tests  using the varying proposed test statistics derived from the persistence diagrams.  For our two cosmological simulation cubes, one might consider cutting up the cubes into sub-cubes to produce similar sets of samples used in the voronoi experiments. Let a \textit{double-split} be defined as splitting the simulation cube along both the $x$ and $y$ axis into $2$ equal groups, creating 4 equally sized cubes in total. \textit{quadruple-split} are defined in a similar fashion, producing 64 equally sized cubes, further splitting each of the cubes in a \textit{double-split} set into four sub-cubes. Using this splitting technique on both the CDM and WDM simulations, we end up with two usable data sets. By doing this, however, the WDM and CDM data sets are correlated due to their identical initial conditions.  That is, the differences between the two cosmological simulation cubes is due to differences in the physics of warm vs. cold DM.  Because of this, the skeleton structure of the warm and cold DM simulations are nearly identical, allowing for paired T-tests.  Note that there is also correlation between the samples due to the large-scale structure crossing the boundaries of the sub-cubes.  We investigate this by changing the sizes of the sub-cubes, but consequently by doing so, decreases our sample size.
 
 \begin{figure}[htp!]
   \centering
@@ -683,140 +678,162 @@ In the simulation study, all test were standard two-sample T-tests  using the va
   \includegraphics[width=\linewidth]{triplesplitC.pdf}
     \label{fig:cubeDiagsC}
   \end{subfigure}
-    \caption{Examples of three triple-split samples from a CDM simulation.}
+    \caption{Examples of three quadruple-split samples from a CDM simulation.}
     \label{fig:cubeDiags}
 \end{figure}
 
-% Using the proposed method, we study simulations of the Megaparsec cosmic mass and evaluate similarities and differences in LSS based on variations in the parameters of the simulation. One particular parameter that we are interested in is the state of the dark matter in the simulation. Warm dark matter (WDM) and cold dark matter (CDM) are traditionally believed to produce very different realizations of the observable Universe, with the latter involving more slowly moving particles prone to produce a more lumpy distribution of galaxies and clusters in the LSS. The former, containing more kinetic energy, has higher resistance to formation of global structure, and is theorized to render a less topologically-interesting cosmic mass. Applying the proposed hypothesis testing framework would offer a method to \emph{quantify} the topological differences between simulations with underlying WDM and CDM assumptions.
+One parameter of interest is the state of the dark matter in the LSS. Warm dark matter (WDM) and cold dark matter (CDM) are traditionally believed to produce very different realizations of the observable Universe, with the latter involving more slowly moving particles prone to produce a more lumpy distribution of galaxies and clusters. The former, containing more kinetic energy, has higher resistance to formation of global structure, and is theorized to render a less topologically-interesting cosmic mass. Applying the hypothesis testing framework would offer a method to \emph{quantify} the topological differences between simulations with underlying WDM and CDM assumptions.
+
+In the simulation study, all test were standard two-sample T-tests  using the varying proposed test statistics derived from the persistence diagrams.  For our two cosmological simulation cubes, one might consider cutting up the cubes into sub-cubes to produce similar sets of samples as used in the Voronoi experiments. Let a \textit{double-split} be defined as splitting the simulation cube along both the $x$ and $y$ axis into $2$ equal groups, creating 4 equally sized cubes in total. Similarly, a \textit{quadruple-split} produces 64 equally sized cubes, further splitting each of the cubes in a \textit{double-split} set into four sub-cubes. Using this splitting technique on both the CDM and WDM simulations, we end up with two usable data sets. By doing this, however, the WDM and CDM data sets are correlated due to their identical initial conditions.  That is, the differences between the two cosmological simulation cubes is due to differences in the physics of warm vs. cold DM.  Because of this, the skeleton structure of the warm and cold DM simulations are nearly identical, allowing for paired T-tests.  Note that there is also correlation between the samples due to the large-scale structure crossing the boundaries of the sub-cubes.  We investigate this by changing the sizes of the sub-cubes, but consequently by doing so, decreases our sample size.
 
 \subsection{The EAGLE project}
-We analyze N-body simulations of structure formation. The simulation box is $100$ co-moving Mpc on a side, and the numerical integration of the gravitational forces is run from redshift $127$, when the age of the Universe is much less than $10$ Myr,  to the present day ($13.8$ Gyr). The cosmological parameters are consistent with the seven year results from the WMAP satellites: matter density $\Omega_0 = 0.272$, dark energy density $\Omega_{\Lambda} = 0.728$, Hubble parameter $h0 = 0.704$, spectral index $n_{s}=0.967$, and power spectrum normalization $\sigma_8=0.81$. The mass of the simulation particle is $8.8 \times 10^{6}$ Msun. Haloes and subhaloes were identified using the SUBFIND algorithm \cite{springel2001populating}, and the smallest halo that can be resolved has $20$ particles. These runs were performed to be dark matter-only counterparts to the the hydrodynamical runs of the EAGLE project \cite{schaye2015eagle}; we stress that the runs used in this paper use gravity alone. 
+We analyze N-body simulations of structure formation. The simulation box is 100 co-moving Mpc on a side, and the numerical integration of the gravitational forces is run from redshift 127, when the age of the Universe is assumed to be less than 10Myr, to the present day (13.8 Gyr). The cosmological parameters are consistent with the 7-year results from the WMAP satellites: matter density $\Omega_0 = 0.272$, dark energy density $\Omega_{\Lambda} = 0.728$, Hubble parameter $h_0 = 0.704$, spectral index $n_s=0.967$, and power spectrum normalization $\sigma_8=0.81$. The mass of the simulation particle is $8.8x10^6$ $M_{sun}$. Haloes and subhaloes were identified using the SUBFIND algorithm (\cite{springel2001populating}), and the smallest halo that can be resolved has 20 particles. These runs were performed to be dark matter-only counterparts to the the hydrodynamical runs of the Eagle project \cite{schaye2015eagle}; we stress that the runs used in this paper use gravity alone. 
 
 \begin{figure}[htp!]
   \centering
-  \label{fig:eagleDiags}
   \begin{subfigure}{0.24\textwidth}
-        \caption{Eagle CDM}
-  \includegraphics[width=\linewidth]{wdmfig.pdf}
+    \caption{Eagle CDM}
+    \includegraphics[width=\linewidth]{wdmfig.pdf}
     \label{fig:eagleDiagsA}
   \end{subfigure}
-    \begin{subfigure}{0.24\textwidth}
-        \caption{Eagle WDM}
-  \includegraphics[width=\linewidth]{cdmfig.pdf}
+  \begin{subfigure}{0.24\textwidth}
+    \caption{Eagle WDM}
+    \includegraphics[width=\linewidth]{cdmfig.pdf}
     \label{fig:eagleDiagsB}
   \end{subfigure}
-    \begin{subfigure}{0.24\textwidth}
+  \begin{subfigure}{0.24\textwidth}
     \caption{Eagle CDM PD}
-  \includegraphics[width=\linewidth]{cdmdiag.pdf}
+    \includegraphics[width=\linewidth]{cdmdiag.pdf}
     \label{fig:eagleDiagsC}
   \end{subfigure}
-    \begin{subfigure}{0.24\textwidth}
-        \caption{Eagle WDM PD}
-  \includegraphics[width=\linewidth]{wdmdiag.pdf}
+  \begin{subfigure}{0.24\textwidth}
+    \caption{Eagle WDM PD}
+    \includegraphics[width=\linewidth]{wdmdiag.pdf}
     \label{fig:eagleDiagsD}
   \end{subfigure}
-    \caption{(a, b) Visualization of the complete CDM and WDM simulations. (c, d) Their corresponding persistence diagrams. Although the CDM structure is denser, the persistence diagrams appear comparable.} 
+  \caption{(a, b) Visualization of the complete CDM and WDM simulations. (c, d) Their corresponding persistence diagrams. Although the CDM structure is denser, the persistence diagrams appear comparable.}
+
+  \label{fig:eagleDiags}
 \end{figure}
 
-We use two simulations in this study, one cold dark matter (CDM) and the other warm dark matter (WDM). They make use of the same initial phases, and differ in that the latter has wave amplitudes rescaled using the transfer function of a $3.3$ keV thermal relic, the relic mass chosen to be in agreement with the Lyman-alpha constraints of \cite{viel2013warm}. This results in the suppression of structure on the scale of dwarf galaxies. Spurious subhaloes have been removed using the algorithm of \cite{lovell2014properties}. Figure \ref{fig:eagleDiags} shows a scatter plot of both the CDM and WDM simulations along with their respective persistent diagrams. Visually, we can see that the CDM scatter plot is far more dense than WDM but share similar internal structure; the persistence diagrams also share a general structure but we can identify smaller differences in homology groups that we hope to quantify using the hypothesis testing framework. These diagrams were generated under a volume of $1\times 10^{6}$, resolution of $2$ and a DTM distance function with hyper-parameter $0.001$. 
+We use two simulations in this study, one cold dark matter (CDM) and the other warm dark matter (WDM) (recall \figref{fig:introData}). They make use of the same initial phases, and differ in that the latter has wave amplitudes rescaled using the transfer function of a 3.3keV thermal relic, the relic mass chosen to be in agreement with the Lyman-alpha constraints of \cite{viel2013warm}. This results in the suppression of structure on the scale of dwarf galaxies. Spurious subhaloes have been removed using the algorithm of \cite{lovell2014properties}. \figref{fig:eagleDiags} shows a scatter plot of both the CDM and WDM simulations along with their respective persistent diagrams. Visually, we can see that the CDM scatter plot is far more dense than WDM but share similar internal structure; the persistence diagrams also share a general structure but we can identify smaller differences in homology groups that we hope to quantify using the hypothesis testing framework. These diagrams were generated under a volume of $1\times 10^{6}$, resolution of $2$ and a DTM distance function with hyper-parameter $0.001$. 
 
 \subsection{Results}
-Having created datasets of multiple slices, the suite of hypothesis testing frameworks explored on Voronoi foams are applicable to the WDM and CDM data. Tables \ref{table:unnormhypoCDMWDMresults}, \ref{table:normhypoCDMWDMresults} shows both the standardized and unstandardized results of the five categories of hypothesis tests. The unstandardized results suggest the more splits, the more significant differences found in the topology. More interestingly still, a similar effect is observed through standardizing the persistence diagrams prior to hypothesis testing: all the frameworks produce higher p-values on average and are less confident in the difference between double-split and quadruple-split datasets. This seems to explain that similar to the Voronoi foams, a large degree of the topological difference between warm dark matter and cold dark matter assumptions in the large-scale universe are due to geometrical properties such as size.  
+Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unstandardized (left) results of the five categories of hypothesis tests. The unstandardized results suggest that with a higher number of splits, we are able to focus on smaller-scale topology, finding more significant differences. Through standardizing the persistence diagrams, we see that all the frameworks produce higher p-values on average and are less confident in the difference between double-split and quadruple-split datasets. This seems to explain that similar to the Voronoi foams, a large degree of the difference between WDM and CDM assumptions in the LSS are due to geometrical properties such as size.  
 
 \begin{table}[htp!]
     \begin{center}
         \begin{tabular}{ l | c | c }
-            Test & Double Split & Quadruple Split \\
-            \hline
-            EC & 1.156e-06 & 7.379e-26 \\
-            $\textup{EC}_{0:2}$ & 2.104e-05 & 7.379e-28 \\
-            $\textup{EC}_{0}$ & 3.273e-08 & 3.811e-30 \\
-            $\textup{EC}_{1}$ &  1.849e-05 & 0.935 \\
-            $\textup{EC}_{2}$ & 0.340 & 0.0877 \\
-            \hline
-            $\textup{Sil}_{\textup{EC}}$ & 7.709e-08 & 2.455e-20 \\ 
-            $\textup{Sil}_{0:2}$ & 1.892e-06 & 1.114e-33 \\
-            $\textup{Sil}_{0}$ & 2.958e-08 & 1.489e-34 \\
-            $\textup{Sil}_{1}$ & 1.169e-05 & 2.884e-23 \\
-            $\textup{Sil}_{2}$ & 0.925 & 0.0345 \\
-            \hline
-            $\textup{KC}_{0}$ & 0.442 & 0.000 \\
-            $\textup{KC}_{1}$ & 0.192 & 0.000 \\
-            $\textup{KC}_{2}$ & 0.248 & 0.00199 \\
-            \hline
-            $\textup{WKC}_{0}$ & 0.084 & 0.000 \\
-            $\textup{WKC}_{1}$ & 0.051 & 0.000 \\
-            $\textup{WKC}_{2}$ & 0.496 & 0.000 \\
-            $\textup{PI}$ & 0.923 & 0.281 \\
-            \hline
-            $\textup{CORR}$ & 6.656e-04 & 7.355e-16 \\
+          \toprule
+          \multicolumn{3}{c}{Unstandardized} \\
+          \toprule
+          Test & Double Split & Quadruple Split \\
+          \midrule
+          EC & 1.156e-06 & 7.379e-26 \\
+          $\textup{EC}_{0:2}$ & 2.104e-05 & 7.379e-28 \\
+          $\textup{EC}_{0}$ & 3.273e-08 & 3.811e-30 \\
+          $\textup{EC}_{1}$ &  1.849e-05 & 0.935 \\
+          $\textup{EC}_{2}$ & 0.340 & 0.0877 \\
+          \midrule
+          $\textup{Sil}_{\textup{EC}}$ & 7.709e-08 & 2.455e-20 \\ 
+          $\textup{Sil}_{0:2}$ & 1.892e-06 & 1.114e-33 \\
+          $\textup{Sil}_{0}$ & 2.958e-08 & 1.489e-34 \\
+          $\textup{Sil}_{1}$ & 1.169e-05 & 2.884e-23 \\
+          $\textup{Sil}_{2}$ & 0.925 & 0.0345 \\
+          \midrule
+          $\textup{KC}_{0}$ & 0.442 & 0.000 \\
+          $\textup{KC}_{1}$ & 0.192 & 0.000 \\
+          $\textup{KC}_{2}$ & 0.248 & 0.00199 \\
+          \midrule
+          $\textup{WKC}_{0}$ & 0.084 & 0.000 \\
+          $\textup{WKC}_{1}$ & 0.051 & 0.000 \\
+          $\textup{WKC}_{2}$ & 0.496 & 0.000 \\
+          $\textup{PI}$ & 0.923 & 0.281 \\
+          \midrule
+          $\textup{CORR}$ & 6.656e-04 & 7.355e-16 \\
+          \bottomrule
+        \end{tabular}
+        \begin{tabular}{ l | c |  c }
+          \toprule
+          \multicolumn{3}{c}{Standardized} \\
+          \toprule
+          Test & Double Split & Quadruple Split \\
+          \midrule
+          EC & 1.102e-04 &  7.345e-12 \\
+          $\textup{EC}_{0:2}$ & 1.327e-05 &  3.972e-14 \\
+          $\textup{EC}_{0}$ & 1.387e-06 & 1.614e-12 \\
+          $\textup{EC}_{1}$ & 0.0235 & 0.00143 \\
+          $\textup{EC}_{2}$ & 0.00385 & 1.977e-07 \\
+          \midrule
+          $\textup{Sil}_{\textup{EC}}$ & 0.0122 & 0.00500 \\ 
+          $\textup{Sil}_{0:2}$ & 4.295e-04 & 8.072e-12 \\
+          $\textup{Sil}_{0}$ & 6.471e-06 & 1.762e-11 \\
+          $\textup{Sil}_{1}$ & 0.0282 & 3.899e-07 \\
+          $\textup{Sil}_{2}$ & 0.00294 & 1.545e-04 \\
+          \midrule
+          $\textup{GC}_{0}$ & 0.986 & 0.856 \\
+          $\textup{GC}_{1}$ & 0.962 & 0.956 \\
+          $\textup{GC}_{2}$ & 0.962 & 0.260 \\
+          \midrule
+          $\textup{WKC}_{0}$ & 0.092 & 0.000 \\
+          $\textup{WKC}_{1}$ & 0.066 & 0.000 \\
+          $\textup{WKC}_{2}$ & 0.459 & 0.001 \\
+          $\textup{PI}$ & 0.999 & 0.306 \\
+          \midrule
+          $\textup{CORR}$ & 0.0289 & 0.918 \\
+          \bottomrule
         \end{tabular}
     \end{center}
-\caption{P-values from hypothesis tests on the \textbf{unstandardized} WDM and CDM simulations by double, triple and quadruple splits. The p-values of $-\infty$ arise from a permutation test with no positive examples.}
-\label{table:unnormhypoCDMWDMresults}
-\end{table}
-
-\begin{table}[htp!]
-  \begin{center}
-      \begin{tabular}{ l | c |  c }
-            Test & Double Split & Quadruple Split \\
-            \hline
-            EC & 1.102e-04 &  7.345e-12 \\
-            $\textup{EC}_{0:2}$ & 1.327e-05 &  3.972e-14 \\
-            $\textup{EC}_{0}$ & 1.387e-06 & 1.614e-12 \\
-            $\textup{EC}_{1}$ & 0.0235 & 0.00143 \\
-            $\textup{EC}_{2}$ & 0.00385 & 1.977e-07 \\
-            \hline
-            $\textup{Sil}_{\textup{EC}}$ & 0.0122 & 0.00500 \\ 
-            $\textup{Sil}_{0:2}$ & 4.295e-04 & 8.072e-12 \\
-            $\textup{Sil}_{0}$ & 6.471e-06 & 1.762e-11 \\
-            $\textup{Sil}_{1}$ & 0.0282 & 3.899e-07 \\
-            $\textup{Sil}_{2}$ & 0.00294 & 1.545e-04 \\
-            \hline
-            $\textup{GC}_{0}$ & 0.986 & 0.856 \\
-            $\textup{GC}_{1}$ & 0.962 & 0.956 \\
-            $\textup{GC}_{2}$ & 0.962 & 0.260 \\
-            \hline
-            $\textup{WKC}_{0}$ & 0.092 & 0.000 \\
-            $\textup{WKC}_{1}$ & 0.066 & 0.000 \\
-            $\textup{WKC}_{2}$ & 0.459 & 0.001 \\
-            $\textup{PI}$ & 0.999 & 0.306 \\
-            \hline
-            $\textup{CORR}$ & 0.0289 & 0.918 \\
-        \end{tabular}
-    \end{center}
-\caption{P-values from hypothesis tests on the \textbf{standardized} WDM and CDM simulations by double, triple and quadruple splits.}
-\label{table:normhypoCDMWDMresults}
+\caption{P-values from hypothesis tests on the unstandardized (left) and standardized (right) WDM \& CDM simulations by double, and quadruple splits. A p-value of $0.000$ comes from a permutation test with no positive examples.}
+\label{table:hypoCDMWDMresults}
 \end{table}
 
 \subsection{Localizing Differences}
-A natural question after discovering that topological differences do exist between CDM and WDM simulations in both geometry and topology is how are these differences distributed? One hypothesis might be that the topological differences are grouped among clustered sections of the observable Universe while other parts are practically identical. It is also possible that the differences are uniformly distributed across our cosmic data set. To explore these questions more, we looked at the bottleneck distances between different cubic splits as the number of splits increased. Because a higher number of splits focuses on smaller parts of the CDM/WDM simulation, we expect higher resolution into the topological features specific to that split's region, and more comparability to other neighboring regions. Figure \ref{fig:cubeHeatmap} shows 3 sets of heatmaps for each of the 3 persistent homologies. Each set includes 4 heatmaps, detailing the bottleneck distances between congruent CDM and WDM unsplit, double-split, and triple-split, and quadruple-split partitions. 
+A natural question after discovering that topological differences exist in both geometry and topology is how are these differences distributed? One hypothesis might be that the differences are grouped among clustered sections of the observable Universe while other galaxoes are practically identical. It is also possible that the differences are uniformly distributed across our cosmic data set. To explore these questions more, we looked at the Bottleneck distances between different cubic splits as the number of splits increased. Because a higher number of splits focuses on smaller parts of the CDM/WDM simulation, we expect higher resolution into the topological features specific to that split's region, and more comparability to other neighboring regions. \figref{fig:cubeHeatmap} shows 3 sets of heatmaps for each of the 3 persistent homologies. Each set includes another 3 heatmaps, detailing the Bottleneck distances between congruent CDM and WDM unsplit, double-split, and quadruple-split partitions. 
 
 \begin{figure}[htp!]
   \centering
-    \begin{subfigure}{\textwidth}
+  \begin{subfigure}{.45\textwidth}
     \centering
-        \caption{Dimension 0 Heatmap Set}
-        \includegraphics[width=0.6\linewidth]{hmap_dim0_nonorm.pdf}
+    \caption{Dimension 0 Heatmap Set}
+    \includegraphics[width=\linewidth]{hmap_dim0_nonorm.pdf}
     \label{fig:cubeHeatmap0}
   \end{subfigure}
-    \begin{subfigure}{\textwidth}
+  \begin{subfigure}{.45\textwidth}
+    \centering
+    \caption{Dimension 0 Standardized Heatmap Set}
+    \includegraphics[width=\linewidth]{hmap_dim0_yesnorm.pdf}
+    \label{fig:cubeHeatmapStand0}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
     \centering
     \caption{Dimension 1 Heatmap Set}
-        \includegraphics[width=0.6\linewidth]{hmap_dim1_nonorm.pdf}
+    \includegraphics[width=\linewidth]{hmap_dim1_nonorm.pdf}
     \label{fig:cubeHeatmap1}
   \end{subfigure}
-    \begin{subfigure}{\textwidth}
+  \begin{subfigure}{.45\textwidth}
     \centering
-        \caption{Dimension 2 Heatmap Set}
-        \includegraphics[width=0.6\linewidth]{hmap_dim2_nonorm.pdf}
+    \caption{Dimension 1 Standardized Heatmap Set}
+    \includegraphics[width=\linewidth]{hmap_dim1_yesnorm.pdf}
+    \label{fig:cubeHeatmapStand1}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+    \centering
+    \caption{Dimension 2 Heatmap Set}
+    \includegraphics[width=\linewidth]{hmap_dim2_nonorm.pdf}
     \label{fig:cubeHeatmap2}
   \end{subfigure}
-    \caption{Each sub-figure contains three horizontal heatmaps respectively representing (from top to bottom) the  Bottleneck distances between each slice of unsplit, double split, and quadruple split pairs from respective WDM and CDM data sets by dimension. Each individual heatmap is a  vectorization of the cubic slices produced from the WDM and CDM Eagle simulations.}
-    \label{fig:cubeHeatmap}
+  \begin{subfigure}{.45\textwidth}
+    \centering
+    \caption{Dimension 2 Standardized Heatmap Set}
+    \includegraphics[width=\linewidth]{hmap_dim2_yesnorm.pdf}
+    \label{fig:cubeHeatmapStand2}
+  \end{subfigure}
+  \caption{Each subfigure contains three horizontal heatmaps respectively representing (from top to bottom) the Bottleneck distances between each slice of unsplit, double split, and quadruple split pairs from respective WDM and CDM data sets by dimension. Subfigures (a, c, e) are unstandardized persistence diagrams while the subfigures (b, d, f) are standardized. Each individual heatmap is a vectorization of the cubic slices produced from the WDM and CDM Eagle simulations.}
+  \label{fig:cubeHeatmap}
 \end{figure}
 
-From figure \ref{fig:cubeHeatmap}, we can infer that the topological and geometric differences are certainly not uniform across different sections of the observable Universe. For each of the three homologies, introducing a greater number of splits uncovers greater variance in magnitudes of bottleneck distances between CDM and WDM cubes. This suggests that it's possible for topological differences to be masked by local similarities, and that there exist partitions of topologically similar areas and partitions of topologically different areas within the EAGLE simulation. Further work should explore what areas in the Universe occupy these two partitions and if there exist physical evidence of differences. Provided that the Euler Characteristic Function and the Correlation Function were the two most effective hypothesis tests, to confirm the validity of these heatmaps, we compared these two functions for the cubes with the highest bottleneck distance and the cubes with the lowest bottleneck distance. If valid, we should expect to see greater differences in the functions among the cubes with high bottleneck distance.
+From \figref{fig:cubeHeatmap}, we can infer that the topological and geometric differences are certainly not uniform across different sections of the observable Universe. For each of the three homologies, introducing a greater number of splits uncovers greater variance in magnitudes of Bottleneck distances between CDM and WDM cubes. This suggests that it is possible for topological differences to be masked by local similarities, and that there exist partitions of topologically similar areas and partitions of topologically dissimilar areas within the EAGLE simulation. Further work should explore what areas in the Universe occupy these two partitions and if there exist physical evidence of differences. 
 
 \begin{figure}[htp!]
   \centering
@@ -845,36 +862,12 @@ From figure \ref{fig:cubeHeatmap}, we can infer that the topological and geometr
     \label{fig:valid4}
   \end{subfigure}
     \label{fig:validationfigs}
-    \caption{A comparison of the Euler Characteristic Function and the Correlation Function for Dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest.}
+    \caption{A comparison of the EC Function and the CORR Function for Dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest.}
 \end{figure}
 
-As expected, figure ~\ref{fig:validationfigs} confirms that the (High) functions are less similar than the (Low) functions. The same pattern arises for Dimension 0 and Dimension 2.  
+Provided that the Euler Characteristic Function and the Correlation Function were the two most effective hypothesis tests, to confirm the validity of these heatmaps, we compared these two functions for the unstandardized cubes with the highest Bottleneck distance and the unstandardized cubes with the lowest Bottleneck distance. As expected, \figref{fig:validationfigs} confirms that the (High) EC and (High) CORR functions have far more discrepancies than their (Low) counterparts, also suggesting that certain partitions are more similar topologically than others. The same pattern arises for Dimension 0 and Dimension 2.  
 
-\begin{figure}[htp!]
-  \centering
-    \begin{subfigure}{\textwidth}
-    \centering
-        \caption{Dimension 0 Standardized Heatmap Set}
-        \includegraphics[width=0.6\linewidth]{hmap_dim0_yesnorm.pdf}
-    \label{fig:cubeHeatmapStand0}
-  \end{subfigure}
-    \begin{subfigure}{\textwidth}
-    \centering
-        \caption{Dimension 1 Standardized Heatmap Set}
-        \includegraphics[width=0.6\linewidth]{hmap_dim1_yesnorm.pdf}
-    \label{fig:cubeHeatmapStand1}
-  \end{subfigure}
-    \begin{subfigure}{\textwidth}
-    \centering
-        \caption{Dimension 2 Standardized Heatmap Set}
-        \includegraphics[width=0.6\linewidth]{hmap_dim2_yesnorm.pdf}
-    \label{fig:cubeHeatmapStand2}
-  \end{subfigure}
-    \label{fig:StandCubeHeatmap}
-    \caption{Each sub-figure contains three horizontal heatmaps representing Bottleneck distances identical to those shown in figure  \ref{fig:cubeHeatmap} but standardized persistence diagrams were used instead.}
-\end{figure}
-
-We can do the same heatmap experiment with the standardized persistence diagrams of the CDM and WDM simulations prior to splitting. As confirmed in the hypothesis testing of both the Voronoi and the EAGLE simulations, standardizing removes geometric differences, greatly reducing the bottleneck distances, as seen in figure  \ref{fig:StandCubeHeatmap}. Notably, for dimensions 0 and 1, the cube with the largest bottleneck distance remained the same as in the unstandardized heatmaps, suggesting that those differences are largely not due to size, but true topological distinctions. Dimension 2, however, was less consistent, possibly indicating that voids in CDM and WDM are more aberrant in terms of size, not topological shape. Despite the differences standardizing induced, we are still confident that differences in topology alone are not uniform across the EAGLE Universe: certain splits are consistently indicating differences in dark matter make-up between warm and cold assumptions.
+We can do the same heatmap experiment with the standardized persistence diagrams of the CDM and WDM simulations prior to splitting. As confirmed in the hypothesis testing of both the Voronoi and the EAGLE simulations, standardizing removes geometric differences, greatly reducing the Bottleneck distances, as seen in \figref{fig:cubeHeatmap}(b,d,f). Notably, for dimensions 0 and 1, the cube with the largest bottleneck distance remained the same as in the unstandardized heatmaps, suggesting that those differences are largely not due to size, but true topological distinctions. Dimension 2, however, was less consistent, possibly indicating that voids in CDM and WDM are more aberrant in terms of size, not topological shape. Despite the differences standardizing induced, we are still confident that differences in topology alone are not uniform across the EAGLE Universe: certain splits are consistently indicating differences in dark matter make-up between warm and cold assumptions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: CONCLUSION
