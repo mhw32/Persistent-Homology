@@ -89,8 +89,7 @@
 
 \bigskip
 \begin{abstract}
-The large-scale structure (LSS) of the Universe is an intricate and spatially complex web.  In order to understand the physics of the Universe, theoretical and computational cosmologists develop large-scale simulations that allow for visualizing and analyzing the LSS under varying physical assumptions.  {\color{red}  add statement about WDM vs. CDM.}  However, rigorous comparisons and inference on such complicated structures can be problematic.  We present a framework for hypothesis testing of LSS using persistent homology.  The randomness in the data (due to measurement error or topological noise) is transferred to randomness in the topological
-summaries, which provides an infrastructure for inference. These tests allow for statistical comparisons between complicated spatial data such as LSS in cosmology, but are also present in other areas of science.  We present several possible test statistics using persistence diagrams, carry-out a simulation study to investigate the suitableness of the proposed test statistics, and finally we apply the proposed inference frame work to {\color{red} WDM vs CDM}.
+The large-scale structure (LSS) of the Universe is an intricate and spatially complex web. In order to understand the physics of the Universe, theoretical and computational cosmologists develop large-scale simulations that allow for visualizing and analyzing the LSS under varying physical assumptions. In particular, different realizations of dark matter, warm and cold, are thought to lead to contrasting velocities of cosmic structure formation. However, rigorous comparisons and inference on such complicated structures can be problematic.  We present a framework for hypothesis testing of LSS using persistent homology. The randomness in the data (due to measurement error or topological noise) is transferred to randomness in the topological summaries, which provides an infrastructure for inference. These tests allow for statistical comparisons between complicated spatial data such as LSS in cosmology, but are also present in other areas of science. We present several possible test statistics using persistence diagrams, carry-out a simulation study to investigate the suitableness of the proposed test statistics, and finally we apply the proposed inference framework to study the topological disparities between assumptions of warm and cold dark matter.
 \end{abstract}
 
 \noindent%
@@ -106,11 +105,11 @@ summaries, which provides an infrastructure for inference. These tests allow for
 \section{Introduction}
 \label{sec:intro}
 
-Rigorous comparisons of spatially complex web-like data such as the large-scale structure (LSS) of the Universe (see Figure~\ref{fig:introData}) is notoriously difficult due, in part, to the difficulty in capturing the randomness of geometric and topological structures.  However, these comparisons are important as it is becoming apparent that there is potentially information about cosmological parameters in the structure. We propose a framework for constructing  topological hypothesis tests using ideas from an emerging area of topological data analysis called persistent homology. Persistent homology offers a novel way to represent, visualize, and interpret complex data by extracting topological features, which can be used to infer properties of the underlying structures, and has already been used as an exploratory tool for some problems in astronomy (\cite{cisewski2014non, van2011alpha}) among other areas of science (\cite{bendich2014persistent, duong2012closed}).
+Rigorous comparisons of spatially complex web-like data such as the large-scale structure (LSS) of the Universe (see ~\figref{fig:introData}) is notoriously difficult due, in part, to the difficulty in capturing the randomness of geometric and topological structures.  However, these comparisons are important as it is becoming apparent that there is potentially information about cosmological parameters in the structure. We propose a framework for constructing topological hypothesis tests using ideas from an emerging area of topological data analysis called persistent homology. Persistent homology offers a novel way to represent, visualize, and interpret complex data by extracting topological features, which can be used to infer properties of the underlying structures, and has already been used as an exploratory tool for some problems in astronomy (\cite{cisewski2014non, van2011alpha}) among other areas of science (\cite{bendich2014persistent, duong2012closed}).
 
-The large-scale structure (LSS) of the Universe is an important example of a spatially complex structure that is often referred to as the \emph{Cosmic Web} \cite{bond1996filaments,springel2006large}.  The LSS of the Universe is a focus of manifold scientific research because its properties reveal information about the underlying physics and formation of our Universe {\color{red}  ADD CITATIONS}.  In order to study theoretical aspects of the formation and evolution of LSS, cosmologists develop large-scale simulations and can adjust the physical inputs and evaluate their effects on the LSS {\color{red} ADD CITATIONS of different simulations}.  One such input is related to the nature of dark matter.  The received position is that the Universe is made up of dark energy, dark matter (DM), and baryonic matter {\color{red} ADD CITATION}.  For an easy introduction to DM, see \cite[p. 61-63]{HilbeEtAl2014}.  
+The large-scale structure (LSS) of the Universe is an important example of a spatially complex structure that is often referred to as the \emph{Cosmic Web} (\cite{bond1996filaments,springel2006large}). The LSS of the Universe is a focus of manifold scientific research because its properties reveal information about the underlying physics and formation of our Universe (\cite{davis1985evolution}). In order to study theoretical aspects of the formation and evolution of LSS, cosmologists develop large-scale simulations and can adjust the physical inputs and evaluate their effects on the LSS (\cite{cooray2002halo,centrella1983three,doroshkevich1980two,schaye2015eagle}). One such input is related to the nature of dark matter. The received position is that the Universe is made up of dark energy, dark matter (DM), and baryonic matter. Dark matter is thought to be of different temperatures, from cold to hot. Hot dark matter consists of particles that travel with ultrarelativistic speeds, while cold dark matter particles move much slower. For an easy introduction to DM, see \cite[p. 61-63]{HilbeEtAl2014}.  
 
-Though the generally accepted and best supported cosmological model assumes \emph{cold dark matter} (known as $\Lambda$CDM), there are some elements of disagreement with observations \cite{SchneiderEtAl2012}.  Furthermore, it has been demonstrated through cosmological simulations that the nature of DM affects the development and formation of LSS \cite{SchneiderEtAl2012}.  In Figure~\ref{fig:introData}, two realizations -- under the assumption of cold dark matter and warm dark matter -- from the EAGLE cosmological simulation {\color{red} ADD CITATION} are displayed.  Though there are similarities in shape of the densest regions (called \emph{filaments}, there are differences in the distribution of matter about the filaments.  
+Though the generally accepted and best supported cosmological model assumes \emph{cold dark matter} (known as $\Lambda$CDM), there are some elements of disagreement with observations (\cite{SchneiderEtAl2012}). Furthermore, it has been demonstrated through cosmological simulations that the nature of DM affects the development and formation of LSS (\cite{SchneiderEtAl2012}).  In \figref{fig:introData}, two realizations -- under the assumption of cold dark matter and warm dark matter -- from the EAGLE cosmological simulation (\cite{schaye2015eagle}) are displayed. Though there are similarities in shape of the densest regions (called \emph{filaments}), there are differences in the distribution of matter about the filaments.  
 
 {\color{red} discuss simulation}
 \begin{figure}[htp!]
@@ -125,11 +124,11 @@ Though the generally accepted and best supported cosmological model assumes \emp
     \caption{Eagle WDM Simulation}  \includegraphics[width=\linewidth]{cdmfig.pdf}
     \label{fig:introDataWDM}
   \end{subfigure}
-    \caption{EAGLE simulation under assumptions of (a) cold and (b) warm dark matter \cite{schaye2015eagle}.} 
+    \caption{EAGLE simulation under assumptions of (a) cold and (b) warm dark matter \cite{schaye2015eagle}. Note the similaries in structure but the disparaties in density. } 
     \label{fig:introData}
 \end{figure}
 
-The goal of the proposed topological hypothesis tests is to detect differences in the topology between these types structures using persistent homology.  In this paper, we move towards quantitatively detailing the topological and geometric differences between the LSS under respective assumptions of cold and warm dark matter.  We begin with an introduction to persistent homology followed by the proposed hypothesis testing framework.  Then we carry-out a simulation study to investigate the performance of the proposed test statistics.  Next we provide more background on LSS, and then apply the hypothesis tests to {\color{red} WDM vs. CDM}.  We end with concluding remarks.
+The goal of the proposed topological hypothesis tests is to detect differences in the topology between these types of structures using persistent homology. In this paper, we move towards quantitatively detailing the topological and geometric differences between the LSS under respective assumptions of cold and warm dark matter. We begin with an introduction to persistent homology followed by the proposed hypothesis testing framework. Then we carry-out a simulation study to investigate the performance of the proposed test statistics. Next we provide more background on LSS, and then apply the hypothesis tests to quantify the topological disparities between warm and cold dark matter assumptions. We end with concluding remarks.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,38 +142,31 @@ The goal of the proposed topological hypothesis tests is to detect differences i
 defined over a cube? I went with the point cloud here, but if this is not true,
 I can rework this introduction.}
 
-Homology is the study of the spatial structure of topological spaces (e.g., the
-components of a subset of $\mathbb{R}^n$ and loops in $k$-nn graphs constructed
-over point cloud data).  Persistent homology studies the spacial structure of a
-parameterized family of topological spaces (e.g., keeping track of the so-called
-births and deaths of homological features as a topological space changes in a
-`nice' way).
+Homology is the study of the spatial structure of topological spaces (e.g., the components of a subset of $\mathbb{R}^n$ and loops in $k$-nn graphs constructed
+over point cloud data). Persistent homology studies the spacial structure of a parameterized family of topological spaces (e.g., keeping track of the so-called
+births and deaths of homological features as a topological space changes in a `nice' way).
 %
-The data set that we study is a cosmological point cloud, where each data point
-represents a galaxy in the universe.  We then look at cubes in space and analyze
-the distribution of galaxies within that cube. We may define a simplicial
-complex directly on the data set, or we may compute a KDE from the input data.
-The homological features mentioned above have cosmological interpretations in
-dimensions zero, one, and two.  We discuss this briefly before going further
-into the algebraic topology.
+The data set that we study is a cosmological point cloud, where each data point represents a galaxy in the universe. We then look at cubes in space and analyze
+the distribution of galaxies within that cube. We may define a simplicial complex directly on the data set, or we may compute a KDE from the input data. The homological features mentioned above have cosmological interpretations in dimensions zero, one, and two. We discuss this briefly before going further into the algebraic topology.
 
 \paragraph{Clusters} 
-A \emph{connected
-component}, or zeroth dimensional homology feature, is a maximal subspace of a topological
-space that cannot be covered by two disjoint open sets. In words, a connected
-component is a `piece' of a topological space.  If our topological space is a
-$k$-nn graph, then the components are clusters of data points.  In cosmology,
-clusters of galaxies (or of stars or other cosmological matter) are an important
-structure to understand, as the gravitational forces of these galaxies will
-attract more cosmological matter to accumulate near the cluster.  Persistent
-homology tracks the appearance of new connected components, and the merging of
-two distinct components into one.
+A \emph{connected component}, or zeroth dimensional homology feature, is a maximal subspace of a topological
+space that cannot be covered by two disjoint open sets. In words, a connected component is a `piece' of a topological space.  If our topological space is a
+$k$-nn graph, then the components are clusters of data points.  In cosmology, clusters of galaxies (or of stars or other cosmological matter) are an important
+structure to understand, as the gravitational forces of these galaxies will attract more cosmological matter to accumulate near the cluster. Persistent homology tracks the appearance of new connected components, and the merging of two distinct components into one.
 
-\paragraph{Filaments and Loops} \brittany{Write about this}
+\paragraph{Filaments and Loops} \brittany{Edit this} A \emph{loop}, or one dimensional homology feature, provides information about the connectivity of data. As many zeroth dimensional features appear, nearby connected components can merge together. If our topological space is a $k$-nn graph then the loops are clusters of data points that merge into a fully connected cycle. In cosmology, loops represent how gravitational forces affect groups of galaxies and where cosmic mass accumulates.
 
-\paragraph{Cosmological Voids} \brittany{write about this}
+\begin{center}
+\begin{figure}[htp!]
+  \centering
+  \includegraphics[width=\linewidth]{homologyobjects.png}
+    \caption{This figure shows the formation of connected components as line segments, loops as shaded polygons, and voids as white enclosed regions. The bottom plot shows a barcode representation of a persistence diagram where y-axis labels the zeroth, one, and two dimensional homologies, and x-axis shows the lifespan of the homology feature.}
+    \label{fig:homologydemo}
+\end{figure}
+\end{center}
 
-\brittany{Jessi, is there a good source for the definitions of clusters, filaments, and voids?}
+\paragraph{Cosmological Voids} \brittany{edit this} A \emph{void}, or two dimensional homology feature, represents empty areas within the topological space. If our topological space is a $k$-nn graph, then the voids are the unfilled spaces inside enclosed one dimensional homology features. See \figref{fig:homologydemo} for an example of a void. In cosmology, to fully appreciate the topology, it is important to understand not only where clusters of galaxies form (connected components and loops) but also where clusters of galaxies are scarce. \brittany{Jessi, is there a good source for the definitions of clusters, filaments, and voids?}
 
 \subsection{Persistent Homology} 
 Various methods can be used in order to transform a discrete point set into a

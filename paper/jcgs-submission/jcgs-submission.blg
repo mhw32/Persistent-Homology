@@ -3,49 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: jcgs-submission.aux
 The style file: agsm.bst
 Database file #1: mybib.bib
-Repeated entry---line 317 of file mybib.bib
- : @article{chen2015statistical
- :                             ,
-I'm skipping whatever remains of this entry
-You've used 25 entries,
+You've used 29 entries,
             2909 wiz_defined-function locations,
-            802 strings with 10065 characters,
-and the built_in function-call counts, 188998 in all, are:
-= -- 31319
-> -- 2721
+            826 strings with 10751 characters,
+and the built_in function-call counts, 211916 in all, are:
+= -- 35099
+> -- 3039
 < -- 0
-+ -- 15641
-- -- 854
-* -- 17096
-:= -- 36574
-add.period$ -- 25
-call.type$ -- 25
-change.case$ -- 350
-chr.to.int$ -- 25
-cite$ -- 25
-duplicate$ -- 420
-empty$ -- 877
-format.name$ -- 939
-if$ -- 34023
++ -- 17492
+- -- 952
+* -- 19141
+:= -- 41072
+add.period$ -- 29
+call.type$ -- 29
+change.case$ -- 406
+chr.to.int$ -- 29
+cite$ -- 29
+duplicate$ -- 483
+empty$ -- 1008
+format.name$ -- 1055
+if$ -- 38142
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 25
-newline$ -- 78
-num.names$ -- 269
-pop$ -- 75
+missing$ -- 29
+newline$ -- 90
+num.names$ -- 311
+pop$ -- 89
 preamble$ -- 1
-purify$ -- 375
+purify$ -- 435
 quote$ -- 0
-skip$ -- 368
+skip$ -- 422
 stack$ -- 0
-substring$ -- 45438
-swap$ -- 86
-text.length$ -- 350
+substring$ -- 50856
+swap$ -- 96
+text.length$ -- 406
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
+type$ -- 116
 warning$ -- 0
-while$ -- 568
+while$ -- 658
 width$ -- 0
-write$ -- 346
-(There was 1 error message)
+write$ -- 397
