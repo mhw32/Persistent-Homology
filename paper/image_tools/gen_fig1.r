@@ -1,5 +1,7 @@
-# Figure 1 - Eagle simulation images
+# -- Figure 1 : Eagle simulation images --
 source("process_eagle.r")
+library(scatterplot3d)
+
 whole_cdm <- load_CDM()
 whole_wdm <- load_WDM()
 
