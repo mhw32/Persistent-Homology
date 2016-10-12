@@ -154,7 +154,7 @@ plt.ylabel('log10 p-value', fontsize=35)
 plt.xlabel('Percent filament', fontsize=35)
 
 allkeys = ['contour-dim-0', 'contour-dim-1', 'contour-dim-2']
-allticks = ['KI (0)', 'KI (1)', 'KI (2)']
+allticks = ['IK (0)', 'IK (1)', 'IK (2)']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
 allshapes = ['o', 'o', 'o', 'o', 'o']
 allgraphs = []

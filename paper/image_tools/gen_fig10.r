@@ -5,7 +5,7 @@ data <- readRDS('intermediate/fig_10_cdm4.rds')
 
 nums <- c(51, 17, 34)
 for (slice in nums) {
-	pdf("figure_10_cdm_slice_", slice, ".pdf")
+	pdf(paste("figure_10_cdm_slice_", slice, ".pdf", sep=""))
 	scatterplot3d(data[[slice]], 
 	              xlab='X Axis', 
 	              ylab='Y Axis', 

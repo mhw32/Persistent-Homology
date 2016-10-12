@@ -115,14 +115,14 @@ Though the generally accepted and best supported cosmological model assumes \emp
 {\color{red} discuss simulation}
 \begin{figure}[htp!]
   \centering
-  \begin{subfigure}{.49\textwidth}
+  \begin{subfigure}{.3\textwidth}
     \centering
-    \caption{Eagle CDM Simulation}  \includegraphics[width=\linewidth]{wdmfig.pdf}
+    \caption{Eagle CDM Simulation}  \includegraphics[width=\linewidth]{figure_1_whole_wdm.pdf}
     \label{fig:introDataCDM}
   \end{subfigure}
-    \begin{subfigure}{.49\textwidth}
+    \begin{subfigure}{.3\textwidth}
     \centering
-    \caption{Eagle WDM Simulation}  \includegraphics[width=\linewidth]{cdmfig.pdf}
+    \caption{Eagle WDM Simulation}  \includegraphics[width=\linewidth]{figure_1_whole_cdm.pdf}
     \label{fig:introDataWDM}
   \end{subfigure}
     \caption{EAGLE simulation under assumptions of (a) cold and (b) warm dark matter \citep{schaye2015eagle}. Note the similaries in structure but the disparaties in density. } 
@@ -179,25 +179,25 @@ significance of the feature, which means that points close to the diagonal are i
   \begin{subfigure}{.27\linewidth}
     \centering
     \caption{}  
-        \includegraphics[width=\linewidth]{tmp2.pdf}
+        \includegraphics[width=\linewidth]{figure_2_3d_repr.pdf}
     \label{fig:example_3d}
   \end{subfigure}
     \begin{subfigure}{.25\linewidth}
     \centering
     \caption{}  
-        \includegraphics[width=\linewidth]{tmp4.pdf}
+        \includegraphics[width=\linewidth]{figure_2_contour_1.pdf}
     \label{fig:example_contour1}
   \end{subfigure}
     \begin{subfigure}{.25\linewidth}
     \centering
     \caption{}  
-        \includegraphics[width=\linewidth]{tmp3.pdf}
+        \includegraphics[width=\linewidth]{figure_2_contour_2.pdf}
     \label{fig:example_contour2}
   \end{subfigure}
     \begin{subfigure}{.20\linewidth}
     \centering
     \caption{}  
-        \includegraphics[width=\linewidth]{tmp5.pdf}
+        \includegraphics[width=\linewidth]{figure_2_pd.pdf}
     \label{fig:example_pd}
   \end{subfigure}
   \caption{ We illustrate persistent homology with a two-dimensional example. The density in (a) shows 3 steep peaks and 3 shallow peaks  distributed around a uniform circle. In light gray, we see the hyperplane, shown (b) as $t=1.0$. (b) and (c) plot the super-level sets $\widehat{p}^{-1}[1.10,\infty)$ and $\widehat{p}^{-1}[0.10,\infty)$ respectively. Notice as the threshold is decreased, the contour more clearly defines a loop-like structure. In (d), we see the  persistence diagram for the super-level set filtration of $\widehat{p}$. We highlight the upper left quadrant based at $(0.18, 0.02)$, which contains a one-dimensional persistence point. This corresponds to the loop shown in (c). The remaining 0-dimensional homologies represent the connected components from each of 6 peaks.} % end caption
@@ -237,7 +237,7 @@ where kmax is the kth largest value in $D_h$.  An example of a landscape functio
 \begin{center}
 \begin{figure}[htp!]
   \centering
-  \includegraphics[width=0.8\linewidth]{example_landscape.pdf}
+  \includegraphics[width=0.8\linewidth]{figure)3)silh.pdf}
     \caption{ The shaded circles in pink represent the point coordinates in a persistence diagram $D$. The landscape $\lambda(k, \cdot)$ is the $k$-th largest of the arrangement of the graphs of $\left \{ \Lambda_{p} \right \}$. In particular, the cyan curve is the landscape $\lambda(1, \cdot)$.}
     \label{fig:landscape}
 \end{figure}
@@ -271,9 +271,9 @@ distributions of persistence diagrams for group 1 and 2, respectively.  Properti
 We would like the framework to test the hypothesis that the two samples are drawn from populations with the different random topologies. However, we note that without incorporating a scaling adjustment on the space of the data or the space of the diagrams, geometrical differences can also lead to a rejection of the null hypothesis. This is discussed in more detail in Section~\ref{sec:standardize}. 
 \end{sloppypar}
 
-Given two samples of persistence diagrams, there are a number of possible ways to derive test statistics. We consider four general approaches. The first approach is based on functional summaries derived from the sampled persistence diagrams: Euler characteristic function (EC), Silhouette function (Sil), and a 
-Silhouette-Euler characteristic function (SilEC). Given that each observed dataset will have a corresponding function, a p-value can be derived from 
-a two-sample T-test based by integrating the absolute value of the functional summaries. The next two approaches use variations on smoothed persistence diagrams called \emph{intensity functions} \citep{chen2015statistical} with p-values derived from a two-sample kernel test \citep{gretton2012kernel} and an asymptotic argument through permutation (KC, WKC, PI). Additionally, we consider a test using the two-point correlation function (CORR) in order to have a comparison with a summary capturing the spatial behavior of the LSS. Similar to the functional summaries above, p-values for the CORR test will be carried out with a T-test based on the integral of the absolute value of the correlation function. The proposed test statistics are discussed in more detail below.
+Given two samples of persistence diagrams, there are a number of possible ways to derive test statistics. We consider four general approaches. The first approach is based on functional summaries derived from the sampled persistence diagrams: Euler characteristic function (EC), Silhouette function (SIL), and a 
+Silhouette-Euler characteristic function (SILEC). Given that each observed dataset will have a corresponding function, a p-value can be derived from 
+a two-sample T-test based by integrating the absolute value of the functional summaries. The next two approaches use variations on smoothed persistence diagrams called \emph{intensity functions} \citep{chen2015statistical} with p-values derived from a two-sample kernel test \citep{gretton2012kernel} and an asymptotic argument through permutation (IK, WIK, PI). Additionally, we consider a test using the two-point correlation function (CORR) in order to have a comparison with a summary capturing the spatial behavior of the LSS. Similar to the functional summaries above, p-values for the CORR test will be carried out with a T-test based on the integral of the absolute value of the correlation function. The proposed test statistics are discussed in more detail below.
 
 % Given any persistence diagram $x$ extracted from a point cloud, $x$ represents a sample from some latent distribution $\chi$. For example, given a simulation of the Megaparsec cosmic mass, the $(x, y, z)$ points are discrete samples from the continuous, observable Universe, which represents the true distribution. Using that definition, suppose there are two persistence diagrams, $x$ and $y$, each produced from a separate point cloud. Given that $x \sim \chi$, and $y \sim \gamma$, where $\chi$ and $\gamma$ represent the true distributions, an interesting question is whether $\chi$ and $\gamma$ are identical to some error $\epsilon$. In other words, are the samples $x$ and $y$ sampled from the same latent distribution? One might consider the following hypothesis test, where $H_{0}$ is the null and $H_{A}$ is the alternative.
 
@@ -287,7 +287,7 @@ a two-sample T-test based by integrating the absolute value of the functional su
 
 % One main contribution of this paper is studying the effectiveness of different functions $f_{T}$ when the true topological relationship between $x$ and $y$ are known. The best functions $f_{T}$ are then used to analyze a data set in which the topological relationships is unknown. We now proceed to describe different methods for defining $f_{T}$ for hypothesis testing in the setting of large-scale structure (LSS). 
 
-Among the variations to test statistics considered (EC, Sil, SilEC, KC, WKC, PI, and CORR), we are seeking the summary that best captures differences in distributions of persistence diagrams produced from structures like the LSS of the Universe.  
+Among the variations to test statistics considered (EC, SIL, SILEC, IK, WIK, PI, and CORR), we are seeking the summary that best captures differences in distributions of persistence diagrams produced from structures like the LSS of the Universe.  
 
 \paragraph{Euler Characteristic Test (EC)}
 Each persistence diagram in the two samples result in an Euler characteristic (EC) function, $\chi^{(J)}(t)$,  $J = 1, 2$.
@@ -302,42 +302,49 @@ and used in a two-sample T-test.
    \centering 
   \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{Point Cloud}       \includegraphics[width=\linewidth]{test_pics_1.pdf}
+        \caption{Point Cloud}       
+        \includegraphics[width=\linewidth]{figure_5_plot.pdf}
     \label{fig:examplestest1}
   \end{subfigure}
     \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{PD}  \includegraphics[width=\linewidth]{test_pics_2.pdf}
+        \caption{PD}  
+        \includegraphics[width=\linewidth]{figure_5_pd.pdf}
     \label{fig:examplestest2}
   \end{subfigure}
     \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{Euler Char.}   \includegraphics[width=\linewidth]{test_pics_3.pdf}
+        \caption{EC}   
+        \includegraphics[width=\linewidth]{figure_5_euler.pdf}
     \label{fig:examplestest3}
   \end{subfigure}
     \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{Sil. Function}       \includegraphics[width=\linewidth]{test_pics_4.pdf}
+        \caption{SIL}       
+        \includegraphics[width=\linewidth]{figure_5_silhouette.pdf}
     \label{fig:examplestest4}
   \end{subfigure}
     \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{Kernel Contour}  \includegraphics[width=\linewidth]{test_pics_5.pdf}
+        \caption{IK}  
+        \includegraphics[width=\linewidth]{figure_5_kernel.pdf}
     \label{fig:examplestest5}
   \end{subfigure}
     \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{Corr. Function}  \includegraphics[width=\linewidth]{test_pics_6.pdf}
+        \caption{CORR}  \includegraphics[width=\linewidth]{figure_5_corr_fun.pdf}
     \label{fig:examplestest6}
   \end{subfigure}
     \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{Weighted Kernel}   \includegraphics[width=\linewidth]{test_pics_7.pdf}
+        \caption{WIK}   
+        \includegraphics[width=\linewidth]{figure_5_intensity.pdf}
     \label{fig:examplestest7}
   \end{subfigure}
     \begin{subfigure}{.24\textwidth}
     \centering
-        \caption{Persistent Image}  \includegraphics[width=\linewidth]{test_pics_8.pdf}
+        \caption{PI}  
+        \includegraphics[width=\linewidth]{figure_5_pimage_fun.pdf}
     \label{fig:examplestest8}
   \end{subfigure}
    \caption{Examples of test statistics used in the hypothesis tests. \figref{fig:examplestest1} shows the point cloud, and \figref{fig:examplestest2} shows the persistence diagram used to generate the functional summaries shown in \figref{fig:examplestest2}-\figref{fig:examplestest8}.}
@@ -353,14 +360,14 @@ and used in a two-sample T-test.
 % \end{figure}
 % \end{center}
 
-\paragraph{Silhouette Test (Sil)}
+\paragraph{Silhouette Test (SIL)}
 As with the Euler Characteristic (EC) function, a weighted silhouette summarizes a persistence diagram through a continuous function. 
-For each homology dimension $h = 0, 1, 2$, a weighted silhouette function is calculated.  As with EC, a two-sample T-test is carried-out by integrating the weighted silhouette functions for each sample.  However, the $Sil$ tests are carried out individually for each homology dimension, $h = 0, 1, 2$, resulting in $Sil_0$, $Sil_1$, and $Sil_2$.  We also considering Hotelling's $T^2$ test using the three homology dimensions, denoted $Sil_{0:2}$.
+For each homology dimension $h = 0, 1, 2$, a weighted silhouette function is calculated.  As with EC, a two-sample T-test is carried-out by integrating the weighted silhouette functions for each sample.  However, the $SIL$ tests are carried out individually for each homology dimension, $h = 0, 1, 2$, resulting in $SIL_0$, $SIL_1$, and $SIL_2$.  We also considering Hotelling's $T^2$ test using the three homology dimensions, denoted $SIL_{0:2}$.
 
 
 
-\paragraph{Silhouette-Euler Characteristic (SilEC).}
-Another method for considering all the individual silhouettes, $S_{h}(t)$, across dimensions $h = 0$, 1, and 2, simultaneously is a modified Euler characteristic function. Instead of calculating the alternating sum of Betti numbers, the Silhouette-Euler characteristic function (SilEC) is defined as the alternating sum of the individual silhouette functions across the threshold parameter, $t$, $SilEC(t) =  S_{1}(t) - S_{2}(t) + S_{3}(t)$.
+\paragraph{Silhouette-Euler Characteristic (SILEC).}
+Another method for considering all the individual silhouettes, $S_{h}(t)$, across dimensions $h = 0$, 1, and 2, simultaneously is a modified Euler characteristic function. Instead of calculating the alternating sum of Betti numbers, the Silhouette-Euler characteristic function (SILEC) is defined as the alternating sum of the individual silhouette functions across the threshold parameter, $t$, $SILEC(t) =  S_{1}(t) - S_{2}(t) + S_{3}(t)$.
 A p-value is calculated using a T-test in the same way as for EC.
 
 
@@ -375,7 +382,7 @@ A p-value is calculated using a T-test in the same way as for EC.
 %where $I$ is the indicator function. Therefore, the p-value is the fraction of times $T_{j}$ is larger than $T$. As $N$ approaches $\inf$, $p$ approaches the exact value.
 
 \paragraph{Intensity Kernel Test (IK).}
-Rather than working with the raw persistence diagrams, the Kernel Contour Test (KC) uses a test statistic derived from a kernel two-sample test using a modified version of the intensity function proposed in \citep{chen2015statistical}. The kernel two-sample test was first introduced for analyzing and comparing distributions with a maximum mean discrepancy (MMD) statistic \citep{gretton2012kernel}. The KC statistic used in this paper is computed for two sets of persistence diagrams, and the discrepancy between persistence diagrams is calculated as the integrated squared difference between two \emph{unweighted} intensity functions instead of points directly from the persistence diagrams. (Unweighted intensity functions assigns uniform weights to points on the diagram and therefore does not account for the diagonal boundary on persistence diagrams where birth = death; we considered weighted intensity functions next.) The two-sample test statistic for $X = X_1, \ldots, X_{n_1}$ and $Y = Y_1, \ldots, Y_{n_2}$ is defined as
+Rather than working with the raw persistence diagrams, the Intensity Kernel Test (IK) uses a test statistic derived from a kernel two-sample test using a modified version of the intensity function proposed in \citep{chen2015statistical}. The kernel two-sample test was first introduced for analyzing and comparing distributions with a maximum mean discrepancy (MMD) statistic \citep{gretton2012kernel}. The IK statistic used in this paper is computed for two sets of persistence diagrams, and the discrepancy between persistence diagrams is calculated as the integrated squared difference between two \emph{unweighted} intensity functions instead of points directly from the persistence diagrams. (Unweighted intensity functions assigns uniform weights to points on the diagram and therefore does not account for the diagonal boundary on persistence diagrams where birth = death; we considered weighted intensity functions next.) The two-sample test statistic for $X = X_1, \ldots, X_{n_1}$ and $Y = Y_1, \ldots, Y_{n_2}$ is defined as
 %
 \begin{equation}
 \widehat{T}_{IK}(X, Y) = \frac{1}{n_1^{2}}\sum_{i=1}^{n_1}\sum_{j=1}^{n_1} K_{\sigma}(X_{i}, X_{j}) - \frac{2}{n_1n_2}\sum_{i=1}^{n_1}\sum_{j=1}^{n_2}K_{\sigma}(X_{i}, Y_{j}) + \frac{1}{n_2^{2}}\sum_{i=1}^{n_2}\sum_{j=1}^{n_2} K_{\sigma}(Y_{i}, Y_{j}), \label{eq:kernel_test}
@@ -394,11 +401,11 @@ Let $(d_i, b_i)$, $i = 1, \ldots, m$ be the features on a persistence diagram co
 such that the sum is over all persistent features, $K$ is a symmetric kernel function, and $\tau$ is a smoothing parameter. 
 Using weighted intensity functions, a p-value is calculated by considering the same kernel test statistic as Equation~\eqref{eq:kernel_test} and a permutation test for each homology dimension, $WIK_0$, $WIK_1$, and $WIK_2$.
 
-\paragraph{Persistent Image Test (PI)} The Persistent Image test \citep{adams2015persistent} is a variation of the WKC test with an alternative kernel function and sub-sampling. Let $\mathcal{D} = {(b_{j} , d_{j}) : j = 1, \cdots ,K}$ be a persistence diagram where $K$ is the number of persistent features. Unlike WKC, the PI test first transposes the persistent diagram using the linear transformation $T: \mathbb{R}^{2} \rightarrow \mathbb{R}^{2}$ where $T(x,y) = (x, y-x)$. Therefore, let $T(\mathcal{D})$ represent the transformed diagram with the new birth-persistence coordinates. Let $K_{u} : \mathbb{R}^{2} \rightarrow \mathbb{R}$ be a differentiable probability distribution with mean $u = (u_{x}, u_{y})$. In our applications, we choose this distribution to be the normalized symmetric 2D Gaussian with mean $u$ and variance $\sigma^{2}$. 
+\paragraph{Persistent Image Test (PI)} The Persistent Image test \citep{adams2015persistent} is a variation of the WIK test with an alternative kernel function and sub-sampling. Let $\mathcal{D} = {(b_{j} , d_{j}) : j = 1, \cdots ,K}$ be a persistence diagram where $K$ is the number of persistent features. Unlike WIK, the PI test first transposes the persistent diagram using the linear transformation $T: \mathbb{R}^{2} \rightarrow \mathbb{R}^{2}$ where $T(x,y) = (x, y-x)$. Therefore, let $T(\mathcal{D})$ represent the transformed diagram with the new birth-persistence coordinates. Let $K_{u} : \mathbb{R}^{2} \rightarrow \mathbb{R}$ be a differentiable probability distribution with mean $u = (u_{x}, u_{y})$. In our applications, we choose this distribution to be the normalized symmetric 2D Gaussian with mean $u$ and variance $\sigma^{2}$. 
 
 \[ K_{u}(x,y) = \frac{1}{2\pi\sigma^{2}}e^{-[(x - u_{x})^{2} + (y-u_{y})^{2}]/2\sigma^{2}} \]
 
-Finally, let $f : \mathbb{R}^{2} \rightarrow \mathbb{R}$ be a non-negative weighting function that is zero along the horizontal axis, continuous and differentiable. $f$ is chosen to only depend on the rotated vertical persistence coordinate $y$, and like WKC, weight points of higher persistence (lifespan) more heavily. In our applications, we use a piecewise linear weighting function that was found to be stable. Given $b > 0$, define $f_{b}$ as
+Finally, let $f : \mathbb{R}^{2} \rightarrow \mathbb{R}$ be a non-negative weighting function that is zero along the horizontal axis, continuous and differentiable. $f$ is chosen to only depend on the rotated vertical persistence coordinate $y$, and like WIK, weight points of higher persistence (lifespan) more heavily. In our applications, we use a piecewise linear weighting function that was found to be stable. Given $b > 0$, define $f_{b}$ as
 
 \[ f_{b}(t) = \rightarrow \left\{\begin{matrix}
 0 & \textup{if } t \leq 0 \\ 
@@ -410,9 +417,9 @@ Given $f$, $K$, and $T(\mathcal{D})$, we can define a persistence surface (\cite
 
 \[ \rho_{\mathcal{D}}(x, y) = \sum_{u \in T(\mathcal{D})} f(u)K_{u}(x,y) \]
 
-Like the WKC test, $\rho$ is calculated over the two-dimensional grid \[ \{ (x, y) \textup{ s.t. } b_{min} \leq x \leq b_{max} \wedge d_{min} \leq y \leq d_{max} \} \]. In our applications, the step sizes $h_{x}$ and $h_{y}$ were chosen to make the grid size 30 by 30. Given $\rho_{\mathcal{D}}$, a persistence image (\citep{adams2015persistent}) $I(\rho_{\mathcal{D}})_{p}$ is defined as a grid of pixels calculated from convolving the persistent surface with a uniform matrix of size $n$ by $n$ of 1's. In order words, $I(\rho_{\mathcal{D}})_{p} = \int\int_{p} \rho_{\mathcal{D}} \textup{ d}y\textup{d}x$. This matrix is then flattened into a 1D vector.  The accuracy of the p-value using this PI framework is found to be robust to the choice of the convolution filter size. In our applications, a filter size of 3 is used, resulting in a 10 by 10 matrix, or 100 length vector when flattened.
+Like the WIK test, $\rho$ is calculated over the two-dimensional grid \[ \{ (x, y) \textup{ s.t. } b_{min} \leq x \leq b_{max} \wedge d_{min} \leq y \leq d_{max} \} \]. In our applications, the step sizes $h_{x}$ and $h_{y}$ were chosen to make the grid size 30 by 30. Given $\rho_{\mathcal{D}}$, a persistence image (\citep{adams2015persistent}) $I(\rho_{\mathcal{D}})_{p}$ is defined as a grid of pixels calculated from convolving the persistent surface with a uniform matrix of size $n$ by $n$ of 1's. In order words, $I(\rho_{\mathcal{D}})_{p} = \int\int_{p} \rho_{\mathcal{D}} \textup{ d}y\textup{d}x$. This matrix is then flattened into a 1D vector.  The accuracy of the p-value using this PI framework is found to be robust to the choice of the convolution filter size. In our applications, a filter size of 3 is used, resulting in a 10 by 10 matrix, or 100 length vector when flattened.
 
-Unlike the WKC test, the PI test combines all homologies into a single statistic. Suppose the homologies $H_{0}, \cdots, H_{k}$ are computed. One can concatenate the PI vectors for $H_{0}, \cdots, H_{k}$ into a single vector representing all dimensions simultaneously. Like the WKC test, the p-value is calculated using the permutation method, but only once for all 3 homologies.
+Unlike the WIK test, the PI test combines all homologies into a single statistic. Suppose the homologies $H_{0}, \cdots, H_{k}$ are computed. One can concatenate the PI vectors for $H_{0}, \cdots, H_{k}$ into a single vector representing all dimensions simultaneously. Like the WIK test, the p-value is calculated using the permutation method, but only once for all 3 homologies.
 
 \paragraph{Two-point Correlation Function Test (CORR)}
 {\color{red}  Jessi:  revise section, explain why to consider this}
@@ -501,32 +508,38 @@ Examples of three separate Voronoi foam models of percFil 0.1, 0.5, 0.9 are disp
     \centering
     \begin{subfigure}{.32\textwidth}
       \centering
-      \caption{PercFil 0.1 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil01voronoi.pdf}
+      \caption{PercFil 0.1 (Voronoi)} 
+      \includegraphics[width=0.6\linewidth]{figure_7_plot_pf_0\.1.pdf}
       \label{fig:percfil01voronoi}
     \end{subfigure}
       \begin{subfigure}{.32\textwidth}
       \centering
-      \caption{PercFil 0.5 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil09voronoi.pdf}
+      \caption{PercFil 0.5 (Voronoi)} 
+      \includegraphics[width=0.6\linewidth]{figure_7_plot_pf_0\.5.pdf}
       \label{fig:percfil09voronoi}
     \end{subfigure}
       \begin{subfigure}{.32\textwidth}
       \centering
-      \caption{PercFil 0.9 (Voronoi)} \includegraphics[width=0.6\linewidth]{percfil09voronoi.pdf}
+      \caption{PercFil 0.9 (Voronoi)} 
+      \includegraphics[width=0.6\linewidth]{figure_7_plot_pf_0\.9.pdf}
       \label{fig:percfil09voronoi}
     \end{subfigure}
       \begin{subfigure}{.32\textwidth}
       \centering
-      \caption{PercFil 0.1 (PD)}  \includegraphics[width=0.6\linewidth]{percfil01pd.pdf}
+      \caption{PercFil 0.1 (PD)}  
+      \includegraphics[width=0.6\linewidth]{figure_7_pd_0\.1.pdf}
       \label{fig:percfil01pd}
     \end{subfigure}
       \begin{subfigure}{.32\textwidth}
       \centering
-      \caption{PercFil 0.5 (PD)}  \includegraphics[width=0.6\linewidth]{percfil09pd.pdf}
+      \caption{PercFil 0.5 (PD)}  
+      \includegraphics[width=0.6\linewidth]{figure_7_pd_0\.5.pdf}
       \label{fig:percfil09pd}
     \end{subfigure}
       \begin{subfigure}{.32\textwidth}
       \centering
-      \caption{PercFil 0.9 (PD)}  \includegraphics[width=0.6\linewidth]{percfil09pd.pdf}
+      \caption{PercFil 0.9 (PD)}  
+      \includegraphics[width=0.6\linewidth]{figure_7_pd_0\.9.pdf}
       \label{fig:percfil09pd}
     \end{subfigure}
       \caption{(a) PercFil 0.1; (b) PercFil 0.5; (c) PercFil 0.9; (d-f) Corresponding persistence diagrams (PD) for point clouds (a-c). All other parameters are defined based on Table~\ref{table:voronoisettings}.}
@@ -550,34 +563,34 @@ Similar tests were also completed against a control model with 0.3 percFil, and 
     \centering
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{EC-based Tests}
-      \includegraphics[width=\linewidth]{sub_euler_lineplot_log10_norm_False.pdf}
+      \caption{EC Tests}
+      \includegraphics[width=\linewidth]{figure_8_euler_group.pdf}
       \label{fig:sub_euler}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{SIL-based Tests}
-      \includegraphics[width=\linewidth]{sub_silh_lineplot_log10_norm_False.pdf}
+      \caption{SIL Tests}
+      \includegraphics[width=\linewidth]{figure_8_silhouette_group.pdf}
       \label{fig:sub_silh}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{KC-based Tests}
-      \includegraphics[width=\linewidth]{sub_contour_lineplot_log10_norm_False.pdf}
+      \caption{IK Tests}
+      \includegraphics[width=\linewidth]{figure_8_contour_group.pdf}
       \label{fig:sub_contour}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{WKC-based Tests}
-      \includegraphics[width=\linewidth]{sub_weight_lineplot_log10_norm_False.pdf}
+      \caption{WIK/PI Tests}
+      \includegraphics[width=\linewidth]{figure_8_weighted_contour_group.pdf}
       \label{fig:sub_weight}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
-      \caption{CORR-based Tests}
-      \includegraphics[width=\linewidth]{sub_corr_lineplot_log10_norm_False.pdf}
+      \caption{CORR Tests}
+      \includegraphics[width=\linewidth]{figure_8_correlation_group.pdf}
       \label{fig:sub_corr}
     \end{subfigure}
-  \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) EC-based, (b) SIL-based, (c) Kernel-based (KC), (d) Weighted Kernel-based (WKC), (e) CORR-based. X-axis represents the percent filament of the set being compared to the baseline set (0.1 to 0.3 by 0.05 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. Each plot contains a line representing the median $\log_{10}$ p-value of the 100 iterations, while the shaded region represents a 97.5 confidence interval.}
+  \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) EC-based, (b) SIL-based, (c) Kernel-based (KC), (d) Weighted Kernel-based (WIK), (e) CORR-based. X-axis represents the percent filament of the set being compared to the baseline set (0.1 to 0.3 by 0.05 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. Each plot contains a line representing the median $\log_{10}$ p-value of the 100 iterations, while the shaded region represents a 97.5 confidence interval.}
   \label{fig:sub_unstandardized_results}
   \end{figure}
 \end{center}
@@ -587,38 +600,38 @@ From \figref{fig:sub_unstandardized_results}, we see  that the EC test, the CORR
 \subsubsection{Standardization of persistence diagrams} \label{sec:standardize}
 Since the goal is to discern topological differences between two samples, issues with the proposed method is that scaling differences can result in rejection when, in fact there are not statistically significant topological differences. For example, suppose we are considering two datasets - one has points randomly sampled from the perimeter of a circle with a radius of 1 and the other set has points randomly sampled from the perimeter of a circle with a radius of 10.  Depending on one's goals, it may or may not be desirable to conclude that the two datasets come from different persistence diagram generators (i.e. conclude $\mathcal P^{(1)} \neq \mathcal P^{(2)}$) since the inference would be based on geometrical (scaling) differences rather than topological differences.  If the desire is to focus on topological differences (and remove the geometrical differences), we propose a possible preprocessing step. Specifically, we standardize the persistence diagrams so that all the homological features are re-scaled to $[0, 1]\times[0,1]$. This simple standardization takes the persistence diagram window and shrinks it or expands it to fill the $[0, 1]\times[0,1]$ window, maintaining the same relationship among all the homological features.  If there is concern about outliers, then other quantiles (rather than the minimum and maximum) could be used for the standardization. The exception is with the Correlation test, in which the point cloud itself is standardized to $[0, 1]\times[0, 1]\times[0, 1]$.
 
-We repeated the simulation study from Section~\ref{sec:results1} except preprocessing with the standardization step; the results are displayed in \figref{fig:linesNorm}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same as those from the unstandardized setting: EC, CORR, SilEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, many of the KC, WKC, and other Sil tests have essentially constant p-values across the percfil variation, losing almost all effectiveness in distinguishing differences. One interpretation is that the differences captured by these tests in the unstandardized version were all due to geometric dissimilarities.
+We repeated the simulation study from Section~\ref{sec:results1} except preprocessing with the standardization step; the results are displayed in \figref{fig:linesNorm}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same as those from the unstandardized setting: EC, CORR, SilEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, many of the KC, WIK, and other Sil tests have essentially constant p-values across the percfil variation, losing almost all effectiveness in distinguishing differences. One interpretation is that the differences captured by these tests in the unstandardized version were all due to geometric dissimilarities.
 
 \begin{center}
   \begin{figure}[htp!]
     \centering
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{EC-based Tests}
-      \includegraphics[width=\linewidth]{sub_euler_lineplot_log10_norm_True.pdf}
+      \caption{EC Tests}
+      \includegraphics[width=\linewidth]{figure_8_euler_group_normed.pdf}
       \label{fig:sub_euler}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{SIL-based Tests}
-      \includegraphics[width=\linewidth]{sub_silh_lineplot_log10_norm_True.pdf}
+      \caption{SIL Tests}
+      \includegraphics[width=\linewidth]{figure_8_silhouette_group_normed.pdf}
       \label{fig:sub_silh}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{KC-based Tests}
-      \includegraphics[width=\linewidth]{sub_contour_lineplot_log10_norm_True.pdf}
+      \caption{IK Tests}
+      \includegraphics[width=\linewidth]{figure_8_contour_group_normed.pdf}
       \label{fig:sub_contour}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
       \centering
-      \caption{WKC-based Tests}
-      \includegraphics[width=\linewidth]{sub_weight_lineplot_log10_norm_True.pdf}
+      \caption{WIK/PI Tests}
+      \includegraphics[width=\linewidth]{figure_8_weighted_contour_group_normed.pdf}
       \label{fig:sub_weight}
     \end{subfigure}
     \begin{subfigure}{.45\textwidth}
-      \caption{CORR-based Tests}
-      \includegraphics[width=\linewidth]{sub_corr_lineplot_log10_norm_True.pdf}
+      \caption{CORR Tests}
+      \includegraphics[width=\linewidth]{figure_8_correlation_group_normed.pdf}
       \label{fig:sub_corr}
     \end{subfigure}
   \caption{A similar set of results to \figref{fig:sub_unstandardized_results} except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.}
@@ -647,19 +660,19 @@ Real observations of cosmic web:  Great Wall \citep{geller1989mapping}, Sloan Gr
   \begin{subfigure}{0.25\textwidth}
     \centering
         \caption{}
-  \includegraphics[width=\linewidth]{triplesplitA.pdf}
+  \includegraphics[width=\linewidth]{figure_10_cdm_slice_17.pdf}
     \label{fig:cubeDiagsA}
   \end{subfigure}
     \begin{subfigure}{0.25\textwidth}
     \centering
         \caption{}
-  \includegraphics[width=\linewidth]{triplesplitB.pdf}
+  \includegraphics[width=\linewidth]{figure_10_cdm_slice_34.pdf}
     \label{fig:cubeDiagsB}
   \end{subfigure}
     \begin{subfigure}{0.25\textwidth}
     \centering
         \caption{}
-  \includegraphics[width=\linewidth]{triplesplitC.pdf}
+  \includegraphics[width=\linewidth]{figure_10_cdm_slice_51.pdf}
     \label{fig:cubeDiagsC}
   \end{subfigure}
     \caption{Examples of three quadruple-split samples from a CDM simulation.}
@@ -729,9 +742,9 @@ Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unst
           $\textup{KC}_{1}$ & 0.192 & 0.000 \\
           $\textup{KC}_{2}$ & 0.248 & 0.00199 \\
           \midrule
-          $\textup{WKC}_{0}$ & 0.084 & 0.000 \\
-          $\textup{WKC}_{1}$ & 0.051 & 0.000 \\
-          $\textup{WKC}_{2}$ & 0.496 & 0.000 \\
+          $\textup{WIK}_{0}$ & 0.084 & 0.000 \\
+          $\textup{WIK}_{1}$ & 0.051 & 0.000 \\
+          $\textup{WIK}_{2}$ & 0.496 & 0.000 \\
           $\textup{PI}$ & 0.923 & 0.281 \\
           \midrule
           $\textup{CORR}$ & 6.656e-04 & 7.355e-16 \\
@@ -759,9 +772,9 @@ Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unst
           $\textup{GC}_{1}$ & 0.962 & 0.956 \\
           $\textup{GC}_{2}$ & 0.962 & 0.260 \\
           \midrule
-          $\textup{WKC}_{0}$ & 0.092 & 0.000 \\
-          $\textup{WKC}_{1}$ & 0.066 & 0.000 \\
-          $\textup{WKC}_{2}$ & 0.459 & 0.001 \\
+          $\textup{WIK}_{0}$ & 0.092 & 0.000 \\
+          $\textup{WIK}_{1}$ & 0.066 & 0.000 \\
+          $\textup{WIK}_{2}$ & 0.459 & 0.001 \\
           $\textup{PI}$ & 0.999 & 0.306 \\
           \midrule
           $\textup{CORR}$ & 0.0289 & 0.918 \\
@@ -780,37 +793,37 @@ A natural question after discovering that topological differences exist in both 
   \begin{subfigure}{.45\textwidth}
     \centering
     \caption{Dimension 0 Heatmap Set}
-    \includegraphics[width=\linewidth]{hmap_dim0_nonorm.pdf}
+    \includegraphics[width=\linewidth]{fig_12_hmap_dim0_nonorm.pdf}
     \label{fig:cubeHeatmap0}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
     \centering
     \caption{Dimension 0 Standardized Heatmap Set}
-    \includegraphics[width=\linewidth]{hmap_dim0_yesnorm.pdf}
+    \includegraphics[width=\linewidth]{fig_12_hmap_dim0_yesnorm.pdf}
     \label{fig:cubeHeatmapStand0}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
     \centering
     \caption{Dimension 1 Heatmap Set}
-    \includegraphics[width=\linewidth]{hmap_dim1_nonorm.pdf}
+    \includegraphics[width=\linewidth]{fig_12_hmap_dim1_nonorm.pdf}
     \label{fig:cubeHeatmap1}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
     \centering
     \caption{Dimension 1 Standardized Heatmap Set}
-    \includegraphics[width=\linewidth]{hmap_dim1_yesnorm.pdf}
+    \includegraphics[width=\linewidth]{fig_12_hmap_dim1_yesnorm.pdf}
     \label{fig:cubeHeatmapStand1}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
     \centering
     \caption{Dimension 2 Heatmap Set}
-    \includegraphics[width=\linewidth]{hmap_dim2_nonorm.pdf}
+    \includegraphics[width=\linewidth]{fig_12_hmap_dim2_nonorm.pdf}
     \label{fig:cubeHeatmap2}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
     \centering
     \caption{Dimension 2 Standardized Heatmap Set}
-    \includegraphics[width=\linewidth]{hmap_dim2_yesnorm.pdf}
+    \includegraphics[width=\linewidth]{fig_12_hmap_dim2_yesnorm.pdf}
     \label{fig:cubeHeatmapStand2}
   \end{subfigure}
   \caption{Each subfigure contains three horizontal heatmaps respectively representing (from top to bottom) the Bottleneck distances between each slice of unsplit, double split, and quadruple split pairs from respective WDM and CDM data sets by dimension. Subfigures (a, c, e) are unstandardized persistence diagrams while the subfigures (b, d, f) are standardized. Each individual heatmap is a vectorization of the cubic slices produced from the WDM and CDM Eagle simulations.}
@@ -824,25 +837,25 @@ From \figref{fig:cubeHeatmap}, we can infer that the topological and geometric d
     \begin{subfigure}{0.21\textwidth}
     \centering
         \caption{EC (High)}
-\includegraphics[width=\linewidth]{valid1.pdf}
+\includegraphics[width=\linewidth]{figure_13_max_margin_2euler.pdf}
     \label{fig:valid1}
   \end{subfigure}
     \begin{subfigure}{0.24\textwidth}
     \centering
         \caption{CORR (High)}
-\includegraphics[width=\linewidth]{valid2.pdf}
+\includegraphics[width=\linewidth]{figure_13_max_margin_corr.pdf}
     \label{fig:valid2}
   \end{subfigure}
     \begin{subfigure}{0.21\textwidth}
     \centering
         \caption{EC (Low)}
-\includegraphics[width=\linewidth]{valid3.pdf}
+\includegraphics[width=\linewidth]{figure_13_min_margin_2euler.pdf}
     \label{fig:valid3}
   \end{subfigure}
     \begin{subfigure}{0.24\textwidth}
     \centering
         \caption{CORR (Low)}
-\includegraphics[width=\linewidth]{valid4.pdf}
+\includegraphics[width=\linewidth]{figure_13_min_margin_corr.pdf}
     \label{fig:valid4}
   \end{subfigure}
     \label{fig:validationfigs}
@@ -871,35 +884,83 @@ In this paper, we presented a hypothesis testing framework, build on persistent 
 \end{center}
 
 \begin{description}
+  \item[Additional voronoi simulations:] Hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesUnnorm}.
 
-\item[Additional voronoi simulations:] Hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesUnnorm}.
+  \begin{center}
+    \begin{figure}[htp!]
+      \centering
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{EC Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_euler_group.pdf}
+        \label{fig:all_euler}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{SIL Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_silhouette_group.pdf}
+        \label{fig:all_silh}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{IK Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_contour_group.pdf}
+        \label{fig:all_contour}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{WIK/PI Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_weighted_contour_group.pdf}
+        \label{fig:all_weight}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \caption{CORR Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_correlation_group.pdf}
+        \label{fig:all_corr}
+      \end{subfigure}
+      \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set (from 0.1 to 0.9 by 0.1 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value of the 100 iterations. }
+      \label{fig:linesUnnorm}
+    \end{figure}
+  \end{center}
 
-\begin{figure}[htp!]
-  \centering
-  \includegraphics[width=0.7\linewidth]{euler_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{silh_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{smooth_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{weight_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{corr_lineplot_log10_norm_False.pdf}
-    \includegraphics[width=0.7\linewidth]{cross_lineplot_log10_norm_False.pdf}
-    \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set (from 0.1 to 0.9 by 0.1 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value of the 100 iterations. }
-    \label{fig:linesUnnorm}
-\end{figure}
+  \item[Additional voronoi simulations:] Standardized hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesNorm}.
 
-\item[Additional voronoi simulations:] Standardized hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesNorm}.
-
-\begin{figure}[htp!]
-  \centering
-  \includegraphics[width=0.7\linewidth]{euler_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{silh_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{smooth_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{weight_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{corr_lineplot_log10_norm_True.pdf}
-    \includegraphics[width=0.7\linewidth]{cross_lineplot_log10_norm_True.pdf}
-    \caption{A similar set of results to \figref{fig:linesUnnorm} (percfil 0.1 to 0.9) except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.}
-    \label{fig:linesNorm}
-\end{figure}
-
+  \begin{center}
+    \begin{figure}[htp!]
+      \centering
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{EC Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_euler_group_normed.pdf}
+        \label{fig:all_euler}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{SIL Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_silhouette_group_normed.pdf}
+        \label{fig:all_silh}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{IK Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_contour_group_normed.pdf}
+        \label{fig:all_contour}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{WIK/PI Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_weighted_contour_group_normed.pdf}
+        \label{fig:all_weight}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
+        \caption{CORR Tests}
+        \includegraphics[width=\linewidth]{figure_8_all_correlation_group_normed.pdf}
+        \label{fig:all_corr}
+      \end{subfigure}
+      \caption{A similar set of results to \figref{fig:linesUnnorm} (percfil 0.1 to 0.9) except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.}
+      \label{fig:linesNorm}
+    \end{figure}
+  \end{center}
 \end{description}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -3,6 +3,7 @@
 library(TDA)
 library(scatterplot3d)
 
+source('../../tools.r')
 source('../../Voronoi3Dfct.r')
 
 library(TDA)
@@ -70,8 +71,8 @@ diag <- gridDiag(vf,
                  sublevel=T, 
                  printProgress=T, 
                  m0=0.001)
-diag <- cleanDiag(diag)
-X <- diag$diagram
+diag <- cleanDiag(diag$diagram)
+X <- diag
 
 pdf(paste('figure_5_pd.pdf'))
 mar.default <- c(5,4,4,2) + 0.1

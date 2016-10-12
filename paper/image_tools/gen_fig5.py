@@ -80,7 +80,7 @@ plt.savefig('figure_5_corr_fun.pdf')
 # g) weighted kernel
 data = np.load('intermediate/fig_5_intensity.npy')
 plt.figure()
-fig = plt.pcolor(data)
+fig = plt.pcolor(data, cmap=plt.cm.jet)
 plt.xlabel('Birth', fontsize=18)
 plt.ylabel('Death', fontsize=18)
 cbar = plt.colorbar(fig)
