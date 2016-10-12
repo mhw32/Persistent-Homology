@@ -45,8 +45,8 @@ euler2 <- eulerChar(tseq2, my_wdm, maxdimension=max(my_wdm[,1]), threshold=0)
 pdf('figure_13_max_margin_2euler.pdf')
 plot(euler2, 
      type="l", 
-     xlab="Grid Sequence", 
-     ylab="Euler Char.", 
+     xlab="Sequence", 
+     ylab="EC", 
      col="coral1",
      lwd=3,
      cex.lab=2.0, 
@@ -77,8 +77,8 @@ euler2 <- eulerChar(tseq2, my_wdm, maxdimension=max(my_wdm[,1]), threshold=0)
 pdf('figure_13_min_margin_2euler.pdf')
 plot(euler2, 
      type="l", 
-     xlab="Grid Sequence", 
-     ylab="Euler Char.", 
+     xlab="Sequence", 
+     ylab="EC", 
      col="coral1",
      lwd=3,
      cex.lab=2.0, 

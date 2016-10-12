@@ -103,7 +103,7 @@ plt.ylabel('log10 p-value', fontsize=35)
 plt.xlabel('Percent filament', fontsize=35)
 
 allkeys = ['silh-euler', 'all-silh', 'indiv_silh-dim-0', 'indiv_silh-dim-1', 'indiv_silh-dim-2']
-allticks = ['Sil (EC)', 'Sil (0:2)', 'Sil (0)', 'Sil (1)', 'Sil (2)']
+allticks = ['SIL (EC)', 'SIL (0:2)', 'SIL (0)', 'SIL (1)', 'Sil (2)']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
 allshapes = ['o', 'o', 'o', 'o', 'o']
 allgraphs = []
