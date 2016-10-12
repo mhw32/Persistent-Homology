@@ -1,9 +1,9 @@
 # -- Figure 7 : different voronoi sims and pd diags --
 
-library('TDA')
-source('tools.r')
+library(TDA)
+source('../../tools.r')
 library(scatterplot3d)
-source('Voronoi3Dfct.r')
+source('../../Voronoi3Dfct.r')
 
 boxlim <- c(0, 20)
 res <- 0.5
@@ -22,11 +22,11 @@ for (pf in pfs) {
                     Ncells=64, 
                     N, 
                     percClutter=0, 
-                    percWall=1-0.02-percFil, 
-                    percFil=percFil, 
+                    percWall=1-0.02-pf, 
+                    percFil=pf, 
                     percClust=0.02)
 
-    pdf(paste('figure_7_plot_pf_', pf, '.pdf'))
+    pdf(paste('figure_7_plot_pf_', pf, '.pdf', sep=""))
     scatterplot3d(vf, 
                   xlab='X Axis', 
                   ylab='Y Axis', 
@@ -45,10 +45,10 @@ for (pf in pfs) {
                      printProgress=T, 
                      m0=0.001)
 
-    diag <- cleanDiag(diag)
+    diag <- cleanDiag(diag$diagram)
 
-    pdf(paste('figure_7_pd_', pf, '.pdf'))
-    X <- diag$diagram
+    pdf(paste('figure_7_pd_', pf, '.pdf', sep=""))
+    X <- diag
     # X is the persistence diagram
     mar.default <- c(5,4,4,2) + 0.1
     par(mar = mar.default + c(0, 1, 0, 0)) 
@@ -73,3 +73,4 @@ for (pf in pfs) {
            col = c(1,2,3), 
            cex=2.0)
     dev.off()
+}

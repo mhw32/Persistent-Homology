@@ -82,7 +82,7 @@ for k, c, s, t in zip(allkeys, allcolors, allshapes, allticks):
              alpha=0.5)
 
 for k, c, s in zip(allkeys, allcolors, allshapes):
-    _, plt.plot(xvalues, 
+    plt.plot(xvalues, 
                 [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]], 
                 color=c, 
                 markersize=0, 
@@ -133,7 +133,7 @@ for k, c, s, t in zip(allkeys, allcolors, allshapes, allticks):
              alpha=0.5)
 
 for k, c, s in zip(allkeys, allcolors, allshapes):
-    _, plt.plot(xvalues, 
+    plt.plot(xvalues, 
                 [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]], 
                 color=c, 
                 markersize=30, 
@@ -154,7 +154,7 @@ plt.ylabel('log10 p-value', fontsize=35)
 plt.xlabel('Percent filament', fontsize=35)
 
 allkeys = ['contour-dim-0', 'contour-dim-1', 'contour-dim-2']
-allticks = ['KC (0)', 'KC (1)', 'KC (2)']
+allticks = ['KI (0)', 'KI (1)', 'KI (2)']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
 allshapes = ['o', 'o', 'o', 'o', 'o']
 allgraphs = []
@@ -203,7 +203,7 @@ for k, c, s in zip(allkeys, allcolors, allshapes):
     tmp = np.array([np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]])
     tmpboolme = np.isinf(tmp)
     yvalues = list(tmp[~tmpboolme]) + [min(tmp[~tmpboolme])]*len(xvalues[tmpboolme])
-    _, plt.plot(xvalues, 
+    plt.plot(xvalues, 
                 yvalues, 
                 color=c, 
                 markersize=30, 
@@ -263,7 +263,7 @@ for k, (c, s, t) in enumerate(zip(allcolors, allshapes, allticks)):
              alpha=0.5)
 
 for k, (c, s) in enumerate(zip(allcolors, allshapes)):
-    _, plt.plot(xvalues, 
+    plt.plot(xvalues, 
                 bighash2[k], 
                 color=c, 
                 markersize=30, 
@@ -294,7 +294,7 @@ plt.ylabel('log10 p-value', fontsize=35)
 plt.xlabel('Percent filament', fontsize=35)
 
 alldata   = [wkc_0, wkc_1, wkc_2, pi_all]
-allticks  = ['WKC (0)', 'WKC (1)', 'WKC (2)', 'PI']
+allticks  = ['WIK (0)', 'WIK (1)', 'WIK (2)', 'PI']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46']
 allshapes = ['o', 'o', 'o', 'o']
 allgraphs = []
@@ -336,7 +336,7 @@ for d, c, s, t in zip(alldata, allcolors, allshapes, allticks):
 
     
 for d, c, s in zip(alldata, allcolors, allshapes):
-    _, plt.plot(xvalues, 
+    plt.plot(xvalues, 
                 np.percentile(np.log10(1 - np.exp(d)), 50, axis=0), 
                 color=c, 
                 markersize=30, 

@@ -10,7 +10,7 @@ def prepare(data):
             data[2, :27], 
             data[3, :64])
 
-data = np.load('intermediate/dists.npy')
+data = np.load('intermediate/fig_12_dists.npy')
 data_dim = (data[:, :, 0], data[:, :, 1], data[:, :, 2])
 
 for i, curdata in enumerate(data_dim):
@@ -49,7 +49,7 @@ for i, curdata in enumerate(data_dim):
 
 # -- do same for normalized
 
-data = np.load('intermediate/dists-norm.npy')
+data = np.load('intermediate/fig_12_dists_norm.npy')
 data_dim = (data[:, :, 0], data[:, :, 1], data[:, :, 2])
 
 for i, curdata in enumerate(data_dim):

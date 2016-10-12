@@ -1,3 +1,4 @@
+
 # -- Figure 13 : heatmap analysis (euler) --
 
 library(TDA)
@@ -51,8 +52,7 @@ plot(euler2,
      cex.lab=2.0, 
      cex.axis=2.0, 
      cex.main=2.0, 
-     cex.sub=2.0, 
-     cex=2.0)
+     cex.sub=2.0)
 lines(euler1,
       lwd=3, 
       col="cyan3")
@@ -84,8 +84,7 @@ plot(euler2,
      cex.lab=2.0, 
      cex.axis=2.0, 
      cex.main=2.0, 
-     cex.sub=2.0, 
-     cex=2.0)
+     cex.sub=2.0)
 lines(euler1,
       lwd=3, 
       col="cyan3")
@@ -93,9 +92,5 @@ legend("topright",
        c("CDM", "WDM"), 
        col=c("coral", "cyan"), 
        lwd=3,
-       cex.lab=2.0, 
-       cex.axis=2.0, 
-       cex.main=2.0, 
-       cex.sub=2.0, 
        cex=2.0)
 dev.off()

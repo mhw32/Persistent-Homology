@@ -7,6 +7,10 @@ import rpy2.robjects.numpy2ri
 rpy2.robjects.numpy2ri.activate()
 from rpy2.robjects.numpy2ri import numpy2ri
 import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import seaborn as sns
+sns.set_style('whitegrid')
 
 
 def rds_to_np(Rfile):
@@ -44,9 +48,9 @@ for i in range(len(x)):
     yix = find_closest_index( y[i], yrng )
     zz[xix,yix] += 1
 
-np.save(xx, 'intermediate/fig_2_xx.npy')
-np.save(yy, 'intermediate/fig_2_yy.npy')
-np.save(zz, 'intermediate/fig_2_zz.npy')
+np.save('intermediate/fig_2_xx.npy', xx)
+np.save('intermediate/fig_2_yy.npy', yy)
+np.save('intermediate/fig_2_zz.npy', zz)
 
 # subfigure a : 3D representation
 
@@ -55,39 +59,39 @@ ax = fig.add_subplot(111, projection='3d')
 p = np.zeros(zz.shape)
 p[:, :] = 1.1
 ax.plot_surface(xx, yy, gaussian_filter(zz, 20), 
-	cmap=cm.coolwarm, linewidth=0)
+	cmap=plt.cm.coolwarm, linewidth=0)
 ax.plot_surface(xx, yy, p, linewidth=0, 
 	color='k', alpha=0.15)
-plt.tick_params(labelsize=14)
+plt.tick_params(labelsize=16)
 ax.set_xlim(-1.50, 1.50)
 ax.set_ylim(-1.50, 1.50)
 ax.view_init(elev=35)
 plt.savefig('figure_2_3d_repr.pdf')
-plt.show()
+# plt.show()
 
 # subfigure b : contour 1
 
 plt.figure()
 tmp = gaussian_filter(zz, 20)
 tmp[tmp < 1.5]= 0
-fig = plt.contour(tmp)
-plt.tick_params(labelsize=14)
+fig = plt.contour(tmp, colors=('#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E'))
+plt.tick_params(labelsize=16)
 cbar = plt.colorbar(fig)
-cbar.ax.tick_params(labelsize=14)
+cbar.ax.tick_params(labelsize=16)
 plt.savefig('figure_2_contour_1.pdf')
-plt.show()
+# plt.show()
 
 # subfigure c : contour 2
 
 plt.figure()
 tmp = gaussian_filter(zz, 20)
 tmp[tmp < 0.5]= 0
-fig = plt.contour(tmp)
-plt.tick_params(labelsize=14)
+fig = plt.contour(tmp, colors=('#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E'))
+plt.tick_params(labelsize=16)
 cbar = plt.colorbar(fig)
-cbar.ax.tick_params(labelsize=14)
+cbar.ax.tick_params(labelsize=16)
 plt.savefig('figure_2_contour_2.pdf')
-plt.show()
+# plt.show()
 
 # save the figure to R so we can 
 # get a persistence diagram

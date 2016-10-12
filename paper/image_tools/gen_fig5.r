@@ -2,9 +2,33 @@
 
 library(TDA)
 library(scatterplot3d)
-source('tools.r')
-source('process_eagle.r')
-source('euler.r')
+
+source('../../Voronoi3Dfct.r')
+
+library(TDA)
+library(pracma)
+
+eulerChar <- function(tseq, diagram, maxdimension, threshold=0) {
+    eulerFct <- function(t) {
+        if (threshold>0) {
+            persistence <- diagram[,3]-diagram[,2]
+            diagram <- diagram[which(persistence>=threshold),]
+        }
+        betti <- numeric(maxdimension)
+        for (i in 0:maxdimension) {
+            betti[i+1]=((-1)^i)*sum(diagram[,1]==i & diagram[,2]<=t & diagram[,3]>t)
+        }
+        out <- sum(betti)
+        return(out)
+    }
+    out <- numeric(length(tseq))
+    count <- 0
+    for (t in tseq) {
+        count <- count + 1
+        out[count] <- eulerFct(t)
+    }
+    return(out)
+}
 
 # a) point cloud
 
@@ -23,12 +47,12 @@ vf<- voronoi3d(boxlim,
                Ncells=64, 
                N, 
                percClutter=0, 
-               percWall=1-0.02-percFil, 
-               percFil=percFil, 
+               percWall=1-0.02-0.5, 
+               percFil=0.5, 
                percClust=0.02)
 
 pdf(paste('figure_5_plot.pdf'))
-scatterplot3d(data[i], 
+scatterplot3d(vf, 
               xlab='X Axis', 
               ylab='Y Axis', 
               zlab='Z Axis', 

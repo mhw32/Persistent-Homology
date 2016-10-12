@@ -1,6 +1,6 @@
 # -- Figure 2 : persistence diagram --
 library(TDA)
-source('tools.r')
+source('../../tools.r')
 
 infile<- 'intermediate/fig_2_data.bin'
 con <- file(infile, "rb")
@@ -12,8 +12,7 @@ close(con)
 
 res <- 0.01
 boxlim <- cbind(c(-1.5, 1.5), 
-                c(-1.5, 1.5), 
-                c(0, 3))
+                c(-1.5, 1.5))
 diag <- gridDiag(Mat, 
                  dtm, 
                  lim=boxlim, 
@@ -22,10 +21,10 @@ diag <- gridDiag(Mat,
                  printProgress=T,
                  m0=0.001)
 
-diag <- cleanDiag(diag)
+diag <- cleanDiag(diag$diagram)
 
 pdf('figure_2_pd.pdf')
-X <- diag$diagram
+X <- diag
 # X is the persistence diagram
 mar.default <- c(5,4,4,2) + 0.1
 par(mar = mar.default + c(0, 1, 0, 0)) 
