@@ -1,19 +1,35 @@
-# -- Figure 11 : cdm/wdm eagle
+# -- Figure 11 : cdm/wdm eagle --
 
-library('TDA')
+library(TDA)
 library(scatterplot3d)
-source('tools.r')
-source("process_eagle.r")
+source('../../tools.r')
+source("../../process_eagle.r")
+library(rhdf5)
+library(rgl)
+
+load_CDM <- function() {
+  d <- t(h5read("../../simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloPositions"))
+  return(d)
+}
+
+# Increase a processing step to ensure only genuine objects.
+load_WDM <- function() {
+  d <- t(h5read("../../simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloPositions"))
+  HMspher <- t(h5read("../../simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloHMSpher"))
+  MaxMass <- t(h5read("../../simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloMaxMass"))
+  selection <- (MaxMass > 2.2e8) & (HMspher > 0.2)
+  reframe <- d[selection,]
+  return(reframe)
+}
 
 whole_cdm <- load_CDM()
 whole_wdm <- load_WDM()
-
-data <- c(whole_wdm, whole_cdm)
-names <- c('wdm', 'cdm')
+data <- list(whole_wdm, whole_cdm)
+names <- list('wdm', 'cdm')
 
 for (i in c(1, 2)) {
-    pdf(paste("figure_11_", names[i], "_plot.pdf"))
-    scatterplot3d(data[i], 
+    pdf(paste("figure_11_", names[[i]], "_plot.pdf", sep=""))
+    scatterplot3d(data[[i]], 
                   xlab='X Axis', 
                   ylab='Y Axis', 
                   zlab='Z Axis', 
@@ -23,12 +39,12 @@ for (i in c(1, 2)) {
                   cex.lab=2)
     dev.off()
 
-    Xlim <- c(min(data[i][,1]), max(data[i][,1]))
-    Ylim <- c(min(data[i][,2]), max(data[i][,2]))
-    Zlim <- c(min(data[i][,3]), max(data[i][,3]))
+    Xlim <- c(min(data[[i]][,1]), max(data[[i]][,1]))
+    Ylim <- c(min(data[[i]][,2]), max(data[[i]][,2]))
+    Zlim <- c(min(data[[i]][,3]), max(data[[i]][,3]))
 
-    res <- 1
-    diag <- gridDiag(data[i], 
+    res <- 5
+    diag <- gridDiag(data[[i]], 
                      dtm, 
                      lim=cbind(Xlim,Ylim,Zlim), 
                      by=res, 
@@ -36,9 +52,9 @@ for (i in c(1, 2)) {
                      printProgress=T, 
                      m0=0.001)
 
-    diag <- cleanDiag(diag)
-    pdf(paste('figure_11_', names[i], '_pd.pdf'))
-    X <- diag$diagram
+    diag <- cleanDiag(diag$diagram)
+    pdf(paste('figure_11_', names[[i]], '_pd.pdf', sep=""))
+    X <- diag
     # X is the persistence diagram
     mar.default <- c(5,4,4,2) + 0.1
     par(mar = mar.default + c(0, 1, 0, 0)) 
