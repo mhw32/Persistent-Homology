@@ -71,11 +71,13 @@ plt.savefig('figure_2_3d_repr.pdf')
 
 # subfigure b : contour 1
 
-plt.figure()
+fig, ax = plt.subplots()
 tmp = gaussian_filter(zz, 20)
 tmp[tmp < 1.5]= 0
 fig = plt.contour(tmp, colors=('#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E'))
 plt.tick_params(labelsize=16)
+ax.set_xticklabels([-1.5, -1.0, -0.5, 0, 0.5, 1.0, 1.5])
+ax.set_yticklabels([-1.5, -1.0, -0.5, 0, 0.5, 1.0, 1.5])
 cbar = plt.colorbar(fig)
 cbar.ax.tick_params(labelsize=16)
 plt.savefig('figure_2_contour_1.pdf')
@@ -83,11 +85,13 @@ plt.savefig('figure_2_contour_1.pdf')
 
 # subfigure c : contour 2
 
-plt.figure()
+fig, ax = plt.subplots()
 tmp = gaussian_filter(zz, 20)
 tmp[tmp < 0.5]= 0
 fig = plt.contour(tmp, colors=('#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E'))
 plt.tick_params(labelsize=16)
+ax.set_xticklabels([-1.5, -1.0, -0.5, 0, 0.5, 1.0, 1.5])
+ax.set_yticklabels([-1.5, -1.0, -0.5, 0, 0.5, 1.0, 1.5])
 cbar = plt.colorbar(fig)
 cbar.ax.tick_params(labelsize=16)
 plt.savefig('figure_2_contour_2.pdf')
