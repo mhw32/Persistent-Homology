@@ -65,12 +65,6 @@ Cisewski, J., Croft, R.~A., Freeman, P.~E., Genovese, C.~R., Khandai, N.,
   forest', {\em Monthly Notices of the Royal Astronomical Society} {\bf
   440}(3),~2599--2609.
 
-\harvarditem[Cohen-Steiner et~al.]{Cohen-Steiner, Edelsbrunner \harvardand\
-  Harer}{2007}{cohen2007stability}
-Cohen-Steiner, D., Edelsbrunner, H. \harvardand\ Harer, J.  \harvardyearleft
-  2007\harvardyearright , `Stability of persistence diagrams', {\em Discrete \&
-  Computational Geometry} {\bf 37}(1),~103--120.
-
 \harvarditem{Cooray \harvardand\ Sheth}{2002}{cooray2002halo}
 Cooray, A. \harvardand\ Sheth, R.  \harvardyearleft 2002\harvardyearright ,
   `Halo models of large scale structure', {\em Physics Reports} {\bf
@@ -152,6 +146,12 @@ Lovell, M.~R., Frenk, C.~S., Eke, V.~R., Jenkins, A., Gao, L. \harvardand\
   dark matter haloes', {\em Monthly Notices of the Royal Astronomical Society}
   {\bf 439}(1),~300--317.
 
+\harvarditem[Mileyko et~al.]{Mileyko, Mukherjee \harvardand\
+  Harer}{2011}{Mileyko:2011aa}
+Mileyko, Y., Mukherjee, S. \harvardand\ Harer, J.  \harvardyearleft
+  2011\harvardyearright , `Probability measures on the space of persistence
+  diagrams', {\em Inverse Problems} {\bf 27}(12),~124007.
+
 \harvarditem{Munkres}{1984}{munkres1984elements}
 Munkres, J.~R.  \harvardyearleft 1984\harvardyearright , {\em Elements of
   algebraic topology}, Vol.~2, Addison-Wesley Menlo Park.
@@ -170,6 +170,18 @@ Schneider, A., Smith, R.~E., Macci{\`o}, A.~V. \harvardand\ Moore, B.
   \harvardyearleft 2012\harvardyearright , `Non-linear evolution of
   cosmological structures in warm dark matter models', {\em Monthly Notices of
   the Royal Astronomical Society} {\bf 424}(1),~684--698.
+
+\harvarditem{Sousbie}{2011}{Sousbie2011}
+Sousbie, T.  \harvardyearleft 2011\harvardyearright , `Ther persistent cosmic
+  web and its filamentary structure - {I}. {T}heory and implementation', {\em
+  Monthly Notices of the Royal Astronomical Society} {\bf 414}(1),~350 -- 383.
+
+\harvarditem[Sousbie et~al.]{Sousbie, Pichon \harvardand\
+  Kawahara}{2011}{SousbieEtAl2011}
+Sousbie, T., Pichon, C. \harvardand\ Kawahara, H.  \harvardyearleft
+  2011\harvardyearright , `The persistent cosmic web and its filamentary
+  structure -- {II}. {I}llustrations', {\em Monthly Notices of the Royal
+  Astronomical Society} {\bf 414}(1),~384 -- 403.
 
 \harvarditem[Springel et~al.]{Springel, Frenk \harvardand\
   White}{2006}{springel2006large}

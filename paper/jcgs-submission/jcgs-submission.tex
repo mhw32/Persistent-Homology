@@ -48,11 +48,11 @@
 \if0\blind
 {
   \title{\bf Topological Hypothesis Tests for the Large-Scale Structure of the Universe}
-  \author{Wu, Mike\thanks{
-    The authors gratefully acknowledge \textit{please remember to list all relevant funding sources in the unblinded version}}\hspace{.2cm}\\
+  \author{Wu, Mike\\
     Department of Computer Science, Yale University
     \and
-    Cisewski, Jessi\\
+    Cisewski, Jessi\thanks{
+    Corresponding author.  The authors gratefully acknowledge Yale Information Technology Services {\bf ???any grants to add???}}\hspace{.2cm}\\
     Department of Statistics, Yale University
     \and
     Fasy, Brittany T.\\
@@ -106,9 +106,9 @@ The large-scale structure (LSS) of the Universe is an intricate and spatially co
 \section{Introduction}
 \label{sec:intro}
 
-Rigorous comparisons of spatially complex web-like data such as the large-scale structure (LSS) of the Universe (see ~\figref{fig:introData}) is notoriously difficult due, in part, to the difficulty in capturing the randomness of geometric and topological structures.  However, these comparisons are important as it is becoming apparent that there is potentially information about cosmological parameters in the structure. We propose a framework for constructing topological hypothesis tests using ideas from an emerging area of topological data analysis called persistent homology. Persistent homology offers a novel way to represent, visualize, and interpret complex data by extracting topological features, which can be used to infer properties of the underlying structures, and has already been used as an exploratory tool for some problems in astronomy (\cite{cisewski2014non, van2011alpha}) among other areas of science (\cite{bendich2014persistent, duong2012closed}).
+Rigorous comparisons of spatially complex web-like data such as the large-scale structure (LSS) of the Universe (see ~\figref{fig:introData}) is notoriously difficult due, in part, to the difficulty in capturing the randomness of geometric and topological structures.  However, these comparisons are important as it is becoming apparent that there is potentially information about cosmological parameters in the structure. We propose a framework for constructing topological hypothesis tests using ideas from an emerging area of topological data analysis (TDA) called persistent homology. Persistent homology offers a novel way to represent, visualize, and interpret complex data by extracting topological features, which can be used to infer properties of the underlying structures, and has already been used for some problems in astronomy \citep{Sousbie2011, SousbieEtAl2011, van2011alpha,cisewski2014non} among other areas of science \citep{bendich2014persistent, duong2012closed}.
 
-The large-scale structure (LSS) of the Universe is an important example of a spatially complex structure that is often referred to as the \emph{Cosmic Web} (\cite{bond1996filaments,springel2006large}). The LSS of the Universe is a focus of manifold scientific research because its properties reveal information about the underlying physics and formation of our Universe (\cite{davis1985evolution}). In order to study theoretical aspects of the formation and evolution of LSS, cosmologists develop large-scale simulations and can adjust the physical inputs and evaluate their effects on the LSS (\cite{cooray2002halo,centrella1983three,doroshkevich1980two,schaye2015eagle}). One such input is related to the nature of dark matter. The received position is that the Universe is made up of dark energy, dark matter (DM), and baryonic matter. Dark matter is thought to be of different temperatures, from cold to hot. Hot dark matter consists of particles that travel with ultrarelativistic speeds, while cold dark matter particles move much slower. For an easy introduction to DM, see \cite[p. 61-63]{HilbeEtAl2014}.  
+The large-scale structure (LSS) of the Universe is an important example of a spatially complex structure, and is fittingly referred to as the \emph{Cosmic Web} (\cite{bond1996filaments,springel2006large}). The LSS of the Universe is a focus of manifold scientific research because its properties reveal information about the underlying physics and formation of our Universe (\cite{davis1985evolution}). In order to study theoretical aspects of the formation and evolution of LSS, cosmologists develop large-scale simulations and can adjust the physical inputs and evaluate their effects on the LSS \citep{cooray2002halo,centrella1983three,doroshkevich1980two,schaye2015eagle}. One such input is related to the nature of dark matter (DM). The received position is that the Universe is made up of dark energy, DM, and baryonic matter. The nature of DM is still a mystery, but there are hypotheses regarding its possible particle behavior. Hot DM consists of particles that travel with ultrarelativistic speeds, while cold DM particles move much slower. For an easy introduction to DM, see \cite[p. 61-63]{HilbeEtAl2014}.  
 
 Though the generally accepted and best supported cosmological model assumes \emph{cold dark matter} (known as $\Lambda$CDM), there are some elements of disagreement with observations (\cite{SchneiderEtAl2012}). Furthermore, it has been demonstrated through cosmological simulations that the nature of DM affects the development and formation of LSS (\cite{SchneiderEtAl2012}).  In \figref{fig:introData}, two realizations -- under the assumption of cold dark matter and warm dark matter -- from the EAGLE cosmological simulation (\cite{schaye2015eagle}) are displayed. Though there are similarities in shape of the densest regions (called \emph{filaments}), there are differences in the distribution of matter about the filaments.  
 
@@ -129,7 +129,7 @@ Though the generally accepted and best supported cosmological model assumes \emp
     \label{fig:introData}
 \end{figure}
 
-The goal of the proposed topological hypothesis tests is to detect differences in the topology between these types of structures using persistent homology. In this paper, we move towards quantitatively detailing the topological and geometric differences between the LSS under respective assumptions of cold and warm dark matter. We begin with an introduction to persistent homology followed by the proposed hypothesis testing framework. Then we carry-out a simulation study to investigate the performance of the proposed test statistics. Next we provide more background on LSS, and then apply the hypothesis tests to quantify the topological disparities between warm and cold dark matter assumptions. We end with concluding remarks.
+The goal of the proposed topological hypothesis tests is to detect differences in the topology between these types of structures using persistent homology. In this paper, we move towards quantitatively detailing the topological and geometric differences between the LSS under respective assumptions of cold and warm dark matter. We begin with an introduction to persistent homology followed by the proposed hypothesis testing framework. Then we carry-out a simulation study to investigate the performance of the proposed test statistics followed by more background on LSS, and then apply the hypothesis tests to quantify the topological disparities between warm and cold DM assumptions. We end with concluding remarks.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,54 +138,41 @@ The goal of the proposed topological hypothesis tests is to detect differences i
 
 \section{Tools from TDA Useful for Studying LSS}
 \label{sec:tda}
-\brittany{Jessi, what exactly is the input data? a point cloud (where each point
-    = a galaxy?) or a density
-defined over a cube? I went with the point cloud here, but if this is not true,
-I can rework this introduction.}
-
-Homology is the study of the spatial structure of topological spaces (e.g., the components of a subset of $\mathbb{R}^n$ and loops in $k$-nn graphs constructed
-over point cloud data). Persistent homology studies the spacial structure of a parameterized family of topological spaces (e.g., keeping track of the so-called
-births and deaths of homological features as a topological space changes in a `nice' way).
+Homology is the study of certain properties of topological spaces, specifically the number of different ordered holes in the space (e.g. connected components, loops, voids). Persistent homology studies the spacial structure of a parameterized family of topological spaces (e.g., keeping track of the so-called
+births and deaths of homological features as a topological space changes with the parameter).
 %
-The data set that we study is a cosmological point cloud, where each data point represents a galaxy in the universe. We then look at cubes in space and analyze
-the distribution of galaxies within that cube. We may define a simplicial complex directly on the data set, or we may compute a KDE from the input data. The homological features mentioned above have cosmological interpretations in dimensions zero, one, and two. We discuss this briefly before going further into the algebraic topology.
+The type of data that we are investigating is a point cloud, where each point can represent a galaxy or, for cosmological simulation data, a certain mass of DM.
+With cosmological simulations,  we look at cubic regions representing some part of our Universe and analyze
+the distribution of matter within that cube. We may define a simplicial complex directly on the point cloud, or we may compute a smoothed version of the data using kernel density estimation (KDE). The homological features mentioned above have cosmological interpretations in dimensions zero, one, and two. We discuss this briefly before going further into the algebraic topology.
 
 \paragraph{Clusters} 
-A \emph{connected component}, or zeroth dimensional homology feature, is a maximal subspace of a topological
+A \emph{connected component}, or zeroth-dimensional homology feature ($H_0$), is a maximal subspace of a topological
 space that cannot be covered by two disjoint open sets. In words, a connected component is a `piece' of a topological space.  If our topological space is a
-$k$-nn graph, then the components are clusters of data points.  In cosmology, clusters of galaxies (or of stars or other cosmological matter) are an important
-structure to understand, as the gravitational forces of these galaxies will attract more cosmological matter to accumulate near the cluster. Persistent homology tracks the appearance of new connected components, and the merging of two distinct components into one.
+$k$-nn graph, then the components are clusters of data points.  In cosmology, clusters of galaxies (or other cosmological matter) are an important
+structure to understand. Persistent homology tracks the appearance of new connected components and the merging of two distinct components into one.
 
-\paragraph{Filaments and Loops} \brittany{Edit this} A \emph{loop}, or one dimensional homology feature, provides information about the connectivity of data. As many zeroth dimensional features appear, nearby connected components can merge together. If our topological space is a $k$-nn graph then the loops are clusters of data points that merge into a fully connected cycle. In cosmology, loops represent how gravitational forces affect groups of galaxies and where cosmic mass accumulates.
+\paragraph{Filaments and Loops} A \emph{loop}, or one-dimensional homology feature ($H_1$), provides information about the connectivity of data. As many $H_0$ features appear, nearby connected components can merge together. If our topological space is a $k$-nn graph then the loops are clusters of data points that merge into a fully connected cycle.  For LSS, this would appear as filaments joining together in a loop.
 
-\begin{center}
-\begin{figure}[htp!]
-  \centering
-  \includegraphics[width=0.85\linewidth]{homologyobjects.png}
-    \caption{This figure shows the formation of connected components as line segments, loops as shaded polygons, and voids as white enclosed regions. The bottom plot shows a barcode representation of a persistence diagram where y-axis labels the zeroth, one, and two dimensional homologies, and x-axis shows the lifespan of the homology feature.}
-    \label{fig:homologydemo}
-\end{figure}
-\end{center}
 
-\paragraph{Cosmological Voids} \brittany{edit this} A \emph{void}, or two dimensional homology feature, represents empty areas within the topological space. If our topological space is a $k$-nn graph, then the voids are the unfilled spaces inside enclosed one dimensional homology features. See \figref{fig:homologydemo} for an example of a void. In cosmology, to fully appreciate the topology, it is important to understand not only where clusters of galaxies form (connected components and loops) but also where clusters of galaxies are scarce. \brittany{Jessi, is there a good source for the definitions of clusters, filaments, and voids?}
+\paragraph{Cosmological Voids}  A \emph{void}, or two-dimensional homology feature ($H_2$), represents empty areas within the topological space. If our topological space is a $k$-nn graph, then the voids are the unfilled spaces inside enclosed $H_1$ features.  In cosmology, to fully appreciate the topology, it is important to understand the high-density regions (connected components and loops) but also where matter is scarce. 
 
 \subsection{Persistent Homology} 
 Various methods can be used in order to transform a discrete point set into a topological space. For example, points can be connected based on a distance (or
-a distance-like structure as in \cite{chazal2011geometric}), or one may estimate the density from which the points were sampled. In the latter case, one would look at a density function, such as a kernel density estimate (KDE) of a point cloud and study the topological features of super-level sets of that density. Below, we summarize some of the key components of persistent homology. See \cite{edelsbrunner2010computational,hatcher2002algebraic,munkres1984elements} for a more thorough introduction to algebraic and computational topology. \brittany{check citations}
+a distance-like structure as in \cite{chazal2011geometric}), or one may estimate the density from which the points were sampled. 
+In the latter case, one can look at a KDE of a point cloud and study the topological features of super-level sets of that density. Below, we summarize some of the key components of persistent homology. See \cite{edelsbrunner2010computational,hatcher2002algebraic,munkres1984elements} for a more thorough introduction to algebraic and computational topology. \brittany{check citations}
 
 \paragraph{Filtrations}
-\brittany{define, the following is just a placeholder for now.}
-To derive the persistent homology for $p$, let there exist a threshold $r$, represented by a hyperplane that divides $p$ into two separate segments: a super-level set, defined as $\{(x,y,z) \in p \textup{ s.t. } z \geq r \}$, and a corresponding sub-level set $\{(x,y,z) \in p \textup{ s.t. } z < r \}$. $r$ is initialized at $\infty$, at which the super-level set is empty and the sub-level set contains all of $p$. The evolving spatial structure is represented by~$r$ approaching $-\infty$. The persistent homology would then track the connected
-components ($\textup{H}_{0}$), loops ($\textup{H}_{1}$), and voids ($\textup{H}_{2}$) that appear and disappear in the super-level sets $p^{-1}([r,\infty)]$ as $r$ ranges from $\infty$ to~$-\infty$. More specifically, as~$r$ intersects $p$, the super-level set is no longer empty and is instead, composed of disjoint peaks/local maxima.
+To derive the persistent homology for $p$, let there exist a threshold $r$, represented by a hyperplane that divides $p$ into two separate segments: a super-level set, defined as $\{(x,y,z) \in p \textup{ s.t. } z \geq r \}$, and a corresponding sub-level set $\{(x,y,z) \in p \textup{ s.t. } z < r \}$. If $r$ is initialized at $\infty$, the super-level set is empty and the sub-level set contains all of $p$. The evolving topological space is characterized by its homology as~$r$ decreases to $-\infty$. The persistent homology would then track the connected
+components ($\textup{H}_{0}$), loops ($\textup{H}_{1}$), and voids ($\textup{H}_{2}$) that appear and disappear in the super-level sets $p^{-1}([r,\infty)]$ as $r$ ranges from $\infty$ to~$-\infty$. More specifically, as~$r$ intersects $p$, the super-level set is no longer empty and is instead, composed of disjoint peaks/local maxima.  An example of a density with a 2-dimensional domain is presented in Figure~\ref{fig:example_3d}, along with the plane representing a threshold for defining super-level sets.  Figures~\ref{fig:example_contour1} and \ref{fig:example_contour2} display the upper-level sets for two thresholds.  Figure~\ref{fig:example_pd} displays the corresponding persistence diagram which is discussed below.
 
 
 \paragraph{Tracking Homology Generators}
-\brittany{define PH, define feature -- this section is still in the works}
-Each persistence point is plotted in the birth-death plane; see~\figref{fig:homologyexample}(c) for an example. Notice that for a super-level set, all persistence points will be below the diagonal $x=y$. A
-diagonal point $(x,x)$ represents a feature that was born and died at the same time $x$.  In order for the diagram to be stable, we include this diagonal with
-infinite multiplicity (\cite{cohen2007stability}) \brittany{check citation}.  
+As the threshold, $r$, decreases from $\infty$ to $0$, the homology of the upper-level sets change.  Between the thresholds corresponding to  Figure~\ref{fig:example_contour1} and Figure~\ref{fig:example_contour2}, the upper-level set
+changes from having six connected components ($H_0$'s) and zero loops ($H_1$'s) to having one connected component and one loop.  The time in the filtration when homology features appear, the \emph{birth} of the feature, and the time when a feature joins other features, the \emph{death} of the feature, is captured in a persistence diagram.
+Figure~\ref{fig:example_pd} displays the persistence diagram for the function in Figure~\ref{fig:example_3d}, where each point represents the death time (x-axis) and birth time (y-axis) of a homological feature. A
+diagonal point $(x,x)$ represents a feature that was born and died at the same time $x$.  
 
-The \emph{persistence} of a persistence point $(b,d)$ is the length of the interval of persistence parameters that support that feature: $b-d$.  In the persistence diagram, the distance from $(b,d)$ to the diagonal is proportional to this value; in fact, the (Euclidean) distance to the diagonal is $1/\sqrt{2}(b-d)$. Often, the persistence of a feature is indicative of the
+The \emph{persistence} of a persistence point $(d,b)$ is the length of the interval of the persistence parameter that support that feature: $b-d$.  In the persistence diagram, the distance from $(b,d)$ to the diagonal is proportional to this value; in fact, the (Euclidean) distance to the diagonal is $(b-d)/\sqrt{2}$. Sometimes the persistence of a feature is indicative of the
 significance of the feature, which means that points close to the diagonal are indistinguishable from noise.
 
 \begin{figure}
@@ -217,22 +204,21 @@ significance of the feature, which means that points close to the diagonal are i
     \label{fig:homologyexample}
 \end{figure}
 
-\paragraph{An Example}
-In order to illustrate persistent homology, we step down a dimension from cubes in $\R^3$ to squares in $\R^2$. In \figref{fig:homologyexample}, we see how persistent homology captures the evolving super-level sets of a KDE $\widehat{p} \colon [-2,2]^2 \to \R$.  The density plot in \figref{fig:homologyexample} was created using 6 Gaussian peaks distributed along a uniform circle in the $<x,y>$ plane. As the persistence parameter $t$, shown as a hyperplane in \figref{fig:homologyexample}(a), decreases from $\infty$ to $-\infty$, various events occur in the super-level sets $\widehat{p}^{-1}[t,\infty)$: a new component can appear (zeroth-dimensional birth), two distinct components can merge (zero-dimensional death), a loop can appear (one-dimensional birth), and two loops can become homologous (one-dimensional death).  These birth and death events are paired and plotted in the persistence diagram.
+%\paragraph{An Example}
+%In order to illustrate persistent homology, we step down a dimension from cubes in $\R^3$ to squares in $\R^2$. In \figref{fig:homologyexample}, we see how persistent homology captures the evolving super-level sets of a KDE $\widehat{p} \colon [-2,2]^2 \to \R$.  The density plot in \figref{fig:homologyexample} was created using 6 Gaussian peaks distributed along a uniform circle in the $<x,y>$ plane. As the persistence parameter $t$, shown as a hyperplane in \figref{fig:homologyexample}(a), decreases from $\infty$ to $-\infty$, various events occur in the super-level sets $\widehat{p}^{-1}[t,\infty)$: a new component can appear (zeroth-dimensional birth), two distinct components can merge (zero-dimensional death), a loop can appear (one-dimensional birth), and two loops can become homologous (one-dimensional death).  These birth and death events are paired and plotted in the persistence diagram.
+%%
+%In the persistence diagram of \figref{fig:homologyexample}(a), we see exactly 6 zero-dimensional persistence points (denoted by black circles), one for each of the Gaussian peaks, and a single one-dimensional persistence point (denoted by red triangles), representing the circle on which the modes are located and is captured in \figref{fig:homologyexample}(c).
 %
-In the persistence diagram of \figref{fig:homologyexample}(a), we see exactly 6 zero-dimensional persistence points (denoted by black circles), one for each of the Gaussian peaks, and a single one-dimensional persistence point (denoted by red triangles), representing the circle on which the modes are located and is captured in \figref{fig:homologyexample}(c).
-
-The upper-left quadrant based at a point $(x,x)$ will contain all persistence points that are born before $x$ and die at or after $x$; that is, the persistence points in this quadrant are in one-to-one correspondence with generators of $p^{-1}(x,\infty)$.  In this way, the homology of each super-level set can be read off of the persistence diagram.  
-\brittany{todo: continue here (update for new example)}
+%The upper-left quadrant based at a point $(x,x)$ will contain all persistence points that are born before $x$ and die at or after $x$; that is, the persistence points in this quadrant are in one-to-one correspondence with generators of $p^{-1}(x,\infty)$.  In this way, the homology of each super-level set can be read off of the persistence diagram.  
+%\brittany{todo: continue here (update for new example)}
 
 \subsection{Derivatives of Persistence Diagrams}
-While persistence diagrams can summarize the topology of a data set, it is difficult to immediately compare two distinct persistence diagrams. Simple distance metrics, like Bottleneck or Wasserstein, are often too computationally expensive to rely upon, and only offer a solution for fixed topologies. Below are examples of different methods to further summarize a persistence diagram as a continuous function. 
+While persistence diagrams can summarize the topology of a data set, it is not straightforward to compare two different persistence diagrams. Often distances like the bottleneck distance or the q-Wasserstein distance are used in this setting, but are computationally expensive. Below are several examples of methods to further summarize a persistence diagram that are used to develop hypothesis tests.
 
 \paragraph{Landscapes and Silhouettes}
 Weighted silhouette functions are formed by weighting a particular functional summary of persistence diagrams called \emph{landscape functions} (\cite{bubenik2015statistical}). More details and theoretical properties of landscapes and silhouettes are provided in \cite{chazal2014stochastic}.
 
 Landscape functions are defined as follows.  Let the finite birth and death intervals of a persistence diagram with $n_h$ points, for homology dimension $h = 0, 1, 2, \ldots$, be defined as $\{(b_{hi},d_{hi})\}_{i = 1}^{n_h}$.  Next consider rotating the persistence diagram such that a given point is $p_{hi} = \left(\frac{b_{hi}+d_{hi}}{2}, \frac{d_{hi}-b_{hi}}{2}\right) \in D_h, \quad i = 1, \ldots, n_h$.  Equilateral triangles are formed from each $p_{hi}$ to the base as
-
 \begin{equation*}
 \Lambda_{p_{hi}}(t) =
   \begin{cases}
@@ -258,19 +244,17 @@ where kmax is the kth largest value in $D_h$.  An example of a landscape functio
 \end{center}
 
 Rather than working with each $k$ of $\lambda_{D_h}(k, t)$ individually, silhouettes provide a way of combining the information in the collection of landscape functions.  Silhouettes are weighted averages of the individual functions for homology dimension $h$ defined~as
-
+%
 \begin{equation*}
 \phi_h(t) = \frac{\sum_{i = 1}^mw_{hi}\Lambda_{hi}(t)}{\sum_{i = 1}^mw_{hi}}
 \end{equation*}
 where the weights $w_i$ can be defined to give more emphasis or less emphasis to features with longer lifetimes.  As suggested in \cite{chazal2014stochastic}, we use $w_{hi} = |d_{hi} - b_{hi}|^p$, where $p$ is a tuning parameter that needs to be selected.
 
 \paragraph{Euler Characteristic Function}
-The Euler characteristic is a topological invariant and defined as an alternating sum of Betti numbers, where~$N$ is the number of dimensions: $\chi = \beta_{0} - \beta_{1} + \beta_{2} - \beta_{3} + ... \pm \beta_N = \sum_{i=0}^{N} (-1)^{i} \beta_{i}$,
-where $\beta_{i}$ represents the $i$-th Betti number, or the rank of the $i$-th homology group. When analyzing persistence diagrams of LSS, since there exist only three dimensions of data, the only non-trivial homology groups will be in dimensions 0, 1, and 2. Given the Betti numbers $\beta_{0}$, $\beta_{1}$, and $\beta_{2}$, the Euler characteristic equation simplifies to:
-
-\[ \chi = \beta_{0} - \beta_{1} + \beta_{2} \]
-
-The topological space is parameterized by the threshold, $t$ (ranging from $t_{\min}$ to $t_{\max}$), defining the upper-level sets. The homology groups (and hence Betti numbers) can be computed using $H_{0}$, $H_{1}$, and $H_{2}$ at each threshold $t$. Plotting the Euler characteristic against $t$, we obtain the Euler Characteristic function, $\chi(t)$. 
+The Euler characteristic is a topological invariant and defined as: $\chi = \beta_{0} - \beta_{1} + \beta_{2} - \beta_{3} + ... \pm \beta_N = \sum_{i=0}^{N} (-1)^{i} \beta_{i}$,
+where $\beta_{i}$ represents the $i$-th Betti number (the rank of the $i$-th homology group) and $N$ is the number of dimensions. When analyzing persistence diagrams of LSS, since there exist only three dimensions of data, the only non-trivial homology groups will be in dimensions 0, 1, and 2. Given the Betti numbers $\beta_{0}$, $\beta_{1}$, and $\beta_{2}$, the Euler characteristic equation simplifies to:
+$\chi = \beta_{0} - \beta_{1} + \beta_{2}.$
+The topological space is parameterized by the threshold, $t$ (ranging from $t_{\min}$ to $t_{\max}$), defining the upper-level sets. The Euler Characteristic function, $\chi(t)$, captures the Euler characteristic for each threshold $t$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: METHODS
@@ -278,17 +262,18 @@ The topological space is parameterized by the threshold, $t$ (ranging from $t_{\
 
 \section{Methods}
 \label{sec:methods}
-Provided data as a point cloud, persistent homology can be used to summarize its topological information into a persistence diagram. Next, we describe several frameworks for using persistence diagrams in two-sample hypothesis tests in search of a way to compare and test differences between sets of data in topological structure.  
+In this section, we describe several frameworks for using persistence diagrams in two-sample hypothesis tests in search of a way to compare and test differences between sets of data in topological structure.  
 
 \begin{sloppypar}
-Suppose we have two sets of persistence diagrams, $\{\mathcal P_1^{(1)}, \ldots, \mathcal P_n^{(1)}\}$ and $\{\mathcal P_1^{(2)}, \ldots, \mathcal P_m^{(2)}\}$.  These samples can be used to test $H_0: \mathcal 
+Suppose we have two sets of persistence diagrams, $\{\mathcal P_1^{(1)}, \ldots, \mathcal P_{n_1}^{(1)}\}$ and $\{\mathcal P_1^{(2)}, \ldots, \mathcal P_{n_2}^{(2)}\}$.  These samples can be used to test $H_0: \mathcal 
 P^{(1)} = \mathcal P^{(2)}$ vs. $H_2: \mathcal P^{(1)} \neq \mathcal P^{(2)}$, where $\mathcal P^{(1)}$ and $\mathcal P^{(2)}$ are the true underlying 
-distributions of persistence diagrams for group 1 and 2, respectively. We would like the framework to test the hypothesis that the two samples are drawn from a population with the same random topology. However, we note that without incorporating a scaling adjustment on the space of the data or the space of the diagrams, geometrical differences can also lead to a rejection of the null hypothesis. This is discussed in more detail in Section~\ref{sec:standardize}. 
+distributions of persistence diagrams for group 1 and 2, respectively.  Properties of probabilities on a space of persistence diagrams are addressed in \cite{Mileyko:2011aa}. 
+We would like the framework to test the hypothesis that the two samples are drawn from populations with the different random topologies. However, we note that without incorporating a scaling adjustment on the space of the data or the space of the diagrams, geometrical differences can also lead to a rejection of the null hypothesis. This is discussed in more detail in Section~\ref{sec:standardize}. 
 \end{sloppypar}
 
-Given two samples of persistence diagrams, there are a number of possible ways to derive test statistics. We select four possible approaches with nine individual tests. The first approach is based on functional summaries derived from the sampled persistence diagrams: Euler characteristic function (EC), Silhouette function (Sil), and a 
+Given two samples of persistence diagrams, there are a number of possible ways to derive test statistics. We consider four general approaches. The first approach is based on functional summaries derived from the sampled persistence diagrams: Euler characteristic function (EC), Silhouette function (Sil), and a 
 Silhouette-Euler characteristic function (SilEC). Given that each observed dataset will have a corresponding function, a p-value can be derived from 
-a two-sample T-test based on the integral of the absolute value of the functional summaries. The next two approaches use variations on smoothed persistence diagrams called \emph{intensity functions} \cite{chen2015statistical} with p-values derived from a two-sample kernel test \cite{gretton2012kernel} and an asymptotic argument through permutation (KC, WKC, PI). Additionally, we consider a test using the two-point correlation function (CORR) in order to have a comparison with a summary capturing the spatial behavior of the LSS. Similar to the functional summaries above, p-values for the CORR test will be carried out with a T-test based on the integral of the absolute value of the correlation function. The proposed test statistics are discussed in more detail below.
+a two-sample T-test based by integrating the absolute value of the functional summaries. The next two approaches use variations on smoothed persistence diagrams called \emph{intensity functions} \citep{chen2015statistical} with p-values derived from a two-sample kernel test \citep{gretton2012kernel} and an asymptotic argument through permutation (KC, WKC, PI). Additionally, we consider a test using the two-point correlation function (CORR) in order to have a comparison with a summary capturing the spatial behavior of the LSS. Similar to the functional summaries above, p-values for the CORR test will be carried out with a T-test based on the integral of the absolute value of the correlation function. The proposed test statistics are discussed in more detail below.
 
 % Given any persistence diagram $x$ extracted from a point cloud, $x$ represents a sample from some latent distribution $\chi$. For example, given a simulation of the Megaparsec cosmic mass, the $(x, y, z)$ points are discrete samples from the continuous, observable Universe, which represents the true distribution. Using that definition, suppose there are two persistence diagrams, $x$ and $y$, each produced from a separate point cloud. Given that $x \sim \chi$, and $y \sim \gamma$, where $\chi$ and $\gamma$ represent the true distributions, an interesting question is whether $\chi$ and $\gamma$ are identical to some error $\epsilon$. In other words, are the samples $x$ and $y$ sampled from the same latent distribution? One might consider the following hypothesis test, where $H_{0}$ is the null and $H_{A}$ is the alternative.
 
@@ -302,16 +287,16 @@ a two-sample T-test based on the integral of the absolute value of the functiona
 
 % One main contribution of this paper is studying the effectiveness of different functions $f_{T}$ when the true topological relationship between $x$ and $y$ are known. The best functions $f_{T}$ are then used to analyze a data set in which the topological relationships is unknown. We now proceed to describe different methods for defining $f_{T}$ for hypothesis testing in the setting of large-scale structure (LSS). 
 
-Among the variations to test statistics considered (EC, Sil, SilEC, KC, WKC, PI, and CORR), we are seeking the summary that best captures differences in distributions of persistence diagrams produced from structures like the LSS of the observable Universe.  
+Among the variations to test statistics considered (EC, Sil, SilEC, KC, WKC, PI, and CORR), we are seeking the summary that best captures differences in distributions of persistence diagrams produced from structures like the LSS of the Universe.  
 
 \paragraph{Euler Characteristic Test (EC)}
-To use the Euler characteristic (EC) function, $\chi(t)$, in a hypothesis testing framework, the absolute value of the EC function is integrated with respect to the threshold $t$ to produce an Euler test statistic, $\widehat{EC}$:
-
+Each persistence diagram in the two samples result in an Euler characteristic (EC) function, $\chi^{(J)}(t)$,  $J = 1, 2$.
+The two-sample T-test is based on the following sample means from sample:
 \begin{equation*}
-\widehat{EC} = \int_{t_{\min}}^{t_{\max}} | \chi(t) | \textup{ d}t.
+\frac{1}{n_J}\sum_{i = 1}^{n_J} \int_{t_{\min}}^{t_{\max}} | \chi_i^{(J)}(t) | \textup{ d}t.
 \end{equation*}
+and used in a two-sample T-test.
 
-Given the Euler statistics for two sets of persistence diagrams (where a set contains persistence diagrams drawn from the same topological distribution), a T-test is used to calculate a p-value for the null hypothesis that the two sets of persistence diagrams are sampled from the same distribution. 
 
 \begin{figure}[htbp]
    \centering 
@@ -369,46 +354,45 @@ Given the Euler statistics for two sets of persistence diagrams (where a set con
 % \end{center}
 
 \paragraph{Silhouette Test (Sil)}
-As with the Euler Characteristic (EC) function, a weighted silhouette summarizes a persistence diagram through a continuous function. Given a set of persistence diagrams (each with $N$ homology groups), each diagram is summarized by $N$ weighted silhouettes. For each silhouette, we can derive a statistic $\widehat{Sil}$ using the area under the respective weighted silhouette, resulting in $N$ sets of statistics. In this manner, each dimensional homology of a persistence diagram has its own test statistic, $\widehat{Sil}_{h}$, where $h$ represents a dimensionality of the homology group. This is preferred since the silhouette molded from connected components may be very different from the silhouette created from loops. We consider T-tests on each dimension ($\widehat{Sil}_0$, $\widehat{Sil}_1$, $\widehat{Sil}_2$), along with considering all dimensions in parallel ($\widehat{Sil}_{0:2}$) using a Hotelling $T^2$ test. 
+As with the Euler Characteristic (EC) function, a weighted silhouette summarizes a persistence diagram through a continuous function. 
+For each homology dimension $h = 0, 1, 2$, a weighted silhouette function is calculated.  As with EC, a two-sample T-test is carried-out by integrating the weighted silhouette functions for each sample.  However, the $Sil$ tests are carried out individually for each homology dimension, $h = 0, 1, 2$, resulting in $Sil_0$, $Sil_1$, and $Sil_2$.  We also considering Hotelling's $T^2$ test using the three homology dimensions, denoted $Sil_{0:2}$.
+
+
 
 \paragraph{Silhouette-Euler Characteristic (SilEC).}
-Another method for considering all the individual silhouettes, $S_{h}(t)$, across dimensions $h = 0$, 1, and 2, simultaneously is a modified Euler characteristic function. Instead of calculating the alternating sum of Betti numbers, the Silhouette-Euler characteristic function (SilEC) is defined as the alternating sum of the individual silhouette functions across the threshold parameter, $t$. The statistic derived, $\widehat{SilEC}$, is the integral of the absolute value of the summed function,  
+Another method for considering all the individual silhouettes, $S_{h}(t)$, across dimensions $h = 0$, 1, and 2, simultaneously is a modified Euler characteristic function. Instead of calculating the alternating sum of Betti numbers, the Silhouette-Euler characteristic function (SilEC) is defined as the alternating sum of the individual silhouette functions across the threshold parameter, $t$, $SilEC(t) =  S_{1}(t) - S_{2}(t) + S_{3}(t)$.
+A p-value is calculated using a T-test in the same way as for EC.
 
-\[ \widehat{SilEC} = \int_{t_{\min}}^{t_{\max}} | S_{1}(t) - S_{2}(t) + S_{3}(t) | \ \textup{d}t \]
-As with EC test, a p-value is derived using a T-test.
 
-\paragraph{Permutation Method.} Although not one of the nine approaches, the permutation method is frequently used in our tests and provides a very generic approach for calculating a p-value from any arbitrary test statistic. Assuming we observe two independent samples $X_{1}, \cdots, X_{n} \sim P$ and $Y_{1}, \cdots, Y_{n} \sim Q$, the two sample test problem is to test the hypothesis $H_{0} : P = Q$ versus the alternative $H_{1} : P \neq Q$. Assuming there is some arbitrary method of calculating a test statistic $T$ as a function of the data, we reject $H_{0}$ if $T > t$ where $t$ is a critical value. We choose $t$ such that if $H_{0}$ is true then $W(T > t) \leq \alpha$ where $W$ is the distribution of $T$ when $H_{0}$ is true. Permutation testing attempts to help us choose $t$ and find $W$ of $T$ under $H_{0}$. 
 
-In the permutation method, the data is concatenated as a vector in the order \[X_{1}, X_{2}, \cdots, X_{n}, Y_{1}, Y_{2}, \cdots, Y_{n}\] and presented initial labels of $0$ or $1$ where all $X_{i}$ receive label 0 and all $Y_{i}$ receive label 1. If $H_{0}$ is true, then the entire data vector is an i.i.d sample from $P$ and the group labels are arbitrary. To test this, the group labels are randomly permuted and the test statistic is recalculated. This changes the values of $T$ but (under $H_{0}$), it should not change the distribution of $T$. The labels are permuted $N$ times and the p-value is
 
-\[ p = \frac{1}{N}\sum^{n}_{j=1} I(T_{j} \geq T) \]
+%\paragraph{Permutation Method.} Although not one of the nine approaches, the permutation method is frequently used in our tests and provides a very generic approach for calculating a p-value from any arbitrary test statistic. Assuming we observe two independent samples $X_{1}, \cdots, X_{n} \sim P$ and $Y_{1}, \cdots, Y_{n} \sim Q$, the two sample test problem is to test the hypothesis $H_{0} : P = Q$ versus the alternative $H_{1} : P \neq Q$. Assuming there is some arbitrary method of calculating a test statistic $T$ as a function of the data, we reject $H_{0}$ if $T > t$ where $t$ is a critical value. We choose $t$ such that if $H_{0}$ is true then $W(T > t) \leq \alpha$ where $W$ is the distribution of $T$ when $H_{0}$ is true. Permutation testing attempts to help us choose $t$ and find $W$ of $T$ under $H_{0}$. 
+%
+%In the permutation method, the data is concatenated as a vector in the order \[X_{1}, X_{2}, \cdots, X_{n}, Y_{1}, Y_{2}, \cdots, Y_{n}\] and presented initial labels of $0$ or $1$ where all $X_{i}$ receive label 0 and all $Y_{i}$ receive label 1. If $H_{0}$ is true, then the entire data vector is an i.i.d sample from $P$ and the group labels are arbitrary. To test this, the group labels are randomly permuted and the test statistic is recalculated. This changes the values of $T$ but (under $H_{0}$), it should not change the distribution of $T$. The labels are permuted $N$ times and the p-value is
+%
+%\[ p = \frac{1}{N}\sum^{n}_{j=1} I(T_{j} \geq T) \]
+%
+%where $I$ is the indicator function. Therefore, the p-value is the fraction of times $T_{j}$ is larger than $T$. As $N$ approaches $\inf$, $p$ approaches the exact value.
 
-where $I$ is the indicator function. Therefore, the p-value is the fraction of times $T_{j}$ is larger than $T$. As $N$ approaches $\inf$, $p$ approaches the exact value.
-
-\paragraph{Kernel Contour Test (KC).}
-Rather than working with the raw persistence diagrams, the Kernel Contour Test (KC) uses a test statistic derived from a kernel two-sample test on the smoothed persistence diagram called the \emph{intensity function} \cite{chen2015statistical}. The kernel two-sample test was first introduced for analyzing and comparing distributions with a maximum mean discrepancy (MMD) statistic \cite{gretton2012kernel}. The KC statistic used in this paper is computed for two sets of persistence diagrams and a hypothesis test is carried out using a permutation test.  The discrepancy between persistence diagrams is calculated as the integrated squared difference between two intensity functions instead of points directly from the persistence diagrams. The two-sample test statistic, $\widehat{KC}$, is defined as
-\begin{sloppypar}
-\begin{equation*}
-\widehat{KC} = \frac{1}{n^{2}}\sum_{i=1}^{n}\sum_{j=1}^{n} K_{h}(X_{i}, X_{j}) - \frac{2}{mn}\sum_{i=1}^{n}\sum_{j=1}^{m}K_{h}(X_{i}, Y_{j}) + \frac{1}{m^{2}}\sum_{i=1}^{n}\sum_{j=1}^{n} K_{h}(Y_{i}, Y_{j}),
-\end{equation*}
-where $n$ and $m$ are the sizes of the two samples, and $\{X_1, \ldots, X_n\}$ and $\{Y_1, \ldots, Y_m\}$ are the two sets of intensity functions.  $K_{h}(X,Y)$ can be thought of as a similarity measure between intensity functions $X$ and $Y$, and in this case is a Gaussian kernel $K_{h}(X,Y) = exp(-\frac{||X - Y||^{2}}{h^{2}})$ with  $||X - Y|| = \int \left(X(t_1, t_2) - Y(t_1, t_2)\right)^2dt_1dt_2$  where $X(t_1, t_2)$ and $Y(t_1, t_2)$ are two intensity functions. The $h$ is a hyperparameter that sets the standard deviation of the Gaussian distribution used in the kernel $K_{h}$: a larger $h$ will reduce sensitivity to small differences between $X$ and $Y$, while a smaller $h$ will heighten sensitivity. The optimal $h$ value was found to be $0.1 \pm 0.04$ using grid search from 0 to 5. A permutation test is used to calculate a p-value from the statistic.
+\paragraph{Intensity Kernel Test (IK).}
+Rather than working with the raw persistence diagrams, the Kernel Contour Test (KC) uses a test statistic derived from a kernel two-sample test using a modified version of the intensity function proposed in \cite{chen2015statistical}. The kernel two-sample test was first introduced for analyzing and comparing distributions with a maximum mean discrepancy (MMD) statistic \citep{gretton2012kernel}. The KC statistic used in this paper is computed for two sets of persistence diagrams, and the discrepancy between persistence diagrams is calculated as the integrated squared difference between two \emph{unweighted} intensity functions instead of points directly from the persistence diagrams. (Unweighted intensity functions assigns uniform weights to points on the diagram and therefore does not account for the diagonal boundary on persistence diagrams where birth = death; we considered weighted intensity functions next.) The two-sample test statistic for $X = X_1, \ldots, X_{n_1}$ and $Y = Y_1, \ldots, Y_{n_2}$ is defined as
+%
+\begin{equation}
+\widehat{T}_{IK}(X, Y) = \frac{1}{n_1^{2}}\sum_{i=1}^{n_1}\sum_{j=1}^{n_1} K_{\sigma}(X_{i}, X_{j}) - \frac{2}{n_1n_2}\sum_{i=1}^{n_1}\sum_{j=1}^{n_2}K_{\sigma}(X_{i}, Y_{j}) + \frac{1}{n_2^{2}}\sum_{i=1}^{n_2}\sum_{j=1}^{n_2} K_{\sigma}(Y_{i}, Y_{j}), \label{eq:kernel_test}
+\end{equation}
+where $n_1$ and $n_2$ are the sizes of the two samples, and $\{X_1, \ldots, X_{n_1}\}$ and $\{Y_1, \ldots, Y_{n_2}\}$ are the two sets of intensity functions.  $K_{\sigma}(X,Y)$ can be thought of as a similarity measure between intensity functions $X$ and $Y$, and in this case is a Gaussian kernel $K_{\sigma}(X,Y) = exp(-\frac{||X - Y||^{2}}{\sigma^{2}})$ with  $||X - Y|| = \int \left(X(t_1, t_2) - Y(t_1, t_2)\right)^2dt_1dt_2$. The $\sigma$ is a hyperparameter that sets the standard deviation of the Gaussian distribution used in the kernel $K_{\sigma}$: a larger $\sigma$ will reduce sensitivity to small differences between $X$ and $Y$, while a smaller $\sigma$ will heighten sensitivity. The optimal $\sigma$ value was found to be $0.1 \pm 0.04$ using grid search from 0 to 5. A permutation test is used to calculate a p-value for each homology dimension, $IK_0$, $IK_1$, and $IK_2$.
 % with $N$ permutations, and the p-value represents the fraction of times $T_{j}$ is larger than the observed $\widehat{GC}$ for any $j$,
-\end{sloppypar}
+
 % \[ \text{p-value} = \frac{1}{N} \sum_{j=1}^{N} I(T_{j} \geq T). \]
 
-\paragraph{Weighted Kernel Test (WKC)}
-Two disadvantages of the Kernel Contour Test (KC) shown above are (1) the tendency of the test to heavily weight dense clusters near the diagonal rather than sparse persistent features with longer lifespans, and (2) the possibility of the smoothed intensity function to ``spill over'' the diagonal as a product of the Gaussian kernel. The Weighted Kernel Test (\cite{chen2015statistical}) addresses both concerns with an adjusted kernel function. 
-
-Let $b$ and $d$ denote the birth and death of a persistent feature, such that \[ \mathcal{D} = {(b_{j} , d_{j}) : j = 1, \cdots ,K} \] represents a persistence diagram where $K$ is the cardinality of persistent features. Given $\mathcal{D}$, we can estimate its intensity, $\kappa_{\tau}$ by
-
-\[ \hat{\kappa}_{\tau}(x,y) = \sum_{j}(d_{j} - b_{j})\frac{1}{\tau^{2}}K(\frac{x-b_{j}}{\tau})K(\frac{y-d_{j}}{\tau})\]
-
-such that the sum is over all persistent features, $K$ is a symmetric kernel function (such as 1D Gaussian where the mean and standard deviation are estimated by the sample), and $\tau$ is a smoothing parameter. This statistic is calculated over a two-dimensional grid 
-\[ \{ (x, y) \textup{ s.t. } b_{min} \leq x \leq b_{max} \wedge d_{min} \leq y \leq d_{max} \} \]
-
-where $b_{min} = \textup{min}(\{b_{j}\}^{K}_{j=1})$, $d_{min} = \textup{min}(\{d_{j}\}^{K}_{j=1})$, $b_{max} = \textup{max}(\{b_{j}\}^{K}_{j=1})$, and $d_{max} = \textup{max}(\{d_{j}\}^{K}_{j=1})$. A step size $h_{x}$ between adjacent pairs $(x_{i}, y_{j})$, $(x_{i+1}, y_{j})$, and $h_{y}$ between pairs $(x_{i}, y_{j})$, $(x_{i}, y_{j+1})$ control the size of the grid ($h_{x} = h_{y} = 0.01$ used in practice). This Weighted Kernel Contour statistic (\cite{chen2015statistical}) uses the difference between the birth and death of each persistent feature as the weight for that feature. Therefore, features near the diagonal will have very little effect, reducing spill over, and sparse features with long lifespans (generally more interesting topologically) will contribute more. 
-
-To calculate the p-value, the grid $\{x, y\}$ is flattened into a vector where each index represents an abstracted topological feature, and as with the KC test, an asymptotic argument (permutation test) is used. The WKC test is performed independently for each homology, resulting in three tests: WKC(0), WKC(1), and WKC(2).
+\paragraph{Weighted Intensity Kernel Test (WIK)}
+The intensity function defined \cite{chen2015statistical} uses weighted kernel densities estimates where the weights are some function of a point's persistence.   
+Let $(d_i, b_i)$, $i = 1, \ldots, m$ be the features on a persistence diagram corresponding to some dimension $h$.  Then the weighted intensity function for the persistence diagram is 
+%
+\[ X(t_1, t_2) = \sum_{j=1}^m(d_{j} - b_{j})\frac{1}{\tau^{2}}K \left(\frac{t_1-d_{j}}{\tau}\right)K \left(\frac{t_2-b_{j}}{\tau}\right)\]
+%
+such that the sum is over all persistent features, $K$ is a symmetric kernel function, and $\tau$ is a smoothing parameter. 
+Using weighted intensity functions, a p-value is calculated by considering the same kernel test statistic as Equation~\eqref{eq:kernel_test} and a permutation test for each homology dimension, $WIK_0$, $WIK_1$, and $WIK_2$.
 
 \paragraph{Persistent Image Test (PI)} The Persistent Image test \cite{adams2015persistent} is a variation of the WKC test with an alternative kernel function and sub-sampling. Let $\mathcal{D} = {(b_{j} , d_{j}) : j = 1, \cdots ,K}$ be a persistence diagram where $K$ is the number of persistent features. Unlike WKC, the PI test first transposes the persistent diagram using the linear transformation $T: \mathbb{R}^{2} \rightarrow \mathbb{R}^{2}$ where $T(x,y) = (x, y-x)$. Therefore, let $T(\mathcal{D})$ represent the transformed diagram with the new birth-persistence coordinates. Let $K_{u} : \mathbb{R}^{2} \rightarrow \mathbb{R}$ be a differentiable probability distribution with mean $u = (u_{x}, u_{y})$. In our applications, we choose this distribution to be the normalized symmetric 2D Gaussian with mean $u$ and variance $\sigma^{2}$. 
 

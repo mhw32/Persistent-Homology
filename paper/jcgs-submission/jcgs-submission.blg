@@ -1,46 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
+This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: jcgs-submission.aux
 The style file: agsm.bst
 Database file #1: mybib.bib
-You've used 33 entries,
+You've used 35 entries,
             2909 wiz_defined-function locations,
-            846 strings with 11222 characters,
-and the built_in function-call counts, 226089 in all, are:
-= -- 37402
-> -- 3204
+            859 strings with 11545 characters,
+and the built_in function-call counts, 231708 in all, are:
+= -- 38267
+> -- 3298
 < -- 1
-+ -- 18573
-- -- 1001
-* -- 20332
-:= -- 43968
-add.period$ -- 33
-call.type$ -- 33
-change.case$ -- 459
-chr.to.int$ -- 33
-cite$ -- 33
-duplicate$ -- 547
-empty$ -- 1131
-format.name$ -- 1117
-if$ -- 40679
++ -- 18968
+- -- 1029
+* -- 20811
+:= -- 45140
+add.period$ -- 35
+call.type$ -- 35
+change.case$ -- 487
+chr.to.int$ -- 35
+cite$ -- 35
+duplicate$ -- 579
+empty$ -- 1206
+format.name$ -- 1150
+if$ -- 41680
 int.to.chr$ -- 5
 int.to.str$ -- 0
-missing$ -- 36
-newline$ -- 102
-num.names$ -- 352
-pop$ -- 117
+missing$ -- 38
+newline$ -- 108
+num.names$ -- 373
+pop$ -- 122
 preamble$ -- 1
-purify$ -- 495
+purify$ -- 525
 quote$ -- 0
-skip$ -- 464
+skip$ -- 491
 stack$ -- 0
-substring$ -- 54087
-swap$ -- 103
-text.length$ -- 463
+substring$ -- 55292
+swap$ -- 109
+text.length$ -- 491
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 126
+type$ -- 134
 warning$ -- 0
-while$ -- 744
+while$ -- 789
 width$ -- 0
-write$ -- 448
+write$ -- 474

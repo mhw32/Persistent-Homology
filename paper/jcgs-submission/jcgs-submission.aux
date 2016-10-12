@@ -3,7 +3,7 @@
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\citation{cisewski2014non,van2011alpha}
+\citation{Sousbie2011,SousbieEtAl2011,van2011alpha,cisewski2014non}
 \citation{bendich2014persistent,duong2012closed}
 \citation{bond1996filaments,springel2006large}
 \citation{davis1985evolution}
@@ -23,231 +23,229 @@
 \newlabel{sub@fig:introDataWDM}{{b}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces EAGLE simulation under assumptions of (a) cold and (b) warm dark matter \cite  {schaye2015eagle}. Note the similaries in structure but the disparaties in density. \relax }}{4}}
 \newlabel{fig:introData}{{1}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Tools from TDA Useful for Studying LSS}{4}}
-\newlabel{sec:tda}{{2}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Tools from TDA Useful for Studying LSS}{5}}
+\newlabel{sec:tda}{{2}{5}}
 \@writefile{toc}{\contentsline {paragraph}{Clusters}{5}}
 \@writefile{toc}{\contentsline {paragraph}{Filaments and Loops}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces This figure shows the formation of connected components as line segments, loops as shaded polygons, and voids as white enclosed regions. The bottom plot shows a barcode representation of a persistence diagram where y-axis labels the zeroth, one, and two dimensional homologies, and x-axis shows the lifespan of the homology feature.\relax }}{6}}
-\newlabel{fig:homologydemo}{{2}{6}}
+\@writefile{toc}{\contentsline {paragraph}{Cosmological Voids}{5}}
 \citation{chazal2011geometric}
 \citation{edelsbrunner2010computational,hatcher2002algebraic,munkres1984elements}
-\citation{cohen2007stability}
-\@writefile{toc}{\contentsline {paragraph}{Cosmological Voids}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Persistent Homology}{7}}
-\@writefile{toc}{\contentsline {paragraph}{Filtrations}{7}}
-\@writefile{toc}{\contentsline {paragraph}{Tracking Homology Generators}{7}}
-\newlabel{fig:example_3d}{{3a}{8}}
-\newlabel{sub@fig:example_3d}{{a}{8}}
-\newlabel{fig:example_contour1}{{3b}{8}}
-\newlabel{sub@fig:example_contour1}{{b}{8}}
-\newlabel{fig:example_contour2}{{3c}{8}}
-\newlabel{sub@fig:example_contour2}{{c}{8}}
-\newlabel{fig:example_pd}{{3d}{8}}
-\newlabel{sub@fig:example_pd}{{d}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  We illustrate persistent homology with a two-dimensional example. The density in (a) shows 3 steep peaks and 3 shallow peaks distributed around a uniform circle. In light gray, we see the hyperplane, shown (b) as $t=1.0$. (b) and (c) plot the super-level sets $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle p$}\mathaccent "0362{p}^{-1}[1.10,\infty )$ and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle p$}\mathaccent "0362{p}^{-1}[0.10,\infty )$ respectively. Notice as the threshold is decreased, the contour more clearly defines a loop-like structure. In (d), we see the persistence diagram for the super-level set filtration of $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle p$}\mathaccent "0362{p}$. We highlight the upper left quadrant based at $(0.18, 0.02)$, which contains a one-dimensional persistence point. This corresponds to the loop shown in (c). The remaining 0-dimensional homologies represent the connected components from each of 6 peaks.\relax }}{8}}
-\newlabel{fig:homologyexample}{{3}{8}}
-\@writefile{toc}{\contentsline {paragraph}{An Example}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Persistent Homology}{6}}
+\@writefile{toc}{\contentsline {paragraph}{Filtrations}{6}}
+\@writefile{toc}{\contentsline {paragraph}{Tracking Homology Generators}{6}}
+\newlabel{fig:example_3d}{{2a}{7}}
+\newlabel{sub@fig:example_3d}{{a}{7}}
+\newlabel{fig:example_contour1}{{2b}{7}}
+\newlabel{sub@fig:example_contour1}{{b}{7}}
+\newlabel{fig:example_contour2}{{2c}{7}}
+\newlabel{sub@fig:example_contour2}{{c}{7}}
+\newlabel{fig:example_pd}{{2d}{7}}
+\newlabel{sub@fig:example_pd}{{d}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces  We illustrate persistent homology with a two-dimensional example. The density in (a) shows 3 steep peaks and 3 shallow peaks distributed around a uniform circle. In light gray, we see the hyperplane, shown (b) as $t=1.0$. (b) and (c) plot the super-level sets $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle p$}\mathaccent "0362{p}^{-1}[1.10,\infty )$ and $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle p$}\mathaccent "0362{p}^{-1}[0.10,\infty )$ respectively. Notice as the threshold is decreased, the contour more clearly defines a loop-like structure. In (d), we see the persistence diagram for the super-level set filtration of $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle p$}\mathaccent "0362{p}$. We highlight the upper left quadrant based at $(0.18, 0.02)$, which contains a one-dimensional persistence point. This corresponds to the loop shown in (c). The remaining 0-dimensional homologies represent the connected components from each of 6 peaks.\relax }}{7}}
+\newlabel{fig:homologyexample}{{2}{7}}
 \citation{bubenik2015statistical}
 \citation{chazal2014stochastic}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Derivatives of Persistence Diagrams}{9}}
-\@writefile{toc}{\contentsline {paragraph}{Landscapes and Silhouettes}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Derivatives of Persistence Diagrams}{8}}
+\@writefile{toc}{\contentsline {paragraph}{Landscapes and Silhouettes}{8}}
 \citation{chazal2014stochastic}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  The shaded circles in pink represent the point coordinates in a persistence diagram $D$. The landscape $\lambda (k, \cdot )$ is the $k$-th largest of the arrangement of the graphs of $\left \{ \Lambda _{p} \right \}$. In particular, the cyan curve is the landscape $\lambda (1, \cdot )$.\relax }}{10}}
-\newlabel{fig:landscape}{{4}{10}}
-\@writefile{toc}{\contentsline {paragraph}{Euler Characteristic Function}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{11}}
-\newlabel{sec:methods}{{3}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  The shaded circles in pink represent the point coordinates in a persistence diagram $D$. The landscape $\lambda (k, \cdot )$ is the $k$-th largest of the arrangement of the graphs of $\left \{ \Lambda _{p} \right \}$. In particular, the cyan curve is the landscape $\lambda (1, \cdot )$.\relax }}{9}}
+\newlabel{fig:landscape}{{3}{9}}
+\@writefile{toc}{\contentsline {paragraph}{Euler Characteristic Function}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{9}}
+\newlabel{sec:methods}{{3}{9}}
+\citation{Mileyko:2011aa}
 \citation{chen2015statistical}
 \citation{gretton2012kernel}
-\@writefile{toc}{\contentsline {paragraph}{Euler Characteristic Test (EC)}{12}}
-\newlabel{fig:examplestest1}{{5a}{13}}
-\newlabel{sub@fig:examplestest1}{{a}{13}}
-\newlabel{fig:examplestest2}{{5b}{13}}
-\newlabel{sub@fig:examplestest2}{{b}{13}}
-\newlabel{fig:examplestest3}{{5c}{13}}
-\newlabel{sub@fig:examplestest3}{{c}{13}}
-\newlabel{fig:examplestest4}{{5d}{13}}
-\newlabel{sub@fig:examplestest4}{{d}{13}}
-\newlabel{fig:examplestest5}{{5e}{13}}
-\newlabel{sub@fig:examplestest5}{{e}{13}}
-\newlabel{fig:examplestest6}{{5f}{13}}
-\newlabel{sub@fig:examplestest6}{{f}{13}}
-\newlabel{fig:examplestest7}{{5g}{13}}
-\newlabel{sub@fig:examplestest7}{{g}{13}}
-\newlabel{fig:examplestest8}{{5h}{13}}
-\newlabel{sub@fig:examplestest8}{{h}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Examples of test statistics used in the hypothesis tests. Figure~\ref  {fig:examplestest1} shows the point cloud, and Figure~\ref  {fig:examplestest2} shows the persistence diagram used to generate the functional summaries shown in Figure~\ref  {fig:examplestest2}-Figure~\ref  {fig:examplestest8}.\relax }}{13}}
-\newlabel{fig:examples}{{5}{13}}
-\@writefile{toc}{\contentsline {paragraph}{Silhouette Test (Sil)}{14}}
-\@writefile{toc}{\contentsline {paragraph}{Silhouette-Euler Characteristic (SilEC).}{14}}
-\@writefile{toc}{\contentsline {paragraph}{Permutation Method.}{14}}
+\@writefile{toc}{\contentsline {paragraph}{Euler Characteristic Test (EC)}{10}}
+\newlabel{fig:examplestest1}{{4a}{11}}
+\newlabel{sub@fig:examplestest1}{{a}{11}}
+\newlabel{fig:examplestest2}{{4b}{11}}
+\newlabel{sub@fig:examplestest2}{{b}{11}}
+\newlabel{fig:examplestest3}{{4c}{11}}
+\newlabel{sub@fig:examplestest3}{{c}{11}}
+\newlabel{fig:examplestest4}{{4d}{11}}
+\newlabel{sub@fig:examplestest4}{{d}{11}}
+\newlabel{fig:examplestest5}{{4e}{11}}
+\newlabel{sub@fig:examplestest5}{{e}{11}}
+\newlabel{fig:examplestest6}{{4f}{11}}
+\newlabel{sub@fig:examplestest6}{{f}{11}}
+\newlabel{fig:examplestest7}{{4g}{11}}
+\newlabel{sub@fig:examplestest7}{{g}{11}}
+\newlabel{fig:examplestest8}{{4h}{11}}
+\newlabel{sub@fig:examplestest8}{{h}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Examples of test statistics used in the hypothesis tests. Figure~\ref  {fig:examplestest1} shows the point cloud, and Figure~\ref  {fig:examplestest2} shows the persistence diagram used to generate the functional summaries shown in Figure~\ref  {fig:examplestest2}-Figure~\ref  {fig:examplestest8}.\relax }}{11}}
+\newlabel{fig:examples}{{4}{11}}
+\@writefile{toc}{\contentsline {paragraph}{Silhouette Test (Sil)}{11}}
 \citation{chen2015statistical}
 \citation{gretton2012kernel}
-\@writefile{toc}{\contentsline {paragraph}{Kernel Contour Test (KC).}{15}}
 \citation{chen2015statistical}
-\citation{chen2015statistical}
-\@writefile{toc}{\contentsline {paragraph}{Weighted Kernel Test (WKC)}{16}}
+\@writefile{toc}{\contentsline {paragraph}{Silhouette-Euler Characteristic (SilEC).}{12}}
+\@writefile{toc}{\contentsline {paragraph}{Intensity Kernel Test (IK).}{12}}
+\newlabel{eq:kernel_test}{{1}{12}}
 \citation{adams2015persistent}
+\@writefile{toc}{\contentsline {paragraph}{Weighted Intensity Kernel Test (WIK)}{13}}
+\@writefile{toc}{\contentsline {paragraph}{Persistent Image Test (PI)}{13}}
 \citation{adams2015persistent}
-\@writefile{toc}{\contentsline {paragraph}{Persistent Image Test (PI)}{17}}
 \citation{adams2015persistent}
 \citation{landy1993bias}
+\@writefile{toc}{\contentsline {paragraph}{Two-point Correlation Function Test (CORR)}{14}}
 \citation{landy1993bias}
-\@writefile{toc}{\contentsline {paragraph}{Two-point Correlation Function Test (CORR)}{18}}
 \citation{icke1987fragmenting,icke1991galaxy,van2007voronoi}
 \citation{icke1991galaxy}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Simulation Study}{19}}
-\newlabel{sec:simulation}{{4}{19}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Simulation model}{19}}
-\newlabel{sec:sim_model}{{4.1}{19}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Parameters of LSS model. For the simulation study, $p_{f}$ will vary from 0.1 to 0.9.\relax }}{20}}
-\newlabel{table:voronoisettings}{{1}{20}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Simulation Study Results}{21}}
-\newlabel{sec:results1}{{4.2}{21}}
-\newlabel{subfig:grid}{{6a}{22}}
-\newlabel{sub@subfig:grid}{{a}{22}}
-\newlabel{subfig:cluster}{{6b}{22}}
-\newlabel{sub@subfig:cluster}{{b}{22}}
-\newlabel{subfig:fil}{{6c}{22}}
-\newlabel{sub@subfig:fil}{{c}{22}}
-\newlabel{subfig:wall}{{6d}{22}}
-\newlabel{sub@subfig:wall}{{d}{22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Simulation model construction. (a) A grid is defined and points are randomly selected to define the Voronoi tesselation - the Voronoi cells are the voids. (b) - (d) Based on the location of the voids and the grid, points are defined to be cluster points, filament points or wall points - these are the empty black circles. Based on the values assigned from Table~\ref  {table:voronoisettings}, a number of points are randomly selected from the assigned points to be in the dataset.\relax }}{22}}
-\newlabel{fig:vf}{{6}{22}}
-\newlabel{fig:percfil01voronoi}{{7a}{23}}
-\newlabel{sub@fig:percfil01voronoi}{{a}{23}}
-\newlabel{fig:percfil09voronoi}{{7b}{23}}
-\newlabel{sub@fig:percfil09voronoi}{{b}{23}}
-\newlabel{fig:percfil09voronoi}{{7c}{23}}
-\newlabel{sub@fig:percfil09voronoi}{{c}{23}}
-\newlabel{fig:percfil01pd}{{7d}{23}}
-\newlabel{sub@fig:percfil01pd}{{d}{23}}
-\newlabel{fig:percfil09pd}{{7e}{23}}
-\newlabel{sub@fig:percfil09pd}{{e}{23}}
-\newlabel{fig:percfil09pd}{{7f}{23}}
-\newlabel{sub@fig:percfil09pd}{{f}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces (a) PercFil 0.1; (b) PercFil 0.5; (c) PercFil 0.9; (d-f) Corresponding persistence diagrams (PD) for point clouds (a-c). All other parameters are defined based on Table~\ref  {table:voronoisettings}.\relax }}{23}}
-\newlabel{fig:percfilexample}{{7}{23}}
-\newlabel{fig:sub_euler}{{8a}{24}}
-\newlabel{sub@fig:sub_euler}{{a}{24}}
-\newlabel{fig:sub_silh}{{8b}{24}}
-\newlabel{sub@fig:sub_silh}{{b}{24}}
-\newlabel{fig:sub_contour}{{8c}{24}}
-\newlabel{sub@fig:sub_contour}{{c}{24}}
-\newlabel{fig:sub_weight}{{8d}{24}}
-\newlabel{sub@fig:sub_weight}{{d}{24}}
-\newlabel{fig:sub_corr}{{8e}{24}}
-\newlabel{sub@fig:sub_corr}{{e}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces $\qopname  \relax o{log}_{10}$ p-values for the proposed test statistics in the simulation study: (a) EC-based, (b) SIL-based, (c) Kernel-based (KC), (d) Weighted Kernel-based (WKC), (e) CORR-based. X-axis represents the percent filament of the set being compared to the baseline set (0.1 to 0.3 by 0.05 increments); y-axis shows the p-values in $\textup  {1og}_{10}$ space. Each plot contains a line representing the median $\qopname  \relax o{log}_{10}$ p-value of the 100 iterations, while the shaded region represents a 97.5 confidence interval.\relax }}{24}}
-\newlabel{fig:sub_unstandardized_results}{{8}{24}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Standardization of persistence diagrams}{25}}
-\newlabel{sec:standardize}{{4.2.1}{25}}
-\newlabel{fig:sub_euler}{{9a}{26}}
-\newlabel{sub@fig:sub_euler}{{a}{26}}
-\newlabel{fig:sub_silh}{{9b}{26}}
-\newlabel{sub@fig:sub_silh}{{b}{26}}
-\newlabel{fig:sub_contour}{{9c}{26}}
-\newlabel{sub@fig:sub_contour}{{c}{26}}
-\newlabel{fig:sub_weight}{{9d}{26}}
-\newlabel{sub@fig:sub_weight}{{d}{26}}
-\newlabel{fig:sub_corr}{{9e}{26}}
-\newlabel{sub@fig:sub_corr}{{e}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces A similar set of results to Figure~\ref  {fig:sub_unstandardized_results} except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.\relax }}{26}}
-\newlabel{fig:sub_standardized_results}{{9}{26}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Simulation Study}{15}}
+\newlabel{sec:simulation}{{4}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Simulation model}{16}}
+\newlabel{sec:sim_model}{{4.1}{16}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Parameters of LSS model. For the simulation study, $p_{f}$ will vary from 0.1 to 0.9.\relax }}{16}}
+\newlabel{table:voronoisettings}{{1}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Simulation Study Results}{17}}
+\newlabel{sec:results1}{{4.2}{17}}
+\newlabel{subfig:grid}{{5a}{18}}
+\newlabel{sub@subfig:grid}{{a}{18}}
+\newlabel{subfig:cluster}{{5b}{18}}
+\newlabel{sub@subfig:cluster}{{b}{18}}
+\newlabel{subfig:fil}{{5c}{18}}
+\newlabel{sub@subfig:fil}{{c}{18}}
+\newlabel{subfig:wall}{{5d}{18}}
+\newlabel{sub@subfig:wall}{{d}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Simulation model construction. (a) A grid is defined and points are randomly selected to define the Voronoi tesselation - the Voronoi cells are the voids. (b) - (d) Based on the location of the voids and the grid, points are defined to be cluster points, filament points or wall points - these are the empty black circles. Based on the values assigned from Table~\ref  {table:voronoisettings}, a number of points are randomly selected from the assigned points to be in the dataset.\relax }}{18}}
+\newlabel{fig:vf}{{5}{18}}
+\newlabel{fig:percfil01voronoi}{{6a}{19}}
+\newlabel{sub@fig:percfil01voronoi}{{a}{19}}
+\newlabel{fig:percfil09voronoi}{{6b}{19}}
+\newlabel{sub@fig:percfil09voronoi}{{b}{19}}
+\newlabel{fig:percfil09voronoi}{{6c}{19}}
+\newlabel{sub@fig:percfil09voronoi}{{c}{19}}
+\newlabel{fig:percfil01pd}{{6d}{19}}
+\newlabel{sub@fig:percfil01pd}{{d}{19}}
+\newlabel{fig:percfil09pd}{{6e}{19}}
+\newlabel{sub@fig:percfil09pd}{{e}{19}}
+\newlabel{fig:percfil09pd}{{6f}{19}}
+\newlabel{sub@fig:percfil09pd}{{f}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces (a) PercFil 0.1; (b) PercFil 0.5; (c) PercFil 0.9; (d-f) Corresponding persistence diagrams (PD) for point clouds (a-c). All other parameters are defined based on Table~\ref  {table:voronoisettings}.\relax }}{19}}
+\newlabel{fig:percfilexample}{{6}{19}}
+\newlabel{fig:sub_euler}{{7a}{20}}
+\newlabel{sub@fig:sub_euler}{{a}{20}}
+\newlabel{fig:sub_silh}{{7b}{20}}
+\newlabel{sub@fig:sub_silh}{{b}{20}}
+\newlabel{fig:sub_contour}{{7c}{20}}
+\newlabel{sub@fig:sub_contour}{{c}{20}}
+\newlabel{fig:sub_weight}{{7d}{20}}
+\newlabel{sub@fig:sub_weight}{{d}{20}}
+\newlabel{fig:sub_corr}{{7e}{20}}
+\newlabel{sub@fig:sub_corr}{{e}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces $\qopname  \relax o{log}_{10}$ p-values for the proposed test statistics in the simulation study: (a) EC-based, (b) SIL-based, (c) Kernel-based (KC), (d) Weighted Kernel-based (WKC), (e) CORR-based. X-axis represents the percent filament of the set being compared to the baseline set (0.1 to 0.3 by 0.05 increments); y-axis shows the p-values in $\textup  {1og}_{10}$ space. Each plot contains a line representing the median $\qopname  \relax o{log}_{10}$ p-value of the 100 iterations, while the shaded region represents a 97.5 confidence interval.\relax }}{20}}
+\newlabel{fig:sub_unstandardized_results}{{7}{20}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Standardization of persistence diagrams}{21}}
+\newlabel{sec:standardize}{{4.2.1}{21}}
 \citation{geller1989mapping}
 \citation{gott2005map}
 \citation{cantalupo2014cosmic}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Application: Cosmological Simulation Data}{27}}
-\newlabel{sec:application}{{5}{27}}
-\newlabel{fig:cubeDiagsA}{{10a}{27}}
-\newlabel{sub@fig:cubeDiagsA}{{a}{27}}
-\newlabel{fig:cubeDiagsB}{{10b}{27}}
-\newlabel{sub@fig:cubeDiagsB}{{b}{27}}
-\newlabel{fig:cubeDiagsC}{{10c}{27}}
-\newlabel{sub@fig:cubeDiagsC}{{c}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Examples of three quadruple-split samples from a CDM simulation.\relax }}{27}}
-\newlabel{fig:cubeDiags}{{10}{27}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Application: Cosmological Simulation Data}{22}}
+\newlabel{sec:application}{{5}{22}}
+\newlabel{fig:sub_euler}{{8a}{23}}
+\newlabel{sub@fig:sub_euler}{{a}{23}}
+\newlabel{fig:sub_silh}{{8b}{23}}
+\newlabel{sub@fig:sub_silh}{{b}{23}}
+\newlabel{fig:sub_contour}{{8c}{23}}
+\newlabel{sub@fig:sub_contour}{{c}{23}}
+\newlabel{fig:sub_weight}{{8d}{23}}
+\newlabel{sub@fig:sub_weight}{{d}{23}}
+\newlabel{fig:sub_corr}{{8e}{23}}
+\newlabel{sub@fig:sub_corr}{{e}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces A similar set of results to Figure~\ref  {fig:sub_unstandardized_results} except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.\relax }}{23}}
+\newlabel{fig:sub_standardized_results}{{8}{23}}
 \citation{springel2001populating}
 \citation{schaye2015eagle}
+\newlabel{fig:cubeDiagsA}{{9a}{24}}
+\newlabel{sub@fig:cubeDiagsA}{{a}{24}}
+\newlabel{fig:cubeDiagsB}{{9b}{24}}
+\newlabel{sub@fig:cubeDiagsB}{{b}{24}}
+\newlabel{fig:cubeDiagsC}{{9c}{24}}
+\newlabel{sub@fig:cubeDiagsC}{{c}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Examples of three quadruple-split samples from a CDM simulation.\relax }}{24}}
+\newlabel{fig:cubeDiags}{{9}{24}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The EAGLE project}{24}}
 \citation{viel2013warm}
 \citation{lovell2014properties}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The EAGLE project}{28}}
-\newlabel{fig:eagleDiagsA}{{11a}{29}}
-\newlabel{sub@fig:eagleDiagsA}{{a}{29}}
-\newlabel{fig:eagleDiagsB}{{11b}{29}}
-\newlabel{sub@fig:eagleDiagsB}{{b}{29}}
-\newlabel{fig:eagleDiagsC}{{11c}{29}}
-\newlabel{sub@fig:eagleDiagsC}{{c}{29}}
-\newlabel{fig:eagleDiagsD}{{11d}{29}}
-\newlabel{sub@fig:eagleDiagsD}{{d}{29}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces (a, b) Visualization of the complete CDM and WDM simulations. (c, d) Their corresponding persistence diagrams. Although the CDM structure is denser, the persistence diagrams appear comparable.\relax }}{29}}
-\newlabel{fig:eagleDiags}{{11}{29}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Results}{29}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces P-values from hypothesis tests on the unstandardized (left) and standardized (right) WDM \& CDM simulations by double, and quadruple splits. A p-value of $0.000$ comes from a permutation test with no positive examples.\relax }}{30}}
-\newlabel{table:hypoCDMWDMresults}{{2}{30}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Localizing Differences}{31}}
-\newlabel{fig:cubeHeatmap0}{{12a}{32}}
-\newlabel{sub@fig:cubeHeatmap0}{{a}{32}}
-\newlabel{fig:cubeHeatmapStand0}{{12b}{32}}
-\newlabel{sub@fig:cubeHeatmapStand0}{{b}{32}}
-\newlabel{fig:cubeHeatmap1}{{12c}{32}}
-\newlabel{sub@fig:cubeHeatmap1}{{c}{32}}
-\newlabel{fig:cubeHeatmapStand1}{{12d}{32}}
-\newlabel{sub@fig:cubeHeatmapStand1}{{d}{32}}
-\newlabel{fig:cubeHeatmap2}{{12e}{32}}
-\newlabel{sub@fig:cubeHeatmap2}{{e}{32}}
-\newlabel{fig:cubeHeatmapStand2}{{12f}{32}}
-\newlabel{sub@fig:cubeHeatmapStand2}{{f}{32}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Each subfigure contains three horizontal heatmaps respectively representing (from top to bottom) the Bottleneck distances between each slice of unsplit, double split, and quadruple split pairs from respective WDM and CDM data sets by dimension. Subfigures (a, c, e) are unstandardized persistence diagrams while the subfigures (b, d, f) are standardized. Each individual heatmap is a vectorization of the cubic slices produced from the WDM and CDM Eagle simulations.\relax }}{32}}
-\newlabel{fig:cubeHeatmap}{{12}{32}}
-\newlabel{fig:valid1}{{13a}{32}}
-\newlabel{sub@fig:valid1}{{a}{32}}
-\newlabel{fig:valid2}{{13b}{32}}
-\newlabel{sub@fig:valid2}{{b}{32}}
-\newlabel{fig:valid3}{{13c}{32}}
-\newlabel{sub@fig:valid3}{{c}{32}}
-\newlabel{fig:valid4}{{13d}{32}}
-\newlabel{sub@fig:valid4}{{d}{32}}
-\newlabel{fig:validationfigs}{{\caption@xref {fig:validationfigs}{ on input line 864}}{32}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces A comparison of the EC Function and the CORR Function for Dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest.\relax }}{32}}
+\newlabel{fig:eagleDiagsA}{{10a}{25}}
+\newlabel{sub@fig:eagleDiagsA}{{a}{25}}
+\newlabel{fig:eagleDiagsB}{{10b}{25}}
+\newlabel{sub@fig:eagleDiagsB}{{b}{25}}
+\newlabel{fig:eagleDiagsC}{{10c}{25}}
+\newlabel{sub@fig:eagleDiagsC}{{c}{25}}
+\newlabel{fig:eagleDiagsD}{{10d}{25}}
+\newlabel{sub@fig:eagleDiagsD}{{d}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces (a, b) Visualization of the complete CDM and WDM simulations. (c, d) Their corresponding persistence diagrams. Although the CDM structure is denser, the persistence diagrams appear comparable.\relax }}{25}}
+\newlabel{fig:eagleDiags}{{10}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Results}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Localizing Differences}{26}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces P-values from hypothesis tests on the unstandardized (left) and standardized (right) WDM \& CDM simulations by double, and quadruple splits. A p-value of $0.000$ comes from a permutation test with no positive examples.\relax }}{27}}
+\newlabel{table:hypoCDMWDMresults}{{2}{27}}
+\newlabel{fig:cubeHeatmap0}{{11a}{28}}
+\newlabel{sub@fig:cubeHeatmap0}{{a}{28}}
+\newlabel{fig:cubeHeatmapStand0}{{11b}{28}}
+\newlabel{sub@fig:cubeHeatmapStand0}{{b}{28}}
+\newlabel{fig:cubeHeatmap1}{{11c}{28}}
+\newlabel{sub@fig:cubeHeatmap1}{{c}{28}}
+\newlabel{fig:cubeHeatmapStand1}{{11d}{28}}
+\newlabel{sub@fig:cubeHeatmapStand1}{{d}{28}}
+\newlabel{fig:cubeHeatmap2}{{11e}{28}}
+\newlabel{sub@fig:cubeHeatmap2}{{e}{28}}
+\newlabel{fig:cubeHeatmapStand2}{{11f}{28}}
+\newlabel{sub@fig:cubeHeatmapStand2}{{f}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Each subfigure contains three horizontal heatmaps respectively representing (from top to bottom) the Bottleneck distances between each slice of unsplit, double split, and quadruple split pairs from respective WDM and CDM data sets by dimension. Subfigures (a, c, e) are unstandardized persistence diagrams while the subfigures (b, d, f) are standardized. Each individual heatmap is a vectorization of the cubic slices produced from the WDM and CDM Eagle simulations.\relax }}{28}}
+\newlabel{fig:cubeHeatmap}{{11}{28}}
+\newlabel{fig:valid1}{{12a}{29}}
+\newlabel{sub@fig:valid1}{{a}{29}}
+\newlabel{fig:valid2}{{12b}{29}}
+\newlabel{sub@fig:valid2}{{b}{29}}
+\newlabel{fig:valid3}{{12c}{29}}
+\newlabel{sub@fig:valid3}{{c}{29}}
+\newlabel{fig:valid4}{{12d}{29}}
+\newlabel{sub@fig:valid4}{{d}{29}}
+\newlabel{fig:validationfigs}{{\caption@xref {fig:validationfigs}{ on input line 848}}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces A comparison of the EC Function and the CORR Function for Dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest.\relax }}{29}}
 \bibstyle{agsm}
 \bibdata{mybib}
 \bibcite{adams2015persistent}{{1}{2015}{{Adams et~al.}}{{Adams, Chepushtanova, Emerson, Hanson, Kirby, Motta, Neville, Peterson, Shipman \&\ Ziegelmeier}}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{33}}
-\newlabel{sec:conc}{{6}{33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces $\qopname  \relax o{log}_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set (from 0.1 to 0.9 by 0.1 increments); y-axis shows the p-values in $\textup  {1og}_{10}$ space. The lines plot the median $\qopname  \relax o{log}_{10}$ p-value of the 100 iterations. \relax }}{34}}
-\newlabel{fig:linesUnnorm}{{14}{34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces A similar set of results to Figure~\ref  {fig:linesUnnorm} (percfil 0.1 to 0.9) except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.\relax }}{35}}
-\newlabel{fig:linesNorm}{{15}{35}}
 \bibcite{bendich2014persistent}{{2}{2014}{{Bendich et~al.}}{{Bendich, Marron, Miller, Pieloch \&\ Skwerer}}}
 \bibcite{bond1996filaments}{{3}{1996}{{Bond et~al.}}{{Bond, Kofman \&\ Pogosyan}}}
 \bibcite{bubenik2015statistical}{{4}{2015}{{Bubenik}}{{}}}
 \bibcite{cantalupo2014cosmic}{{5}{2014}{{Cantalupo et~al.}}{{Cantalupo, Arrigoni-Battaia, Prochaska, Hennawi \&\ Madau}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{30}}
+\newlabel{sec:conc}{{6}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces $\qopname  \relax o{log}_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set (from 0.1 to 0.9 by 0.1 increments); y-axis shows the p-values in $\textup  {1og}_{10}$ space. The lines plot the median $\qopname  \relax o{log}_{10}$ p-value of the 100 iterations. \relax }}{31}}
+\newlabel{fig:linesUnnorm}{{13}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces A similar set of results to Figure~\ref  {fig:linesUnnorm} (percfil 0.1 to 0.9) except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.\relax }}{32}}
+\newlabel{fig:linesNorm}{{14}{32}}
 \bibcite{centrella1983three}{{6}{1983}{{Centrella \&\ Melott}}{{}}}
 \bibcite{chazal2011geometric}{{7}{2011}{{Chazal et~al.}}{{Chazal, Cohen-Steiner \&\ M{\'e}rigot}}}
 \bibcite{chazal2014stochastic}{{8}{2014}{{Chazal et~al.}}{{Chazal, Fasy, Lecci, Rinaldo \&\ Wasserman}}}
 \bibcite{chen2015statistical}{{9}{2015}{{Chen et~al.}}{{Chen, Wang, Rinaldo \&\ Wasserman}}}
 \bibcite{cisewski2014non}{{10}{2014}{{Cisewski et~al.}}{{Cisewski, Croft, Freeman, Genovese, Khandai, Ozbek \&\ Wasserman}}}
-\bibcite{cohen2007stability}{{11}{2007}{{Cohen-Steiner et~al.}}{{Cohen-Steiner, Edelsbrunner \&\ Harer}}}
-\bibcite{cooray2002halo}{{12}{2002}{{Cooray \&\ Sheth}}{{}}}
-\bibcite{davis1985evolution}{{13}{1985}{{Davis et~al.}}{{Davis, Efstathiou, Frenk \&\ White}}}
-\bibcite{doroshkevich1980two}{{14}{1980}{{Doroshkevich et~al.}}{{Doroshkevich, Kotok, Novikov, Polyudov, Shandarin \&\ Sigov}}}
-\bibcite{duong2012closed}{{15}{2012}{{Duong et~al.}}{{Duong, Goud \&\ Schauer}}}
-\bibcite{edelsbrunner2010computational}{{16}{2010}{{Edelsbrunner \&\ Harer}}{{}}}
-\bibcite{geller1989mapping}{{17}{1989}{{Geller \&\ HUCHRA}}{{}}}
-\bibcite{gott2005map}{{18}{2005}{{Gott~III et~al.}}{{Gott~III, Schlegel, Hoyle, Vogeley, Tegmark, Bahcall, Brinkmann et~al.}}}
-\bibcite{gretton2012kernel}{{19}{2012}{{Gretton et~al.}}{{Gretton, Borgwardt, Rasch, Sch{\"o}lkopf \&\ Smola}}}
-\bibcite{hatcher2002algebraic}{{20}{2002}{{Hatcher}}{{}}}
-\bibcite{HilbeEtAl2014}{{21}{2014}{{Hilbe et~al.}}{{Hilbe, Riggs, Wandelt, de~Souza, Ishida, Cisewski, Surdin, Killedar, Trotta, Bassett et~al.}}}
-\bibcite{icke1987fragmenting}{{22}{1987}{{Icke \&\ van~de Weygaert}}{{}}}
-\bibcite{icke1991galaxy}{{23}{1991}{{Icke \&\ van~de Weygaert}}{{}}}
-\bibcite{landy1993bias}{{24}{1993}{{Landy \&\ Szalay}}{{}}}
-\bibcite{lovell2014properties}{{25}{2014}{{Lovell et~al.}}{{Lovell, Frenk, Eke, Jenkins, Gao \&\ Theuns}}}
+\bibcite{cooray2002halo}{{11}{2002}{{Cooray \&\ Sheth}}{{}}}
+\bibcite{davis1985evolution}{{12}{1985}{{Davis et~al.}}{{Davis, Efstathiou, Frenk \&\ White}}}
+\bibcite{doroshkevich1980two}{{13}{1980}{{Doroshkevich et~al.}}{{Doroshkevich, Kotok, Novikov, Polyudov, Shandarin \&\ Sigov}}}
+\bibcite{duong2012closed}{{14}{2012}{{Duong et~al.}}{{Duong, Goud \&\ Schauer}}}
+\bibcite{edelsbrunner2010computational}{{15}{2010}{{Edelsbrunner \&\ Harer}}{{}}}
+\bibcite{geller1989mapping}{{16}{1989}{{Geller \&\ HUCHRA}}{{}}}
+\bibcite{gott2005map}{{17}{2005}{{Gott~III et~al.}}{{Gott~III, Schlegel, Hoyle, Vogeley, Tegmark, Bahcall, Brinkmann et~al.}}}
+\bibcite{gretton2012kernel}{{18}{2012}{{Gretton et~al.}}{{Gretton, Borgwardt, Rasch, Sch{\"o}lkopf \&\ Smola}}}
+\bibcite{hatcher2002algebraic}{{19}{2002}{{Hatcher}}{{}}}
+\bibcite{HilbeEtAl2014}{{20}{2014}{{Hilbe et~al.}}{{Hilbe, Riggs, Wandelt, de~Souza, Ishida, Cisewski, Surdin, Killedar, Trotta, Bassett et~al.}}}
+\bibcite{icke1987fragmenting}{{21}{1987}{{Icke \&\ van~de Weygaert}}{{}}}
+\bibcite{icke1991galaxy}{{22}{1991}{{Icke \&\ van~de Weygaert}}{{}}}
+\bibcite{landy1993bias}{{23}{1993}{{Landy \&\ Szalay}}{{}}}
+\bibcite{lovell2014properties}{{24}{2014}{{Lovell et~al.}}{{Lovell, Frenk, Eke, Jenkins, Gao \&\ Theuns}}}
+\bibcite{Mileyko:2011aa}{{25}{2011}{{Mileyko et~al.}}{{Mileyko, Mukherjee \&\ Harer}}}
 \bibcite{munkres1984elements}{{26}{1984}{{Munkres}}{{}}}
 \bibcite{schaye2015eagle}{{27}{2015}{{Schaye et~al.}}{{Schaye, Crain, Bower, Furlong, Schaller, Theuns, Dalla~Vecchia, Frenk, McCarthy, Helly et~al.}}}
 \bibcite{SchneiderEtAl2012}{{28}{2012}{{Schneider et~al.}}{{Schneider, Smith, Macci{\`o} \&\ Moore}}}
-\bibcite{springel2006large}{{29}{2006}{{Springel et~al.}}{{Springel, Frenk \&\ White}}}
-\bibcite{springel2001populating}{{30}{2001}{{Springel et~al.}}{{Springel, White, Tormen \&\ Kauffmann}}}
-\bibcite{van2007voronoi}{{31}{2007}{{Van De~Weygaert}}{{}}}
-\bibcite{van2011alpha}{{32}{2011}{{Van De~Weygaert et~al.}}{{Van De~Weygaert, Vegter, Edelsbrunner, Jones, Pranav, Park, Hellwing, Eldering, Kruithof, Bos et~al.}}}
-\bibcite{viel2013warm}{{33}{2013}{{Viel et~al.}}{{Viel, Becker, Bolton \&\ Haehnelt}}}
+\bibcite{Sousbie2011}{{29}{2011}{{Sousbie}}{{}}}
+\bibcite{SousbieEtAl2011}{{30}{2011}{{Sousbie et~al.}}{{Sousbie, Pichon \&\ Kawahara}}}
+\bibcite{springel2006large}{{31}{2006}{{Springel et~al.}}{{Springel, Frenk \&\ White}}}
+\bibcite{springel2001populating}{{32}{2001}{{Springel et~al.}}{{Springel, White, Tormen \&\ Kauffmann}}}
+\bibcite{van2007voronoi}{{33}{2007}{{Van De~Weygaert}}{{}}}
+\bibcite{van2011alpha}{{34}{2011}{{Van De~Weygaert et~al.}}{{Van De~Weygaert, Vegter, Edelsbrunner, Jones, Pranav, Park, Hellwing, Eldering, Kruithof, Bos et~al.}}}
+\bibcite{viel2013warm}{{35}{2013}{{Viel et~al.}}{{Viel, Becker, Bolton \&\ Haehnelt}}}
