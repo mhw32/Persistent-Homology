@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 OCT 2016 21:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 OCT 2016 23:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**jcgs-submission.tex mybib.bib
+**jcgs-submission.tex
 (./jcgs-submission.tex
 LaTeX2e <2016/03/31>
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
@@ -1395,7 +1395,12 @@ Missing character: There is no ¨ in font cmr12!
 Missing character: There is no Â in font cmr12!
 Missing character: There is no è in font cmr12!
 Missing character: There is no ∏ in font cmr12!
- [34] [35]) [36] (./jcgs-submission.aux)
+ [34] [35]) [36] (./jcgs-submission.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 
 LaTeX Warning: There were undefined references.
 
@@ -1406,11 +1411,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  15557 strings out of 493014
  303430 string characters out of 6133351
- 350321 words of memory out of 5000000
+ 350373 words of memory out of 5000000
  18729 multiletter control sequences out of 15000+600000
  14618 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,77p,1554b,654s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,13n,77p,1544b,654s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -1426,7 +1431,7 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jcgs-submission.pdf (36 pages, 5856671 bytes).
+Output written on jcgs-submission.pdf (36 pages, 5854455 bytes).
 PDF statistics:
  1680 PDF objects out of 1728 (max. 8388607)
  412 compressed objects within 5 object streams
