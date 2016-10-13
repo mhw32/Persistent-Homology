@@ -10,16 +10,16 @@ Mat <- matrix(readBin(con, "numeric", prod(dim)),
               dim[2])
 close(con)
 
-res <- 0.01
+res <- 0.05
 boxlim <- cbind(c(-1.5, 1.5), 
                 c(-1.5, 1.5))
 diag <- gridDiag(Mat, 
-                 dtm, 
+                 kde, 
                  lim=boxlim, 
                  by=res, 
                  sublevel=T, 
                  printProgress=T,
-                 m0=0.001)
+                 h=.3)
 
 diag <- cleanDiag(diag$diagram)
 

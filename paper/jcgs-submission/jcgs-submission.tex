@@ -159,7 +159,7 @@ structure to understand. Persistent homology tracks the appearance of new connec
 \subsection{Persistent Homology} 
 Various methods can be used in order to transform a discrete point set into a topological space. For example, points can be connected based on a distance (or
 a distance-like structure as in \citep{chazal2011geometric}), or one may estimate the density from which the points were sampled. 
-In the latter case, one can look at a KDE of a point cloud and study the topological features of super-level sets of that density. Below, we summarize some of the key components of persistent homology. See \citep{edelsbrunner2010computational,hatcher2002algebraic,munkres1984elements} for a more thorough introduction to algebraic and computational topology. \brittany{check citations}
+In the latter case, one can look at a KDE of a point cloud and study the topological features of super-level sets of that density. Below, we summarize some of the key components of persistent homology. See \citep{edelsbrunner2010computational,hatcher2002algebraic,munkres1984elements} for a more thorough introduction to algebraic and computational topology.
 
 \paragraph{Filtrations}
 To derive the persistent homology for $p$, let there exist a threshold $r$, represented by a hyperplane that divides $p$ into two separate segments: a super-level set, defined as $\{(x,y,z) \in p \textup{ s.t. } z \geq r \}$, and a corresponding sub-level set $\{(x,y,z) \in p \textup{ s.t. } z < r \}$. If $r$ is initialized at $\infty$, the super-level set is empty and the sub-level set contains all of $p$. The evolving topological space is characterized by its homology as~$r$ decreases to $-\infty$. The persistent homology would then track the connected
@@ -172,7 +172,7 @@ changes from having six connected components ($H_0$'s) and zero loops ($H_1$'s) 
 Figure~\ref{fig:example_pd} displays the persistence diagram for the function in Figure~\ref{fig:example_3d}, where each point represents the death time (x-axis) and birth time (y-axis) of a homological feature. A
 diagonal point $(x,x)$ represents a feature that was born and died at the same time $x$.  
 
-The \emph{persistence} of a persistence point $(d,b)$ is the length of the interval of the persistence parameter that support that feature: $b-d$.  In the persistence diagram, the distance from $(b,d)$ to the diagonal is proportional to this value; in fact, the (Euclidean) distance to the diagonal is $(b-d)/\sqrt{2}$. Sometimes the persistence of a feature is indicative of the
+The \emph{persistence} of a persistence point $(d,b)$ is the length of the interval of the persistence parameter that support that feature: $b-d$.  In the persistence diagram, the distance from $(b,d)$ to the diagonal is proportional to this value; in fact, the (Euclidean) distance to the diagonal is $\frac{(b-d)}{\sqrt{2}}$. Sometimes the persistence of a feature is indicative of the
 significance of the feature, which means that points close to the diagonal are indistinguishable from noise.
 
 \begin{figure}
@@ -213,7 +213,7 @@ significance of the feature, which means that points close to the diagonal are i
 %\brittany{todo: continue here (update for new example)}
 
 \subsection{Derivatives of Persistence Diagrams}
-While persistence diagrams can summarize the topology of a data set, it is not straightforward to compare two different persistence diagrams. Often distances like the bottleneck distance or the q-Wasserstein distance are used in this setting, but are computationally expensive. Below are several examples of methods to further summarize a persistence diagram that are used to develop hypothesis tests.
+While persistence diagrams can summarize the topology of a data set, it is not straightforward to compare two different persistence diagrams. Often distances like the bottleneck distance or the $q$-Wasserstein distance are used in this setting, but are computationally expensive. Below are several examples of methods to further summarize a persistence diagram that are used to develop hypothesis tests.
 
 \paragraph{Landscapes and Silhouettes}
 Weighted silhouette functions are formed by weighting a particular functional summary of persistence diagrams called \emph{landscape functions} \citep{bubenik2015statistical}. More details and theoretical properties of landscapes and silhouettes are provided in \citep{chazal2014stochastic}.
@@ -238,7 +238,7 @@ where kmax is the kth largest value in $D_h$.  An example of a landscape functio
 \begin{figure}[htp!]
   \centering
   \includegraphics[width=0.6\linewidth]{figure_3_silh.pdf}
-    \caption{ The shaded circles in pink represent the point coordinates in a persistence diagram $D$. The landscape $\lambda(k, \cdot)$ is the $k$-th largest of the arrangement of the graphs of $\left \{ \Lambda_{p} \right \}$. In particular, the cyan curve is the landscape $\lambda(1, \cdot)$.}
+    \caption{ The points shaded in color represent the homology coordinates in a persistence diagram $D$. The landscape $\lambda(k, \cdot)$ is the $k$-th largest of the arrangement of the graphs of $\left \{ \Lambda_{p} \right \}$. In particular, the orange segment is the landscape $\lambda(1, \cdot)$ while the blue segment(s) are the landscrape $\lambda(2, \cdot)$.}
     \label{fig:landscape}
 \end{figure}
 \end{center}
