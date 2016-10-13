@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 OCT 2016 23:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  13 OCT 2016 09:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -802,13 +802,13 @@ ultiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./figs/figure_2_contour_2.pdf): PDF inclusion: m
 ultiple pdfs with page group included in a single page
 > <./figs/figure_2_pd.pdf>]
-<figs/figure_3_silh.pdf, id=95, 505.89pt x 180.675pt>
+<figs/figure_3_silh.pdf, id=96, 505.89pt x 180.675pt>
 File: figs/figure_3_silh.pdf Graphic file (type pdf)
 
 <use figs/figure_3_silh.pdf>
 Package pdftex.def Info: figs/figure_3_silh.pdf used on input line 240.
 (pdftex.def)             Requested size: 277.3648pt x 99.06001pt.
- [8] [9 <./figs/figure_3_silh.pdf>]
+ [8 <./figs/figure_3_silh.pdf>] [9]
 <figs/figure_5_plot.pdf, id=135, 505.89pt x 505.89pt>
 File: figs/figure_5_plot.pdf Graphic file (type pdf)
 
@@ -1395,12 +1395,7 @@ Missing character: There is no ¬ in font cmr12!
 Missing character: There is no å in font cmr12!
 Missing character: There is no  in font cmr12!
 Missing character: There is no ¸ in font cmr12!
- [34] [35]) [36] (./jcgs-submission.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+ [34] [35]) [36] (./jcgs-submission.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1411,7 +1406,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  15557 strings out of 493014
  303430 string characters out of 6133351
- 350373 words of memory out of 5000000
+ 350321 words of memory out of 5000000
  18729 multiletter control sequences out of 15000+600000
  14618 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1431,7 +1426,7 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jcgs-submission.pdf (36 pages, 5854455 bytes).
+Output written on jcgs-submission.pdf (36 pages, 5854624 bytes).
 PDF statistics:
  1680 PDF objects out of 1728 (max. 8388607)
  412 compressed objects within 5 object streams
