@@ -23,7 +23,7 @@ load_WDM <- function() {
 whole_cdm <- load_CDM()
 whole_wdm <- load_WDM()
 
-pdf("figure_1_whole_cdm.pdf")
+png("figure_1_whole_cdm.png")
 scatterplot3d(whole_cdm, 
               xlab='X Axis', 
               ylab='Y Axis', 
@@ -33,7 +33,7 @@ scatterplot3d(whole_cdm,
               cex.axis=1.5,
               cex.lab=2)
 dev.off()
-pdf("figure_1_whole_wdm.pdf")
+png("figure_1_whole_wdm.png")
 scatterplot3d(whole_wdm,
               xlab='X Axis',
               ylab='Y Axis',

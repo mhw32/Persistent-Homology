@@ -28,7 +28,7 @@ data <- list(whole_wdm, whole_cdm)
 names <- list('wdm', 'cdm')
 
 for (i in c(1, 2)) {
-    pdf(paste("figure_11_", names[[i]], "_plot.pdf", sep=""))
+    png(paste("figure_11_", names[[i]], "_plot.png", sep=""))
     scatterplot3d(data[[i]], 
                   xlab='X Axis', 
                   ylab='Y Axis', 
@@ -62,16 +62,14 @@ for (i in c(1, 2)) {
          X[,3], 
          pch = c(X[,1]+1), 
          col = c(X[,1]+1), 
-         xlab = 'Death', 
-         ylab = 'Birth', 
+         xlab = 'Birth', 
+         ylab = 'Death', 
          main = '', 
          cex.lab=2.0, 
          cex.axis=2.0, 
          cex.main=2.0, 
          cex.sub=2.0, 
-         cex=2.0, 
-         xlim=c(0,0.30), 
-         ylim=c(0,0.30))
+         cex=2.0)
     abline(a = 0, b = 1)
     legend('bottomright', 
            c('0','1','2'), 

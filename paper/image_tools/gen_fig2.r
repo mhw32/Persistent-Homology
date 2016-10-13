@@ -39,9 +39,7 @@ plot(X[,2],
      cex.axis=2.0, 
      cex.main=2.0, 
      cex.sub=2.0, 
-     cex=2.0, 
-     xlim=c(0,0.30), 
-     ylim=c(0,0.30))
+     cex=2.0)
 abline(a = 0, b = 1)
 legend("bottomright", 
        c("0","1","2"), 

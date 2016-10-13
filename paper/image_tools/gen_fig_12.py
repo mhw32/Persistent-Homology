@@ -16,7 +16,7 @@ data_dim = (data[:, :, 0], data[:, :, 1], data[:, :, 2])
 for i, curdata in enumerate(data_dim):
     plt.figure()
     s, d, t, q = prepare(curdata)
-    vmin, vmax = 0, 1
+    vmin, vmax = np.min(curdata), np.max(curdata)
     fig, axn = plt.subplots(3, 1, sharey=True, figsize=(15,3))
     cbar_ax = fig.add_axes([.91, .3, .03, .4])
     cbar_ax.tick_params(labelsize=18) 
@@ -55,7 +55,7 @@ data_dim = (data[:, :, 0], data[:, :, 1], data[:, :, 2])
 for i, curdata in enumerate(data_dim):
     plt.figure()
     s, d, t, q = prepare(curdata)
-    vmin, vmax = 0, 1
+    vmin, vmax = np.min(curdata), np.max(curdata)
     fig, axn = plt.subplots(3, 1, sharey=True, figsize=(15,3))
     cbar_ax = fig.add_axes([.91, .3, .03, .4])
     cbar_ax.tick_params(labelsize=18) 

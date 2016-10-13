@@ -32,7 +32,7 @@ for (pf in pfs) {
                   ylab='Y Axis', 
                   zlab='Z Axis', 
                   pch='.',
-                  color=rgb(0, 0, 0, 0.01),
+                  color=rgb(0, 0, 0, 0.1),
                   cex.axis=1.5,
                   cex.lab=2)
     dev.off()
@@ -56,16 +56,14 @@ for (pf in pfs) {
          X[,3], 
          pch = c(X[,1]+1), 
          col = c(X[,1]+1), 
-         xlab = 'Death', 
-         ylab = 'Birth', 
+         xlab = 'Birth', 
+         ylab = 'Death', 
          main = '', 
          cex.lab=2.0, 
          cex.axis=2.0, 
          cex.main=2.0, 
          cex.sub=2.0, 
-         cex=2.0, 
-         xlim=c(0,0.30), 
-         ylim=c(0,0.30))
+         cex=2.0)
     abline(a = 0, b = 1)
     legend('bottomright', 
            c('0','1','2'), 

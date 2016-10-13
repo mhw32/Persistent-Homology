@@ -30,6 +30,16 @@ python gen_fig_appendix1.py
 echo "Generating Figure A2"
 python gen_fig_appendix2.py
 
+echo "Copying files for figure 10"
+cp intermediate/fig_vf_*.png .
+
 echo "Saving files to output/"
-rm output/*.pdf
+rm -rf output
+mkdir output
 mv *.pdf output
+mv *.png output
+
+echo "Moving to new directory"
+rm -rf ../jcgs-submission/figs
+mv output ../jcgs-submission/figs
+
