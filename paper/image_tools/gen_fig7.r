@@ -16,33 +16,33 @@ N <- 10000
 pfs <- c(0.1, 0.5, 0.9)
 
 for (pf in pfs) {
-    vf <- voronoi3d(boxlim, 
-                    res, 
-                    perturb, 
-                    Ncells=64, 
-                    N, 
-                    percClutter=0, 
-                    percWall=1-0.02-pf, 
-                    percFil=pf, 
+    vf <- voronoi3d(boxlim,
+                    res,
+                    perturb,
+                    Ncells=64,
+                    N,
+                    percClutter=0,
+                    percWall=1-0.02-pf,
+                    percFil=pf,
                     percClust=0.02)
 
     pdf(paste('figure_7_plot_pf_', pf, '.pdf', sep=""))
-    scatterplot3d(vf, 
-                  xlab='X Axis', 
-                  ylab='Y Axis', 
-                  zlab='Z Axis', 
+    scatterplot3d(vf,
+                  xlab='X Axis',
+                  ylab='Y Axis',
+                  zlab='Z Axis',
                   pch='.',
-                  color=rgb(0, 0, 0, 0.1),
+                  color=rgb(0, 0, 0, 0.25),
                   cex.axis=1.5,
                   cex.lab=2)
     dev.off()
 
-    diag <- gridDiag(vf, 
-                     dtm, 
-                     lim=cbind(Xlim,Ylim,Zlim), 
-                     by=res, 
-                     sublevel=T, 
-                     printProgress=T, 
+    diag <- gridDiag(vf,
+                     dtm,
+                     lim=cbind(Xlim,Ylim,Zlim),
+                     by=res,
+                     sublevel=T,
+                     printProgress=T,
                      m0=0.001)
 
     diag <- cleanDiag(diag$diagram)
@@ -51,24 +51,24 @@ for (pf in pfs) {
     X <- diag
     # X is the persistence diagram
     mar.default <- c(5,4,4,2) + 0.1
-    par(mar = mar.default + c(0, 1, 0, 0)) 
-    plot(X[,2], 
-         X[,3], 
-         pch = c(X[,1]+1), 
-         col = c(X[,1]+1), 
-         xlab = 'Birth', 
-         ylab = 'Death', 
-         main = '', 
-         cex.lab=2.0, 
-         cex.axis=2.0, 
-         cex.main=2.0, 
-         cex.sub=2.0, 
+    par(mar = mar.default + c(0, 1, 0, 0))
+    plot(X[,2],
+         X[,3],
+         pch = c(X[,1]+1),
+         col = c(X[,1]+1),
+         xlab = 'Birth',
+         ylab = 'Death',
+         main = '',
+         cex.lab=2.0,
+         cex.axis=2.0,
+         cex.main=2.0,
+         cex.sub=2.0,
          cex=2.0)
     abline(a = 0, b = 1)
-    legend('bottomright', 
-           c('0','1','2'), 
-           pch = c(1,2,3), 
-           col = c(1,2,3), 
+    legend('bottomright',
+           c('0','1','2'),
+           pch = c(1,2,3),
+           col = c(1,2,3),
            cex=2.0)
     dev.off()
 }
