@@ -32,7 +32,7 @@ python gen_fig_appendix2.py
 
 echo "Copying files for figure 10"
 cp intermediate/fig_vf_*.png .
-cp intermediate/fig_2_pd.pdf .
+cp intermediate/fig_2_pd.pdf figure_2_pd.pdf
 
 echo "Saving files to output/"
 rm -rf output
