@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Generating Figure 1"
-Rscript gen_fig1.r 
+Rscript gen_fig1.r
 echo "Generating Figure 2"
 python gen_fig2.py
 Rscript gen_fig2.r
@@ -32,6 +32,7 @@ python gen_fig_appendix2.py
 
 echo "Copying files for figure 10"
 cp intermediate/fig_vf_*.png .
+cp intermediate/fig_2_pd.pdf .
 
 echo "Saving files to output/"
 rm -rf output
