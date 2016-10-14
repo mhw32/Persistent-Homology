@@ -42,68 +42,68 @@ Xlim <- boxlim
 Ylim <- boxlim
 Zlim <- boxlim
 
-vf<- voronoi3d(boxlim, 
-               res, 
-               perturb, 
-               Ncells=64, 
-               N, 
-               percClutter=0, 
-               percWall=1-0.02-0.5, 
-               percFil=0.5, 
+vf<- voronoi3d(boxlim,
+               res,
+               perturb,
+               Ncells=64,
+               N,
+               percClutter=0,
+               percWall=1-0.02-0.5,
+               percFil=0.5,
                percClust=0.02)
 
 pdf(paste('figure_5_plot.pdf'))
-scatterplot3d(vf, 
-              xlab='X Axis', 
-              ylab='Y Axis', 
-              zlab='Z Axis', 
+scatterplot3d(vf,
+              xlab='X Axis',
+              ylab='Y Axis',
+              zlab='Z Axis',
               pch='.',
-              color=rgb(0, 0, 0, 0.01),
+              color=rgb(0, 0, 0, 0.25),
               cex.axis=1.5,
               cex.lab=2)
 dev.off()
 
 # b) persistence diagram
-diag <- gridDiag(vf, 
-                 dtm, 
-                 lim=cbind(Xlim,Ylim,Zlim), 
-                 by=res, 
-                 sublevel=T, 
-                 printProgress=T, 
+diag <- gridDiag(vf,
+                 dtm,
+                 lim=cbind(Xlim,Ylim,Zlim),
+                 by=res,
+                 sublevel=T,
+                 printProgress=T,
                  m0=0.001)
 diag <- cleanDiag(diag$diagram)
 X <- diag
 
 pdf(paste('figure_5_pd.pdf'))
 mar.default <- c(5,4,4,2) + 0.1
-par(mar = mar.default + c(0, 1, 0, 0)) 
-plot(X[,2], 
-     X[,3], 
-     pch = c(X[,1]+1), 
-     col = c(X[,1]+1), 
-     xlab = 'Birth', 
-     ylab = 'Death', 
-     main = '', 
-     cex.lab=2.0, 
-     cex.axis=2.0, 
-     cex.main=2.0, 
-     cex.sub=2.0, 
+par(mar = mar.default + c(0, 1, 0, 0))
+plot(X[,2],
+     X[,3],
+     pch = c(X[,1]+1),
+     col = c(X[,1]+1),
+     xlab = 'Birth',
+     ylab = 'Death',
+     main = '',
+     cex.lab=2.0,
+     cex.axis=2.0,
+     cex.main=2.0,
+     cex.sub=2.0,
      cex=2.0)
 abline(a = 0, b = 1)
-legend('bottomright', 
-       c('0','1','2'), 
-       pch = c(1,2,3), 
-       col = c(1,2,3), 
+legend('bottomright',
+       c('0','1','2'),
+       pch = c(1,2,3),
+       col = c(1,2,3),
        cex=2.0)
 dev.off()
 
 # c) euler characteristics
-diag <- gridDiag(vf, 
-                 dtm, 
-                 lim=cbind(Xlim,Ylim,Zlim), 
-                 by=res, 
-                 sublevel=T, 
-                 printProgress=T, 
+diag <- gridDiag(vf,
+                 dtm,
+                 lim=cbind(Xlim,Ylim,Zlim),
+                 by=res,
+                 sublevel=T,
+                 printProgress=T,
                  m0=0.001)
 # no removal of extra pt
 diagram <- diag$diagram
@@ -111,46 +111,46 @@ tseq <- seq(min(diagram[,2:3]),
             max(diagram[,2:3]),
             length=5000)
 
-euler <- eulerChar(tseq, 
-                   diagram, 
-                   maxdimension=max(diagram[,1]), 
+euler <- eulerChar(tseq,
+                   diagram,
+                   maxdimension=max(diagram[,1]),
                    threshold=0)
 
 pdf('figure_5_euler.pdf')
 plot(euler,
-     type="l", 
+     type="l",
      lwd=3,
      col="cornflowerblue",
-     xlab="Sequence", 
+     xlab="Sequence",
      ylab="EC",
-     cex.lab=2.0, 
-     cex.axis=2.0, 
-     cex.main=2.0, 
-     cex.sub=2.0, 
+     cex.lab=2.0,
+     cex.axis=2.0,
+     cex.main=2.0,
+     cex.sub=2.0,
      cex=2.0)
 dev.off()
 
 # d) silhouette function
-tseq <- seq(min(diagram[,2:3]), 
-            max(diagram[,2:3]), 
+tseq <- seq(min(diagram[,2:3]),
+            max(diagram[,2:3]),
             length=1000)
 
-silh <- silhouette(diagram, 
-                   p=1, 
-                   dimension=2, 
+silh <- silhouette(diagram,
+                   p=1,
+                   dimension=2,
                    tseq)
 
 pdf('figure_5_silhouette.pdf')
 plot(abs(silh),
-     type="l", 
+     type="l",
      lwd=3,
      col="cornflowerblue",
-     xlab="Sequence", 
+     xlab="Sequence",
      ylab="SIL",
-     cex.lab=2.0, 
-     cex.axis=2.0, 
-     cex.main=2.0, 
-     cex.sub=2.0, 
+     cex.lab=2.0,
+     cex.axis=2.0,
+     cex.main=2.0,
+     cex.sub=2.0,
      cex=2.0)
 dev.off()
 

@@ -552,36 +552,65 @@ Similar tests were also completed against a control model with 0.3 percFil, and 
 \begin{center}
   \begin{figure}[htp!]
     \centering
-    \begin{subfigure}{.5\textwidth}
+    \begin{subfigure}{.45\textwidth}
       \centering
       \caption{EC Tests}
       \includegraphics[width=\linewidth]{figure_8_euler_group.pdf}
       \label{fig:sub_euler}
     \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{EC Tests (Normed)}
+      \includegraphics[width=\linewidth]{figure_8_euler_group_normed.pdf}
+      \label{fig:sub_euler_normed}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
       \centering
       \caption{SIL Tests}
       \includegraphics[width=\linewidth]{figure_8_silhouette_group.pdf}
       \label{fig:sub_silh}
     \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{SIL Tests (Normed)}
+      \includegraphics[width=\linewidth]{figure_8_silhouette_group_normed.pdf}
+      \label{fig:sub_silh_normed}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
       \centering
       \caption{IK Tests}
       \includegraphics[width=\linewidth]{figure_8_contour_group.pdf}
       \label{fig:sub_contour}
     \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{IK Tests (Normed)}
+      \includegraphics[width=\linewidth]{figure_8_contour_group_normed.pdf}
+      \label{fig:sub_contour_normed}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
       \centering
       \caption{WIK/PI Tests}
       \includegraphics[width=\linewidth]{figure_8_weighted_contour_group.pdf}
       \label{fig:sub_weight}
     \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
+    \begin{subfigure}{.45\textwidth}
+      \centering
+      \caption{WIK/PI Tests (Normed)}
+      \includegraphics[width=\linewidth]{figure_8_weighted_contour_group_normed.pdf}
+      \label{fig:sub_weight_normed}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
       \caption{CORR Tests}
       \includegraphics[width=\linewidth]{figure_8_correlation_group.pdf}
       \label{fig:sub_corr}
     \end{subfigure}
-  \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) EC-based, (b) SIL-based, (c) Kernel-based (KC), (d) Weighted Kernel-based (WIK), (e) CORR-based. X-axis represents the percent filament of the set being compared to the baseline set (0.1 to 0.3 by 0.05 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. Each plot contains a line representing the median $\log_{10}$ p-value of the 100 iterations, while the shaded region represents a 97.5 confidence interval.}
+    \begin{subfigure}{.45\textwidth}
+      \caption{CORR Tests (Normed)}
+      \includegraphics[width=\linewidth]{figure_8_correlation_group_normed.pdf}
+      \label{fig:sub_corr_normed}
+    \end{subfigure}
+  \caption{P-values for EC, SIL, IK, WIK, PI, and CORR. X-axis represents a varying percent filament (0.1 to 0.3) being compared to a baseline of 0.1; Y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value and peripheral points show the minimum and maximum p-values of the 100 iterations.}
   \label{fig:sub_unstandardized_results}
   \end{figure}
 \end{center}
@@ -591,44 +620,8 @@ From \figref{fig:sub_unstandardized_results}, we see  that the EC test, the CORR
 \subsubsection{Standardization of persistence diagrams} \label{sec:standardize}
 Seeing that the goal is to discern topological differences between two samples, scaling differences can result in rejection when, in fact there are not statistically significant topological differences. For example, suppose we are considering two datasets - each has points randomly sampled from the perimeter of a circle with a radius of 1 and 10 respectively.  It may or may not be desirable to conclude that the two datasets come from different persistence diagram generators (i.e. conclude $\mathcal P^{(1)} \neq \mathcal P^{(2)}$) since the inference would be based on geometrical (scaling) differences rather than topological differences.  If the desire is to focus on topological differences (and remove the geometrical differences), we propose a possible preprocessing step. Specifically, we standardize the persistence diagrams so that all the homological features are re-scaled to $[0, 1]\times[0,1]$. This simple standardization takes the persistence diagram window and shrinks it or expands it to fill the $[0, 1]\times[0,1]$ window, maintaining the same relationship among all the homological features.  If there is concern about outliers, then other quantiles (rather than the minimum and maximum) could be used for the standardization. The exception is with the Correlation test, in which the point cloud itself is standardized to $[0, 1]\times[0, 1]\times[0, 1]$.
 
-We repeated the simulation study from Section~\ref{sec:results1} except standardizing prior to the test; the results are displayed in \figref{fig:linesNorm}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same as those from the unstandardized setting: EC, CORR, SILEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, many of the KC, WIK, and other Sil tests have essentially constant p-values across the percfil variation, losing almost all effectiveness in distinguishing differences. One interpretation may be that the differences captured by these tests in the unstandardized version were all due to geometric dissimilarities.
+We repeated the simulation study from Section~\ref{sec:results1} except standardizing prior to the test; the results are displayed in \figref{fig:linesUnnorm}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same as those from the unstandardized setting: EC, CORR, SILEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, many of the KC, WIK, and other Sil tests have essentially constant p-values across the percfil variation, losing almost all effectiveness in distinguishing differences. One interpretation may be that the differences captured by these tests in the unstandardized version were all due to geometric dissimilarities.
 
-\begin{center}
-  \begin{figure}[htp!]
-    \centering
-    \begin{subfigure}{.5\textwidth}
-      \centering
-      \caption{EC Tests}
-      \includegraphics[width=\linewidth]{figure_8_euler_group_normed.pdf}
-      \label{fig:sub_euler}
-    \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
-      \centering
-      \caption{SIL Tests}
-      \includegraphics[width=\linewidth]{figure_8_silhouette_group_normed.pdf}
-      \label{fig:sub_silh}
-    \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
-      \centering
-      \caption{IK Tests}
-      \includegraphics[width=\linewidth]{figure_8_contour_group_normed.pdf}
-      \label{fig:sub_contour}
-    \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
-      \centering
-      \caption{WIK/PI Tests}
-      \includegraphics[width=\linewidth]{figure_8_weighted_contour_group_normed.pdf}
-      \label{fig:sub_weight}
-    \end{subfigure}
-    \begin{subfigure}{.5\textwidth}
-      \caption{CORR Tests}
-      \includegraphics[width=\linewidth]{figure_8_correlation_group_normed.pdf}
-      \label{fig:sub_corr}
-    \end{subfigure}
-  \caption{A similar set of results to \figref{fig:sub_unstandardized_results} except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.}
-  \label{fig:sub_standardized_results}
-  \end{figure}
-\end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: APPLICATION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -875,81 +868,71 @@ In this paper, we presented a hypothesis testing framework, build on persistent 
 \end{center}
 
 \begin{description}
-  \item[Additional voronoi simulations:] Hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesUnnorm}.
+  \item[Additional voronoi simulations:] Hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesUnnormApp}.
 
   \begin{center}
     \begin{figure}[htp!]
       \centering
-      \begin{subfigure}{.5\textwidth}
+      \begin{subfigure}{.45\textwidth}
         \centering
         \caption{EC Tests}
         \includegraphics[width=\linewidth]{figure_8_all_euler_group.pdf}
         \label{fig:all_euler}
       \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{EC Tests (Normed)}
+        \includegraphics[width=\linewidth]{figure_8_all_euler_group_normed.pdf}
+        \label{fig:all_euler_normed}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
         \centering
         \caption{SIL Tests}
         \includegraphics[width=\linewidth]{figure_8_all_silhouette_group.pdf}
         \label{fig:all_silh}
       \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{SIL Tests (Normed)}
+        \includegraphics[width=\linewidth]{figure_8_all_silhouette_group_normed.pdf}
+        \label{fig:all_silh_normed_normed}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
         \centering
         \caption{IK Tests}
         \includegraphics[width=\linewidth]{figure_8_all_contour_group.pdf}
         \label{fig:all_contour}
       \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{IK Tests (Normed)}
+        \includegraphics[width=\linewidth]{figure_8_all_contour_group_normed.pdf}
+        \label{fig:all_contour_normed}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
         \centering
         \caption{WIK/PI Tests}
         \includegraphics[width=\linewidth]{figure_8_all_weighted_contour_group.pdf}
         \label{fig:all_weight}
       \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
+      \begin{subfigure}{.45\textwidth}
+        \centering
+        \caption{WIK/PI Tests (Normed)}
+        \includegraphics[width=\linewidth]{figure_8_all_weighted_contour_group_normed.pdf}
+        \label{fig:all_weight_normed}
+      \end{subfigure}
+      \begin{subfigure}{.45\textwidth}
         \caption{CORR Tests}
         \includegraphics[width=\linewidth]{figure_8_all_correlation_group.pdf}
         \label{fig:all_corr}
       \end{subfigure}
-      \caption{$\log_{10}$ p-values for the proposed test statistics in the simulation study: (a) Euler-based, (b) Silhouette-based, (c) Kernel-based, (d) Weighted Kernel-based, (e) Correlation-based. The fifth plot (f) includes the best hypothesis test from each of three frameworks. X-axis represents the percent filament of the set being compared to the baseline set (from 0.1 to 0.9 by 0.1 increments); y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value of the 100 iterations. }
-      \label{fig:linesUnnorm}
-    \end{figure}
-  \end{center}
-
-  \item[Additional voronoi simulations:] Standardized hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesNorm}.
-
-  \begin{center}
-    \begin{figure}[htp!]
-      \centering
-      \begin{subfigure}{.5\textwidth}
-        \centering
-        \caption{EC Tests}
-        \includegraphics[width=\linewidth]{figure_8_all_euler_group_normed.pdf}
-        \label{fig:all_euler}
-      \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
-        \centering
-        \caption{SIL Tests}
-        \includegraphics[width=\linewidth]{figure_8_all_silhouette_group_normed.pdf}
-        \label{fig:all_silh}
-      \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
-        \centering
-        \caption{IK Tests}
-        \includegraphics[width=\linewidth]{figure_8_all_contour_group_normed.pdf}
-        \label{fig:all_contour}
-      \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
-        \centering
-        \caption{WIK/PI Tests}
-        \includegraphics[width=\linewidth]{figure_8_all_weighted_contour_group_normed.pdf}
-        \label{fig:all_weight}
-      \end{subfigure}
-      \begin{subfigure}{.5\textwidth}
-        \caption{CORR Tests}
+      \begin{subfigure}{.45\textwidth}
+        \caption{CORR Tests (Normed)}
         \includegraphics[width=\linewidth]{figure_8_all_correlation_group_normed.pdf}
-        \label{fig:all_corr}
+        \label{fig:all_corr_normed}
       \end{subfigure}
-      \caption{A similar set of results to \figref{fig:linesUnnorm} (percfil 0.1 to 0.9) except that all persistence diagrams were standardized prior to hypothesis testing. In the CORR test, the Voronoi dataset itself was standardized prior to testing.}
-      \label{fig:linesNorm}
+      \caption{P-values for EC, SIL, IK, WIK, PI, and CORR. X-axis represents a varying percent filament (0.1 to 0.9) being compared to a baseline of 0.1; Y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value and peripheral points show the minimum and maximum p-values of the 100 iterations. }
+      \label{fig:linesUnnormApp}
     \end{figure}
   \end{center}
 \end{description}
