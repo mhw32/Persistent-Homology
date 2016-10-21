@@ -54,7 +54,6 @@ else:
     pi_data = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/sub_proba/yesnorm/ans-voronoi-nodim.npy')
     wkc_data = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/sub_proba/yesnorm/ans-voronoi-bydim.npy')
 
-corr_data = np.log10(np.exp(corr_data))
 bighash_corr = {'corr': np.array(corr_data.T)}
 
 # bighash for wik
@@ -114,14 +113,14 @@ def hard_line_plot(allkeys,
                          capsize=20, 
                          capthick=6)
 
-    for k, c, t in zip(allkeys, allcolors, allticks):
-        yvalues = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]]    
+    # for k, c, t in zip(allkeys, allcolors, allticks):
+    #     yvalues = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]]    
 
-        plt.plot(xvalues,
-             yvalues,
-             color=c,
-             alpha=0.5,
-             lw=5)
+    #     plt.plot(xvalues,
+    #          yvalues,
+    #          color=c,
+    #          alpha=0.5,
+    #          lw=5)
 
     for k, c, t in zip(allkeys, allcolors, allticks):
         yvalues = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]]
