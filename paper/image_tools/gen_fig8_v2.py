@@ -105,7 +105,7 @@ def hard_line_plot(allkeys,
 
             pos = [xvalue]
             ypt = [yvalue]
-            err = [[lower_error[it]], [upper_error[it]]]
+            err = [[yvalue - lower_error[it]], [upper_error[it] - yvalue]]
             plt.errorbar(pos, 
                          ypt, 
                          yerr=err, 
