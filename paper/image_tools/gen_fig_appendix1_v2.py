@@ -61,6 +61,8 @@ bighash_corr = {'corr': np.array(corr_data.T)}
 
 # bighash for wik
 wkc_data = wkc_data
+wkc_data = np.log(1 - np.exp(wkc_data))
+pi_data = np.log(1 - np.exp(pi_data))
 wkc_0 = wkc_data[:, 0, :]
 wkc_1 = wkc_data[:, 1, :]
 wkc_2 = wkc_data[:, 2, :]
