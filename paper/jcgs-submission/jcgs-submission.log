@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  20 OCT 2016 19:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  20 OCT 2016 21:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -747,7 +747,7 @@ File: figs/figure_3_silh.pdf Graphic file (type pdf)
 <use figs/figure_3_silh.pdf>
 Package pdftex.def Info: figs/figure_3_silh.pdf used on input line 237.
 (pdftex.def)             Requested size: 277.3648pt x 99.06001pt.
- [8 <./figs/figure_3_silh.pdf>] [9]
+ [8] [9 <./figs/figure_3_silh.pdf>]
 <figs/figure_5_plot.pdf, id=135, 505.89pt x 505.89pt>
 File: figs/figure_5_plot.pdf Graphic file (type pdf)
 
@@ -898,15 +898,17 @@ LaTeX Warning: Reference `fig:linesUnnorm' on page 17 undefined on input line 5
 50.
 
 [17] [18 <./figs/fig_vf_grid.png> <./figs/fig_vf_cluster.png> <./figs/fig_vf_fi
-l.png> <./figs/fig_vf_wall.png>]
-<figs/figure_8_euler_group.pdf, id=308, 1445.4pt x 361.35pt>
+l.png> <./figs/fig_vf_wall.png>] [19 <./figs/figure_7_plot_pf_0_1.pdf> <./figs/
+figure_7_plot_pf_0_5.pdf> <./figs/figure_7_plot_pf_0_9.pdf> <./figs/figure_7_pd
+_0_1.pdf> <./figs/figure_7_pd_0_5.pdf> <./figs/figure_7_pd_0_9.pdf>]
+<figs/figure_8_euler_group.pdf, id=348, 1445.4pt x 361.35pt>
 File: figs/figure_8_euler_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_euler_group.pdf>
 Package pdftex.def Info: figs/figure_8_euler_group.pdf used on input line 558.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_euler_group_normed.pdf, id=309, 1445.4pt x 361.35pt>
+<figs/figure_8_euler_group_normed.pdf, id=349, 1445.4pt x 361.35pt>
 File: figs/figure_8_euler_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_euler_group_normed.pdf>
@@ -914,7 +916,7 @@ Package pdftex.def Info: figs/figure_8_euler_group_normed.pdf used on input lin
 e 564.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_silhouette_group.pdf, id=310, 1445.4pt x 361.35pt>
+<figs/figure_8_silhouette_group.pdf, id=350, 1445.4pt x 361.35pt>
 File: figs/figure_8_silhouette_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_silhouette_group.pdf>
@@ -922,7 +924,7 @@ Package pdftex.def Info: figs/figure_8_silhouette_group.pdf used on input line
 570.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_silhouette_group_normed.pdf, id=311, 1445.4pt x 361.35pt>
+<figs/figure_8_silhouette_group_normed.pdf, id=351, 1445.4pt x 361.35pt>
 File: figs/figure_8_silhouette_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_silhouette_group_normed.pdf>
@@ -930,7 +932,7 @@ Package pdftex.def Info: figs/figure_8_silhouette_group_normed.pdf used on inpu
 t line 576.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_contour_group.pdf, id=312, 1445.4pt x 361.35pt>
+<figs/figure_8_contour_group.pdf, id=352, 1445.4pt x 361.35pt>
 File: figs/figure_8_contour_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_contour_group.pdf>
@@ -938,7 +940,7 @@ Package pdftex.def Info: figs/figure_8_contour_group.pdf used on input line 582
 .
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_contour_group_normed.pdf, id=313, 1445.4pt x 361.35pt>
+<figs/figure_8_contour_group_normed.pdf, id=353, 1445.4pt x 361.35pt>
 File: figs/figure_8_contour_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_contour_group_normed.pdf>
@@ -946,7 +948,7 @@ Package pdftex.def Info: figs/figure_8_contour_group_normed.pdf used on input l
 ine 588.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_weighted_contour_group.pdf, id=314, 1445.4pt x 361.35pt>
+<figs/figure_8_weighted_contour_group.pdf, id=354, 1445.4pt x 361.35pt>
 File: figs/figure_8_weighted_contour_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_weighted_contour_group.pdf>
@@ -954,7 +956,7 @@ Package pdftex.def Info: figs/figure_8_weighted_contour_group.pdf used on input
  line 594.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_weighted_contour_group_normed.pdf, id=315, 1445.4pt x 361.35pt>
+<figs/figure_8_weighted_contour_group_normed.pdf, id=355, 1445.4pt x 361.35pt>
 File: figs/figure_8_weighted_contour_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_weighted_contour_group_normed.pdf>
@@ -962,7 +964,7 @@ Package pdftex.def Info: figs/figure_8_weighted_contour_group_normed.pdf used o
 n input line 600.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_correlation_group.pdf, id=316, 1445.4pt x 361.35pt>
+<figs/figure_8_correlation_group.pdf, id=356, 1445.4pt x 361.35pt>
 File: figs/figure_8_correlation_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_correlation_group.pdf>
@@ -970,17 +972,15 @@ Package pdftex.def Info: figs/figure_8_correlation_group.pdf used on input line
  605.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_correlation_group_normed.pdf, id=317, 1445.4pt x 361.35pt>
+<figs/figure_8_correlation_group_normed.pdf, id=357, 1445.4pt x 361.35pt>
 File: figs/figure_8_correlation_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_correlation_group_normed.pdf>
 Package pdftex.def Info: figs/figure_8_correlation_group_normed.pdf used on inp
 ut line 610.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
- [19 <./figs/figure_7_plot_pf_0_1.pdf> <./figs/figure_7_plot_pf_0_5.pdf> <./fig
-s/figure_7_plot_pf_0_9.pdf> <./figs/figure_7_pd_0_1.pdf> <./figs/figure_7_pd_0_
-5.pdf> <./figs/figure_7_pd_0_9.pdf>] [20 <./figs/figure_8_euler_group.pdf> <./f
-igs/figure_8_euler_group_normed.pdf
+ [20] [21 <./figs/figure_8_euler_group.pdf> <./figs/figure_8_euler_group_normed
+.pdf
 
 pdfTeX warning: pdflatex (file ./figs/figure_8_euler_group_normed.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
@@ -1018,13 +1018,12 @@ pdfTeX warning: pdflatex (file ./figs/figure_8_correlation_group_normed.pdf): P
 DF inclusion: multiple pdfs with page group included in a single page
 >]
 
-LaTeX Warning: Reference `fig:linesUnnorm' on page 21 undefined on input line 6
+LaTeX Warning: Reference `fig:linesUnnorm' on page 22 undefined on input line 6
 23.
 
-[21]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 636.
- <figs/figure_10_cdm_slice_17.pdf, id=843, 505.89pt x 505.89pt>
+[22] <figs/figure_10_cdm_slice_17.pdf, id=846, 505.89pt x 505.89pt>
 File: figs/figure_10_cdm_slice_17.pdf Graphic file (type pdf)
 
 <use figs/figure_10_cdm_slice_17.pdf>
@@ -1032,7 +1031,7 @@ Package pdftex.def Info: figs/figure_10_cdm_slice_17.pdf used on input line 647
 .
 (pdftex.def)             Requested size: 115.56749pt x 115.56488pt.
 
-<figs/figure_10_cdm_slice_34.pdf, id=844, 505.89pt x 505.89pt>
+<figs/figure_10_cdm_slice_34.pdf, id=847, 505.89pt x 505.89pt>
 File: figs/figure_10_cdm_slice_34.pdf Graphic file (type pdf)
 
 <use figs/figure_10_cdm_slice_34.pdf>
@@ -1040,16 +1039,16 @@ Package pdftex.def Info: figs/figure_10_cdm_slice_34.pdf used on input line 653
 .
 (pdftex.def)             Requested size: 115.56749pt x 115.56488pt.
 
-<figs/figure_10_cdm_slice_51.pdf, id=845, 505.89pt x 505.89pt>
+<figs/figure_10_cdm_slice_51.pdf, id=848, 505.89pt x 505.89pt>
 File: figs/figure_10_cdm_slice_51.pdf Graphic file (type pdf)
 
 <use figs/figure_10_cdm_slice_51.pdf>
 Package pdftex.def Info: figs/figure_10_cdm_slice_51.pdf used on input line 659
 .
 (pdftex.def)             Requested size: 115.56749pt x 115.56488pt.
- [22 <./figs/figure_10_cdm_slice_17.pdf> <./figs/figure_10_cdm_slice_34.pdf> <.
+ [23 <./figs/figure_10_cdm_slice_17.pdf> <./figs/figure_10_cdm_slice_34.pdf> <.
 /figs/figure_10_cdm_slice_51.pdf>]
-[23] <figs/figure_11_cdm_plot.png, id=871, 481.8pt x 481.8pt>
+<figs/figure_11_cdm_plot.png, id=871, 481.8pt x 481.8pt>
 File: figs/figure_11_cdm_plot.png Graphic file (type png)
 
 <use figs/figure_11_cdm_plot.png>
@@ -1076,9 +1075,9 @@ File: figs/figure_11_wdm_pd.pdf Graphic file (type pdf)
 <use figs/figure_11_wdm_pd.pdf>
 Package pdftex.def Info: figs/figure_11_wdm_pd.pdf used on input line 692.
 (pdftex.def)             Requested size: 110.94733pt x 110.94106pt.
- [24 <./figs/figure_11_cdm_plot.png> <./figs/figure_11_wdm_plot.png> <./figs/fi
-gure_11_cdm_pd.pdf> <./figs/figure_11_wdm_pd.pdf>] <figs/fig_12_hmap_dim0_nonor
-m.pdf, id=892, 930.1061pt x 187.902pt>
+ [24] [25 <./figs/figure_11_cdm_plot.png> <./figs/figure_11_wdm_plot.png> <./fi
+gs/figure_11_cdm_pd.pdf> <./figs/figure_11_wdm_pd.pdf>] [26]
+<figs/fig_12_hmap_dim0_nonorm.pdf, id=899, 930.1061pt x 187.902pt>
 File: figs/fig_12_hmap_dim0_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim0_nonorm.pdf>
@@ -1086,7 +1085,7 @@ Package pdftex.def Info: figs/fig_12_hmap_dim0_nonorm.pdf used on input line 78
 0.
 (pdftex.def)             Requested size: 208.02008pt x 42.0238pt.
 
-<figs/fig_12_hmap_dim0_yesnorm.pdf, id=893, 940.15927pt x 187.902pt>
+<figs/fig_12_hmap_dim0_yesnorm.pdf, id=900, 940.15927pt x 187.902pt>
 File: figs/fig_12_hmap_dim0_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim0_yesnorm.pdf>
@@ -1094,7 +1093,7 @@ Package pdftex.def Info: figs/fig_12_hmap_dim0_yesnorm.pdf used on input line 7
 86.
 (pdftex.def)             Requested size: 208.02008pt x 41.57367pt.
 
-<figs/fig_12_hmap_dim1_nonorm.pdf, id=894, 930.1061pt x 187.902pt>
+<figs/fig_12_hmap_dim1_nonorm.pdf, id=901, 930.1061pt x 187.902pt>
 File: figs/fig_12_hmap_dim1_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim1_nonorm.pdf>
@@ -1102,7 +1101,7 @@ Package pdftex.def Info: figs/fig_12_hmap_dim1_nonorm.pdf used on input line 79
 2.
 (pdftex.def)             Requested size: 208.02008pt x 42.0238pt.
 
-<figs/fig_12_hmap_dim1_yesnorm.pdf, id=895, 940.15927pt x 187.902pt>
+<figs/fig_12_hmap_dim1_yesnorm.pdf, id=902, 940.15927pt x 187.902pt>
 File: figs/fig_12_hmap_dim1_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim1_yesnorm.pdf>
@@ -1110,7 +1109,7 @@ Package pdftex.def Info: figs/fig_12_hmap_dim1_yesnorm.pdf used on input line 7
 98.
 (pdftex.def)             Requested size: 208.02008pt x 41.57367pt.
 
-<figs/fig_12_hmap_dim2_nonorm.pdf, id=896, 930.1061pt x 187.902pt>
+<figs/fig_12_hmap_dim2_nonorm.pdf, id=903, 930.1061pt x 187.902pt>
 File: figs/fig_12_hmap_dim2_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim2_nonorm.pdf>
@@ -1118,7 +1117,7 @@ Package pdftex.def Info: figs/fig_12_hmap_dim2_nonorm.pdf used on input line 80
 4.
 (pdftex.def)             Requested size: 208.02008pt x 42.0238pt.
 
-<figs/fig_12_hmap_dim2_yesnorm.pdf, id=897, 940.15927pt x 187.902pt>
+<figs/fig_12_hmap_dim2_yesnorm.pdf, id=904, 940.15927pt x 187.902pt>
 File: figs/fig_12_hmap_dim2_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim2_yesnorm.pdf>
@@ -1126,7 +1125,7 @@ Package pdftex.def Info: figs/fig_12_hmap_dim2_yesnorm.pdf used on input line 8
 10.
 (pdftex.def)             Requested size: 208.02008pt x 41.57367pt.
 
-<figs/figure_13_max_margin_2euler.pdf, id=898, 505.89pt x 505.89pt>
+<figs/figure_13_max_margin_2euler.pdf, id=905, 505.89pt x 505.89pt>
 File: figs/figure_13_max_margin_2euler.pdf Graphic file (type pdf)
 
 <use figs/figure_13_max_margin_2euler.pdf>
@@ -1134,7 +1133,7 @@ Package pdftex.def Info: figs/figure_13_max_margin_2euler.pdf used on input lin
 e 824.
 (pdftex.def)             Requested size: 97.07979pt x 97.07727pt.
 
-<figs/figure_13_max_margin_corr.pdf, id=899, 578.16pt x 397.485pt>
+<figs/figure_13_max_margin_corr.pdf, id=906, 578.16pt x 397.485pt>
 File: figs/figure_13_max_margin_corr.pdf Graphic file (type pdf)
 
 <use figs/figure_13_max_margin_corr.pdf>
@@ -1142,7 +1141,7 @@ Package pdftex.def Info: figs/figure_13_max_margin_corr.pdf used on input line
 830.
 (pdftex.def)             Requested size: 110.94733pt x 76.27501pt.
 
-<figs/figure_13_min_margin_2euler.pdf, id=900, 505.89pt x 505.89pt>
+<figs/figure_13_min_margin_2euler.pdf, id=907, 505.89pt x 505.89pt>
 File: figs/figure_13_min_margin_2euler.pdf Graphic file (type pdf)
 
 <use figs/figure_13_min_margin_2euler.pdf>
@@ -1150,24 +1149,15 @@ Package pdftex.def Info: figs/figure_13_min_margin_2euler.pdf used on input lin
 e 836.
 (pdftex.def)             Requested size: 97.07979pt x 97.07727pt.
 
-<figs/figure_13_min_margin_corr.pdf, id=901, 578.16pt x 397.485pt>
+<figs/figure_13_min_margin_corr.pdf, id=908, 578.16pt x 397.485pt>
 File: figs/figure_13_min_margin_corr.pdf Graphic file (type pdf)
 
 <use figs/figure_13_min_margin_corr.pdf>
 Package pdftex.def Info: figs/figure_13_min_margin_corr.pdf used on input line 
 842.
 (pdftex.def)             Requested size: 110.94733pt x 76.27501pt.
-
-
-Package caption Warning: \label without proper reference on input line 845.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:validationfigs' on page 25 undefined on input lin
-e 849.
-
-[25] [26] [27 <./figs/fig_12_hmap_dim0_nonorm.pdf> <./figs/fig_12_hmap_dim0_yes
-norm.pdf
+ [27] [28 <./figs/fig_12_hmap_dim0_nonorm.pdf> <./figs/fig_12_hmap_dim0_yesnorm
+.pdf
 
 pdfTeX warning: pdflatex (file ./figs/fig_12_hmap_dim0_yesnorm.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
@@ -1187,17 +1177,13 @@ on: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figs/fig_12_hmap_dim2_yesnorm.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
-> <./figs/figure_13_max_margin_2euler.pdf> <./figs/figure_13_max_margin_corr.pd
-f
-
-pdfTeX warning: pdflatex (file ./figs/figure_13_max_margin_corr.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./figs/figure_13_min_margin_2euler.pdf> <./figs/figure_13_min_margin_corr.pd
-f
+>] [29 <./figs/figure_13_max_margin_2euler.pdf> <./figs/figure_13_max_margin_co
+rr.pdf> <./figs/figure_13_min_margin_2euler.pdf> <./figs/figure_13_min_margin_c
+orr.pdf
 
 pdfTeX warning: pdflatex (file ./figs/figure_13_min_margin_corr.pdf): PDF inclu
 sion: multiple pdfs with page group included in a single page
->] [28] <figs/figure_8_all_euler_group.pdf, id=1077, 1445.4pt x 361.35pt>
+>] <figs/figure_8_all_euler_group.pdf, id=1081, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_euler_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_euler_group.pdf>
@@ -1205,7 +1191,7 @@ Package pdftex.def Info: figs/figure_8_all_euler_group.pdf used on input line 8
 79.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_euler_group_normed.pdf, id=1078, 1445.4pt x 361.35pt>
+<figs/figure_8_all_euler_group_normed.pdf, id=1082, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_euler_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_euler_group_normed.pdf>
@@ -1213,7 +1199,7 @@ Package pdftex.def Info: figs/figure_8_all_euler_group_normed.pdf used on input
  line 885.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_silhouette_group.pdf, id=1079, 1445.4pt x 361.35pt>
+<figs/figure_8_all_silhouette_group.pdf, id=1083, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_silhouette_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_silhouette_group.pdf>
@@ -1221,7 +1207,7 @@ Package pdftex.def Info: figs/figure_8_all_silhouette_group.pdf used on input l
 ine 891.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_silhouette_group_normed.pdf, id=1080, 1445.4pt x 361.35pt>
+<figs/figure_8_all_silhouette_group_normed.pdf, id=1084, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_silhouette_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_silhouette_group_normed.pdf>
@@ -1229,7 +1215,7 @@ Package pdftex.def Info: figs/figure_8_all_silhouette_group_normed.pdf used on
 input line 897.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_contour_group.pdf, id=1081, 1445.4pt x 361.35pt>
+<figs/figure_8_all_contour_group.pdf, id=1085, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_contour_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_contour_group.pdf>
@@ -1237,7 +1223,7 @@ Package pdftex.def Info: figs/figure_8_all_contour_group.pdf used on input line
  903.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_contour_group_normed.pdf, id=1082, 1445.4pt x 361.35pt>
+<figs/figure_8_all_contour_group_normed.pdf, id=1086, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_contour_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_contour_group_normed.pdf>
@@ -1245,7 +1231,7 @@ Package pdftex.def Info: figs/figure_8_all_contour_group_normed.pdf used on inp
 ut line 909.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_weighted_contour_group.pdf, id=1083, 1445.4pt x 361.35pt>
+<figs/figure_8_all_weighted_contour_group.pdf, id=1087, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_weighted_contour_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_weighted_contour_group.pdf>
@@ -1253,7 +1239,7 @@ Package pdftex.def Info: figs/figure_8_all_weighted_contour_group.pdf used on i
 nput line 915.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_weighted_contour_group_normed.pdf, id=1084, 1445.4pt x 361.3
+<figs/figure_8_all_weighted_contour_group_normed.pdf, id=1088, 1445.4pt x 361.3
 5pt>
 File: figs/figure_8_all_weighted_contour_group_normed.pdf Graphic file (type pd
 f)
@@ -1262,7 +1248,7 @@ Package pdftex.def Info: figs/figure_8_all_weighted_contour_group_normed.pdf us
 ed on input line 921.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_correlation_group.pdf, id=1085, 1445.4pt x 361.35pt>
+<figs/figure_8_all_correlation_group.pdf, id=1089, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_correlation_group.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_correlation_group.pdf>
@@ -1270,7 +1256,7 @@ Package pdftex.def Info: figs/figure_8_all_correlation_group.pdf used on input
 line 926.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
 
-<figs/figure_8_all_correlation_group_normed.pdf, id=1086, 1445.4pt x 361.35pt>
+<figs/figure_8_all_correlation_group_normed.pdf, id=1090, 1445.4pt x 361.35pt>
 File: figs/figure_8_all_correlation_group_normed.pdf Graphic file (type pdf)
 
 <use figs/figure_8_all_correlation_group_normed.pdf>
@@ -1278,7 +1264,7 @@ Package pdftex.def Info: figs/figure_8_all_correlation_group_normed.pdf used on
  input line 931.
 (pdftex.def)             Requested size: 208.02008pt x 52.00017pt.
  (./jcgs-submission.bbl
-[29] [30 <./figs/figure_8_all_euler_group.pdf> <./figs/figure_8_all_euler_group
+[30] [31 <./figs/figure_8_all_euler_group.pdf> <./figs/figure_8_all_euler_group
 _normed.pdf
 
 pdfTeX warning: pdflatex (file ./figs/figure_8_all_euler_group_normed.pdf): PDF
@@ -1315,7 +1301,7 @@ inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figs/figure_8_all_correlation_group_normed.pdf
 ): PDF inclusion: multiple pdfs with page group included in a single page
->]
+>] [32]
 Missing character: There is no æ in font cmr12!
 Missing character: There is no ¸ in font cmr12!
 Missing character: There is no … in font cmr12!
@@ -1349,12 +1335,7 @@ Missing character: There is no ¬ in font cmr12!
 Missing character: There is no å in font cmr12!
 Missing character: There is no  in font cmr12!
 Missing character: There is no ¸ in font cmr12!
- [31] [32]) [33] (./jcgs-submission.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+ [33]) [34] (./jcgs-submission.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1363,10 +1344,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 15576 strings out of 493014
- 303888 string characters out of 6133351
- 352544 words of memory out of 5000000
- 18748 multiletter control sequences out of 15000+600000
+ 15577 strings out of 493014
+ 303896 string characters out of 6133351
+ 349453 words of memory out of 5000000
+ 18749 multiletter control sequences out of 15000+600000
  14618 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,13n,77p,1544b,652s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1385,10 +1366,10 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jcgs-submission.pdf (33 pages, 5849895 bytes).
+Output written on jcgs-submission.pdf (34 pages, 5852293 bytes).
 PDF statistics:
- 1668 PDF objects out of 1728 (max. 8388607)
- 403 compressed objects within 5 object streams
+ 1672 PDF objects out of 1728 (max. 8388607)
+ 406 compressed objects within 5 object streams
  0 named destinations out of 1000 (max. 500000)
  323 words of extra memory for PDF output out of 10000 (max. 10000000)
 
