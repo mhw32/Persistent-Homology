@@ -125,7 +125,7 @@ Though the generally accepted and best supported cosmological model assumes \emp
     \caption{Eagle WDM Simulation}  \includegraphics[width=\linewidth]{figure_1_whole_cdm.png}
     \label{fig:introDataWDM}
   \end{subfigure}
-    \caption{EAGLE simulation under assumptions of (a) cold and (b) warm dark matter \citep{schaye2015eagle}. Note the similaries in structure but the disparaties in density. }
+    \caption{EAGLE simulation under assumptions of (a) cold and (b) warm dark matter \citep{schaye2015eagle}. In theory, hot dark matter are hypothesized to travel at faster speeds than cold dark matter. While the main filaments in (a) and (b) suggest similaries in skeletal structure, the faster speeds may result in disparaties in density as seen by the more condensed groups in (b).}
     \label{fig:introData}
 \end{figure}
 
@@ -235,7 +235,7 @@ where kmax is the kth largest value in $D_h$.  An example of a landscape functio
 \begin{figure}[htp!]
   \centering
   \includegraphics[width=0.6\linewidth]{figure_3_silh.pdf}
-    \caption{ The points shaded in color represent the homology coordinates in a persistence diagram $D$. The landscape $\lambda(k, \cdot)$ is the $k$-th largest of the arrangement of the graphs of $\left \{ \Lambda_{p} \right \}$. In particular, the orange and blue segment represent landscape $\lambda(1, \cdot)$ and $\lambda(2, \cdot)$ respectively.}
+    \caption{An example of a landscape function. The points shaded in color represent the homology coordinates in a persistence diagram $D$. The landscape $\lambda(k, \cdot)$ is the $k$-th largest of the arrangement of the graphs of $\left \{ \Lambda_{p} \right \}$. In particular, the orange and blue segment represent landscape $\lambda(1, \cdot)$ and $\lambda(2, \cdot)$ respectively, with $\lambda(1, \cdot)$ denoted as the largest landscape function. A weighted silhouette function weighs the landscapes $\lambda(k, \cdot)$ intoa  single continuous function.}
     \label{fig:landscape}
 \end{figure}
 \end{center}
@@ -340,7 +340,7 @@ Each persistence diagram in the two samples result in an individual Euler charac
         \includegraphics[width=\linewidth]{figure_5_pimage_fun.pdf}
     \label{fig:examplestest8}
   \end{subfigure}
-   \caption{Examples of test statistics used in the hypothesis tests. \figref{fig:examplestest1} shows the point cloud, and \figref{fig:examplestest2} shows the persistence diagram used to generate the functional summaries shown in \figref{fig:examplestest2} to \figref{fig:examplestest8}.}
+   \caption{Examples of eight test statistics used in the hypothesis tests. A Voronoi foam with a percent filament of 0.5 generates the point cloud dataset shown in (a). Visually, (a) shows dense and sparse regions of sampled points that produce the topological signatures shown in (b). (b) contains three homology features, where 0, 1, and 2 represent connected components, loops, and voids respectively. (c) shows the euler characteristic function derived from the (b) as an alternating sum of Betti numbers. (d) shows the weighted silhouette of the landscape functions. See \figref{fig:landscape} for more details. (e), the intensity kernel, smoothed persistence diagram using a 1-D Gaussian kernel. Because points further from the diagonal are more topologically interesting, (g) builds on (e) by weighting points closer to the diagram less in order to prevent over-smoothing. (h) is similar to (g) but performs a linear transformation on both axis and uses a 2-D Gaussian on all 3 homologies together. (f) shows the two-point correlation function, which summarizes (a) directly without (b). See Section \ref{sec:methods} for more details.}
    \label{fig:examples}
 \end{figure}
 
@@ -452,7 +452,7 @@ percFil & Percentage of particles on the filaments & $p_{f}$ \\
 percClust & Percentage of particles in the clusters & 0.02 \\
 \end{tabular}
 \end{center}
-\caption{Parameters of LSS model. For the simulation study, $p_{f}$ will vary from 0.1 to 0.9.}
+\caption{Parameters of LSS model. For the simulation study, $p_{f}$ will vary from 0.1 to 0.9 by 0.1 increments. See \figref{fig:vf} for a visual representation of walls, filaments, and clusters.}
 \label{table:voronoisettings}
 \end{table}
 
@@ -533,7 +533,7 @@ Examples of three separate Voronoi foam models with percFil 0.1, 0.5, 0.9 are di
       \includegraphics[width=0.6\linewidth]{figure_7_pd_0_9.pdf}
       \label{fig:percfil09pd}
     \end{subfigure}
-      \caption{(a) PercFil 0.1; (b) PercFil 0.5; (c) PercFil 0.9; (d-f) Corresponding persistence diagrams (PD) for point clouds (a-c). All other parameters are defined based on Table~\ref{table:voronoisettings}.}
+      \caption{Three examples of Voronoi foam simulations and their corresponding persistence diagrams using 3 different filament densities. As the percent filament increases, the point clouds tend to co-agulate into dense and sparse regions; the persistence diagrams also form more features with longer lifespans. All other parameters used the generate the Voronoi foams are defined based on Table~\ref{table:voronoisettings}.}
       \label{fig:percfilexample}
   \end{figure}
 \end{center}
@@ -610,7 +610,7 @@ Similar tests were also completed against a control model with 0.3 percFil, and 
       \includegraphics[width=\linewidth]{figure_8_correlation_group_normed.pdf}
       \label{fig:sub_corr_normed}
     \end{subfigure}
-  \caption{P-values for EC, SIL, IK, WIK, PI, and CORR. X-axis represents a varying percent filament (0.1 to 0.3) being compared to a baseline of 0.1; Y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value and peripheral points show the minimum and maximum p-values of the 100 iterations.}
+  \caption{P-values for EC, SIL, IK, WIK, PI, and CORR. X-axis represents a varying percent filament (0.1 to 0.3 by 0.05 step increments) being compared to a baseline of 0.1; Y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value and peripheral points show the minimum and maximum p-values of the 100 iterations. The right column of plots replicates the left with the exception of normalizing the persistence diagrams prior to testing.}
   \label{fig:sub_unstandardized_results}
   \end{figure}
 \end{center}
@@ -659,7 +659,7 @@ Real observations of cosmic web:  Great Wall \citep{geller1989mapping}, Sloan Gr
   \includegraphics[width=\linewidth]{figure_10_cdm_slice_51.pdf}
     \label{fig:cubeDiagsC}
   \end{subfigure}
-    \caption{Examples of three quadruple-split samples from a CDM simulation.}
+    \caption{Examples of three quadruple-split samples from a CDM simulation. Each of the three figures represents $\frac{1}{64}$th of a piece of the entire EAGLE CDM simulation.}
     \label{fig:cubeDiags}
 \end{figure}
 
@@ -692,7 +692,7 @@ We analyze N-body simulations of structure formation. The simulation box is 100 
     \includegraphics[width=\linewidth]{figure_11_wdm_pd.pdf}
     \label{fig:eagleDiagsD}
   \end{subfigure}
-  \caption{(a, b) Visualization of the complete CDM and WDM simulations. (c, d) Their corresponding persistence diagrams. Although the CDM structure is denser, the persistence diagrams appear comparable.}
+  \caption{(a, b) Point clouds of the complete EAGLE CDM and WDM simulations. (c, d) Their corresponding persistence diagrams. Although the CDM structure is denser, the persistence diagrams appear comparable. See the results of the hypothesis testing for more details.}
 
   \label{fig:eagleDiags}
 \end{figure}
@@ -765,7 +765,7 @@ Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unst
           \bottomrule
         \end{tabular}
     \end{center}
-\caption{P-values from hypothesis tests on the unstandardized (left) and standardized (right) WDM \& CDM simulations by double, and quadruple splits. A p-value of $0.000$ comes from a permutation test with no positive examples.}
+\caption{P-values from hypothesis tests on the unstandardized (left) and standardized (right) WDM \& CDM simulations by double, and quadruple splits. A p-value of $0.000$ comes from a permutation test with no positive examples. As the number of splits increases, the p-values dramtically decrease for the unstandardized setting, suggesting small-scale geometric and topological differences. A similar pattern is present, though less pronounced in the standardized setting.}
 \label{table:hypoCDMWDMresults}
 \end{table}
 
@@ -810,7 +810,7 @@ A natural question after discovering that topological differences exist in both 
     \includegraphics[width=\linewidth]{fig_12_hmap_dim2_yesnorm.pdf}
     \label{fig:cubeHeatmapStand2}
   \end{subfigure}
-  \caption{Each subfigure (a-f) contains three horizontal heatmaps representing (from top to bottom) the Bottleneck distances between each slice of unsplit, double split, and quadruple split pairs from respective WDM and CDM data sets by dimension. Subfigures (a, c, e) are unstandardized persistence diagrams while the subfigures (b, d, f) are standardized. Each individual heatmap is a vectorization of the cubic slices produced from the WDM and CDM Eagle simulations.}
+  \caption{Each subfigure (a-f) contains three horizontal heatmaps representing (from top to bottom) the Bottleneck distances between each slice of unsplit, double split, and quadruple split pairs from respective WDM and CDM data sets by dimension. Each individual heatmap is a vectorization of the cubic slices produced from the WDM and CDM Eagle simulations. For example, \figref{fig:cubeHeatmap0}\'s top row contains only 1 slice, since the whole EAGLE simulation itself is one part; the second row contains 8 slices, since the dataset was split along two axis; similarly, the third row contains 64 slices. Subfigures (a, c, e) show the bottleneck distances derived from unstandardized persistence diagrams while the subfigures (b, d, f) use standardized diagrams.}
   \label{fig:cubeHeatmap}
 \end{figure}
 
@@ -842,8 +842,8 @@ From \figref{fig:cubeHeatmap}, we might infer that the topological and geometric
 \includegraphics[width=\linewidth]{figure_13_min_margin_corr.pdf}
     \label{fig:valid4}
   \end{subfigure}
+    \caption{A comparison of EC and CORR for dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest. (a) and (b) clearly depict larger distinctions between the CDM (red) and WDM (blue) slices than (c) and (d).}
     \label{fig:validationfigs}
-    \caption{A comparison of EC and CORR for dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest.}
 \end{figure}
 
 Provided that EC and CORR were the two most effective hypothesis tests, to confirm the validity of these heatmaps, we compared these two functions for the unstandardized cubes with the highest Bottleneck distance and the unstandardized cubes with the lowest Bottleneck distance. As expected, \figref{fig:validationfigs} confirms that the (High) EC and (High) CORR functions have far more discrepancies than their (Low) counterparts, also suggesting that certain partitions are more similar topologically than others. The same pattern arises for dimension 0 and dimension 2.
@@ -931,7 +931,7 @@ In this paper, we presented a hypothesis testing framework, build on persistent 
         \includegraphics[width=\linewidth]{figure_8_all_correlation_group_normed.pdf}
         \label{fig:all_corr_normed}
       \end{subfigure}
-      \caption{P-values for EC, SIL, IK, WIK, PI, and CORR. X-axis represents a varying percent filament (0.1 to 0.9) being compared to a baseline of 0.1; Y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value and peripheral points show the minimum and maximum p-values of the 100 iterations. }
+      \caption{P-values for EC, SIL, IK, WIK, PI, and CORR. X-axis represents a varying percent filament (0.1 to 0.9 with 0.1 step increments) being compared to a baseline of 0.1; Y-axis shows the p-values in $\textup{1og}_{10}$ space. The lines plot the median $\log_{10}$ p-value and peripheral points show the minimum and maximum p-values of the 100 iterations. The right column of plots replicates the left with the exception of normalizing the persistence diagrams prior to testing.}
       \label{fig:linesUnnormApp}
     \end{figure}
   \end{center}

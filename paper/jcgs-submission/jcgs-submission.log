@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  13 OCT 2016 21:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  20 OCT 2016 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -727,10 +727,10 @@ File: figs/figure_2_contour_2.pdf Graphic file (type pdf)
 Package pdftex.def Info: figs/figure_2_contour_2.pdf used on input line 191.
 (pdftex.def)             Requested size: 115.56749pt x 79.44707pt.
 
-<figs/figure_2_pd.pdf, id=42, 505.89pt x 505.89pt>
-File: figs/figure_2_pd.pdf Graphic file (type pdf)
- <use figs/figure_2_pd.pdf>
-Package pdftex.def Info: figs/figure_2_pd.pdf used on input line 197.
+<figs/fig_2_pd.pdf, id=42, 505.89pt x 505.89pt>
+File: figs/fig_2_pd.pdf Graphic file (type pdf)
+ <use figs/fig_2_pd.pdf>
+Package pdftex.def Info: figs/fig_2_pd.pdf used on input line 197.
 (pdftex.def)             Requested size: 92.45258pt x 92.45345pt.
 
 [7 <./figs/figure_2_3d_repr.pdf> <./figs/figure_2_contour_1.pdf
@@ -741,8 +741,7 @@ ultiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figs/figure_2_contour_2.pdf): PDF inclusion: m
 ultiple pdfs with page group included in a single page
-> <./figs/figure_2_pd.pdf>]
-<figs/figure_3_silh.pdf, id=96, 505.89pt x 180.675pt>
+> <./figs/fig_2_pd.pdf>] <figs/figure_3_silh.pdf, id=96, 505.89pt x 180.675pt>
 File: figs/figure_3_silh.pdf Graphic file (type pdf)
 
 <use figs/figure_3_silh.pdf>
@@ -1350,7 +1349,12 @@ Missing character: There is no ¬ in font cmr12!
 Missing character: There is no å in font cmr12!
 Missing character: There is no  in font cmr12!
 Missing character: There is no ¸ in font cmr12!
- [31] [32]) [33] (./jcgs-submission.aux)
+ [31] [32]) [33] (./jcgs-submission.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 
 LaTeX Warning: There were undefined references.
 
@@ -1360,8 +1364,8 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  15576 strings out of 493014
- 303903 string characters out of 6133351
- 352492 words of memory out of 5000000
+ 303888 string characters out of 6133351
+ 352544 words of memory out of 5000000
  18748 multiletter control sequences out of 15000+600000
  14618 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1381,7 +1385,7 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jcgs-submission.pdf (33 pages, 5850077 bytes).
+Output written on jcgs-submission.pdf (33 pages, 5849895 bytes).
 PDF statistics:
  1668 PDF objects out of 1728 (max. 8388607)
  403 compressed objects within 5 object streams

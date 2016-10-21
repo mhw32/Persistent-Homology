@@ -17,11 +17,11 @@ rpy2.robjects.numpy2ri.activate()
 from rpy2.robjects.numpy2ri import numpy2ri
 
 def rds_to_np(Rfile):
-    ''' Convert .RData to be able to load 
+    ''' Convert .RData to be able to load
         the array into Python.
-        Rfile := (str) location of file to 
+        Rfile := (str) location of file to
         translate to Python.
-    ''' 
+    '''
     raw = robjects.r['readRDS'](Rfile)
     return raw
 
@@ -44,7 +44,7 @@ def find_closest_index(val, arr):
         if curval < minval:
             minval = curval
             minidx = i
-    
+
     return minidx
 
 for i in range(len(x)):
@@ -53,7 +53,7 @@ for i in range(len(x)):
     zz[xix,yix] += 1
 
 plt.figure()
-tmp = gaussian_filter(zz, 1.5)
+tmp = gaussian_filter(zz.T, 1.5)
 plt.contour(xrng, yrng, tmp, linewidths=1, colors='k')
 fig = plt.contourf(xrng, yrng, tmp, cmap=plt.cm.jet)
 plt.tick_params(labelsize=18)
@@ -80,7 +80,7 @@ plt.savefig('figure_5_corr_fun.pdf')
 # g) weighted kernel
 data = np.load('intermediate/fig_5_intensity.npy')
 plt.figure()
-fig = plt.pcolor(data, cmap=plt.cm.jet)
+fig = plt.pcolor(data.T, cmap=plt.cm.jet)
 plt.xlabel('Birth', fontsize=18)
 plt.ylabel('Death', fontsize=18)
 cbar = plt.colorbar(fig)
