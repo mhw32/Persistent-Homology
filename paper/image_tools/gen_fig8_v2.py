@@ -169,4 +169,4 @@ hard_line_plot(allkeys, allticks, allcolors, bighash_corr, save_path='figure_8_c
 allkeys = ['wik_0', 'wik_1', 'wik_2', 'pi']
 allticks = ['WIK (0)', 'WIK (1)', 'WIK (2)', 'PI']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46']
-hard_line_plot(allkeys, allticks, allcolors, bighash_wik, 'figure_8_weighted_contour_group.pdf')
+hard_line_plot(allkeys, allticks, allcolors, bighash_wik, save_path='figure_8_weighted_contour_group.pdf')
