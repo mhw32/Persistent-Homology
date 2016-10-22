@@ -51,8 +51,8 @@ if norm == 'False':
     wkc_data = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/sub_proba/nonorm/ans-voronoi-bydim.npy')
 else:
     corr_data = np.array(rds_to_np('/Users/mikewu/Desktop/Research/persist-homology/correlation/sub_output/voronoi_proba_norm(1).rds'))   
-    pi_data = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/sub_proba/nonorm/ans-voronoi-nodim.npy')
-    wkc_data = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/sub_proba/nonorm/ans-voronoi-bydim.npy')
+    pi_data = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/sub_proba/yesnorm/ans-voronoi-nodim.npy')
+    wkc_data = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/sub_proba/yesnorm/ans-voronoi-bydim.npy')
 
 bighash_corr = {'corr': np.array(corr_data.T)}
 
