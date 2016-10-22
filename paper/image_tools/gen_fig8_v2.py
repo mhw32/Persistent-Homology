@@ -83,6 +83,7 @@ def hard_line_plot(allkeys,
                    allticks, 
                    allcolors,
                    bighash,
+                   custom_ylim=None,
                    save_path=None):
 
     xvalues = np.arange(0.1, 0.35, 0.05)
@@ -145,6 +146,9 @@ def hard_line_plot(allkeys,
     plt.tick_params(axis='both', which='major', labelsize=35)
     plt.tight_layout()
     plt.xlim(0.02, 0.33)
+
+    if not custom_ylim is None:
+        plt.ylim(custom_ylim[0], custom_ylim[1])
     
     if save_path:
         plt.savefig(save_path)
@@ -155,24 +159,24 @@ def hard_line_plot(allkeys,
 allkeys = ['euler', 'all-euler', 'indiv-euler-dim-0', 'indiv-euler-dim-1', 'indiv-euler-dim-2']
 allticks = ['EC', 'EC (0:2)', 'EC (0)', 'EC (1)', 'EC (2)']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
-hard_line_plot(allkeys, allticks, allcolors, bighash, save_path='figure_8_euler_group.pdf')
+hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-7, 1], save_path='figure_8_euler_group.pdf')
 
 allkeys = ['silh-euler', 'all-silh', 'indiv_silh-dim-0', 'indiv_silh-dim-1', 'indiv_silh-dim-2']
 allticks = ['SIL (EC)', 'SIL (0:2)', 'SIL (0)', 'SIL (1)', 'SIL (2)']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
-hard_line_plot(allkeys, allticks, allcolors, bighash, save_path='figure_8_silhouette_group.pdf')
+hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-3.5, 0.5], save_path='figure_8_silhouette_group.pdf')
 
 allkeys = ['contour-dim-0', 'contour-dim-1', 'contour-dim-2']
 allticks = ['IK (0)', 'IK (1)', 'IK (2)']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
-hard_line_plot(allkeys, allticks, allcolors, bighash, save_path='figure_8_contour_group.pdf')
+hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-1.8, 0], save_path='figure_8_contour_group.pdf')
 
 allkeys = ['corr']
 allticks = ['CORR']
 allcolors = ['#44B3C2']
-hard_line_plot(allkeys, allticks, allcolors, bighash_corr, save_path='figure_8_correlation_group.pdf')
+hard_line_plot(allkeys, allticks, allcolors, bighash_corr, custom_ylim=[-5, 1], save_path='figure_8_correlation_group.pdf')
 
 allkeys = ['wik_0', 'wik_1', 'wik_2', 'pi']
 allticks = ['WIK (0)', 'WIK (1)', 'WIK (2)', 'PI']
 allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46']
-hard_line_plot(allkeys, allticks, allcolors, bighash_wik, save_path='figure_8_weighted_contour_group.pdf')
+hard_line_plot(allkeys, allticks, allcolors, bighash_wik, custom_ylim=[-1.2, 0], save_path='figure_8_weighted_contour_group.pdf')
