@@ -72,6 +72,17 @@ bighash_wik = {'wik_0': np.array(wkc_0.T),
                'wik_2': np.array(wkc_2.T),
                'pi': np.array(pi_data.T) }
 
+
+def get_align_dict(keys, step=0.01):
+    alignment_hash = {}
+    mid_pt = len(allkeys) / 2
+    base_val = mid_pt * -step
+    for i, key in enumerate(allkeys):
+        alignment_hash[key] = base_val
+        base_val += step
+    return alignment_hash
+
+
 def hard_line_plot(allkeys, 
                    allticks, 
                    allcolors,
@@ -79,9 +90,10 @@ def hard_line_plot(allkeys,
                    save_path=None):
 
     xvalues = np.arange(0.1, 1, 0.1)
+    align_values = get_align_dict(allkeys, 0.012)
     matplotlib.rc('xtick', labelsize=27) 
     matplotlib.rc('ytick', labelsize=27) 
-    fig, ax = plt.subplots(figsize=(20,5))
+    fig, ax = plt.subplots(figsize=(25,5))
     plt.ylabel('log10 p-value', fontsize=40)
     plt.xlabel('Percent filament', fontsize=40)
 
@@ -90,10 +102,10 @@ def hard_line_plot(allkeys,
         store_error_min = []
 
         for k, c, t in zip(allkeys, allcolors, allticks):
-            xvalue = xvalues[it]
+            xvalue = xvalues[it] + align_values[k]
             yvalue = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]][it]
-            lower_error = [np.percentile(np.log10(np.exp(i)), 0) for i in bighash[k]]
-            upper_error = [np.percentile(np.log10(np.exp(i)), 100) for i in bighash[k]]
+            lower_error = [np.percentile(np.log10(np.exp(i)), 25) for i in bighash[k]]
+            upper_error = [np.percentile(np.log10(np.exp(i)), 75) for i in bighash[k]]
             store_error_min.append(lower_error[it])
             store_error_max.append(upper_error[it])
 
@@ -101,11 +113,11 @@ def hard_line_plot(allkeys,
         store_error_max = np.array(store_error_max)
 
         for k, c, t in zip(allkeys, allcolors, allticks):
-            xvalue = xvalues[it]
+            xvalue = xvalues[it] + align_values[k]
             yvalue = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]][it]
 
-            lower_error = [np.percentile(np.log10(np.exp(i)), 0) for i in bighash[k]]
-            upper_error = [np.percentile(np.log10(np.exp(i)), 100) for i in bighash[k]]
+            lower_error = [np.percentile(np.log10(np.exp(i)), 25) for i in bighash[k]]
+            upper_error = [np.percentile(np.log10(np.exp(i)), 75) for i in bighash[k]]
 
             pos = [xvalue]
             ypt = [yvalue]
@@ -119,40 +131,42 @@ def hard_line_plot(allkeys,
                          capsize=20, 
                          capthick=6)
     
-    for k, c, t in zip(allkeys, allcolors, allticks):
-        yvalues = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]]
-        plt.scatter(xvalues,
-                    yvalues,
-                    color=c,
-                    marker='o',
-                    alpha=1,
-                    s=400)
+        for k, c, t in zip(allkeys, allcolors, allticks):
+            marker_style='o'
+            marker_alpha=1
+            marker_linewidths=1
+            
+            yvalues = np.array([np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]])
+            tmpboolme = np.isinf(yvalues)
+            
+            xvalue = xvalues[it] + align_values[k]
+            yvalue = yvalues[it]
+            
+            if np.isinf(yvalue):
+                marker_style='x'
+                marker_alpha=0.7
+                marker_linewidths=5
+                yvalue = min(yvalues[~tmpboolme])
+            plt.scatter([xvalue],
+                        [yvalue],
+                        color=c,
+                        marker=marker_style,
+                        alpha=marker_alpha,
+                        linewidths=marker_linewidths,
+                        s=400)
 
-    # put it here so dots are the legend
     plt.legend(allticks, fontsize=30, loc='lower left')    
-
-    for k, c, t in zip(allkeys, allcolors, allticks):
-        yvalues = np.array([np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]])
-        tmpboolme = np.isinf(yvalues)
-        yvalues = np.array([min(yvalues[~tmpboolme])]*len(xvalues[tmpboolme]))
-       
-        plt.scatter(xvalues[tmpboolme], 
-                    yvalues, 
-                    marker='x',
-                    linewidths=5,
-                    color=c, 
-                    alpha=0.7,
-                    s=400)
-    
     ax.xaxis.grid(False)
     plt.tick_params(axis='both', which='major', labelsize=35)
     plt.tight_layout()
     plt.xlim(-0.1, 1)
+    plt.xticks(np.arange(0, 1, 0.1))
     
     if save_path:
         plt.savefig(save_path)
     else:
         plt.show()
+
 
 allkeys = ['euler', 'all-euler', 'indiv-euler-dim-0', 'indiv-euler-dim-1', 'indiv-euler-dim-2']
 allticks = ['EC', 'EC (0:2)', 'EC (0)', 'EC (1)', 'EC (2)']

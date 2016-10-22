@@ -68,6 +68,16 @@ bighash_wik = {'wik_0': np.array(wkc_0.T),
                'wik_2': np.array(wkc_2.T),
                'pi': np.array(pi_data.T) }
 
+def get_align_dict(keys, step=0.01):
+    alignment_hash = {}
+    mid_pt = len(allkeys) / 2
+    base_val = mid_pt * -step
+    for i, key in enumerate(allkeys):
+        alignment_hash[key] = base_val
+        base_val += step
+    return alignment_hash
+
+
 def hard_line_plot(allkeys, 
                    allticks, 
                    allcolors,
@@ -75,6 +85,7 @@ def hard_line_plot(allkeys,
                    save_path=None):
 
     xvalues = np.arange(0.1, 0.35, 0.05)
+    align_values = get_align_dict(allkeys, 0.005)
     matplotlib.rc('xtick', labelsize=27) 
     matplotlib.rc('ytick', labelsize=27) 
     fig, ax = plt.subplots(figsize=(20,5))
@@ -86,10 +97,10 @@ def hard_line_plot(allkeys,
         store_error_min = []
 
         for k, c, t in zip(allkeys, allcolors, allticks):
-            xvalue = xvalues[it]
+            xvalue = xvalues[it] + align_values[k]
             yvalue = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]][it]
-            lower_error = [np.percentile(np.log10(np.exp(i)), 0) for i in bighash[k]]
-            upper_error = [np.percentile(np.log10(np.exp(i)), 100) for i in bighash[k]]
+            lower_error = [np.percentile(np.log10(np.exp(i)), 25) for i in bighash[k]]
+            upper_error = [np.percentile(np.log10(np.exp(i)), 75) for i in bighash[k]]
             store_error_min.append(lower_error[it])
             store_error_max.append(upper_error[it])
 
@@ -97,11 +108,11 @@ def hard_line_plot(allkeys,
         store_error_max = np.array(store_error_max)
 
         for k, c, t in zip(allkeys, allcolors, allticks):
-            xvalue = xvalues[it]
+            xvalue = xvalues[it] + align_values[k]
             yvalue = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]][it]
 
-            lower_error = [np.percentile(np.log10(np.exp(i)), 0) for i in bighash[k]]
-            upper_error = [np.percentile(np.log10(np.exp(i)), 100) for i in bighash[k]]
+            lower_error = [np.percentile(np.log10(np.exp(i)), 25) for i in bighash[k]]
+            upper_error = [np.percentile(np.log10(np.exp(i)), 75) for i in bighash[k]]
 
             pos = [xvalue]
             ypt = [yvalue]
@@ -115,23 +126,16 @@ def hard_line_plot(allkeys,
                          capsize=20, 
                          capthick=6)
 
-    # for k, c, t in zip(allkeys, allcolors, allticks):
-    #     yvalues = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]]    
+        for k, c, t in zip(allkeys, allcolors, allticks):
+            xvalue = xvalues[it] + align_values[k]
+            yvalue = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]][it]
+            plt.scatter([xvalue],
+                        [yvalue],
+                        color=c,
+                        marker='o',
+                        alpha=1,
+                        s=300)
 
-    #     plt.plot(xvalues,
-    #          yvalues,
-    #          color=c,
-    #          alpha=0.5,
-    #          lw=5)
-
-    for k, c, t in zip(allkeys, allcolors, allticks):
-        yvalues = [np.percentile(np.log10(np.exp(i)), 50) for i in bighash[k]]
-        plt.scatter(xvalues,
-                    yvalues,
-                    color=c,
-                    marker='o',
-                    alpha=1,
-                    s=300)
 
     # put it here so dots are the legend
     plt.legend(allticks, fontsize=30, loc='lower left')    
@@ -139,7 +143,7 @@ def hard_line_plot(allkeys,
     ax.xaxis.grid(False)
     plt.tick_params(axis='both', which='major', labelsize=35)
     plt.tight_layout()
-    plt.xlim(0.04, 0.31)
+    plt.xlim(0.02, 0.33)
     
     if save_path:
         plt.savefig(save_path)
