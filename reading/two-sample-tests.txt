@@ -1,0 +1,114 @@
+Modern Two-Sample Tests
+-----------------------
+
+When you have high dimensional data, how do you efficiently do the two-sample tests? --> Kernel tests, Energy tests, Cross-match tests.
+
+Example of an application of 2 sample tests = testing with 2 random variables X and Y are independent, which amounts to testing if the joint distribution P_XY is the same as the products of P_X and P_Y. 
+
+We have 2 independent samples:
+X_1, ..., X_n ~ P
+Y_1, ..., Y_m ~ Q
+H_0 : P = Q vs H_q : P != Q
+
+These work through the test statistic T, which depend on X_1, ..., X_n, Y_1, ..., Y_n. We reject H_0 if T > t for some threshold t.
+
+We choose t s.t. P(T > t) <= alpha for some alpha and some distribution W. But what is the best way to find  distribution W under H_0?
+
+1) Find W explicitly (by hand).
+2) Monte Carlo. 
+3) Bootstrap.
+4) Permutation Testing. 
+
+Best one is PERMUTATION TESTING = one of the greatest contributions to science? This can be used for any test. 
+
+Permutation Method
+-------------------
+
+Organize the data into the following style with labels:
+
+0 X_1
+0 X_2
+...
+0 X_n
+1 Y_1
+1 Y_2
+...
+1 Y_n
+
+D = (X_1, ..., X_n, Y_1, ..., Y_n)
+G = (0, ..., 0, 1, ..., 1)
+
+If H_0 is true, and the two random vars come from the same distribution then the entire data vector is an iid sample from P and the group labels are meaningless. 
+
+We can randomly permute the grop labels and recompute the test statistic. Repeat this N times (a large number of times) --> T_1, ..., T_N
+
+We can define a p-value: p = 1/N * sum(I(T_j >= T))
+p = fraction of times T_j is larger than T. We know p is uniformly distributed under the null so we can reject the null when p < alpha. This is exact and this is the same as NHST.
+
+Now we can just go over different ways of calculating T.
+
+Kernel Tests
+------------
+
+Choose a kernel K, like a guassian kernel:
+K_h(x, y) = exp(-||x - y||^2 / h^2)
+T = 1/n^2*sum(sum(K_h(X_i, X_j))) - 2/(mn)*sum(sum(K_h(X_i, Y_j))) + 1/m^2*sum(sum(K_h(Y_i, Y_j)))
+
+Think of K(x, y) as a measure of the similarity between x and y. T then compares the similarity of pair of points from the asmple group vs from different groups. 
+
+To choose h, T = sup(T_h) with h >= 0
+
+Energy Test (distance is in energy package)
+-----------
+
+D(P, Q) = 2E||X - Y|| - E||X - X'|| - E||Y - Y'||
+where X, X' ~ P, and Y, Y' ~ Q
+D is basically the euclidean metric --> this is a more specific type of kernel test. 
+
+The Cross Match Test (Rossenbaum)
+---------------------------------
+
+Ignore the labels and treat the data as one sample Z_1, ..., Z_(n+m). We can form a non-bipartite matching = non-overlapping pairs. 
+{Z_3, Z_8}, {Z_17, Z_6}, ...
+We choose the matching the minimizes the total distance betwen the points in each pair (use any distance here -- like euclidean.)
+
+Now we can look at the labels: some pairs will have labels (0,0), or (1,1), and others will have (0, 1), or (1.0). We can count the number of each. 
+
+T = number of (1, 0) or (0, 1)
+P(T=t = (2^t*N!) / ((N choose M)*(# of 0, 0)! (# of (0, 1) or (1, 0))! (# number of (1, 1))!) And N = (# of 0, 0) + (# of 0, 1 or 1, 0) + (# of 1, 1)
+
+Accurately approximated by a Normal with mean {nm/(N-1)} and variance {2 n (n-1)m (m-1)/( (N-3)(N-1)^2)}
+
+Set up a table:
+D1, ...., D1
+. For each find the closest neighbor.
+.
+.
+D2
+.
+.
+.
+
+To Select a dimension 
+Given persistence X --> X[X[,1] ==1,]
+apply, sapply, lapply, mclapply (multi-core), "foreach" (multiCPU)
+
+
+Euler Characteristic
+--------------------
+
+#B0 - #B1 + #B2 for small time intervals
+Creates points that approximate a function. 
+Find the area under the curve (integrate the function). -- 1 number for each euler characteristic. 
+
+Assume that they have the same standard deviation --> or not.
+One euler characteristic per set in a dataset.
+
+
+Tasks: 
+-----
+
+1) Make R code non-for-loopy
+2) Do Rossenbaum, euler, kernel, bottleneck, wasserstein. 
+
+

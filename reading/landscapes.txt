@@ -1,0 +1,19 @@
+STATISTICAL TOPOLOGICAL DATA ANALYSIS USING PERSISTENCE LANDSCAPES
+Peter Bubenik
+------------------------------------------------------------------
+
+Landscapes are a more processable form of standard topology summaries.
+There is difficulty in comparing persistence diagrams with statistics and machine learning. The landscape = is a function (calculations here are much faster than with persistence diagram).
+
+Roughly, homology in degree 0 describes the connectedness of the
+data; homology in degree 1 detects holes or tunnels; homology in degree 2 captures voids;
+
+Basic idea = convert barcode into a function. 
+Geometry of persistence diagrams are super hard to worth with. Space of persistence languages are really a lot easier. 
+
+Seems like a continuous 2D projection. This is cool but don't we lose any information? Also how does this compare with bottleneck distances? How does one perform t-tests on top of this? 
+
+Landscapes = sequence of continuous piecewise linear functions that encode a persistence diagram (But don't lose dimensionality?) Linear curves are overlayed. How do you compare these tihngs?
+
+**Not a single idea what silhouttes do. Probably just another way to summarize persistence diagrams. 
+
