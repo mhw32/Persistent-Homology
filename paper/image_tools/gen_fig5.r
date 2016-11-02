@@ -117,6 +117,7 @@ euler <- eulerChar(tseq,
                    threshold=0)
 
 pdf('figure_5_euler.pdf')
+par(mar=c(5,6,4,2))
 plot(euler,
      type="l",
      lwd=3,
@@ -141,6 +142,7 @@ silh <- silhouette(diagram,
                    tseq)
 
 pdf('figure_5_silhouette.pdf')
+par(mar=c(5,6,4,2))
 plot(abs(silh),
      type="l",
      lwd=3,

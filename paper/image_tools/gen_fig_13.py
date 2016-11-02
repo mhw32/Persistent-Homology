@@ -21,10 +21,10 @@ plt.plot(my_wdm_corr,
          linewidth=3, 
          color='#3FDFDA', 
          label='WDM')
-plt.tick_params(labelsize=18)
-plt.xlabel('Grid Sequence', fontsize=18)
-plt.ylabel('Correlation Func.', fontsize=18)
-plt.legend(loc='upper right', fontsize=18)
+plt.tick_params(labelsize=28)
+plt.xlabel('Grid Sequence', fontsize=28)
+plt.ylabel('CORR', fontsize=28)
+plt.legend(loc='upper right', fontsize=28)
 plt.tight_layout()
 # plt.show()
 plt.savefig('figure_13_max_margin_corr.pdf')
@@ -43,10 +43,10 @@ plt.plot(my_wdm_corr,
          linewidth=3, 
          color='#3FDFDA', 
          label='WDM')
-plt.tick_params(labelsize=18)
-plt.xlabel('Grid Sequence', fontsize=18)
-plt.ylabel('Correlation Func.', fontsize=18)
-plt.legend(loc='upper right', fontsize=18)
+plt.tick_params(labelsize=28)
+plt.xlabel('Grid Sequence', fontsize=28)
+plt.ylabel('CORR', fontsize=28)
+plt.legend(loc='upper right', fontsize=28)
 plt.tight_layout()
 # plt.show()
 plt.savefig('figure_13_min_margin_corr.pdf')
