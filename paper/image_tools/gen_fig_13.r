@@ -43,6 +43,7 @@ tseq2 <- seq(min(my_wdm[,2:3]),max(my_wdm[,2:3]),length=5000)
 euler2 <- eulerChar(tseq2, my_wdm, maxdimension=max(my_wdm[,1]), threshold=0)
 
 pdf('figure_13_max_margin_2euler.pdf')
+par(mar=c(5,6,4,2))
 plot(euler2, 
      type="l", 
      xlab="Sequence", 
@@ -75,6 +76,7 @@ tseq2 <- seq(min(my_wdm[,2:3]),max(my_wdm[,2:3]),length=5000)
 euler2 <- eulerChar(tseq2, my_wdm, maxdimension=max(my_wdm[,1]), threshold=0)
 
 pdf('figure_13_min_margin_2euler.pdf')
+par(mar=c(5,6,4,2))
 plot(euler2, 
      type="l", 
      xlab="Sequence", 
