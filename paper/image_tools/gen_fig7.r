@@ -28,13 +28,13 @@ for (pf in pfs) {
 
     pdf(paste('figure_7_plot_pf_', pf, '.pdf', sep=""))
     scatterplot3d(vf,
-                  xlab='X Axis',
-                  ylab='Y Axis',
-                  zlab='Z Axis',
+                  xlab='',
+                  ylab='',
+                  zlab='',
                   pch='.',
                   color=rgb(0, 0, 0, 0.25),
-                  cex.axis=1.5,
-                  cex.lab=2)
+                  tick.marks=FALSE,
+                  label.tick.marks=FALSE)
     dev.off()
 
     diag <- gridDiag(vf,

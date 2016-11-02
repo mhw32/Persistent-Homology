@@ -55,12 +55,12 @@ nums <- c(51, 17, 34)
 for (slice in nums) {
 	pdf(paste("figure_10_cdm_slice_", slice, ".pdf", sep=""))
 	scatterplot3d(data[[slice]], 
-	              xlab='X Axis', 
-	              ylab='Y Axis', 
-	              zlab='Z Axis', 
+	              xlab='', 
+	              ylab='', 
+	              zlab='', 
 	              pch='.',
 	              color=rgb(0, 0, 0, 0.1),
-	              cex.axis=1.5,
-	              cex.lab=2)
+	              tick.marks=FALSE,
+              	label.tick.marks=FALSE)
 	dev.off()
 }

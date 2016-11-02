@@ -30,13 +30,13 @@ names <- list('wdm', 'cdm')
 for (i in c(1, 2)) {
     png(paste("figure_11_", names[[i]], "_plot.png", sep=""))
     scatterplot3d(data[[i]], 
-                  xlab='X Axis', 
-                  ylab='Y Axis', 
-                  zlab='Z Axis', 
+                  xlab='', 
+                  ylab='', 
+                  zlab='', 
                   pch='.',
                   color=rgb(0, 0, 0, 0.01),
-                  cex.axis=1.5,
-                  cex.lab=2)
+                  tick.marks=FALSE,
+                  label.tick.marks=FALSE)
     dev.off()
 
     Xlim <- c(min(data[[i]][,1]), max(data[[i]][,1]))

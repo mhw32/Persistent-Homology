@@ -25,22 +25,22 @@ whole_wdm <- load_WDM()
 
 png("figure_1_whole_cdm.png")
 scatterplot3d(whole_cdm, 
-              xlab='X Axis', 
-              ylab='Y Axis', 
-              zlab='Z Axis', 
+              xlab='', 
+              ylab='', 
+              zlab='', 
               pch='.',
               color=rgb(0, 0, 0, 0.01),
-              cex.axis=1.5,
-              cex.lab=2)
+              tick.marks=FALSE,
+              label.tick.marks=FALSE)
 dev.off()
 png("figure_1_whole_wdm.png")
 scatterplot3d(whole_wdm,
-              xlab='X Axis',
-              ylab='Y Axis',
-              zlab='Z Axis',
+              xlab='', 
+              ylab='', 
+              zlab='',
               pch='.',
               color=rgb(0, 0, 0, 0.01),
-              cex.axis=1.5,
-              cex.lab=2) 
+              tick.marks=FALSE,
+              label.tick.marks=FALSE) 
 dev.off()
  

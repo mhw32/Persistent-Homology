@@ -54,13 +54,13 @@ vf<- voronoi3d(boxlim,
 
 pdf(paste('figure_5_plot.pdf'))
 scatterplot3d(vf,
-              xlab='X Axis',
-              ylab='Y Axis',
-              zlab='Z Axis',
+              xlab='',
+              ylab='',
+              zlab='',
               pch='.',
               color=rgb(0, 0, 0, 0.25),
-              cex.axis=1.5,
-              cex.lab=2)
+              tick.marks=FALSE,
+              label.tick.marks=FALSE)
 dev.off()
 
 # b) persistence diagram
