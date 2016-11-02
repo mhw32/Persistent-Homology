@@ -13,9 +13,9 @@ Rscript gen_fig5.r
 echo "Generating Figure 7"
 Rscript gen_fig7.r
 echo "Generating Figure 8"
-python gen_fig8.py
+python gen_fig8_v2.py
 echo "Generating Figure 9"
-python gen_fig9.py
+python gen_fig9_v2.py
 echo "Generating Figure 10"
 Rscript gen_fig10.r
 echo "Generating Figure 11"
@@ -26,9 +26,9 @@ echo "Generating Figure 13"
 python gen_fig_13.py
 Rscript gen_fig_13.r
 echo "Generating Figure A1"
-python gen_fig_appendix1.py
+python gen_fig_appendix1_v2.py
 echo "Generating Figure A2"
-python gen_fig_appendix2.py
+python gen_fig_appendix2_v2.py
 
 echo "Copying files for figure 10"
 cp intermediate/fig_vf_*.png .
