@@ -163,7 +163,7 @@ def hard_line_plot(allkeys,
     plt.xlim(-0.1, 1)
     plt.xticks(np.arange(0, 1, 0.1))
 
-    ax.set_xticklabels([0.00, '', '10%', '15%', '20%', '25%', '30%'])
+    ax.set_xticklabels(['', '10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%'])
 
     if not custom_ylim is None:
         plt.ylim(custom_ylim[0], custom_ylim[1])
