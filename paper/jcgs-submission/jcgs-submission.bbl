@@ -124,8 +124,8 @@ Hilbe, J.~M., Riggs, J., Wandelt, B.~D., de~Souza, R.~S., Ishida, E.~E.,
   \harvardyearleft 2014\harvardyearright , `Life, the universe, and
   everything', {\em Significance} {\bf 11}(5),~48--75.
 
-\harvarditem{Icke \harvardand\ van~de Weygaert}{1987}{icke1987fragmenting}
-Icke, V. \harvardand\ van~de Weygaert, R.  \harvardyearleft
+\harvarditem{Icke \harvardand\ Van~de Weygaert}{1987}{icke1987fragmenting}
+Icke, V. \harvardand\ Van~de Weygaert, R.  \harvardyearleft
   1987\harvardyearright , `Fragmenting the universe', {\em Astronomy and
   Astrophysics} {\bf 184},~16--32.
 
@@ -195,6 +195,12 @@ Springel, V., White, S.~D., Tormen, G. \harvardand\ Kauffmann, G.
   \harvardyearleft 2001\harvardyearright , `Populating a cluster of
   galaxies--i. results at z= 0', {\em Monthly Notices of the Royal Astronomical
   Society} {\bf 328}(3),~726--750.
+
+\harvarditem[Turner et~al.]{Turner, Mileyko, Mukherjee \harvardand\
+  Harer}{2014}{Turner:2014kq}
+Turner, K., Mileyko, Y., Mukherjee, S. \harvardand\ Harer, J.  \harvardyearleft
+  2014\harvardyearright , `Fr{\'e}chet means for distributions of persistence
+  diagrams', {\em Discrete \& Computational Geometry} {\bf 52}(1),~44--70.
 
 \harvarditem{Van De~Weygaert}{2007}{van2007voronoi}
 Van De~Weygaert, R.  \harvardyearleft 2007\harvardyearright , Voronoi
