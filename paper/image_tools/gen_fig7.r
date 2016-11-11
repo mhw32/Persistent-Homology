@@ -31,8 +31,8 @@ for (pf in pfs) {
                   xlab='',
                   ylab='',
                   zlab='',
-                  pch='.',
-                  color=rgb(0, 0, 0, 0.25),
+                  pch=19,
+                  color=rgb(0, 0, 0, 0.04),
                   tick.marks=FALSE,
                   label.tick.marks=FALSE)
     dev.off()
