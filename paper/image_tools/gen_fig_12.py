@@ -18,8 +18,9 @@ for i, curdata in enumerate(data_dim):
     s, d, t, q = prepare(curdata)
     vmin, vmax = np.min(curdata), np.max(curdata)
     fig, axn = plt.subplots(3, 1, sharey=True, figsize=(15,3))
-    cbar_ax = fig.add_axes([.91, .3, .03, .4])
-    cbar_ax.tick_params(labelsize=18) 
+    # cbar_ax = fig.add_axes([.91, .3, .03, .4])
+    cbar_ax = fig.add_axes([.91, .1, .03, .8])
+    cbar_ax.tick_params(labelsize=21, direction='out') 
     sns.heatmap([s], 
                 ax=axn.flat[0], 
                 vmin=vmin, 
@@ -57,7 +58,8 @@ for i, curdata in enumerate(data_dim):
     s, d, t, q = prepare(curdata)
     vmin, vmax = np.min(curdata), np.max(curdata)
     fig, axn = plt.subplots(3, 1, sharey=True, figsize=(15,3))
-    cbar_ax = fig.add_axes([.91, .3, .03, .4])
+    # cbar_ax = fig.add_axes([.91, .3, .03, .4])
+    cbar_ax = fig.add_axes([.91, .1, .03, .8])
     cbar_ax.tick_params(labelsize=18) 
     sns.heatmap([s], 
                 ax=axn.flat[0], 
