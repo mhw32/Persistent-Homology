@@ -92,7 +92,7 @@ def hard_line_plot(allkeys,
     matplotlib.rc('ytick', labelsize=27) 
     fig, ax = plt.subplots(figsize=(20,5))
     plt.ylabel('log10 p-value', fontsize=40)
-    plt.xlabel('Percent filament', fontsize=40)
+    plt.xlabel('PercFil', fontsize=40)
 
     for it in range(5):
         store_error_max = []
@@ -146,6 +146,8 @@ def hard_line_plot(allkeys,
     plt.tick_params(axis='both', which='major', labelsize=35)
     plt.tight_layout()
     plt.xlim(0.02, 0.33)
+
+    ax.set_xticklabels([0.00, '', '10%', '15%', '20%', '25%', '30%'])
 
     if not custom_ylim is None:
         plt.ylim(custom_ylim[0], custom_ylim[1])
