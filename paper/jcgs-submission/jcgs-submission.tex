@@ -102,7 +102,7 @@ Rigorous comparisons of spatially complex web-like data such as the large-scale 
 
 The large-scale structure (LSS) of the Universe is an important example of a spatially complex structure, and is fittingly referred to as the \emph{Cosmic Web} \citep{bond1996filaments,springel2006large}. The LSS of the Universe is a focus of manifold scientific research because its properties reveal information about the underlying physics and formation of our Universe \citep{davis1985evolution}. In order to study theoretical aspects of the formation and evolution of LSS, cosmologists develop large simulations and can adjust the physical inputs and evaluate their effects on the LSS \citep{cooray2002halo,centrella1983three,doroshkevich1980two,schaye2015eagle}. One such input is related to the nature of dark matter (DM). The received position is that the Universe is made up of dark energy, DM, and baryonic matter. However, the nature of DM is still a mystery, but there are hypotheses regarding its possible particle behavior. Hot DM would consist of particles that travel with ultrarelativistic speeds, while cold DM particles would move much slower. For an easy introduction to DM, see \cite[p. 61-63]{HilbeEtAl2014}.
 
-Though the generally accepted and best supported cosmological model assumes \emph{cold dark matter} (known as $\Lambda$CDM), there are some elements of disagreement with observations \citep{SchneiderEtAl2012}. Furthermore, it has been demonstrated through cosmological simulations that the nature of DM affects the development and formation of LSS \citep{SchneiderEtAl2012}.  
+Though the generally accepted and best supported cosmological model assumes \emph{cold dark matter} (known as $\Lambda$CDM), there are some elements of disagreement with observations \citep{SchneiderEtAl2012}. Furthermore, it has been demonstrated through cosmological simulations that the nature of DM affects the development and formation of LSS \citep{SchneiderEtAl2012}.
 In \figref{fig:introData}, one realization of our Universe under CDM from the EAGLE cosmological simulation \citep{schaye2015eagle} is displayed, along with a realization assuming WDM. Though there are similarities in shape of the densest regions (called \emph{filaments}), there are differences in the distribution of matter about these filaments.
 
 \begin{figure}[htp!]
@@ -121,7 +121,7 @@ In \figref{fig:introData}, one realization of our Universe under CDM from the EA
     \label{fig:introData}
 \end{figure}
 
-The purpose of this research is to better identify differences in the topology between structures using persistent homology. In this paper, we begin with an introduction to persistent homology followed by the proposed hypothesis testing framework. Then we carry out a simulation study to investigate the performance of the proposed statistics followed by more background on LSS. And finally, we apply the hypothesis tests to quantify the topological disparities between warm and cold DM using cosmological simulation data. We end with concluding remarks.
+In this paper, we wish to better identify differences in the topology between structures using persistent homology. We begin with an introduction to persistent homology followed by the proposed hypothesis testing framework. Then we carry out a simulation study to investigate the performance of the proposed statistics followed by more background on LSS. And finally, we apply the hypothesis tests to quantify the topological disparities between warm and cold DM using cosmological simulation data. We end with concluding remarks.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -153,7 +153,7 @@ To derive the persistent homology for some density function $p$ over $\mathcal X
 
 
 \paragraph{Tracking Homology Generators}
-Figure~\ref{fig:example_contour1} and Figure~\ref{fig:example_contour2} show the threshold, $r$ decreasing from 1.1 to 0.1. In that interval, the upper-level set changed from having six connected components ($H_0$'s) and zero loops ($H_1$'s) to having one connected component and one loop. The time in the filtration when homology features appear, the \emph{birth} of the feature, and the time when a feature joins other features, the \emph{death} of the feature, are captured in a persistence diagram. Figure~\ref{fig:example_pd} displays the persistence diagram for the function in Figure~\ref{fig:example_3d}, where each point represents the birth time (y-axis) and death time (x-axis) of a homological feature. A point $(x,x)$ on the diagonal represents a feature with a lifespan of 0.  The \emph{persistence} of a point $(b,d)$ is the length of the interval of the persistence parameter that supports that feature: $b - d$. In the persistence diagram, the distance from $(b,d)$ to the diagonal is proportional to this value; in fact, the (Euclidean) distance to the diagonal is $\frac{(b-d)}{\sqrt{2}}$. 
+Figure~\ref{fig:example_contour1} and Figure~\ref{fig:example_contour2} show the threshold, $r$ decreasing from 1.1 to 0.1. In that interval, the upper-level set changed from having six connected components ($H_0$'s) and zero loops ($H_1$'s) to having one connected component and one loop. The time in the filtration when homology features appear, the \emph{birth} of the feature, and the time when a feature joins other features, the \emph{death} of the feature, are captured in a persistence diagram. Figure~\ref{fig:example_pd} displays the persistence diagram for the function in Figure~\ref{fig:example_3d}, where each point represents the birth time (y-axis) and death time (x-axis) of a homological feature. A point $(x,x)$ on the diagonal represents a feature with a lifespan of 0.  The \emph{persistence} of a point $(b,d)$ is the length of the interval of the persistence parameter that supports that feature: $b - d$. In the persistence diagram, the distance from $(b,d)$ to the diagonal is proportional to this value; in fact, the (Euclidean) distance to the diagonal is $\frac{(b-d)}{\sqrt{2}}$.
 Sometimes it is desired to interpret features with longer lifetimes as topological signal, and the features with shorter lifetimes (closer to the diagonal) as topological noise.
 
 \begin{figure}
@@ -196,12 +196,12 @@ Sometimes it is desired to interpret features with longer lifetimes as topologic
 
 \subsection{Derivatives of Persistence Diagrams} \label{sec:derivatives}
 While persistence diagrams are useful summaries of the topology of a data set, they are not easy to work with directly.
-For example, the distance between two persistence diagrams can be calculated using, for example,  the bottleneck distance or the $q$-Wasserstein distance, but both are computationally expensive.  
+For example, the distance between two persistence diagrams can be calculated using, for example,  the bottleneck distance or the $q$-Wasserstein distance, but both are computationally expensive.
 Fr\'echet means and medians have been defined for spaces of persistence diagrams \citep{Turner:2014kq}, but are also computationally expensive and not necessarily unique.  Instead we consider transformations and summaries of persistence diagrams that make computations more tractable.
 Below are several approaches that further summarize a persistence diagram and will be used in Section \ref{sec:methods} to develop hypothesis tests.
 
 \paragraph{Weighted silhouette functions}
-Weighted silhouette functions are formed by weighting a particular functional summary of persistence diagrams called \emph{landscape functions} \citep{bubenik2015statistical}. 
+Weighted silhouette functions are formed by weighting a particular functional summary of persistence diagrams called \emph{landscape functions} \citep{bubenik2015statistical}.
 Landscape functions are defined as follows. Let the finite birth and death intervals of a persistence diagram with $n_h$ points, for homology dimension $h = 0, 1, 2, \ldots$, be defined as $\{(b_{hi},d_{hi})\}_{i = 1}^{n_h}$.  Next, consider rotating the persistence diagram such that a given point is $p_{hi} = \left(\frac{b_{hi}+d_{hi}}{2}, \frac{d_{hi}-b_{hi}}{2}\right) \in D_h, \quad i = 1, \ldots, n_h$.  Equilateral triangles are formed from each $p_{hi}$ to the base as
 \begin{equation*}
 \Lambda_{p_{hi}}(t) =
@@ -250,7 +250,7 @@ Another variation of persistent diagrams we will consider are smoothed persisten
 %
 \[ X(t_1, t_2) = \sum_{j=1}^m(d_{j} - b_{j})\frac{1}{\tau^{2}}K \left(\frac{t_1-d_{j}}{\tau}\right)K \left(\frac{t_2-b_{j}}{\tau}\right)\]
 %
-for $t_{\min} \leq t_1 \leq t_2 \leq t_{\max}$ with symmetric kernel function $K$, and smoothing parameter $\tau$. 
+for $t_{\min} \leq t_1 \leq t_2 \leq t_{\max}$ with symmetric kernel function $K$, and smoothing parameter $\tau$.
 
 \emph{Persistent Images} are similar to intensity functions \citep{adams2015persistent} except that the persistence diagram is rotated and the smoothed diagram is pixelized into a uniformly spaced 2-dimensional grid of a chosen resolution, and finally vectorized.  Let $\mathcal{D} = {(b_{j} , d_{j}) : i = 1, \cdots ,m}$ be a persistence diagram where $m$ is the number of persistent features for dimension $h$.  The persistence diagram is transformed using the linear transformation $T: \mathbb{R}^{2} \rightarrow \mathbb{R}^{2}$ where $T(x,y) = (x, y-x)$; therefore $T(\mathcal{D})$ represent the transformed diagram with birth-persistence coordinates.  As with persistent intensity functions, the now transformed diagram is smoothed using weighted kernel density estimation, with weights that are zero on the horizontal axis.  \cite{adams2015persistent} use a piecewise, linear weighting function that assigns a weight of 0 to points with 0 persistence.
 A 2-dimensional grid is then defined over the smoothed $T(\mathcal D)$ to turn it into a matrix of a user-selected resolution.  The matrix is then vectorized and easily used as inputs into a statistical analysis.
@@ -307,8 +307,8 @@ A 2-dimensional grid is then defined over the smoothed $T(\mathcal D)$ to turn i
 %        \caption{CORR}  \includegraphics[width=\linewidth]{figure_5_corr_fun.pdf}
 %    \label{fig:examplestest6}
 %  \end{subfigure}
-   \caption{Examples of smoothed persistence diagrams.  A 3-dimensional point cloud is provided in (a) along with its persistence diagram in (b).  
-The Persistence Intensity function in (c) and Persistence Image in (d) are both for $H_0$, 
+   \caption{Examples of smoothed persistence diagrams.  A 3-dimensional point cloud is provided in (a) along with its persistence diagram in (b).
+The Persistence Intensity function in (c) and Persistence Image in (d) are both for $H_0$,
 See Section \ref{sec:methods} for more details.}
 %   \caption{Examples of eight proposed test statistics. A Voronoi foam with a percent filament of 0.5 generates the point cloud dataset shown in (a) with persistence diagram (b).
 %The remaining sub-figures (c) - (h) correspond to the test statistics: (c) EC - Euler characteristic, (d) SIL - weighted silhouette for $H_0$, (e) IK - Intensity function for $H_0$, (f) WIK - weighted intensity function, (g) PI - persistence image, (h) CORR - correlation function.
@@ -328,18 +328,18 @@ See Section \ref{sec:methods} for more details.}
 
 \section{Methods} \label{sec:methods}
 \begin{sloppypar}
-Using the variations of persistence diagrams described in \S \ref{sec:derivatives}, 
-we describe several options for test statistics for two-sample hypothesis tests on topological structure.  
+Using the variations of persistence diagrams described in \S \ref{sec:derivatives},
+we describe several options for test statistics for two-sample hypothesis tests on topological structure.
 For this setup, suppose we have two sets of persistence diagrams, $\{\mathcal P_1^{(1)}, \ldots, \mathcal P_{n_1}^{(1)}\}$ and $\{\mathcal P_1^{(2)}, \ldots, \mathcal P_{n_2}^{(2)}\}$.  These samples can be used to test $H_0: \mathcal
 P^{(1)} = \mathcal P^{(2)}$ vs. $H_1: \mathcal P^{(1)} \neq \mathcal P^{(2)}$, where $\mathcal P^{(1)}$ and $\mathcal P^{(2)}$ are the true underlying distributions of persistence diagrams.  Properties of probabilities on a space of persistence diagrams are addressed in \citep{Mileyko:2011aa}. We would like the framework to test the hypothesis that the two samples are drawn from populations with different random topologies. However, we note that without incorporating a scaling adjustment on the space of the data or the space of the diagrams, geometrical differences can also lead to a rejection of the null hypothesis. This is discussed in more detail in Section~\ref{sec:standardize}.
 \end{sloppypar}
 
-Given two samples of persistence diagrams, there are a number of possible ways to derive test statistics. We consider functional versions of persistence diagrams as test statistics:  the Euler characteristic function, Silhouette function, and a Silhouette-Euler characteristic function (which will be defined below). 
-Given that each observed dataset will have a corresponding functional summary, a \emph{p-value} can be derived from a two-sample T-test by integrating the absolute value of the functional summary. 
-We consider persistent intensity functions and persistent images with p-values derived from a two-sample kernel test statistic \citep{gretton2012kernel}, and use a permutation test to get a p-value. 
+Given two samples of persistence diagrams, there are a number of possible ways to derive test statistics. We consider functional versions of persistence diagrams as test statistics:  the Euler characteristic function, Silhouette function, and a Silhouette-Euler characteristic function (which will be defined below).
+Given that each observed dataset will have a corresponding functional summary, a \emph{p-value} can be derived from a two-sample T-test by integrating the absolute value of the functional summary.
+We consider persistent intensity functions and persistent images with p-values derived from a two-sample kernel test statistic \citep{gretton2012kernel}, and use a permutation test to get a p-value.
 %
 Additionally, we consider a test using the two-point correlation function so that there is a comparison for the test statistics derived from persistence diagrams.  The correlation function is used to capture the spatial behavior of LSS.
-As with the functional summaries above, p-values are calculated with a T-test using the integral of the absolute value of the correlation function. 
+As with the functional summaries above, p-values are calculated with a T-test using the integral of the absolute value of the correlation function.
 
 The proposed test statistics are discussed in more detail below.  Among the proposed test statistics, we are seeking the summary that is most sensitive to differences in distributions of persistence diagrams produced from LSS.
 
@@ -856,7 +856,7 @@ After discovering differences in both geometry and topology, a good question wou
   \label{fig:cubeHeatmap}
 \end{figure}
 
-From \figref{fig:cubeHeatmap}, we might infer that the topological and geometric differences are certainly not uniform. For each of the three homologies, introducing a greater number of splits uncovers greater magnitudes of Bottleneck distances between CDM and WDM cubes. This suggests that it is possible for topological differences to be masked by local similarities from a global perspective. At the very least, we can be confident that there exist partitions of topologically similar areas and partitions of topologically dissimilar areas within the EAGLE simulation. 
+From \figref{fig:cubeHeatmap}, we might infer that the topological and geometric differences are certainly not uniform. For each of the three homologies, introducing a greater number of splits uncovers greater magnitudes of Bottleneck distances between CDM and WDM cubes. This suggests that it is possible for topological differences to be masked by local similarities from a global perspective. At the very least, we can be confident that there exist partitions of topologically similar areas and partitions of topologically dissimilar areas within the EAGLE simulation.
 
 \begin{figure}[htp!]
   \centering
@@ -884,11 +884,11 @@ From \figref{fig:cubeHeatmap}, we might infer that the topological and geometric
 \includegraphics[height = 1.25in]{figure_13_min_margin_corr.pdf}
     \label{fig:valid4}
   \end{subfigure}
-    \caption{A comparison of EC and CORR for dimension 1 between the cube with the highest bottleneck distance and the cube with the lowest. (a) and (b) clearly depict larger distinctions between the CDM (red) and WDM (blue) slices than (c) and (d).}
+    \caption{A comparison of EC and CORR between the cube with the highest bottleneck distance and the cube with the lowest. (a) and (b) clearly depict larger distinctions between the CDM (red) and WDM (blue) slices than (c) and (d).}
     \label{fig:validationfigs}
 \end{figure}
 
-Provided that EC and CORR were the two most effective hypothesis tests, to confirm the validity of these heatmaps, we compared these two functions for the unstandardized cubes with the highest Bottleneck distance and the unstandardized cubes with the lowest Bottleneck distance. As expected, \figref{fig:validationfigs} confirms that the (High) EC and (High) CORR functions have far more discrepancies than their (Low) counterparts, also suggesting that certain partitions are more similar topologically than others. The same pattern arises for dimension 0 and dimension 2.
+Provided that EC and CORR were the two most effective hypothesis tests, to confirm the validity of these heatmaps, we compared these two functions for the unstandardized cubes with the highest Bottleneck distance and the unstandardized cubes with the lowest Bottleneck distance. As expected, \figref{fig:validationfigs} confirms that the (High) EC and (High) CORR functions have far more discrepancies than their (Low) counterparts, also suggesting that certain partitions are more similar topologically than others.
 
 We can do the same heatmap experiment with the standardized persistence diagrams. As confirmed in the hypothesis testing of both the Voronoi and the EAGLE simulations, standardizing removes geometric differences, greatly reducing the Bottleneck distances, as seen in \figref{fig:cubeHeatmap} (b,d,f). Notably, for dimensions 0 and 1, the slice with the largest bottleneck distance remained the same as in the unstandardized heatmaps, suggesting that those differences are largely not due to size, but true topological distinctions. Dimension 2, however, was less consistent, possibly indicating that voids in CDM and WDM are more aberrant in terms of size, not topological shape. Despite the differences standardizing induced, we are still confident that differences in topology alone are not uniform across the EAGLE Universe: certain splits are consistently indicating differences in dark matter make-up between warm and cold assumptions.
 
@@ -973,9 +973,9 @@ In this paper, we presented a hypothesis testing framework built on persistent h
         \includegraphics[width=\linewidth, height = .75in]{figure_8_all_correlation_group_normed.pdf}
         \label{fig:all_corr_normed}
       \end{subfigure}
-      \caption{P-values for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\% to 90\% by 10\% increments) of the second population, compared to the null PercFil of 10\%; 
-      The vertical axis shows the $\log_{10}$(p-values). The lines plot the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 100 iterations. 
- The right column of plots replicates the left with the exception of standardizing the persistence diagrams prior to carrying out the tests.    Points containing X marks indicate a permutation p-value of 0.  
+      \caption{P-values for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\% to 90\% by 10\% increments) of the second population, compared to the null PercFil of 10\%;
+      The vertical axis shows the $\log_{10}$(p-values). The lines plot the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 100 iterations.
+ The right column of plots replicates the left with the exception of standardizing the persistence diagrams prior to carrying out the tests.    Points containing X marks indicate a permutation p-value of 0.
       }
       \label{fig:linesUnnormApp}
     \end{figure}
