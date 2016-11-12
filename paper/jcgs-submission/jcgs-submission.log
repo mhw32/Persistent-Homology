@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  11 NOV 2016 17:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  11 NOV 2016 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1058,7 +1058,7 @@ File: figs/figure_13_max_margin_2euler.pdf Graphic file (type pdf)
 <use figs/figure_13_max_margin_2euler.pdf>
 Package pdftex.def Info: figs/figure_13_max_margin_2euler.pdf used on input lin
 e 866.
-(pdftex.def)             Requested size: 90.33838pt x 90.3375pt.
+(pdftex.def)             Requested size: 83.11005pt x 83.10544pt.
 
 <figs/figure_13_max_margin_corr.pdf, id=953, 578.16pt x 397.485pt>
 File: figs/figure_13_max_margin_corr.pdf Graphic file (type pdf)
@@ -1066,11 +1066,7 @@ File: figs/figure_13_max_margin_corr.pdf Graphic file (type pdf)
 <use figs/figure_13_max_margin_corr.pdf>
 Package pdftex.def Info: figs/figure_13_max_margin_corr.pdf used on input line 
 872.
-(pdftex.def)             Requested size: 131.39485pt x 90.3375pt.
-
-Overfull \hbox (20.44753pt too wide) in paragraph at lines 872--874
- [][] 
- []
+(pdftex.def)             Requested size: 105.51468pt x 72.53888pt.
 
 <figs/figure_13_min_margin_2euler.pdf, id=954, 505.89pt x 505.89pt>
 File: figs/figure_13_min_margin_2euler.pdf Graphic file (type pdf)
@@ -1078,7 +1074,7 @@ File: figs/figure_13_min_margin_2euler.pdf Graphic file (type pdf)
 <use figs/figure_13_min_margin_2euler.pdf>
 Package pdftex.def Info: figs/figure_13_min_margin_2euler.pdf used on input lin
 e 878.
-(pdftex.def)             Requested size: 90.33838pt x 90.3375pt.
+(pdftex.def)             Requested size: 83.11005pt x 83.10544pt.
 
 <figs/figure_13_min_margin_corr.pdf, id=955, 578.16pt x 397.485pt>
 File: figs/figure_13_min_margin_corr.pdf Graphic file (type pdf)
@@ -1086,14 +1082,9 @@ File: figs/figure_13_min_margin_corr.pdf Graphic file (type pdf)
 <use figs/figure_13_min_margin_corr.pdf>
 Package pdftex.def Info: figs/figure_13_min_margin_corr.pdf used on input line 
 884.
-(pdftex.def)             Requested size: 131.39485pt x 90.3375pt.
-
-Overfull \hbox (20.44753pt too wide) in paragraph at lines 884--886
- [][] 
- []
-
-[30] [31 <./figs/fig_12_hmap_dim0_nonorm.pdf> <./figs/fig_12_hmap_dim0_yesnorm.
-pdf
+(pdftex.def)             Requested size: 105.51468pt x 72.53888pt.
+ [30] [31 <./figs/fig_12_hmap_dim0_nonorm.pdf> <./figs/fig_12_hmap_dim0_yesnorm
+.pdf
 
 pdfTeX warning: pdflatex (file ./figs/fig_12_hmap_dim0_yesnorm.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
@@ -1315,7 +1306,7 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/
 2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
 6/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on jcgs-submission.pdf (37 pages, 7976700 bytes).
+Output written on jcgs-submission.pdf (37 pages, 7976710 bytes).
 PDF statistics:
  1576 PDF objects out of 1728 (max. 8388607)
  593 compressed objects within 6 object streams
