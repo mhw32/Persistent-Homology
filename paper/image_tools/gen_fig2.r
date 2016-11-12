@@ -42,7 +42,7 @@ plot(X[,2],
      cex=2.0)
 abline(a = 0, b = 1)
 legend("bottomright", 
-       c("0","1","2"), 
+       c(expression('H'[0]),expression('H'[1]),expression('H'[2])),
        pch = c(1,2,3), 
        col = c(1,2,3), 
        cex=2.0)
