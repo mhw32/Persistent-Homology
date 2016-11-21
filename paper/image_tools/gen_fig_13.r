@@ -60,7 +60,8 @@ lines(euler1,
 legend("topright", 
        c("CDM", "WDM"), 
        col=c("coral", "cyan"), 
-       lwd=3)
+       lwd=3,
+       cex=2.0)
 dev.off()
 
 # min margin
