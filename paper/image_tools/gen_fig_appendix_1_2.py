@@ -1,7 +1,7 @@
 import sys, numpy as np
 sys.path.append('/Users/mikewu/Desktop/Research/persist-homology/')
-import sub_parse
-reload(sub_parse)
+import parse
+reload(parse)
 import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns
@@ -47,19 +47,18 @@ paths = [name+str(i)+'-'+base+'baseNorm'+norm+'.txt' for i in range(1, 101)]
 singles = ['all-silh', 'euler', 'all-euler', 'silh-euler']
 doubles = ['indiv_silh', 'indiv-euler', 'contour']
 
-resArr = np.array([sub_parse.parse(f) for f in paths])
+resArr = np.array([parse.parse(f) for f in paths])
 
 bighash_no_norm = {}
 for characteristic in singles:
-    bighash_no_norm[characteristic] = sub_parse.prepare1d(resArr, characteristic)
+    bighash_no_norm[characteristic] = parse.prepare1d(resArr, characteristic)
     
 for characteristic in doubles:
     for dim in [0,1,2]:
-        bighash_no_norm[characteristic+'-dim-'+str(dim)] = sub_parse.prepare2d(
+        bighash_no_norm[characteristic+'-dim-'+str(dim)] = parse.prepare2d(
             resArr, characteristic, dim)
 
-if norm == 'False':
-    bighash['contour-dim-0'][-1, :] = bighash['contour-dim-0'][-2, :]
+bighash_no_norm['contour-dim-0'][-1, :] = bighash_no_norm['contour-dim-0'][-2, :]
 
 corr_no_norm = np.array(rds_to_np('/Users/mikewu/Desktop/Research/persist-homology/correlation/output/voronoi_proba_norm(0).rds'))
 pi_no_norm = np.load('/Users/mikewu/Desktop/Research/persist-homology/intensity/output/proba/nonorm/ans-voronoi-nodim.npy')
@@ -85,15 +84,15 @@ paths = [name+str(i)+'-'+base+'baseNorm'+norm+'.txt' for i in range(1, 101)]
 singles = ['all-silh', 'euler', 'all-euler', 'silh-euler']
 doubles = ['indiv_silh', 'indiv-euler', 'contour']
 
-resArr = np.array([sub_parse.parse(f) for f in paths])
+resArr = np.array([parse.parse(f) for f in paths])
 
 bighash_yes_norm = {}
 for characteristic in singles:
-    bighash_yes_norm[characteristic] = sub_parse.prepare1d(resArr, characteristic)
+    bighash_yes_norm[characteristic] = parse.prepare1d(resArr, characteristic)
     
 for characteristic in doubles:
     for dim in [0,1,2]:
-        bighash_yes_norm[characteristic+'-dim-'+str(dim)] = sub_parse.prepare2d(
+        bighash_yes_norm[characteristic+'-dim-'+str(dim)] = parse.prepare2d(
             resArr, characteristic, dim)
 
 corr_yes_norm = np.array(rds_to_np('/Users/mikewu/Desktop/Research/persist-homology/correlation/output/voronoi_proba_norm(1).rds'))   
@@ -134,6 +133,7 @@ def hard_line_plot(allkeys,
             xvalue = xvalues[it] + align_values[k]
             y_value_no_norm = np.exp(bighash_no_norm[k][it])
             y_value_yes_norm = np.exp(bighash_yes_norm[k][it])
+            y_value_yes_norm += 1e-15
             # y_value = np.divide(y_value_yes_norm, y_value_no_norm)
             y_value = np.divide(y_value_no_norm, y_value_yes_norm)
             
@@ -157,6 +157,7 @@ def hard_line_plot(allkeys,
             xvalue = xvalues[it] + align_values[k]
             y_value_no_norm = np.exp(bighash_no_norm[k][it])
             y_value_yes_norm = np.exp(bighash_yes_norm[k][it])
+            y_value_yes_norm += 1e-15
             # y_value = np.divide(y_value_yes_norm, y_value_no_norm)
             y_value = np.divide(y_value_no_norm, y_value_yes_norm)
             median_y_value = np.percentile(y_value, 50)
@@ -204,7 +205,7 @@ hard_line_plot(
     allcolors, 
     bighash_no_norm,
     bighash_yes_norm, 
-    custom_ylim=[-25, 5], 
+    custom_ylim=None, 
     save_path='figure_8_all_euler_group.pdf'
 )
 
@@ -217,7 +218,7 @@ hard_line_plot(
     allcolors, 
     bighash_no_norm,
     bighash_yes_norm, 
-    custom_ylim=[-10, 2], 
+    custom_ylim=None, 
     save_path='figure_8_all_silhouette_group.pdf'
 )
 
@@ -230,7 +231,7 @@ hard_line_plot(
     allcolors, 
     bighash_no_norm,
     bighash_yes_norm, 
-    custom_ylim=[-3.0, 0.0], 
+    custom_ylim=None, 
     save_path='figure_8_all_contour_group.pdf'
 )
 
@@ -243,7 +244,7 @@ hard_line_plot(
     allcolors, 
     bighash_corr_no_norm,
     bighash_corr_yes_norm, 
-    custom_ylim=[-14, 2], 
+    custom_ylim=None, 
     save_path='figure_8_all_correlation_group.pdf'
 )
 
@@ -256,7 +257,7 @@ hard_line_plot(
     allcolors, 
     bighash_wik_no_norm,
     bighash_wik_yes_norm, 
-    custom_ylim=[-3.5, 0.5], 
+    custom_ylim=None, 
     save_path='figure_8_all_weighted_contour_group.pdf'
 )
 
