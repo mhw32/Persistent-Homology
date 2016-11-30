@@ -95,7 +95,7 @@ def hard_line_plot(allkeys,
     matplotlib.rc('xtick', labelsize=27) 
     matplotlib.rc('ytick', labelsize=27) 
     fig, ax = plt.subplots(figsize=(25,5))
-    plt.ylabel('log10 p-value', fontsize=40)
+    plt.ylabel(r'$log_{10}(p)$', fontsize=40)
     plt.xlabel('PercFil', fontsize=40)
 
     for it in range(9):
