@@ -206,7 +206,7 @@ hard_line_plot(
     bighash_no_norm,
     bighash_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_all_euler_group.pdf'
+    save_path='figure_8_joint_all_euler_group.pdf'
 )
 
 allkeys = ['silh-euler', 'all-silh', 'indiv_silh-dim-0', 'indiv_silh-dim-1', 'indiv_silh-dim-2']
@@ -219,7 +219,7 @@ hard_line_plot(
     bighash_no_norm,
     bighash_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_all_silhouette_group.pdf'
+    save_path='figure_8_joint_all_silhouette_group.pdf'
 )
 
 allkeys = ['contour-dim-0', 'contour-dim-1', 'contour-dim-2']
@@ -232,7 +232,7 @@ hard_line_plot(
     bighash_no_norm,
     bighash_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_all_contour_group.pdf'
+    save_path='figure_8_joint_all_contour_group.pdf'
 )
 
 allkeys = ['corr']
@@ -245,7 +245,7 @@ hard_line_plot(
     bighash_corr_no_norm,
     bighash_corr_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_all_correlation_group.pdf'
+    save_path='figure_8_joint_all_correlation_group.pdf'
 )
 
 allkeys   = ['wik_0', 'wik_1', 'wik_2', 'pi']
@@ -258,6 +258,6 @@ hard_line_plot(
     bighash_wik_no_norm,
     bighash_wik_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_all_weighted_contour_group.pdf'
+    save_path='figure_8_joint_all_weighted_contour_group.pdf'
 )
 

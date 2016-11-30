@@ -124,6 +124,7 @@ def hard_line_plot(allkeys,
     matplotlib.rc('ytick', labelsize=27) 
     fig, ax = plt.subplots(figsize=(20,5))
     plt.ylabel(r'$\frac{p}{\|p\|}$', fontsize=60)
+    # plt.ylabel('p / |p|', fontsize=60)
     plt.xlabel('PercFil', fontsize=40)
 
     for it in range(5):
@@ -203,7 +204,7 @@ hard_line_plot(
     bighash_no_norm,
     bighash_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_euler_group.pdf'
+    save_path='figure_8_joint_euler_group.pdf'
 )
 
 allkeys = ['silh-euler', 'all-silh', 'indiv_silh-dim-0', 'indiv_silh-dim-1', 'indiv_silh-dim-2']
@@ -216,7 +217,7 @@ hard_line_plot(
     bighash_no_norm,
     bighash_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_silhouette_group.pdf'
+    save_path='figure_8_joint_silhouette_group.pdf'
 )
 
 allkeys = ['contour-dim-0', 'contour-dim-1', 'contour-dim-2']
@@ -229,7 +230,7 @@ hard_line_plot(
     bighash_no_norm,
     bighash_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_contour_group.pdf'
+    save_path='figure_8_joint_contour_group.pdf'
 )
 
 allkeys = ['corr']
@@ -242,7 +243,7 @@ hard_line_plot(
     bighash_corr_no_norm,
     bighash_corr_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_correlation_group.pdf'
+    save_path='figure_8_joint_correlation_group.pdf'
 )
 
 allkeys = ['wik_0', 'wik_1', 'wik_2', 'pi']
@@ -255,5 +256,5 @@ hard_line_plot(
     bighash_wik_no_norm,
     bighash_wik_yes_norm, 
     custom_ylim=None, 
-    save_path='figure_8_weighted_contour_group.pdf'
+    save_path='figure_8_joint_weighted_contour_group.pdf'
 )
