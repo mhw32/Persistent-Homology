@@ -123,7 +123,7 @@ def hard_line_plot(allkeys,
     matplotlib.rc('xtick', labelsize=27) 
     matplotlib.rc('ytick', labelsize=27) 
     fig, ax = plt.subplots(figsize=(20,5))
-    plt.ylabel(r'$\frac{p}{\|p\|}$', fontsize=60)
+    plt.ylabel(r'$\frac{p}{p_{stand}}$', fontsize=60)
     # plt.ylabel('p / |p|', fontsize=60)
     plt.xlabel('PercFil', fontsize=40)
 

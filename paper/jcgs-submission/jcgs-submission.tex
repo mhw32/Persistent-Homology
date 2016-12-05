@@ -51,7 +51,7 @@
   \author{Mike Wu\\
     Department of Computer Science, Yale University \\
     Jessi Cisewski\thanks{
-    Corresponding author.  The authors gratefully acknowledge Yale Information Technology Services {\bf ???any grants to add???}}\hspace{.2cm} \\
+    Corresponding author.  The authors gratefully acknowledge Yale Information Technology Services}\hspace{.2cm} \\
     Department of Statistics, Yale University \\
     Brittany T. Fasy\\
     Department of Computer Science, Montana State University \\
@@ -196,7 +196,7 @@ Sometimes it is desired to interpret features with longer lifetimes as topologic
 While persistence diagrams are useful summaries of the topology of a data set, they are not easy to work with directly.
 For example, the distance between two persistence diagrams can be calculated using, for example,  the bottleneck distance or the $q$-Wasserstein distance, but both are computationally expensive.
 Fr\'echet means and medians have been defined for spaces of persistence diagrams \citep{Turner:2014kq}, but are also computationally expensive and not necessarily unique.  Instead we consider transformations and summaries of persistence diagrams that make computations more tractable.
-Below are several approaches that further summarize a persistence diagram and will be used in Section \ref{sec:methods} to develop hypothesis tests.
+Below are several approaches that further summarize a persistence diagram and will be used in \S \ref{sec:methods} to develop hypothesis tests.
 
 
 
@@ -262,61 +262,34 @@ A 2-dimensional grid is then defined over the smoothed $T(\mathcal D)$ to turn i
 
 
 \begin{figure}[htbp]
-   \centering
-  \begin{subfigure}{.48\textwidth}
+  \centering
+  \begin{subfigure}{0.22\textwidth}
     \centering
-        \caption{Point Cloud}
-        \includegraphics[height = 1.5in]{figure_5_plot.pdf}
+      \caption{Point Cloud}
+      \includegraphics[height = 1.15in]{figure_5_plot.pdf}
     \label{fig:examplestest1}
   \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
+  \begin{subfigure}{0.22\textwidth}
     \centering
-        \caption{Persistence Diagram}
-        \includegraphics[height = 1.5in]{figure_5_pd.pdf}
+        \caption{Persistence Diag}
+        \includegraphics[height = 1.15in]{figure_5_pd.pdf}
     \label{fig:examplestest2}
   \end{subfigure}
-%    \begin{subfigure}{.24\textwidth}
-%    \centering
-%        \caption{EC}
-%        \includegraphics[width=\linewidth]{figure_5_euler.pdf}
-%    \label{fig:examplestest3}
-%  \end{subfigure}
-%    \begin{subfigure}{.24\textwidth}
-%    \centering
-%        \caption{SIL}
-%        \includegraphics[width=\linewidth]{figure_5_silhouette.pdf}
-%    \label{fig:examplestest4}
-%  \end{subfigure}
-
-    \begin{subfigure}{.48\textwidth}
+  \begin{subfigure}{0.26\textwidth}
     \centering
-        \caption{Persistence Intensity Function}
-        \includegraphics[height = 1.5in]{figure_5_kernel.pdf}
+        \caption{Intensity Func.}
+        \includegraphics[height = 1.11in]{figure_5_kernel.pdf}
     \label{fig:examplestest5}
   \end{subfigure}
-%    \begin{subfigure}{.24\textwidth}
-%    \centering
-%        \caption{WIK}
-%        \includegraphics[width=\linewidth]{figure_5_intensity_fun.pdf}
-%    \label{fig:examplestest7}
-%  \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
+  \begin{subfigure}{0.26\textwidth}
     \centering
         \caption{Persistent Image}
-        \includegraphics[height = 1.5in]{figure_5_pimage_fun.pdf}
+        \includegraphics[height = 1.11in]{figure_5_pimage_fun.pdf}
     \label{fig:examplestest8}
   \end{subfigure}
-%      \begin{subfigure}{.24\textwidth}
-%    \centering
-%        \caption{CORR}  \includegraphics[width=\linewidth]{figure_5_corr_fun.pdf}
-%    \label{fig:examplestest6}
-%  \end{subfigure}
-   \caption{Examples of smoothed persistence diagrams.  A 3-dimensional point cloud is provided in (a) along with its persistence diagram in (b).
+  \caption{Examples of smoothed persistence diagrams.  A 3-dimensional point cloud is provided in (a) along with its persistence diagram in (b).
 The Persistence Intensity function in (c) and Persistence Image in (d) are both for $H_0$,
-See Section \ref{sec:methods} for more details.}
-%   \caption{Examples of eight proposed test statistics. A Voronoi foam with a percent filament of 0.5 generates the point cloud dataset shown in (a) with persistence diagram (b).
-%The remaining sub-figures (c) - (h) correspond to the test statistics: (c) EC - Euler characteristic, (d) SIL - weighted silhouette for $H_0$, (e) IK - Intensity function for $H_0$, (f) WIK - weighted intensity function, (g) PI - persistence image, (h) CORR - correlation function.
-%See Section \ref{sec:methods} for more details.}
+See \S \ref{sec:methods} for more details.}
    \label{fig:examples}
 \end{figure}
 
@@ -335,7 +308,7 @@ See Section \ref{sec:methods} for more details.}
 Using the variations of persistence diagrams described in \S \ref{sec:derivatives},
 we describe several options for test statistics for two-sample hypothesis tests for topological structure.
 For this setup, suppose we have two sets of persistence diagrams, $\{\mathcal P_1^{(1)}, \ldots, \mathcal P_{n_1}^{(1)}\}$ and $\{\mathcal P_1^{(2)}, \ldots, \mathcal P_{n_2}^{(2)}\}$.  These samples can be used to test $H_0: \mathcal
-P^{(1)} = \mathcal P^{(2)}$ vs. $H_1: \mathcal P^{(1)} \neq \mathcal P^{(2)}$, where $\mathcal P^{(1)}$ and $\mathcal P^{(2)}$ are the true underlying distributions of persistence diagrams.  Probability measures can be defined on a space of persistence diagrams (with a Wasserstein metric) as presented in \citep{Mileyko:2011aa}. We would like the framework to test the hypothesis that the two samples are drawn from populations with different random topologies. However, we note that without incorporating a scaling adjustment on the space  of the data or the space of the diagrams, geometrical differences can also lead to a rejection of the null hypothesis. This is discussed in more detail in Section~\ref{sec:standardize}.
+P^{(1)} = \mathcal P^{(2)}$ vs. $H_1: \mathcal P^{(1)} \neq \mathcal P^{(2)}$, where $\mathcal P^{(1)}$ and $\mathcal P^{(2)}$ are the true underlying distributions of persistence diagrams.  Probability measures can be defined on a space of persistence diagrams (with a Wasserstein metric) as presented in \citep{Mileyko:2011aa}. We would like the framework to test the hypothesis that the two samples are drawn from populations with different random topologies. However, we note that without incorporating a scaling adjustment on the space  of the data or the space of the diagrams, geometrical differences can also lead to a rejection of the null hypothesis. This is discussed in more detail in \S \ref{sec:standardize}.
 \end{sloppypar}
 
 Given two samples of persistence diagrams, there are a number of possible ways to derive test statistics. We consider functional versions of persistence diagrams as test statistics:  the Euler characteristic function, Silhouette function, and a Silhouette-Euler characteristic function (which will be defined below).
@@ -516,37 +489,37 @@ Examples of three Voronoi Foam models with percFil 10\%, 50\%, 90\% are shown in
 \begin{center}
   \begin{figure}[htp!]
     \centering
-    \begin{subfigure}{.25\textwidth}
+    \begin{subfigure}{.32\textwidth}
       \centering
       \caption{PercFil = 10\%}
       \includegraphics[height=1.5in]{figure_7_plot_pf_0_1.pdf}
       \label{fig:percfil01voronoi}
     \end{subfigure}
-      \begin{subfigure}{.25\textwidth}
+      \begin{subfigure}{.32\textwidth}
       \centering
       \caption{PercFil = 50\%}
       \includegraphics[height=1.5in]{figure_7_plot_pf_0_5.pdf}
       \label{fig:percfil09voronoi}
     \end{subfigure}
-      \begin{subfigure}{.25\textwidth}
+      \begin{subfigure}{.32\textwidth}
       \centering
       \caption{PercFil = 90\%}
       \includegraphics[height=1.5in]{figure_7_plot_pf_0_9.pdf}
       \label{fig:percfil09voronoi}
     \end{subfigure}
-      \begin{subfigure}{.25\textwidth}
+      \begin{subfigure}{.32\textwidth}
       \centering
       \caption{PercFil = 10\% (PD)}
       \includegraphics[height=1.5in]{figure_7_pd_0_1.pdf}
       \label{fig:percfil01pd}
     \end{subfigure}
-      \begin{subfigure}{.25\textwidth}
+      \begin{subfigure}{.32\textwidth}
       \centering
       \caption{PercFil = 50\% (PD)}
       \includegraphics[height=1.5in]{figure_7_pd_0_5.pdf}
       \label{fig:percfil09pd}
     \end{subfigure}
-      \begin{subfigure}{.25\textwidth}
+      \begin{subfigure}{.32\textwidth}
       \centering
       \caption{PercFil = 90\% (PD)}
       \includegraphics[height=1.5in]{figure_7_pd_0_9.pdf}
@@ -572,113 +545,179 @@ P_1^{(1)}, \ldots, \mathcal P_{15}^{(1)}\}$ drawn from the model with percFil = 
 Similar tests were also completed against a control model with percFil = 30\%, and similar results were found. 
 
 
-The simulation study results are displayed in \figref{fig:sub_euler_results} - \figref{fig:sub_corr_results_2}, which shows the median $\log_{10}$ p-values along with a (25\%, 75\%) confidence interval across the 1000 iterations of the proposed test statistics.
+The simulation study results are displayed in \figref{fig:subLinesUnnormApp}, which shows the median $\log_{10}$ p-values along with a (25\%, 75\%) confidence interval across the 1000 iterations of the proposed test statistics.
 
 
-From \figref{fig:sub_euler_results} to \figref{fig:sub_corr_results_2}, we see that  EC,  CORR, and SILEC test are the most effective in distinguishing differences between the models. 
+From \figref{fig:subLinesUnnormApp}, we see that  EC,  CORR, and SILEC test are the most effective in distinguishing differences between the models. 
 All other tests are not as sensitive, eventually finding differences between the test and control once percFil approaches 70\% (see Appendix~\ref{app:simulation}). Additionally, all tests derived from Euler characteristic functions perform relatively well compared to the other tests, suggesting that the Betti numbers, by being topologically invariant, are much better functional summaries of the persistence diagrams than intensity functions, silhouettes, and landscapes. More interestingly, it is possible that the alternating linear function by which the Betti numbers are combined may better preserve topological information given than the SILEC test, which combines silhouettes through a similar linear fashion, performed better than any individual silhouette counterpart and the naive cross-dimension statistic (SIL$_{0:2}$). Finally,  CORR, being independent of persistence diagrams, acts as an powerful alternative to the EC test, being nearly as sensitive as percFil increases.
 
+% --------------- BEGIN FIGURES -----------------
 
-
-
-
-
-\begin{figure}[htp!]
-  \centering
-  \begin{subfigure}{.75\textwidth}
+\begin{center}
+  \begin{figure}[htp!]
     \centering
-    \caption{EC Tests}
-    \includegraphics[height = 1.25in]{figure_8_euler_group.pdf}
-    \label{fig:sub_euler}
-  \end{subfigure}
-  \begin{subfigure}{.75\textwidth}
-    \centering
-    \caption{EC Tests (Standardized Ratio)}
-    \includegraphics[height = 1.25in]{figure_8_joint_euler_group.pdf}
-    \label{fig:sub_euler_normed}
-  \end{subfigure}
-\caption{(a) Results for the EC tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
-\label{fig:sub_euler_results}
-\end{figure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{EC Tests}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_euler_group.pdf}
+      \label{fig:sub_euler}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{EC Tests (Standardized Ratio)}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_euler_group.pdf}
+      \label{fig:sub_euler_normed}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{SIL Tests}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_silhouette_group.pdf}
+      \label{fig:sub_silh}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{SIL Tests (Standardized Ratio)}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_silhouette_group.pdf}
+      \label{fig:sub_silh_normed_normed}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{IK Tests}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_contour_group.pdf}
+      \label{fig:sub_contour}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{IK Tests (Standardized Ratio)}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_contour_group.pdf}
+      \label{fig:sub_contour_normed}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{WIK/PI Tests}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_weighted_contour_group.pdf}
+      \label{fig:sub_weight}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \centering
+      \caption{WIK/PI Tests (Standardized Ratio)}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_weighted_contour_group.pdf}
+      \label{fig:sub_weight_normed}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \caption{CORR Tests}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_correlation_group.pdf}
+      \label{fig:sub_corr}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+      \caption{CORR Tests (Standardized Ratio)}
+      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_correlation_group.pdf}
+      \label{fig:sub_corr_normed}
+    \end{subfigure}
+    \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.  
+    }
+    \label{fig:subLinesUnnormApp}
+  \end{figure}
+\end{center}
 
-\begin{figure}[htp!]
-  \centering
-  \begin{subfigure}{.75\textwidth}
-    \centering
-    \caption{SIL Tests}
-    \includegraphics[height = 1.25in]{figure_8_silhouette_group.pdf}
-    \label{fig:sub_silh}
-  \end{subfigure}
-  \begin{subfigure}{.75\textwidth}
-    \centering
-    \caption{SIL Tests (Standardized Ratio)}
-    \includegraphics[height = 1.25in]{figure_8_joint_silhouette_group.pdf}
-    \label{fig:sub_silh_normed}
-  \end{subfigure}
-\label{fig:sub_silh_results}
-\caption{(a) Results for the SIL tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
+% \begin{figure}[htp!]
+%   \centering
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{EC Tests}
+%     \includegraphics[height = 1.25in]{figure_8_euler_group.pdf}
+%     \label{fig:sub_euler}
+%   \end{subfigure}
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{EC Tests (Standardized Ratio)}
+%     \includegraphics[height = 1.25in]{figure_8_joint_euler_group.pdf}
+%     \label{fig:sub_euler_normed}
+%   \end{subfigure}
+% \caption{(a) Results for the EC tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
+% \label{fig:sub_euler_results}
+% \end{figure}
 
-\end{figure}
+% \begin{figure}[htp!]
+%   \centering
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{SIL Tests}
+%     \includegraphics[height = 1.25in]{figure_8_silhouette_group.pdf}
+%     \label{fig:sub_silh}
+%   \end{subfigure}
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{SIL Tests (Standardized Ratio)}
+%     \includegraphics[height = 1.25in]{figure_8_joint_silhouette_group.pdf}
+%     \label{fig:sub_silh_normed}
+%   \end{subfigure}
+% \label{fig:sub_silh_results}
+% \caption{(a) Results for the SIL tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
 
-\begin{figure}[htp!]
-  \centering
-  \begin{subfigure}{.75\textwidth}
-    \centering
-    \caption{IK Tests}
-    \includegraphics[height = 1.25in]{figure_8_contour_group.pdf}
-    \label{fig:sub_contour}
-  \end{subfigure}
-  \begin{subfigure}{.75\textwidth}
-    \centering
-    \caption{IK Tests (Standardized Ratio)}
-    \includegraphics[height = 1.25in]{figure_8_joint_contour_group.pdf}
-    \label{fig:sub_contour_normed}
-  \end{subfigure}
-\label{fig:sub_contour_results}
-\caption{(a) Results for the IK tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
-\end{figure}
+% \end{figure}
 
-\begin{figure}[htp!]
-  \centering
-  \begin{subfigure}{.75\textwidth}
-    \centering
-    \caption{WIK/PI Tests}
-    \includegraphics[height = 1.25in]{figure_8_weighted_contour_group.pdf}
-    \label{fig:sub_weight}
-  \end{subfigure}
-  \begin{subfigure}{.75\textwidth}
-    \centering
-    \caption{WIK/PI Tests (Standardized Ratio)}
-    \includegraphics[height = 1.25in]{figure_8_joint_weighted_contour_group.pdf}
-    \label{fig:sub_weight_normed}
-  \end{subfigure}
-\label{fig:sub_weight_results}
-\caption{(a) Results for the WIK/PI tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
+% \begin{figure}[htp!]
+%   \centering
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{IK Tests}
+%     \includegraphics[height = 1.25in]{figure_8_contour_group.pdf}
+%     \label{fig:sub_contour}
+%   \end{subfigure}
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{IK Tests (Standardized Ratio)}
+%     \includegraphics[height = 1.25in]{figure_8_joint_contour_group.pdf}
+%     \label{fig:sub_contour_normed}
+%   \end{subfigure}
+% \label{fig:sub_contour_results}
+% \caption{(a) Results for the IK tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
+% \end{figure}
 
-\end{figure}
+% \begin{figure}[htp!]
+%   \centering
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{WIK/PI Tests}
+%     \includegraphics[height = 1.25in]{figure_8_weighted_contour_group.pdf}
+%     \label{fig:sub_weight}
+%   \end{subfigure}
+%   \begin{subfigure}{.75\textwidth}
+%     \centering
+%     \caption{WIK/PI Tests (Standardized Ratio)}
+%     \includegraphics[height = 1.25in]{figure_8_joint_weighted_contour_group.pdf}
+%     \label{fig:sub_weight_normed}
+%   \end{subfigure}
+% \label{fig:sub_weight_results}
+% \caption{(a) Results for the WIK/PI tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
 
-\begin{figure}[htp!]
-  \centering
-  \begin{subfigure}{.75\textwidth}
-    \caption{CORR Tests}
-    \includegraphics[height = 1.25in]{figure_8_correlation_group.pdf}
-    \label{fig:sub_corr}
-  \end{subfigure}
-  \begin{subfigure}{.75\textwidth}
-    \caption{CORR Tests (Standardized Ratio)}
-    \includegraphics[height = 1.25in]{figure_8_joint_correlation_group.pdf}
-    \label{fig:sub_corr_normed}
-  \end{subfigure}
-\caption{(a) Results for the CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
-\label{fig:sub_corr_results_2}
-\end{figure}
+% \end{figure}
+
+% \begin{figure}[htp!]
+%   \centering
+%   \begin{subfigure}{.75\textwidth}
+%     \caption{CORR Tests}
+%     \includegraphics[height = 1.25in]{figure_8_correlation_group.pdf}
+%     \label{fig:sub_corr}
+%   \end{subfigure}
+%   \begin{subfigure}{.75\textwidth}
+%     \caption{CORR Tests (Standardized Ratio)}
+%     \includegraphics[height = 1.25in]{figure_8_joint_correlation_group.pdf}
+%     \label{fig:sub_corr_normed}
+%   \end{subfigure}
+% \caption{(a) Results for the CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%. The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1,000 iterations. (b) plots the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil. }
+% \label{fig:sub_corr_results_2}
+% \end{figure}
+
+% --------------- END FIGURES -----------------
 
 
 
 \subsubsection{Standardization of persistence diagrams} \label{sec:standardize}
 In the methods proposed above, difference in scale can also result in rejection when, in fact there are not statistically significant topological differences. For example, suppose we are considering two datasets - each has points randomly sampled from the perimeter of a circle with a radius of 1 and 10 respectively. It may or may not be desirable to conclude that the two datasets come from different persistence diagram generators (i.e. conclude $\mathcal P^{(1)} \neq \mathcal P^{(2)}$) since inference would be based on geometrical (scaling) differences rather than topological differences. If we wish to focus only on topological differences, we propose a possible preprocessing step to normalize scaling. Specifically, we standardize the persistence diagrams so that all the homological features are re-scaled to $[0, 1]\times[0,1]$. This simple standardization takes the persistence diagram window and shrinks it or expands it to fill the $[0, 1]\times[0,1]$ window, maintaining the same relationship among all the homological features. If there is concern about outliers, then other quantiles could be used for the standardization. The exception is with the CORR, in which the point cloud itself is standardized to $[0, 1]\times[0, 1]\times[0, 1]$.
 
-We repeated the simulation study from Section~\ref{sec:results1} except including our standardization; the results are displayed in \figref{fig:linesUnnormApp}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same: EC, CORR, SILEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, the KC, WIK, and other SIL tests have essentially constant p-values across the percFil variation, losing effectiveness in distinguishing differences. One interpretation may be that these tests captured only geometric dissimilarities in the unstandardized setting.
+We repeated the simulation study from \S \ref{sec:results1} except including our standardization; the results are displayed in \figref{fig:subLinesUnnormApp}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same: EC, CORR, SILEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, the KC, WIK, and other SIL tests have essentially constant p-values across the percFil variation, losing effectiveness in distinguishing differences. One interpretation may be that these tests captured only geometric dissimilarities in the unstandardized setting.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: APPLICATION
@@ -687,7 +726,7 @@ We repeated the simulation study from Section~\ref{sec:results1} except includin
 \section{Application: Cosmological Simulation Data}
 \label{sec:application}
 
-Similar to the simulation models from Section~\ref{sec:sim_model}, Megaparsec cosmic mass distributions are likewise characterized by intricate multiscale configuration of web-like filaments and voids. We apply the proposed methodology to cosmological simulation data.
+Similar to the simulation models from \S \ref{sec:sim_model}, Megaparsec cosmic mass distributions are likewise characterized by intricate multiscale configuration of web-like filaments and voids. We apply the proposed methodology to cosmological simulation data.
 
 {\color{red}
 \begin{itemize}
