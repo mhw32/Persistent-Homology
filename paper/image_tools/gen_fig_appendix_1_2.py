@@ -189,6 +189,11 @@ def hard_line_plot(allkeys,
     if not custom_ylim is None:
         plt.ylim(custom_ylim[0], custom_ylim[1])
 
+    cur_yticks = list(plt.yticks()[0])
+    if len(cur_yticks) > 8:
+        new_yticks = [cur_yticks[i] if i%2==0 else '' for i in range(len(cur_yticks))]
+        ax.set_yticklabels(new_yticks)
+
     if save_path:
         plt.savefig(save_path)
     else:

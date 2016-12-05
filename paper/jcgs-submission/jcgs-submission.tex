@@ -484,48 +484,48 @@ percClust & Percentage of particles in the clusters & 0.02 \\
 % A Voronoi foam model, is generated from a tessellation, where the edges of each cell represent filaments and the faces of the cell, enclosed voids. Given a plane with fixed size, such a tessellation partitions the plane into cellular regions with nuclei. Every cell territory is defined as the set of points equal or closer to that cell's nuclei than any other. To produce a simulation in polynomial time, each point in the plane is compared to the $k$ closest nuclei using a nearest neighbor algorithm where $k$ is chosen to be a small integer. Gaussian noise is added to perturb the plane and inject randomness. Because the nuclei number and the plane size are variable, the points in the simulation representing filaments, clusters, and walls are variable as well. By choosing a reasonable percentage of filaments and related structures, Voronoi simulations are to approximate the topology and LSS of true simulations of the observable Universe. By varying these percentages and repeating simulations, one can quickly generate a large, labeled data sets for hypothesis testing. Our interest primarily was gauging the effect of changing the percent filament in the Voronoi tessellation on the ability of the hypothesis tests to distinguish two foam models sampled from different tessellations.
 
 
-Examples of three Voronoi Foam models with percFil 10\%, 50\%, 90\% are shown in \figref{fig:percfilexample} along with their persistence diagrams. One can see that the as the percFil increases, the web-like structure becomes more pronounced, changing the distribution of topological features.
+Examples of three Voronoi Foam models with percFil 10\%and 90\% are shown in \figref{fig:percfilexample} along with their persistence diagrams. One can see that the as the percFil increases, the web-like structure becomes more pronounced, changing the distribution of topological features.
 
 \begin{center}
   \begin{figure}[htp!]
     \centering
-    \begin{subfigure}{.32\textwidth}
+    \begin{subfigure}{.24\textwidth}
       \centering
-      \caption{PercFil = 10\%}
+      \caption{PercFil=10\%}
       \includegraphics[height=1.5in]{figure_7_plot_pf_0_1.pdf}
       \label{fig:percfil01voronoi}
     \end{subfigure}
-      \begin{subfigure}{.32\textwidth}
+    % \begin{subfigure}{.32\textwidth}
+    %   \centering
+    %   \caption{PercFil = 50\%}
+    %   \includegraphics[height=1.5in]{figure_7_plot_pf_0_5.pdf}
+    %   \label{fig:percfil09voronoi}
+    % \end{subfigure}
+    \begin{subfigure}{.24\textwidth}
       \centering
-      \caption{PercFil = 50\%}
-      \includegraphics[height=1.5in]{figure_7_plot_pf_0_5.pdf}
-      \label{fig:percfil09voronoi}
-    \end{subfigure}
-      \begin{subfigure}{.32\textwidth}
-      \centering
-      \caption{PercFil = 90\%}
-      \includegraphics[height=1.5in]{figure_7_plot_pf_0_9.pdf}
-      \label{fig:percfil09voronoi}
-    \end{subfigure}
-      \begin{subfigure}{.32\textwidth}
-      \centering
-      \caption{PercFil = 10\% (PD)}
+      \caption{PercFil=10\% (PD)}
       \includegraphics[height=1.5in]{figure_7_pd_0_1.pdf}
       \label{fig:percfil01pd}
     \end{subfigure}
-      \begin{subfigure}{.32\textwidth}
+    \begin{subfigure}{.24\textwidth}
       \centering
-      \caption{PercFil = 50\% (PD)}
-      \includegraphics[height=1.5in]{figure_7_pd_0_5.pdf}
-      \label{fig:percfil09pd}
+      \caption{PercFil=90\%}
+      \includegraphics[height=1.5in]{figure_7_plot_pf_0_9.pdf}
+      \label{fig:percfil09voronoi}
     \end{subfigure}
-      \begin{subfigure}{.32\textwidth}
+    % \begin{subfigure}{.32\textwidth}
+    %   \centering
+    %   \caption{PercFil = 50\% (PD)}
+    %   \includegraphics[height=1.5in]{figure_7_pd_0_5.pdf}
+    %   \label{fig:percfil09pd}
+    % \end{subfigure}
+    \begin{subfigure}{.24\textwidth}
       \centering
-      \caption{PercFil = 90\% (PD)}
+      \caption{PercFil=90\% (PD)}
       \includegraphics[height=1.5in]{figure_7_pd_0_9.pdf}
       \label{fig:percfil09pd}
     \end{subfigure}
-      \caption{Simulated point clouds and their corresponding persistence diagrams (PD) using PercFil = 10\%, 50\%, 90\%. As the percent filament increases, the point clouds tend to co-agulate into dense and sparse regions; the persistence diagrams also form more features with longer lifespans. The other parameters used the generate the data are as defined in Table~\ref{table:voronoisettings}.}
+      \caption{Simulated point clouds and their corresponding persistence diagrams (PD) using PercFil of 10\% and 90\%. As the PercFil increases, the point clouds tend to co-agulate into dense and sparse regions; the PDs also form more features with longer lifespans. The other parameters used the generate the data are as defined in Table~\ref{table:voronoisettings}.}
       \label{fig:percfilexample}
   \end{figure}
 \end{center}
