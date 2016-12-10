@@ -11,6 +11,7 @@ test_set
 *.ipynb
 *.ipynb_checkpoints/
 /saved_states
+paper/jcgs-submission/compressed_figs
 /notebooks
 *.bsub
 *.RData
