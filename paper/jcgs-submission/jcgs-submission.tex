@@ -86,7 +86,7 @@ The large-scale structure (LSS) of the Universe is an intricate and spatially co
 \end{abstract}
 
 \noindent%
-{\it Keywords:} Persistent homology, topological data analysis, astrostatistics, cosmostatistics 
+{\it Keywords:} Persistent homology, topological data analysis, astrostatistics, cosmostatistics
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: INTRODUCTION
@@ -385,7 +385,7 @@ The IK statistic used in this paper is computed for two sets of persistence diag
 % \[ \text{p-value} = \frac{1}{N} \sum_{j=1}^{N} I(T_{j} \geq T). \]
 
 \paragraph{Weighted Intensity Kernel Test (WIK)}
-The intensity function in WIK, unlike IK, uses weighted kernel density estimates \citep{chen2015statistical} where the weights are a function of a feature's persistence. 
+The intensity function in WIK, unlike IK, uses weighted kernel density estimates \citep{chen2015statistical} where the weights are a function of a feature's persistence.
 Using weighted intensity functions, a p-value is calculated by considering the same kernel test statistic as Equation~\eqref{eq:kernel_test}. A permutation test for each homology dimension produces three analogous statistics: $WIK_0$, $WIK_1$, and $WIK_2$.
 
 
@@ -398,19 +398,13 @@ A p-value is calculated using the two-sample kernel test statistic from Equation
 
 
 
-\paragraph{Two-point Correlation Function Test (CORR)} 
-The Two-Point Correlation Function Test (CORR) considers to the two-point correlation function of the raw data in order to compare the persistent homology tests with a test based on the spatial distribution of the LSS.  
-
-
-
-{\color{blue}  JESSI:  explain 2-point correlation function \cite{Martinez:2001aa}.}
-
-
-As with the other function-based test statistics, the two-sample T-test is based on the sample means is used for CORR:
+\paragraph{Two-point Correlation Function Test (CORR)}
+The Two-Point Correlation Function Test (CORR) considers to the two-point correlation function of the raw data in order to compare the persistent homology tests with a test based on the spatial distribution of the LSS. As with the other function-based test statistics, the two-sample T-test is based on the sample means is used for CORR:
 $
 \bar{CORR}_J = \frac{1}{n_J}\sum_{i = 1}^{n_J} \int_{0}^{r_{\max}} | \xi_i^{(J)}(r) | dr.
 $
 
+% {\color{blue}  JESSI:  explain 2-point correlation function \cite{Martinez:2001aa}.}
 
 
 
@@ -532,8 +526,8 @@ Examples of three Voronoi Foam models with percFil 10\%and 90\% are shown in \fi
 
 \subsection{Simulation Study Results}
 \label{sec:results1}
-The simulated LSS data were generated under $1.25 \times  10^{5}$ box volume, $0.1$ resolution, $1 \times  10^{4}$ points, $64$ cells (voids), percClust = 2\%,  percFil = $[10\%, 30\%]$, and percWall = $[68\%, 88\%]$. 
-Persistence diagrams are generated using distance-to-measure (DTM) with a $0.01$ tuning parameter. The diagrams are preprocessed to remove the known 0-dimensional artifact, a vestigial $H_{0}$ element with birth time of 0 and a death time of $\infty$ (with exception to the EC test in which the artifact is preserved). The hypothesis tests were performed on 1000 independent iterations of 15 independent realizations from each of the two populations. The 15 independent datasets are each generated using a percFil setting from 10\% to 30\% (5\% step size).   
+The simulated LSS data were generated under $1.25 \times  10^{5}$ box volume, $0.1$ resolution, $1 \times  10^{4}$ points, $64$ cells (voids), percClust = 2\%,  percFil = $[10\%, 30\%]$, and percWall = $[68\%, 88\%]$.
+Persistence diagrams are generated using distance-to-measure (DTM) with a $0.01$ tuning parameter. The diagrams are preprocessed to remove the known 0-dimensional artifact, a vestigial $H_{0}$ element with birth time of 0 and a death time of $\infty$ (with exception to the EC test in which the artifact is preserved). The hypothesis tests were performed on 1000 independent iterations of 15 independent realizations from each of the two populations. The 15 independent datasets are each generated using a percFil setting from 10\% to 30\% (5\% step size).
 
 
 Given the data drawn from a model with percFil $p$, each of the proposed test statistics are used to compute a p-value for the test $H_0: \mathcal
@@ -542,13 +536,13 @@ based on two samples of persistence diagrams: $\{\mathcal
 P_1^{(1)}, \ldots, \mathcal P_{15}^{(1)}\}$ drawn from the model with percFil = 10\%, and $\{\mathcal P_1^{(2)}, \ldots,
 \mathcal P_{15}^{(2)}\}$ drawn from the model with percFil = $p$, $p = 10\%, 15\%, \ldots, 30\%$.
 (Recall that $\mathcal P^{(1)}$ and $\mathcal P^{(2)}$ are the true underlying distributions of persistence diagrams.)
-Similar tests were also completed against a control model with percFil = 30\%, and similar results were found. 
+Similar tests were also completed against a control model with percFil = 30\%, and similar results were found.
 
 
 The simulation study results are displayed in \figref{fig:subLinesUnnormApp}, which shows the median $\log_{10}$ p-values along with a (25\%, 75\%) confidence interval across the 1000 iterations of the proposed test statistics.
 
 
-From \figref{fig:subLinesUnnormApp}, we see that  EC,  CORR, and SILEC test are the most effective in distinguishing differences between the models. 
+From \figref{fig:subLinesUnnormApp}, we see that  EC,  CORR, and SILEC test are the most effective in distinguishing differences between the models.
 All other tests are not as sensitive, eventually finding differences between the test and control once percFil approaches 70\% (see Appendix~\ref{app:simulation}). Additionally, all tests derived from Euler characteristic functions perform relatively well compared to the other tests, suggesting that the Betti numbers, by being topologically invariant, are much better functional summaries of the persistence diagrams than intensity functions, silhouettes, and landscapes. More interestingly, it is possible that the alternating linear function by which the Betti numbers are combined may better preserve topological information given than the SILEC test, which combines silhouettes through a similar linear fashion, performed better than any individual silhouette counterpart and the naive cross-dimension statistic (SIL$_{0:2}$). Finally,  CORR, being independent of persistence diagrams, acts as an powerful alternative to the EC test, being nearly as sensitive as percFil increases.
 
 % --------------- BEGIN FIGURES -----------------
@@ -614,7 +608,7 @@ All other tests are not as sensitive, eventually finding differences between the
       \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_correlation_group.pdf}
       \label{fig:sub_corr_normed}
     \end{subfigure}
-    \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.  
+    \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.
     }
     \label{fig:subLinesUnnormApp}
   \end{figure}
@@ -728,13 +722,13 @@ We repeated the simulation study from \S \ref{sec:results1} except including our
 
 Similar to the simulation models from \S \ref{sec:sim_model}, Megaparsec cosmic mass distributions are likewise characterized by intricate multiscale configuration of web-like filaments and voids. We apply the proposed methodology to cosmological simulation data.
 
-{\color{red}
-\begin{itemize}
-\item  Discuss LSS
-\item  Discuss Cosmological simulations
-\item  Discuss Warm vs. Cold DM
-\end{itemize}
-Real observations of cosmic web:  Great Wall \citep{geller1989mapping}, Sloan Great Wall \citep{gott2005map}, gas \citep{cantalupo2014cosmic}.}
+% {\color{red}
+% \begin{itemize}
+% \item  Discuss LSS
+% \item  Discuss Cosmological simulations
+% \item  Discuss Warm vs. Cold DM
+% \end{itemize}
+% Real observations of cosmic web:  Great Wall \citep{geller1989mapping}, Sloan Great Wall \citep{gott2005map}, gas \citep{cantalupo2014cosmic}.}
 
 \begin{figure}[htp!]
   \centering
@@ -1027,7 +1021,7 @@ Hypothesis testing p-values for voronoi simulations of percent filament varying 
         \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_correlation_group.pdf}
         \label{fig:all_corr_normed}
       \end{subfigure}
-      \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\% to 90\% by 10\% increments) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. Points containing X marks indicate a p-value of exactly 0, usually by imprecision of the permutation test. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.  
+      \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\% to 90\% by 10\% increments) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. Points containing X marks indicate a p-value of exactly 0, usually by imprecision of the permutation test. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.
       }
       \label{fig:linesUnnormApp}
     \end{figure}
