@@ -32,68 +32,45 @@ wdm_diags <- readRDS('intermediate/fig_13_wdm_diags_4.rds')
 
 # max margin
 
-index <- 41
-my_cdm <- cdm_diags[[index]]
-my_wdm <- wdm_diags[[index]]
+max_index <- 41
+max_cdm <- cdm_diags[[max_index]]
+max_wdm <- wdm_diags[[max_index]]
 
-tseq1 <- seq(min(my_cdm[,2:3]),max(my_cdm[,2:3]),length=5000)
-euler1 <- eulerChar(tseq1, my_cdm, maxdimension=max(my_cdm[,1]), threshold=0)
+min_index <- 24
+min_cdm <- cdm_diags[[min_index]]
+min_wdm <- wdm_diags[[min_index]]
 
-tseq2 <- seq(min(my_wdm[,2:3]),max(my_wdm[,2:3]),length=5000)
-euler2 <- eulerChar(tseq2, my_wdm, maxdimension=max(my_wdm[,1]), threshold=0)
+max_tseq1 <- seq(min(max_cdm[,2:3]),max(max_cdm[,2:3]),length=5000)
+max_euler1 <- eulerChar(max_tseq1, max_cdm, maxdimension=max(max_cdm[,1]), threshold=0)
 
-pdf('figure_13_max_margin_2euler.pdf')
+max_tseq2 <- seq(min(max_wdm[,2:3]),max(max_wdm[,2:3]),length=5000)
+max_euler2 <- eulerChar(max_tseq2, max_wdm, maxdimension=max(max_wdm[,1]), threshold=0)
+
+min_tseq1 <- seq(min(min_cdm[,2:3]),max(min_cdm[,2:3]),length=5000)
+min_euler1 <- eulerChar(min_tseq1, min_cdm, maxdimension=max(min_cdm[,1]), threshold=0)
+
+min_tseq2 <- seq(min(min_wdm[,2:3]),max(min_wdm[,2:3]),length=5000)
+min_euler2 <- eulerChar(min_tseq2, min_wdm, maxdimension=max(min_wdm[,1]), threshold=0)
+
+pdf('figure_13_maxmin_margin_euler.pdf')
 par(mar=c(5,6,4,2))
-plot(euler2, 
+plot(max_euler2, 
      type="l", 
-     xlab="Sequence", 
+     xlab="Time", 
      ylab="EC", 
-     col="coral1",
-     lwd=3,
-     cex.lab=2.0, 
-     cex.axis=2.0, 
-     cex.main=2.0, 
-     cex.sub=2.0)
-lines(euler1,
-      lwd=3, 
-      col="cyan3")
+     col=rgb(248, 137, 113 ,255, maxColorValue=255),
+     lwd=1.5,
+     cex.lab=2.5, 
+     cex.axis=2.5, 
+     cex.main=2.5, 
+     cex.sub=2.5)
+lines(max_euler1, lwd=1.5, col=rgb(63, 223, 218, 255, maxColorValue=255))
+lines(min_euler2, lwd=1.5, lty="solid", col=rgb(202, 109, 89 ,255, maxColorValue=255))
+lines(min_euler1, lwd=1.5, lty="solid", col=rgb(46, 165, 162, 255, maxColorValue=255))
 legend("topright", 
-       c("CDM", "WDM"), 
-       col=c("coral", "cyan"), 
-       lwd=3,
-       cex=2.0)
-dev.off()
-
-# min margin
-
-index <- 24
-my_cdm <- cdm_diags[[index]]
-my_wdm <- wdm_diags[[index]]
-
-tseq1 <- seq(min(my_cdm[,2:3]),max(my_cdm[,2:3]),length=5000)
-euler1 <- eulerChar(tseq1, my_cdm, maxdimension=max(my_cdm[,1]), threshold=0)
-
-tseq2 <- seq(min(my_wdm[,2:3]),max(my_wdm[,2:3]),length=5000)
-euler2 <- eulerChar(tseq2, my_wdm, maxdimension=max(my_wdm[,1]), threshold=0)
-
-pdf('figure_13_min_margin_2euler.pdf')
-par(mar=c(5,6,4,2))
-plot(euler2, 
-     type="l", 
-     xlab="Sequence", 
-     ylab="EC", 
-     col="coral1",
-     lwd=3,
-     cex.lab=2.0, 
-     cex.axis=2.0, 
-     cex.main=2.0, 
-     cex.sub=2.0)
-lines(euler1,
-      lwd=3, 
-      col="cyan3")
-legend("topright", 
-       c("CDM", "WDM"), 
-       col=c("coral", "cyan"), 
-       lwd=3,
-       cex=2.0)
+       c("CDM (High)", "WDM (High)", "CDM (Low)", "WDM (Low)"), 
+       col=c(rgb(248, 137, 113 ,255, maxColorValue=255), rgb(63, 223, 218, 255, maxColorValue=255), rgb(202, 109, 89 ,255, maxColorValue=255), rgb(46, 165, 162, 255, maxColorValue=255)), 
+       lty=c("solid", "solid", "solid", "solid"),
+       lwd=1.5,
+       cex=2.5)
 dev.off()

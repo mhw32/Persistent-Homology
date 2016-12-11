@@ -1,4 +1,5 @@
 # -- Figure 12 : heatmaps --
+import pdb
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -13,14 +14,18 @@ def prepare(data):
 data = np.load('intermediate/fig_12_dists.npy')
 data_dim = (data[:, :, 0], data[:, :, 1], data[:, :, 2])
 
+vmin, vmax = 0, .5
+
 for i, curdata in enumerate(data_dim):
     plt.figure()
     s, d, t, q = prepare(curdata)
-    vmin, vmax = np.min(curdata), np.max(curdata)
+    # vmin, vmax = np.min(curdata), np.max(curdata)
     fig, axn = plt.subplots(3, 1, sharey=True, figsize=(15,3))
     # cbar_ax = fig.add_axes([.91, .3, .03, .4])
     cbar_ax = fig.add_axes([.91, .1, .03, .8])
     cbar_ax.tick_params(labelsize=21, direction='out') 
+    # pdb.set_trace()
+
     sns.heatmap([s], 
                 ax=axn.flat[0], 
                 vmin=vmin, 
@@ -56,7 +61,7 @@ data_dim = (data[:, :, 0], data[:, :, 1], data[:, :, 2])
 for i, curdata in enumerate(data_dim):
     plt.figure()
     s, d, t, q = prepare(curdata)
-    vmin, vmax = np.min(curdata), np.max(curdata)
+    # vmin, vmax = np.min(curdata), np.max(curdata)
     fig, axn = plt.subplots(3, 1, sharey=True, figsize=(15,3))
     # cbar_ax = fig.add_axes([.91, .3, .03, .4])
     cbar_ax = fig.add_axes([.91, .1, .03, .8])

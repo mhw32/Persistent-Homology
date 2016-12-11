@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 DEC 2016 20:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 DEC 2016 22:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1015,87 +1015,71 @@ File: figs/figure_11_cdm_pd.pdf Graphic file (type pdf)
 Package pdftex.def Info: figs/figure_11_cdm_pd.pdf used on input line 827.
 (pdftex.def)             Requested size: 208.02008pt x 208.01833pt.
  [20] [21 <./figs/figure_11_wdm_pd.pdf> <./figs/figure_11_cdm_pd.pdf>] [22]
-<figs/fig_12_hmap_dim0_nonorm.pdf, id=1013, 934.29361pt x 197.53957pt>
+<figs/fig_12_hmap_dim0_nonorm.pdf, id=1013, 934.29361pt x 207.17714pt>
 File: figs/fig_12_hmap_dim0_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim0_nonorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim0_nonorm.pdf used on input line 96
 5.
-(pdftex.def)             Requested size: 221.88762pt x 46.9131pt.
+(pdftex.def)             Requested size: 221.88762pt x 49.2019pt.
 
-<figs/fig_12_hmap_dim0_yesnorm.pdf, id=1014, 940.15927pt x 196.16725pt>
+<figs/fig_12_hmap_dim0_yesnorm.pdf, id=1014, 930.1061pt x 204.43251pt>
 File: figs/fig_12_hmap_dim0_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim0_yesnorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim0_yesnorm.pdf used on input line 9
 71.
-(pdftex.def)             Requested size: 221.88762pt x 46.29686pt.
+(pdftex.def)             Requested size: 221.88762pt x 48.76845pt.
 
-<figs/fig_12_hmap_dim1_nonorm.pdf, id=1015, 934.29361pt x 197.53957pt>
+<figs/fig_12_hmap_dim1_nonorm.pdf, id=1015, 934.29361pt x 207.17714pt>
 File: figs/fig_12_hmap_dim1_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim1_nonorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim1_nonorm.pdf used on input line 97
 7.
-(pdftex.def)             Requested size: 221.88762pt x 46.9131pt.
+(pdftex.def)             Requested size: 221.88762pt x 49.2019pt.
 
-<figs/fig_12_hmap_dim1_yesnorm.pdf, id=1016, 940.15927pt x 196.16725pt>
+<figs/fig_12_hmap_dim1_yesnorm.pdf, id=1016, 930.1061pt x 204.43251pt>
 File: figs/fig_12_hmap_dim1_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim1_yesnorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim1_yesnorm.pdf used on input line 9
 83.
-(pdftex.def)             Requested size: 221.88762pt x 46.29686pt.
+(pdftex.def)             Requested size: 221.88762pt x 48.76845pt.
 
-<figs/fig_12_hmap_dim2_nonorm.pdf, id=1017, 934.29361pt x 197.53957pt>
+<figs/fig_12_hmap_dim2_nonorm.pdf, id=1017, 934.29361pt x 207.17714pt>
 File: figs/fig_12_hmap_dim2_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim2_nonorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim2_nonorm.pdf used on input line 98
 9.
-(pdftex.def)             Requested size: 221.88762pt x 46.9131pt.
+(pdftex.def)             Requested size: 221.88762pt x 49.2019pt.
 
-<figs/fig_12_hmap_dim2_yesnorm.pdf, id=1018, 940.15927pt x 196.16725pt>
+<figs/fig_12_hmap_dim2_yesnorm.pdf, id=1018, 930.1061pt x 204.43251pt>
 File: figs/fig_12_hmap_dim2_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim2_yesnorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim2_yesnorm.pdf used on input line 9
 95.
-(pdftex.def)             Requested size: 221.88762pt x 46.29686pt.
+(pdftex.def)             Requested size: 221.88762pt x 48.76845pt.
 
-<figs/figure_13_max_margin_2euler.pdf, id=1019, 475.10396pt x 453.5893pt>
-File: figs/figure_13_max_margin_2euler.pdf Graphic file (type pdf)
+<figs/figure_13_maxmin_margin_euler.pdf, id=1019, 505.89pt x 505.89pt>
+File: figs/figure_13_maxmin_margin_euler.pdf Graphic file (type pdf)
 
-<use figs/figure_13_max_margin_2euler.pdf>
-Package pdftex.def Info: figs/figure_13_max_margin_2euler.pdf used on input lin
-e 1017.
-(pdftex.def)             Requested size: 151.3984pt x 144.54pt.
+<use figs/figure_13_maxmin_margin_euler.pdf>
+Package pdftex.def Info: figs/figure_13_maxmin_margin_euler.pdf used on input l
+ine 1009.
+(pdftex.def)             Requested size: 144.54294pt x 144.54pt.
 
-<figs/figure_13_max_margin_corr.pdf, id=1020, 578.16pt x 397.485pt>
-File: figs/figure_13_max_margin_corr.pdf Graphic file (type pdf)
+<figs/figure_13_maxmin_margin_corr.pdf, id=1020, 578.16pt x 397.485pt>
+File: figs/figure_13_maxmin_margin_corr.pdf Graphic file (type pdf)
 
-<use figs/figure_13_max_margin_corr.pdf>
-Package pdftex.def Info: figs/figure_13_max_margin_corr.pdf used on input line 
-1023.
+<use figs/figure_13_maxmin_margin_corr.pdf>
+Package pdftex.def Info: figs/figure_13_maxmin_margin_corr.pdf used on input li
+ne 1015.
 (pdftex.def)             Requested size: 210.2459pt x 144.54pt.
-
-<figs/figure_13_min_margin_2euler.pdf, id=1021, 482.51982pt x 446.83713pt>
-File: figs/figure_13_min_margin_2euler.pdf Graphic file (type pdf)
-
-<use figs/figure_13_min_margin_2euler.pdf>
-Package pdftex.def Info: figs/figure_13_min_margin_2euler.pdf used on input lin
-e 1029.
-(pdftex.def)             Requested size: 156.08081pt x 144.54pt.
-
-<figs/figure_13_min_margin_corr.pdf, id=1022, 578.16pt x 397.485pt>
-File: figs/figure_13_min_margin_corr.pdf Graphic file (type pdf)
-
-<use figs/figure_13_min_margin_corr.pdf>
-Package pdftex.def Info: figs/figure_13_min_margin_corr.pdf used on input line 
-1035.
-(pdftex.def)             Requested size: 210.2459pt x 144.54pt.
- (./jcgs-submission.bbl [23] [24 <./figs/fig_12_hmap_dim0_nonorm.pdf> <./figs/f
-ig_12_hmap_dim0_yesnorm.pdf
+ (./jcgs-submission.bbl [23]
+[24 <./figs/fig_12_hmap_dim0_nonorm.pdf> <./figs/fig_12_hmap_dim0_yesnorm.pdf
 
 pdfTeX warning: pdflatex (file ./figs/fig_12_hmap_dim0_yesnorm.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
@@ -1115,13 +1099,8 @@ on: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figs/fig_12_hmap_dim2_yesnorm.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
->] [25 <./figs/figure_13_max_margin_2euler.pdf> <./figs/figure_13_max_margin_co
-rr.pdf> <./figs/figure_13_min_margin_2euler.pdf> <./figs/figure_13_min_margin_c
-orr.pdf
-
-pdfTeX warning: pdflatex (file ./figs/figure_13_min_margin_corr.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
->] [26]
+>] [25 <./figs/figure_13_maxmin_margin_euler.pdf> <./figs/figure_13_maxmin_marg
+in_corr.pdf>] [26]
 Missing character: There is no æ in font cmr12!
 Missing character: There is no ¸ in font cmr12!
 Missing character: There is no … in font cmr12!
@@ -1157,10 +1136,10 @@ Missing character: There is no  in font cmr12!
 Missing character: There is no ¸ in font cmr12!
  [27] [28]) [29] (./jcgs-submission.aux) ) 
 Here is how much of TeX's memory you used:
- 15464 strings out of 493014
- 299848 string characters out of 6133351
- 347366 words of memory out of 5000000
- 18654 multiletter control sequences out of 15000+600000
+ 15450 strings out of 493014
+ 299439 string characters out of 6133351
+ 347326 words of memory out of 5000000
+ 18642 multiletter control sequences out of 15000+600000
  16073 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,13n,87p,1545b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1184,10 +1163,10 @@ cm/cmti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmti12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmtt12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on jcgs-submission.pdf (29 pages, 5447657 bytes).
+Output written on jcgs-submission.pdf (29 pages, 5394030 bytes).
 PDF statistics:
- 1289 PDF objects out of 1440 (max. 8388607)
- 608 compressed objects within 7 object streams
+ 1228 PDF objects out of 1440 (max. 8388607)
+ 579 compressed objects within 6 object streams
  0 named destinations out of 1000 (max. 500000)
- 223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 
