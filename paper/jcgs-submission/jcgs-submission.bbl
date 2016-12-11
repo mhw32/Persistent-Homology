@@ -9,6 +9,11 @@ Adams, H., Chepushtanova, S., Emerson, T., Hanson, E., Kirby, M., Motta, F.,
   representation of persistent homology', {\em arXiv preprint arXiv:1507.06217}
   .
 
+\harvarditem{Baugh}{2006}{Baugh:2006aa}
+Baugh, C.  \harvardyearleft 2006\harvardyearright , `Correlation function and
+  power spectra in cosmology', {\em Encycl. of Astronomy and Astrophysics. IOP
+  Publishing, Bristol} .
+
 \harvarditem[Bendich et~al.]{Bendich, Marron, Miller, Pieloch \harvardand\
   Skwerer}{2014}{bendich2014persistent}
 Bendich, P., Marron, J., Miller, E., Pieloch, A. \harvardand\ Skwerer, S.
@@ -124,6 +129,10 @@ Hilbe, J.~M., Riggs, J., Wandelt, B.~D., de~Souza, R.~S., Ishida, E.~E.,
   \harvardyearleft 2014\harvardyearright , `Life, the universe, and
   everything', {\em Significance} {\bf 11}(5),~48--75.
 
+\harvarditem{Hogg}{1999}{Hogg:1999aa}
+Hogg, D.~W.  \harvardyearleft 1999\harvardyearright , `Distance measures in
+  cosmology', {\em arXiv preprint astro-ph/9905116} .
+
 \harvarditem{Icke \harvardand\ Van~de Weygaert}{1987}{icke1987fragmenting}
 Icke, V. \harvardand\ Van~de Weygaert, R.  \harvardyearleft
   1987\harvardyearright , `Fragmenting the universe', {\em Astronomy and
@@ -134,10 +143,15 @@ Icke, V. \harvardand\ van~de Weygaert, R.  \harvardyearleft
   1991\harvardyearright , `The galaxy distribution as a voronoi foam', {\em
   Quarterly Journal of the Royal Astronomical Society} {\bf 32},~85--112.
 
-\harvarditem{Landy \harvardand\ Szalay}{1993}{landy1993bias}
-Landy, S.~D. \harvardand\ Szalay, A.~S.  \harvardyearleft 1993\harvardyearright
-  , `Bias and variance of angular correlation functions', {\em The
-  Astrophysical Journal} {\bf 412},~64--71.
+\harvarditem{{Jarvis}}{2015}{Jarvis:2015aa}
+{Jarvis}, M.  \harvardyearleft 2015\harvardyearright , `{TreeCorr: Two-point
+  correlation functions}', Astrophysics Source Code Library.
+
+\harvarditem[Jarvis et~al.]{Jarvis, Bernstein \harvardand\
+  Jain}{2004}{jarvis2004skewness}
+Jarvis, M., Bernstein, G. \harvardand\ Jain, B.  \harvardyearleft
+  2004\harvardyearright , `The skewness of the aperture mass statistic', {\em
+  Monthly Notices of the Royal Astronomical Society} {\bf 352}(1),~338--352.
 
 \harvarditem[Lovell et~al.]{Lovell, Frenk, Eke, Jenkins, Gao \harvardand\
   Theuns}{2014}{lovell2014properties}
@@ -145,10 +159,6 @@ Lovell, M.~R., Frenk, C.~S., Eke, V.~R., Jenkins, A., Gao, L. \harvardand\
   Theuns, T.  \harvardyearleft 2014\harvardyearright , `The properties of warm
   dark matter haloes', {\em Monthly Notices of the Royal Astronomical Society}
   {\bf 439}(1),~300--317.
-
-\harvarditem{Martinez \harvardand\ Saar}{2001}{Martinez:2001aa}
-Martinez, V.~J. \harvardand\ Saar, E.  \harvardyearleft 2001\harvardyearright ,
-  {\em Statistics of the galaxy distribution}, CRC Press.
 
 \harvarditem[Mileyko et~al.]{Mileyko, Mukherjee \harvardand\
   Harer}{2011}{Mileyko:2011aa}
@@ -159,6 +169,16 @@ Mileyko, Y., Mukherjee, S. \harvardand\ Harer, J.  \harvardyearleft
 \harvarditem{Munkres}{1984}{munkres1984elements}
 Munkres, J.~R.  \harvardyearleft 1984\harvardyearright , {\em Elements of
   algebraic topology}, Vol.~2, Addison-Wesley Menlo Park.
+
+\harvarditem[S{\'a}nchez et~al.]{S{\'a}nchez, Sc{\'o}ccola, Ross, Percival,
+  Manera, Montesano, Mazzalay, Cuesta, Eisenstein, Kazin
+  et~al.}{2012}{Sanchez:2012aa}
+S{\'a}nchez, A.~G., Sc{\'o}ccola, C., Ross, A., Percival, W., Manera, M.,
+  Montesano, F., Mazzalay, X., Cuesta, A., Eisenstein, D., Kazin, E. et~al.
+  \harvardyearleft 2012\harvardyearright , `The clustering of galaxies in the
+  sdss-iii baryon oscillation spectroscopic survey: cosmological implications
+  of the large-scale two-point correlation function', {\em Monthly Notices of
+  the Royal Astronomical Society} {\bf 425}(1),~415--437.
 
 \harvarditem[Schaye et~al.]{Schaye, Crain, Bower, Furlong, Schaller, Theuns,
   Dalla~Vecchia, Frenk, McCarthy, Helly et~al.}{2015}{schaye2015eagle}
