@@ -54,11 +54,11 @@
     Corresponding author.  The authors gratefully acknowledge Yale Information Technology Services}\hspace{.2cm} \\
     Department of Statistics, Yale University \\
     Brittany T. Fasy\\
-    Department of Computer Science, Montana State University \\
+School of Computing, Montana State University \\
     Wojciech Hellwing \\
-    ICG, University of Portsmouth \\
+    Institute of Cosmology and Gravitation, University of Portsmouth \\
     Mark R. Lovell\\
-    ITF, University of Amsterdam \\
+    Gravitation AstroParticle Physics, University of Amsterdam \\
     Alessandro Rinaldo\\
     Department of Statistics, Carnegie Mellon University \\
     Larry Wasserman\\
@@ -86,7 +86,7 @@ The large-scale structure (LSS) of the Universe is an intricate and spatially co
 \end{abstract}
 
 \noindent%
-{\it Keywords:} Persistent homology, topological data analysis, astrostatistics, cosmostatistics 
+{\it Keywords:} Astrostatistics, persistent homology, topological data analysis 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: INTRODUCTION
@@ -96,9 +96,11 @@ The large-scale structure (LSS) of the Universe is an intricate and spatially co
 \section{Introduction}
 \label{sec:intro}
 
+{\color{blue} Real observations of cosmic web:  Great Wall \citep{geller1989mapping}, Sloan Great Wall \citep{gott2005map}, gas \citep{cantalupo2014cosmic}.}
+
 Rigorous comparisons of spatially complex web-like data such as the large-scale structure (LSS) of the Universe (see \figref{fig:introData}) are notoriously challenging due, in part, to the difficulty in capturing the randomness of geometric and topological structures.  However, these comparisons are important because there exists information about cosmological parameters in the structure. We propose a framework for constructing topological hypothesis tests using ideas from an emerging area of topological data analysis (TDA) called persistent homology. Persistent homology offers a novel way to represent, visualize, and interpret complex data by extracting topological features, which can be used to infer properties of the underlying structures, as seen in astronomy \citep{Sousbie2011, SousbieEtAl2011, van2011alpha,cisewski2014non} among other areas of science \citep{bendich2014persistent, duong2012closed}.
 
-The large-scale structure (LSS) of the Universe is an important example of a spatially complex structure, and is fittingly referred to as the \emph{Cosmic Web} \citep{bond1996filaments,springel2006large}. The LSS of the Universe is a focus of manifold scientific research because its properties reveal information about the underlying physics and formation of our Universe \citep{davis1985evolution}. In order to study theoretical aspects of the formation and evolution of LSS, cosmologists develop large simulations and can adjust the physical inputs and evaluate their effects on the LSS \citep{cooray2002halo,centrella1983three,doroshkevich1980two,schaye2015eagle}. One such input is related to the nature of dark matter (DM). The received position is that the Universe is made up of dark energy, DM, and baryonic matter. However, the nature of DM is still a mystery, but there are hypotheses regarding its possible particle behavior. Hot DM would consist of particles that travel with ultrarelativistic speeds, while cold DM particles would move much slower. For an easy introduction to DM, see \cite[p. 61-63]{HilbeEtAl2014}.
+The large-scale structure (LSS) of the Universe is an important example of a spatially complex structure, and is fittingly referred to as the \emph{Cosmic Web} \citep{bond1996filaments,springel2006large}. The LSS of the Universe is a focus of manifold scientific research because its properties reveal information about the underlying physics and formation of our Universe \citep{davis1985evolution}.  For example, LSS can reveal characteristics of dark energy, which is thought to be the driver of the acceleration of the Universe \citep{Sanchez:2012aa}.  In order to study theoretical aspects of the formation and evolution of LSS, cosmologists develop large simulations and can adjust the physical inputs and evaluate their effects on the LSS \citep{cooray2002halo,centrella1983three,doroshkevich1980two,schaye2015eagle}. One such input is related to the nature of dark matter (DM). The received theory is that the Universe is made up of dark energy, DM, and baryonic matter. However, the nature of DM is still a mystery, but there are hypotheses regarding its possible particle behavior. Hot DM would consist of particles that travel with ultrarelativistic speeds, while cold DM particles would move much slower. For an easy introduction to DM, see \cite[p. 61-63]{HilbeEtAl2014}.
 
 Though the generally accepted and best supported cosmological model assumes \emph{cold dark matter} (known as $\Lambda$CDM), there are some elements of disagreement with observations \citep{SchneiderEtAl2012}. Furthermore, it has been demonstrated through cosmological simulations that the nature of DM affects the development and formation of LSS \citep{SchneiderEtAl2012}.
 In \figref{fig:introData}, one realization of our Universe under CDM from the EAGLE cosmological simulation \citep{schaye2015eagle} is displayed, along with a realization assuming WDM. Though there are similarities in shape of the densest regions (called \emph{filaments}), there are differences in the distribution of matter about these filaments.
@@ -107,15 +109,15 @@ In \figref{fig:introData}, one realization of our Universe under CDM from the EA
   \centering
   \begin{subfigure}{.40\textwidth}
     \centering
-    \caption{CDM Simulation}  \includegraphics[width=\linewidth]{figure_1_whole_wdm.png}
-    \label{fig:introDataCDM}
+    \caption{WDM Simulation}  \includegraphics[width=\linewidth]{figure_1_whole_wdm.png}
+    \label{fig:introDataWDM}
   \end{subfigure}
     \begin{subfigure}{.40\textwidth}
     \centering
-    \caption{WDM Simulation}  \includegraphics[width=\linewidth]{figure_1_whole_cdm.png}
-    \label{fig:introDataWDM}
+    \caption{CDM Simulation}  \includegraphics[width=\linewidth]{figure_1_whole_cdm.png}
+    \label{fig:introDataCDM}
   \end{subfigure}
-    \caption{Cosmological simulations assuming (a) cold dark matter (CDM) and (b) warm dark matter (WDM) \citep{schaye2015eagle}. }
+    \caption{Dark matter-only cosmological simulations assuming (a) warm dark matter (WDM) and (b) cold dark matter (CDM).  See Section~\ref{sec:application} for details. }
     \label{fig:introData}
 \end{figure}
 
@@ -399,17 +401,12 @@ A p-value is calculated using the two-sample kernel test statistic from Equation
 
 
 \paragraph{Two-point Correlation Function Test (CORR)} 
-The Two-Point Correlation Function Test (CORR) considers to the two-point correlation function of the raw data in order to compare the persistent homology tests with a test based on the spatial distribution of the LSS.  
-
-
-
-{\color{blue}  JESSI:  explain 2-point correlation function \cite{Martinez:2001aa}.}
-
-
-As with the other function-based test statistics, the two-sample T-test is based on the sample means is used for CORR:
-$
-\bar{CORR}_J = \frac{1}{n_J}\sum_{i = 1}^{n_J} \int_{0}^{r_{\max}} | \xi_i^{(J)}(r) | dr.
-$
+The Two-Point Correlation Function Test (CORR) considers to the two-point correlation function of the raw data in order to compare the persistent homology tests with a test based on the spatial distribution of the LSS.  The two-point correlation function was selected due to its ubiquitous employment in the astronomy literature (e.g. \citealt{Baugh:2006aa, Sanchez:2012aa}), and provides a measure of the degree of clustering in a dataset.   
+The implementation used to get the two-point correlation function is from the Python {\tt TreeCorr} library \citep{jarvis2004skewness, Jarvis:2015aa}. 
+As with the other function-based test statistics (where the two-point correlation function is a function that takes distances between points in the raw data as the input), the two-sample T-test is based on the sample means is used for CORR.
+%$
+%\bar{CORR}_J = \frac{1}{n_J}\sum_{i = 1}^{n_J} \int_{0}^{r_{\max}} | \xi_i^{(J)}(r) | dr.
+%$
 
 
 
@@ -485,7 +482,6 @@ percClust & Percentage of particles in the clusters & 0.02 \\
 
 
 Examples of three Voronoi Foam models with percFil 10\%and 90\% are shown in \figref{fig:percfilexample} along with their persistence diagrams. One can see that the as the percFil increases, the web-like structure becomes more pronounced, changing the distribution of topological features.
-
 \begin{center}
   \begin{figure}[htp!]
     \centering
@@ -545,76 +541,80 @@ P_1^{(1)}, \ldots, \mathcal P_{15}^{(1)}\}$ drawn from the model with percFil = 
 Similar tests were also completed against a control model with percFil = 30\%, and similar results were found. 
 
 
-The simulation study results are displayed in \figref{fig:subLinesUnnormApp}, which shows the median $\log_{10}$ p-values along with a (25\%, 75\%) confidence interval across the 1000 iterations of the proposed test statistics.
-
-
-From \figref{fig:subLinesUnnormApp}, we see that  EC,  CORR, and SILEC test are the most effective in distinguishing differences between the models. 
-All other tests are not as sensitive, eventually finding differences between the test and control once percFil approaches 70\% (see Appendix~\ref{app:simulation}). Additionally, all tests derived from Euler characteristic functions perform relatively well compared to the other tests, suggesting that the Betti numbers, by being topologically invariant, are much better functional summaries of the persistence diagrams than intensity functions, silhouettes, and landscapes. More interestingly, it is possible that the alternating linear function by which the Betti numbers are combined may better preserve topological information given than the SILEC test, which combines silhouettes through a similar linear fashion, performed better than any individual silhouette counterpart and the naive cross-dimension statistic (SIL$_{0:2}$). Finally,  CORR, being independent of persistence diagrams, acts as an powerful alternative to the EC test, being nearly as sensitive as percFil increases.
+The simulation study results are displayed in \figref{fig:subLinesUnnormApp}, which shows the median $\log_{10}$ p-values along with interval from the $25th$ to the $75th$ quantiles of the 1000 iterations of the proposed test statistics.
+We see that  EC,  CORR, and SILEC test are the most effective in distinguishing differences between the models. 
+%All other tests are not as sensitive, eventually finding differences between the test and control once percFil approaches 70\% (see Appendix~\ref{app:simulation}). 
+Additionally, all tests derived from Euler characteristic functions perform relatively well compared to the other tests, suggesting that the Betti numbers, by being topologically invariant, are much better functional summaries of the persistence diagrams than intensity functions, silhouettes, and landscapes. More interestingly, it is possible that the alternating linear function by which the Betti numbers are combined may better preserve topological information given than the SILEC test, which combines silhouettes through a similar linear fashion, performed better than any individual silhouette counterpart and the naive cross-dimension statistic (SIL$_{0:2}$). Finally,  CORR, though not as powerful as EC, performs well as percFil increases.
 
 % --------------- BEGIN FIGURES -----------------
 
 \begin{center}
   \begin{figure}[htp!]
     \centering
-    \begin{subfigure}{.48\textwidth}
+    \begin{subfigure}{.47\textwidth}
       \centering
       \caption{EC Tests}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_euler_group.pdf}
+      \includegraphics[height = .78in]{figure_8_euler_group.pdf} 
       \label{fig:sub_euler}
     \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
-      \centering
-      \caption{EC Tests (Standardized Ratio)}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_euler_group.pdf}
-      \label{fig:sub_euler_normed}
-    \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{EC Tests (Standardized Ratio)}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_euler_group.pdf}
+%      \label{fig:sub_euler_normed}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
       \centering
       \caption{SIL Tests}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_silhouette_group.pdf}
+      \includegraphics[height = .78in]{figure_8_silhouette_group.pdf}
       \label{fig:sub_silh}
     \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
-      \centering
-      \caption{SIL Tests (Standardized Ratio)}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_silhouette_group.pdf}
-      \label{fig:sub_silh_normed_normed}
-    \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{SIL Tests (Standardized Ratio)}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_silhouette_group.pdf}
+%      \label{fig:sub_silh_normed_normed}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
       \centering
       \caption{IK Tests}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_contour_group.pdf}
+      \includegraphics[height = .78in]{figure_8_contour_group.pdf}
       \label{fig:sub_contour}
     \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
-      \centering
-      \caption{IK Tests (Standardized Ratio)}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_contour_group.pdf}
-      \label{fig:sub_contour_normed}
-    \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{IK Tests (Standardized Ratio)}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_contour_group.pdf}
+%      \label{fig:sub_contour_normed}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
       \centering
       \caption{WIK/PI Tests}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_weighted_contour_group.pdf}
+      \includegraphics[height = .78in]{figure_8_weighted_contour_group.pdf}
       \label{fig:sub_weight}
     \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
-      \centering
-      \caption{WIK/PI Tests (Standardized Ratio)}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_weighted_contour_group.pdf}
-      \label{fig:sub_weight_normed}
-    \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{WIK/PI Tests (Standardized Ratio)}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_weighted_contour_group.pdf}
+%      \label{fig:sub_weight_normed}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
       \caption{CORR Tests}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_correlation_group.pdf}
+      \includegraphics[height = .78in]{figure_8_correlation_group.pdf}
       \label{fig:sub_corr}
     \end{subfigure}
-    \begin{subfigure}{.48\textwidth}
-      \caption{CORR Tests (Standardized Ratio)}
-      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_correlation_group.pdf}
-      \label{fig:sub_corr_normed}
+%    \begin{subfigure}{.48\textwidth}
+%      \caption{CORR Tests (Standardized Ratio)}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_correlation_group.pdf}
+%      \label{fig:sub_corr_normed}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
+      \caption{Comparison of Tests}
+      \includegraphics[height = .78in]{figure_8_best_group}
+      \label{fig:sub_best}
     \end{subfigure}
-    \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.  
+    \caption{Results for EC, SIL, IK, WIK/PI, and CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%), compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations.  (\subref{fig:sub_best}) is a comparison of the best results for each approach.
     }
     \label{fig:subLinesUnnormApp}
   \end{figure}
@@ -717,7 +717,78 @@ All other tests are not as sensitive, eventually finding differences between the
 \subsubsection{Standardization of persistence diagrams} \label{sec:standardize}
 In the methods proposed above, difference in scale can also result in rejection when, in fact there are not statistically significant topological differences. For example, suppose we are considering two datasets - each has points randomly sampled from the perimeter of a circle with a radius of 1 and 10 respectively. It may or may not be desirable to conclude that the two datasets come from different persistence diagram generators (i.e. conclude $\mathcal P^{(1)} \neq \mathcal P^{(2)}$) since inference would be based on geometrical (scaling) differences rather than topological differences. If we wish to focus only on topological differences, we propose a possible preprocessing step to normalize scaling. Specifically, we standardize the persistence diagrams so that all the homological features are re-scaled to $[0, 1]\times[0,1]$. This simple standardization takes the persistence diagram window and shrinks it or expands it to fill the $[0, 1]\times[0,1]$ window, maintaining the same relationship among all the homological features. If there is concern about outliers, then other quantiles could be used for the standardization. The exception is with the CORR, in which the point cloud itself is standardized to $[0, 1]\times[0, 1]\times[0, 1]$.
 
-We repeated the simulation study from \S \ref{sec:results1} except including our standardization; the results are displayed in \figref{fig:subLinesUnnormApp}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same: EC, CORR, SILEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, the KC, WIK, and other SIL tests have essentially constant p-values across the percFil variation, losing effectiveness in distinguishing differences. One interpretation may be that these tests captured only geometric dissimilarities in the unstandardized setting.
+We repeated the simulation study from \S \ref{sec:results1} except including our standardization; the results are displayed in \figref{fig:subLinesNormApp}. Standardization had an appreciable impact on hypothesis test results, decreasing the effectiveness and sensitivity of all test statistics. Notice, however, that the best-performing test statistics remain the same: EC, CORR, SILEC tests, confirming that the properties underlying those three tests are better able to capture purely topological differences than any other test presented in this paper. Notably after standardization, the KC, WIK, and other SIL tests have essentially constant p-values across the percFil variation, losing effectiveness in distinguishing differences. One interpretation may be that these tests captured only geometric dissimilarities in the unstandardized setting.
+
+
+
+% --------------- BEGIN FIGURES -----------------
+
+\begin{center}
+  \begin{figure}[htp!]
+    \centering
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{EC Tests}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_euler_group.pdf}
+%      \label{fig:sub_euler}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
+      \centering
+      \caption{EC Tests (Standardized Ratio)}
+      \includegraphics[height = .78in]{figure_8_joint_euler_group.pdf}
+      \label{fig:sub_euler_normed}
+    \end{subfigure}
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{SIL Tests}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_silhouette_group.pdf}
+%      \label{fig:sub_silh}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
+      \centering
+      \caption{SIL Tests (Standardized Ratio)}
+      \includegraphics[height = .78in]{figure_8_joint_silhouette_group.pdf}
+      \label{fig:sub_silh_normed_normed}
+    \end{subfigure}
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{IK Tests}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_contour_group.pdf}
+%      \label{fig:sub_contour}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
+      \centering
+      \caption{IK Tests (Standardized Ratio)}
+      \includegraphics[height = .78in]{figure_8_joint_contour_group.pdf}
+      \label{fig:sub_contour_normed}
+    \end{subfigure}
+%    \begin{subfigure}{.48\textwidth}
+%      \centering
+%      \caption{WIK/PI Tests}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_weighted_contour_group.pdf}
+%      \label{fig:sub_weight}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
+      \centering
+      \caption{WIK/PI Tests (Standardized Ratio)}
+      \includegraphics[height = .78in]{figure_8_joint_weighted_contour_group.pdf}
+      \label{fig:sub_weight_normed}
+    \end{subfigure}
+%    \begin{subfigure}{.48\textwidth}
+%      \caption{CORR Tests}
+%      \includegraphics[width=\linewidth, height = .75in]{figure_8_correlation_group.pdf}
+%      \label{fig:sub_corr}
+%    \end{subfigure}
+    \begin{subfigure}{.47\textwidth}
+      \caption{CORR Tests (Standardized Ratio)}
+      \includegraphics[height = .78in]{figure_8_joint_correlation_group.pdf}
+      \label{fig:sub_corr_normed}
+    \end{subfigure}
+    \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\%, 15\%, 20\%, 25\%, 30\%), compared to the null PercFil of 10\%; The vertical axis shows the ration of the unstandardized p-values (from Figure~\ref{fig:subLinesUnnormApp}) over the standardized p-values. The lines plots the median ratio and the error bars show the 25th and 75th percentiles of the 1000 iterations. 
+    }
+    \label{fig:subLinesNormApp}
+  \end{figure}
+\end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: APPLICATION
@@ -726,46 +797,13 @@ We repeated the simulation study from \S \ref{sec:results1} except including our
 \section{Application: Cosmological Simulation Data}
 \label{sec:application}
 
-Similar to the simulation models from \S \ref{sec:sim_model}, Megaparsec cosmic mass distributions are likewise characterized by intricate multiscale configuration of web-like filaments and voids. We apply the proposed methodology to cosmological simulation data.
+In order to study differences in LSS under varying cosmological models, cosmologists run large-scale, computationally intensive simulations using the varying cosmological model settings as inputs.  In this work, we are interested in how the LSS under the assumption of CDM compares to the LSS under the assumption of WDM.
+We analyze the N-body simulations of structure formation displayed in Figure~\ref{fig:introData}. The simulation box is 100 comoving\footnote{Because of the expansion of the universe, distances between objects change across time.  Comoving distance removes the effect of the expansion.  This is in contrast to a \emph{proper distance}, which changes across cosmic time.  For more discussion on distances in astronomy, see \cite{Hogg:1999aa}.} Mpc on each side, and the numerical integration of the gravitational forces is run from redshift 127, when the age of the Universe is assumed to be less than 10Myr, to the present day (13.8 Gyr). The cosmological parameters are consistent with the 7-year results from the WMAP satellites: matter density $\Omega_0 = 0.272$, dark energy density $\Omega_{\Lambda} = 0.728$, Hubble parameter $h_0 = 0.704$, spectral index $n_s=0.967$, and power spectrum normalization $\sigma_8=0.81$. The mass of the simulation particle is $8.8 \times 10^6$ $M_{sun}$. Haloes and subhaloes were identified using the SUBFIND algorithm \citep{springel2001populating}, and the smallest halo that can be resolved has 20 particles. These runs were performed to be dark matter-only counterparts to the the hydrodynamical runs of the Eagle project \citep{schaye2015eagle}; we stress that the runs used in this paper use gravity alone.
 
-{\color{red}
-\begin{itemize}
-\item  Discuss LSS
-\item  Discuss Cosmological simulations
-\item  Discuss Warm vs. Cold DM
-\end{itemize}
-Real observations of cosmic web:  Great Wall \citep{geller1989mapping}, Sloan Great Wall \citep{gott2005map}, gas \citep{cantalupo2014cosmic}.}
 
-\begin{figure}[htp!]
-  \centering
-  \begin{subfigure}{0.31\textwidth}
-    \centering
-        \caption{Cube 1}
-  \includegraphics[width=\linewidth]{figure_10_cdm_slice_17.pdf}
-    \label{fig:cubeDiagsA}
-  \end{subfigure}
-    \begin{subfigure}{0.31\textwidth}
-    \centering
-        \caption{Cube 2}
-  \includegraphics[width=\linewidth]{figure_10_cdm_slice_34.pdf}
-    \label{fig:cubeDiagsB}
-  \end{subfigure}
-    \begin{subfigure}{0.31\textwidth}
-    \centering
-        \caption{Cube 3}
-  \includegraphics[width=\linewidth]{figure_10_cdm_slice_51.pdf}
-    \label{fig:cubeDiagsC}
-  \end{subfigure}
-    \caption{Three subsets of the CDM simulation each representing $\frac{1}{64}$th of the CDM simulation.}
-    \label{fig:cubeDiags}
-\end{figure}
+Both the WDM and CDM simulations make use of the same initial phases (giving them similar large-scale features), and differ in that the latter has wave amplitudes rescaled using the transfer function of a 3.3keV thermal relic, with the relic mass chosen to be in agreement with the Lyman-alpha constraints of \citep{viel2013warm}. This results in the suppression of structure on the scale of dwarf galaxies. Spurious subhaloes have been removed using the algorithm of \citep{lovell2014properties}. \figref{fig:eagleDiags} shows the persistence diagrams for the WDM and CDM simulations in Figure~\ref{fig:introData}.   The CDM data appear denser than the WDM data, but seem to share similar internal structure (due to the same initial phases); the persistence diagrams also share a general structure but we can identify smaller differences in homology groups that we hope to quantify using the hypothesis testing framework. 
+These diagrams were generated using DTM with a resolution of $2$ Mpc for each side of the simulation cube and a tuning parameter of $0.001$.
 
-Warm and cold dark matter are traditionally believed to produce very different realizations of the observable Universe, with the latter involving more slowly moving particles prone to produce a more lumpy distribution of galaxies and clusters. The former, containing more kinetic energy, has higher resistance to formation of global structure, and is theorized to render a less topologically-interesting cosmic mass. Applying the hypothesis testing framework would offer a method to \emph{quantify} the topological differences between simulations with underlying WDM and CDM assumptions.
-
-Starting with two cosmological simulation cubes (one representing CDM and the other WDM), one might consider cutting up the cubes into sub-cubes to bootstrap similar \emph{sets} of samples as used in the Voronoi experiments. Let a \textit{double-split} be defined as splitting the simulation cube along both the $x$ and $y$ axis, creating 4 equally sized cubes in total. Similarly, a \textit{quadruple-split} produces 64 equally sized cubes, further splitting each of the cubes in a \textit{double-split} set into four sub-cubes. Using this splitting technique on both the CDM and WDM simulations, we end up with two usable data sets similar to the Voronoi Foam. However, by artifically expanding our data set, the WDM and CDM data sets are then correlated due to their identical initial conditions. Because of this, the skeleton structure of the warm and cold DM simulations are nearly identical, allowing for paired T-tests. Note that there is also correlation between the samples due to the large-scale structure crossing the boundaries of the sub-cubes. We investigate this by varying sub-cube sizes, but consequently by doing so, change our sample size.
-
-\subsection{The EAGLE project}
-We analyze N-body simulations of structure formation. The simulation box is 100 co-moving Mpc on a side, and the numerical integration of the gravitational forces is run from redshift 127, when the age of the Universe is assumed to be less than 10Myr, to the present day (13.8 Gyr). The cosmological parameters are consistent with the 7-year results from the WMAP satellites: matter density $\Omega_0 = 0.272$, dark energy density $\Omega_{\Lambda} = 0.728$, Hubble parameter $h_0 = 0.704$, spectral index $n_s=0.967$, and power spectrum normalization $\sigma_8=0.81$. The mass of the simulation particle is $8.8x10^6$ $M_{sun}$. Haloes and subhaloes were identified using the SUBFIND algorithm \citep{springel2001populating}, and the smallest halo that can be resolved has 20 particles. These runs were performed to be dark matter-only counterparts to the the hydrodynamical runs of the Eagle project \citep{schaye2015eagle}; we stress that the runs used in this paper use gravity alone.
 
 \begin{figure}[htp!]
   \centering
@@ -780,23 +818,57 @@ We analyze N-body simulations of structure formation. The simulation box is 100 
 %    \label{fig:eagleDiagsB}
 %  \end{subfigure}
   \begin{subfigure}{0.45\textwidth}
-    \caption{CDM Persistence Diagram}
-    \includegraphics[width=\linewidth]{figure_11_cdm_pd.pdf}
-    \label{fig:eagleDiagsC}
-  \end{subfigure}
-  \begin{subfigure}{0.45\textwidth}
     \caption{WDM Persistence Diagram}
     \includegraphics[width=\linewidth]{figure_11_wdm_pd.pdf}
     \label{fig:eagleDiagsD}
   \end{subfigure}
-  \caption{(a) Persistence diagram for the CDM simulation of Figure~\ref{fig:introDataCDM}; (b) Persistence diagram for the WDM simulation of Figure~\ref{fig:introDataWDM}.}
+  \begin{subfigure}{0.45\textwidth}
+    \caption{CDM Persistence Diagram}
+    \includegraphics[width=\linewidth]{figure_11_cdm_pd.pdf}
+    \label{fig:eagleDiagsC}
+  \end{subfigure}
+  \caption{(a) Persistence diagram for the WDM simulation of Figure~\ref{fig:introDataWDM}; (b) Persistence diagram for the CDM simulation of Figure~\ref{fig:introDataCDM}.}
   \label{fig:eagleDiags}
 \end{figure}
 
-Both the CDM and WDM simulations make use of the same initial phases, and differ in that the latter has wave amplitudes rescaled using the transfer function of a 3.3keV thermal relic, with the relic mass chosen to be in agreement with the Lyman-alpha constraints of \citep{viel2013warm}. This results in the suppression of structure on the scale of dwarf galaxies. Spurious subhaloes have been removed using the algorithm of \citep{lovell2014properties}. \figref{fig:eagleDiags} shows a scatter plot of both the CDM and WDM simulations along with their respective persistent diagrams. Visually, we can confirm that the CDM is far more dense than WDM but seem to share similar internal structure; the persistence diagrams also share a general structure but we can identify smaller differences in homology groups that we hope to quantify using the hypothesis testing framework. These diagrams were generated under a volume of $1\times 10^{6}$, resolution of $2$ and a DTM distance function with hyper-parameter $0.001$.
 
-\subsection{Results}
-Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unstandardized (left) results of the five categories of hypothesis tests. The unstandardized results suggest that with a higher number of splits, we are able to focus on smaller-scale topology, finding more significant differences. Through standardizing the persistence diagrams, we see that all the frameworks produce higher p-values on average and are less confident in the difference between double-split and quadruple-split datasets. This seems to explain that similar to the Voronoi foams, a large degree of the difference between WDM and CDM assumptions in the LSS are due to geometrical properties such as size. Judging from our most sensitive test statistics, Table \ref{table:hypoCDMWDMresults} suggest that statistically significant differences in topology exist between WDM and CDM realizations.
+Because we only have one realization of the WDM simulation and one of the CDM simulation, we consider a modification of the two-sample hypothesis tests used in the simulation study of Section~\ref{sec:simulation}.   
+Each simulation cube is divided into disjoint sub-cubes producing $2^3$ and $4^3$ samples.
+%
+An additional issue is that the WDM and CDM simulations were generated using the same initial phase - this results in a correlation of the largest-scale structures between the WDM and CDM simulations.  Rather than performing two-sample T-tests, the sub-cubes of the two simulation cubes are \emph{paired} with the corresponding cube in the other simulation.
+
+
+%\begin{figure}[htp!]
+%  \centering
+%  \begin{subfigure}{0.31\textwidth}
+%    \centering
+%        \caption{Cube 1}
+%  \includegraphics[width=\linewidth]{figure_10_cdm_slice_17.pdf}
+%    \label{fig:cubeDiagsA}
+%  \end{subfigure}
+%    \begin{subfigure}{0.31\textwidth}
+%    \centering
+%        \caption{Cube 2}
+%  \includegraphics[width=\linewidth]{figure_10_cdm_slice_34.pdf}
+%    \label{fig:cubeDiagsB}
+%  \end{subfigure}
+%    \begin{subfigure}{0.31\textwidth}
+%    \centering
+%        \caption{Cube 3}
+%  \includegraphics[width=\linewidth]{figure_10_cdm_slice_51.pdf}
+%    \label{fig:cubeDiagsC}
+%  \end{subfigure}
+%    \caption{Three subsets of the CDM simulation each representing $\frac{1}{64}$th of the CDM simulation.}
+%    \label{fig:cubeDiags}
+%\end{figure}
+
+
+
+%\subsection{Results}
+Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unstandardized (left) results of the proposed hypothesis tests on the cosmological simulation data.. The unstandardized results suggest that with a higher number of sub-cubes, we are able to focus on smaller-scale topology, finding more significant differences. 
+%
+As expected, standardizing the persistence diagrams results in higher p-values on average. 
+Judging from our most sensitive test statistics, Table \ref{table:hypoCDMWDMresults} suggest that statistically significant differences in topology exist between WDM and CDM realizations.
 
 \begin{table}[htp!]
     \begin{center}
@@ -804,53 +876,53 @@ Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unst
           \toprule
           \multicolumn{3}{c}{Unstandardized} \\
           \toprule
-          Test & 8 Sub-cubes & 64 Sub-cubes \\
+          Test & $2^3$ Sub-cubes & $4^3$ Sub-cubes \\
           \midrule
-          EC & 1.156e-06 & 7.379e-26 \\
-          $\textup{EC}_{0:2}$ & 2.104e-05 & 7.379e-28 \\
-          $\textup{EC}_{0}$ & 3.273e-08 & 3.811e-30 \\
-          $\textup{EC}_{1}$ &  1.849e-05 & 0.935 \\
-          $\textup{EC}_{2}$ & 0.340 & 0.0877 \\
+          EC & 1.2e-06 & 7.4e-26 \\
+          $\textup{EC}_{0:2}$ & 2.1e-05 & 7.4e-28 \\
+          $\textup{EC}_{0}$ & 3.3e-08 & 3.8e-30 \\
+          $\textup{EC}_{1}$ &  1.8e-05 & 0.935 \\
+          $\textup{EC}_{2}$ & 0.340 & 0.088 \\
           \midrule
-          $\textup{Sil}_{\textup{EC}}$ & 7.709e-08 & 2.455e-20 \\
-          $\textup{Sil}_{0:2}$ & 1.892e-06 & 1.114e-33 \\
-          $\textup{Sil}_{0}$ & 2.958e-08 & 1.489e-34 \\
-          $\textup{Sil}_{1}$ & 1.169e-05 & 2.884e-23 \\
-          $\textup{Sil}_{2}$ & 0.925 & 0.0345 \\
+          $\textup{Sil}_{\textup{EC}}$ & 7.7e-08 & 2.5e-20 \\
+          $\textup{Sil}_{0:2}$ & 1.9e-06 & 1.1e-33 \\
+          $\textup{Sil}_{0}$ &3.0e-08 & 1.5e-34 \\
+          $\textup{Sil}_{1}$ & 1.2e-05 & 2.9e-23 \\
+          $\textup{Sil}_{2}$ & 0.93 & 0.035 \\
           \midrule
           $\textup{KC}_{0}$ & 0.442 & 0.000 \\
           $\textup{KC}_{1}$ & 0.192 & 0.000 \\
-          $\textup{KC}_{2}$ & 0.248 & 0.00199 \\
+          $\textup{KC}_{2}$ & 0.248 & 0.002 \\
           \midrule
           $\textup{WIK}_{0}$ & 0.084 & 0.000 \\
           $\textup{WIK}_{1}$ & 0.051 & 0.000 \\
           $\textup{WIK}_{2}$ & 0.496 & 0.000 \\
           $\textup{PI}$ & 0.923 & 0.281 \\
           \midrule
-          $\textup{CORR}$ & 6.656e-04 & 7.355e-16 \\
+          $\textup{CORR}$ & 6.7e-04 & 7.4e-16 \\
           \bottomrule
         \end{tabular}
         \begin{tabular}{ l | c |  c }
           \toprule
           \multicolumn{3}{c}{Standardized} \\
           \toprule
-          Test & 8 Sub-cubes& 64 Sub-cubes \\
+          Test & $2^3$ Sub-cubes& $4^3$ Sub-cubes \\
           \midrule
-          EC & 1.102e-04 &  7.345e-12 \\
-          $\textup{EC}_{0:2}$ & 1.327e-05 &  3.972e-14 \\
-          $\textup{EC}_{0}$ & 1.387e-06 & 1.614e-12 \\
-          $\textup{EC}_{1}$ & 0.0235 & 0.00143 \\
-          $\textup{EC}_{2}$ & 0.00385 & 1.977e-07 \\
+          EC & 1.1e-04 &  7.3e-12 \\
+          $\textup{EC}_{0:2}$ & 1.3e-05 &  4.0e-14 \\
+          $\textup{EC}_{0}$ & 1.4e-06 & 1.6e-12 \\
+          $\textup{EC}_{1}$ & 0.024 & 0.001 \\
+          $\textup{EC}_{2}$ & 0.004 & 2.0e-07 \\
           \midrule
-          $\textup{Sil}_{\textup{EC}}$ & 0.0122 & 0.00500 \\
-          $\textup{Sil}_{0:2}$ & 4.295e-04 & 8.072e-12 \\
-          $\textup{Sil}_{0}$ & 6.471e-06 & 1.762e-11 \\
-          $\textup{Sil}_{1}$ & 0.0282 & 3.899e-07 \\
-          $\textup{Sil}_{2}$ & 0.00294 & 1.545e-04 \\
+          $\textup{Sil}_{\textup{EC}}$ & 0.0122 & 0.005 \\
+          $\textup{Sil}_{0:2}$ & 4.3e-04 & 8.1e-12 \\
+          $\textup{Sil}_{0}$ & 6.5e-06 & 1.8e-11 \\
+          $\textup{Sil}_{1}$ & 0.028 & 3.9e-07 \\
+          $\textup{Sil}_{2}$ & 0.003 & 1.5e-04 \\
           \midrule
-          $\textup{GC}_{0}$ & 0.986 & 0.856 \\
-          $\textup{GC}_{1}$ & 0.962 & 0.956 \\
-          $\textup{GC}_{2}$ & 0.962 & 0.260 \\
+          $\textup{KC}_{0}$ & 0.986 & 0.856 \\
+          $\textup{KC}_{1}$ & 0.962 & 0.956 \\
+          $\textup{KC}_{2}$ & 0.962 & 0.260 \\
           \midrule
           $\textup{WIK}_{0}$ & 0.092 & 0.000 \\
           $\textup{WIK}_{1}$ & 0.066 & 0.000 \\
@@ -861,91 +933,113 @@ Table \ref{table:hypoCDMWDMresults} shows both the standardized (right) and unst
           \bottomrule
         \end{tabular}
     \end{center}
-\caption{P-values from hypothesis tests on the unstandardized (left) and standardized (right) WDM \& CDM simulations by double, and quadruple splits. A p-value of $0.000$ comes from a permutation test with no positive examples. As the number of splits increases, the p-values dramatically decrease for the unstandardized setting, suggesting small-scale geometric and topological differences. A similar pattern is present, though less pronounced in the standardized setting.}
+\caption{P-values from hypothesis tests on the unstandardized (left) and standardized (right) WDM and CDM simulations using $2^3$ and $4^3$ sub-cubes. A p-value of $0.000$ comes from a permutation test with no positive examples. 
+}
 \label{table:hypoCDMWDMresults}
 \end{table}
 
-\subsection{Local comparisons}
-After discovering differences in both geometry and topology, a good question would be how are these differences distributed? One hypothesis might be that differences are grouped among clustered sections of the observable Universe while other galaxies are practically identical. It is also possible that the differences are uniformly distributed across our cosmic data. To explore these questions more, we looked at the Bottleneck distances between different cubic splits as the number of splits increased. Because a higher number of splits focuses on smaller parts of the CDM/WDM simulation, we expect higher resolution into the topological features specific to that region. \figref{fig:cubeHeatmap} shows 3 sets of heatmaps for each of the 3 persistent homologies. Each set includes another 3 heatmaps, detailing the Bottleneck distances between congruent CDM and WDM for unsplit, double-split, and quadruple-split partitions respectively.
+%\subsection{Local comparisons}
+The results from Table~\ref{table:hypoCDMWDMresults} suggests that there are topological differences in the LSS under CDM and WDM.  Next we explore where these differences in structure are most pronounced.  The bottleneck distances between the persistence diagrams for each sub-cube for $H_0$, $H_1$, and $H_2$ are computed, where the bottleneck distance between two persistence diagrams $\mathcal D_{1h}$ and $\mathcal D_{2h}$ for a homology dimension $h$ is
+%
+\begin{equation*}
+\text{Bottleneck}(\mathcal D_{1h}, \mathcal D_{2h}) = \inf_{\eta: \mathcal D_{1h} \rightarrow \mathcal D_{2h}} \sup_{x \in \mathcal D_{1h}} \|x - \eta(x)  \|_{\infty}
+\end{equation*}
+%
+where $\eta$ defines a bijection between the two persistence diagrams (allowing for matches to the diagonal if there is an imbalance of features on the diagrams), and $x \in \mathbb R^2$ \citep{edelsbrunner2010computational}.
+
+
+The results for the full simulation cubes, $2^3$ sub-cubes, and $4^4$ sub-cubes are displayed in \figref{fig:cubeHeatmap}.  The standardized persistence diagrams result in smaller bottleneck distances, as expected.  
+%
+It is also clear that there are regions of topologically similar areas and partitions of topologically dissimilar areas between the WDM and CDM simulations.
+In \figref{fig:validationfigs}, the EC functions and two-point correlation functions are displayed for the sub-cubes with the highest bottleneck distance.
+
+
+{\color{blue}  Jessi:  add more discussion here.}
+
 
 \begin{figure}[htp!]
   \centering
-  \begin{subfigure}{.45\textwidth}
+  \begin{subfigure}{.48\textwidth}
     \centering
-    \caption{$H_0$ Heatmap Set}
+    \caption{$H_0$ Bottleneck distance}
     \includegraphics[width=\linewidth]{fig_12_hmap_dim0_nonorm.pdf}
     \label{fig:cubeHeatmap0}
   \end{subfigure}
-  \begin{subfigure}{.45\textwidth}
+  \begin{subfigure}{.48\textwidth}
     \centering
-    \caption{$H_0$ Standardized Heatmap Set}
+    \caption{$H_0$ Bottleneck distance (standardized)}
     \includegraphics[width=\linewidth]{fig_12_hmap_dim0_yesnorm.pdf}
     \label{fig:cubeHeatmapStand0}
   \end{subfigure}
-  \begin{subfigure}{.45\textwidth}
+  \begin{subfigure}{.48\textwidth}
     \centering
-    \caption{$H_1$ Heatmap Set}
+    \caption{$H_1$ Bottleneck distance}
     \includegraphics[width=\linewidth]{fig_12_hmap_dim1_nonorm.pdf}
     \label{fig:cubeHeatmap1}
   \end{subfigure}
-  \begin{subfigure}{.45\textwidth}
+  \begin{subfigure}{.48\textwidth}
     \centering
-    \caption{$H_1$ Standardized Heatmap Set}
+    \caption{$H_1$ Bottleneck distance (standardized)}
     \includegraphics[width=\linewidth]{fig_12_hmap_dim1_yesnorm.pdf}
     \label{fig:cubeHeatmapStand1}
   \end{subfigure}
-  \begin{subfigure}{.45\textwidth}
+  \begin{subfigure}{.48\textwidth}
     \centering
-    \caption{$H_2$ Heatmap Set}
+    \caption{$H_2$ Bottleneck distance}
     \includegraphics[width=\linewidth]{fig_12_hmap_dim2_nonorm.pdf}
     \label{fig:cubeHeatmap2}
   \end{subfigure}
-  \begin{subfigure}{.45\textwidth}
+  \begin{subfigure}{.48\textwidth}
     \centering
-    \caption{$H_2$ Standardized Heatmap Set}
+    \caption{$H_2$ Bottleneck distance (standardized)}
     \includegraphics[width=\linewidth]{fig_12_hmap_dim2_yesnorm.pdf}
     \label{fig:cubeHeatmapStand2}
   \end{subfigure}
-  \caption{Each subfigure is a heatmap set representing the Bottleneck distances between the persistence diagrams of the CDM and WDM simulations for the full volume (first panel), 8 sub-cubes (2nd panel), and 64 sub-cubes (bottom panel).  The left column (a, c, e) use the raw persistence diagrams while the right column (b, d, f) use the standardized persistence diagrams.  Row one (a, b) are for $H_0$, row two (c, d) is for $H_1$, and row three (e, f) is for $H_2$.
+  \caption{Bottleneck distances between the persistence diagrams of the CDM and WDM simulations for the full cube (first panel), $2^3$ sub-cubes (2nd panel), and $4^3$ sub-cubes (bottom panel).  The left column (a, c, e) use the raw persistence diagrams while the right column (b, d, f) use the standardized persistence diagrams.  Row one (a, b) are for $H_0$, row two (c, d) is for $H_1$, and row three (e, f) is for $H_2$.
 }
   \label{fig:cubeHeatmap}
 \end{figure}
 
-From \figref{fig:cubeHeatmap}, we might infer that the topological and geometric differences are certainly not uniform. For each of the three homologies, introducing a greater number of splits uncovers greater magnitudes of Bottleneck distances between CDM and WDM cubes. This suggests that it is possible for topological differences to be masked by local similarities from a global perspective. At the very least, we can be confident that there exist partitions of topologically similar areas and partitions of topologically dissimilar areas within the EAGLE simulation.
+
+
+
+
+
+
+
+
 
 \begin{figure}[htp!]
   \centering
-    \begin{subfigure}{0.24\textwidth}
+    \begin{subfigure}{0.48\textwidth}
     \centering
         \caption{EC (High)}
-\includegraphics[width = 1.15in]{figure_13_max_margin_2euler.pdf}
+\includegraphics[height = 2in]{figure_13_max_margin_2euler.pdf}
     \label{fig:valid1}
   \end{subfigure}
-    \begin{subfigure}{0.24\textwidth}
+    \begin{subfigure}{0.48\textwidth}
     \centering
         \caption{CORR (High)}
-\includegraphics[width = 1.46in]{figure_13_max_margin_corr.pdf}
+\includegraphics[height = 2in]{figure_13_max_margin_corr.pdf}
     \label{fig:valid2}
-  \end{subfigure}
-    \begin{subfigure}{0.24\textwidth}
+  \end{subfigure} \\
+    \begin{subfigure}{0.48\textwidth}
     \centering
         \caption{EC (Low)}
-\includegraphics[width = 1.15in]{figure_13_min_margin_2euler.pdf}
+\includegraphics[height = 2in]{figure_13_min_margin_2euler.pdf}
     \label{fig:valid3}
   \end{subfigure}
-    \begin{subfigure}{0.24\textwidth}
+    \begin{subfigure}{0.48\textwidth}
     \centering
         \caption{CORR (Low)}
-\includegraphics[width = 1.46in]{figure_13_min_margin_corr.pdf}
+\includegraphics[height = 2in]{figure_13_min_margin_corr.pdf}
     \label{fig:valid4}
   \end{subfigure}
     \caption{A comparison of EC and CORR between the cube with the highest bottleneck distance and the cube with the lowest. (a) and (b) clearly depict larger distinctions between the CDM (red) and WDM (blue) slices than (c) and (d).}
     \label{fig:validationfigs}
 \end{figure}
 
-Provided that EC and CORR were the two most effective hypothesis tests, to confirm the validity of these heatmaps, we compared these two functions for the unstandardized cubes with the highest Bottleneck distance and the unstandardized cubes with the lowest Bottleneck distance. As expected, \figref{fig:validationfigs} confirms that the (High) EC and (High) CORR functions have far more discrepancies than their (Low) counterparts, also suggesting that certain partitions are more similar topologically than others.
 
-We can do the same heatmap experiment with the standardized persistence diagrams. As confirmed in the hypothesis testing of both the Voronoi and the EAGLE simulations, standardizing removes geometric differences, greatly reducing the Bottleneck distances, as seen in \figref{fig:cubeHeatmap} (b,d,f). Notably, for dimensions 0 and 1, the slice with the largest bottleneck distance remained the same as in the unstandardized heatmaps, suggesting that those differences are largely not due to size, but true topological distinctions. Dimension 2, however, was less consistent, possibly indicating that voids in CDM and WDM are more aberrant in terms of size, not topological shape. Despite the differences standardizing induced, we are still confident that differences in topology alone are not uniform across the EAGLE Universe: certain splits are consistently indicating differences in dark matter make-up between warm and cold assumptions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: CONCLUSION
@@ -955,83 +1049,87 @@ We can do the same heatmap experiment with the standardized persistence diagrams
 \label{sec:conc}
 In this paper, we presented a hypothesis testing framework built on persistent homology to compare topological summaries of two sets of point cloud data. We showed empirically that such a framework is able to infer differences in the true distribution of topology by comparing Voronoi tessellations with controlled hyperparameters. Additionally, we presented the application of this framework on the EAGLE data set to analyze the topology of the cosmic mass given assumptions of warm and cold dark matter, resulting in the discovering of locally significant spatial differences in geometry and topology. We believe this framework may provide a standard method for evaluating topological hypotheses in a diverse array of fields that greatly improve over currently existing methods.
 
+{\color{blue}  Jessi:  add more discussion here.}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% SECTION: Appendix
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\appendix
-
-
-\section{Expanded Simulation Study} \label{app:simulation}
-
-Hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesUnnormApp}.
-
-  \begin{center}
-    \begin{figure}[htp!]
-      \centering
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{EC Tests}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_euler_group.pdf}
-        \label{fig:all_euler}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{EC Tests (Standardized Ratio)}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_euler_group.pdf}
-        \label{fig:all_euler_normed}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{SIL Tests}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_silhouette_group.pdf}
-        \label{fig:all_silh}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{SIL Tests (Standardized Ratio)}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_silhouette_group.pdf}
-        \label{fig:all_silh_normed_normed}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{IK Tests}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_contour_group.pdf}
-        \label{fig:all_contour}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{IK Tests (Standardized Ratio)}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_contour_group.pdf}
-        \label{fig:all_contour_normed}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{WIK/PI Tests}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_weighted_contour_group.pdf}
-        \label{fig:all_weight}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \centering
-        \caption{WIK/PI Tests (Standardized Ratio)}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_weighted_contour_group.pdf}
-        \label{fig:all_weight_normed}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \caption{CORR Tests}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_correlation_group.pdf}
-        \label{fig:all_corr}
-      \end{subfigure}
-      \begin{subfigure}{.48\textwidth}
-        \caption{CORR Tests (Standardized Ratio)}
-        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_correlation_group.pdf}
-        \label{fig:all_corr_normed}
-      \end{subfigure}
-      \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\% to 90\% by 10\% increments) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. Points containing X marks indicate a p-value of exactly 0, usually by imprecision of the permutation test. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.  
-      }
-      \label{fig:linesUnnormApp}
-    \end{figure}
-  \end{center}
+%\appendix
+%
+%
+%\section{Expanded Simulation Study} \label{app:simulation}
+%
+%Hypothesis testing p-values for voronoi simulations of percent filament varying from 0.1 to 0.9. See \figref{fig:linesUnnormApp}.
+%
+%  \begin{center}
+%    \begin{figure}[htp!]
+%      \centering
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{EC Tests}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_euler_group.pdf}
+%        \label{fig:all_euler}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{EC Tests (Standardized Ratio)}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_euler_group.pdf}
+%        \label{fig:all_euler_normed}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{SIL Tests}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_silhouette_group.pdf}
+%        \label{fig:all_silh}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{SIL Tests (Standardized Ratio)}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_silhouette_group.pdf}
+%        \label{fig:all_silh_normed_normed}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{IK Tests}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_contour_group.pdf}
+%        \label{fig:all_contour}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{IK Tests (Standardized Ratio)}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_contour_group.pdf}
+%        \label{fig:all_contour_normed}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{WIK/PI Tests}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_weighted_contour_group.pdf}
+%        \label{fig:all_weight}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \centering
+%        \caption{WIK/PI Tests (Standardized Ratio)}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_weighted_contour_group.pdf}
+%        \label{fig:all_weight_normed}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \caption{CORR Tests}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_all_correlation_group.pdf}
+%        \label{fig:all_corr}
+%      \end{subfigure}
+%      \begin{subfigure}{.48\textwidth}
+%        \caption{CORR Tests (Standardized Ratio)}
+%        \includegraphics[width=\linewidth, height = .75in]{figure_8_joint_all_correlation_group.pdf}
+%        \label{fig:all_corr_normed}
+%      \end{subfigure}
+%      \caption{Results for EC, SIL, IK, WIK, PI, and CORR tests. X-axis represents the true PercFil (10\% to 90\% by 10\% increments) of the second population, compared to the null PercFil of 10\%; The vertical axis shows the $\log_{10}$(p-values). The lines plots the median $\log_{10}$ p-value and error bars show the 25th and 75th percentiles of the 1000 iterations. Points containing X marks indicate a p-value of exactly 0, usually by imprecision of the permutation test. The right column of plots show the ratio of the unstandardized p-value divided by the standardized p-value for each PercFil.  
+%      }
+%      \label{fig:linesUnnormApp}
+%    \end{figure}
+%  \end{center}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
