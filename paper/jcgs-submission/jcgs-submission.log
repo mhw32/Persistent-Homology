@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 DEC 2016 22:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 DEC 2016 12:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1063,13 +1063,13 @@ Package pdftex.def Info: figs/fig_12_hmap_dim2_yesnorm.pdf used on input line 9
 95.
 (pdftex.def)             Requested size: 221.88762pt x 48.76845pt.
 
-<figs/figure_13_maxmin_margin_euler.pdf, id=1019, 505.89pt x 505.89pt>
+<figs/figure_13_maxmin_margin_euler.pdf, id=1019, 504.92957pt x 462.38736pt>
 File: figs/figure_13_maxmin_margin_euler.pdf Graphic file (type pdf)
 
 <use figs/figure_13_maxmin_margin_euler.pdf>
 Package pdftex.def Info: figs/figure_13_maxmin_margin_euler.pdf used on input l
 ine 1009.
-(pdftex.def)             Requested size: 144.54294pt x 144.54pt.
+(pdftex.def)             Requested size: 157.83632pt x 144.54pt.
 
 <figs/figure_13_maxmin_margin_corr.pdf, id=1020, 578.16pt x 397.485pt>
 File: figs/figure_13_maxmin_margin_corr.pdf Graphic file (type pdf)
@@ -1099,8 +1099,12 @@ on: multiple pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./figs/fig_12_hmap_dim2_yesnorm.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
->] [25 <./figs/figure_13_maxmin_margin_euler.pdf> <./figs/figure_13_maxmin_marg
-in_corr.pdf>] [26]
+> <./figs/figure_13_maxmin_margin_euler.pdf> <./figs/figure_13_maxmin_margin_co
+rr.pdf
+
+pdfTeX warning: pdflatex (file ./figs/figure_13_maxmin_margin_corr.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+>] [25]
 Missing character: There is no æ in font cmr12!
 Missing character: There is no ¸ in font cmr12!
 Missing character: There is no … in font cmr12!
@@ -1134,7 +1138,7 @@ Missing character: There is no ¬ in font cmr12!
 Missing character: There is no å in font cmr12!
 Missing character: There is no  in font cmr12!
 Missing character: There is no ¸ in font cmr12!
- [27] [28]) [29] (./jcgs-submission.aux) ) 
+ [26] [27]) [28] (./jcgs-submission.aux) ) 
 Here is how much of TeX's memory you used:
  15450 strings out of 493014
  299439 string characters out of 6133351
@@ -1163,10 +1167,10 @@ cm/cmti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmti12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmtt12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on jcgs-submission.pdf (29 pages, 5394030 bytes).
+Output written on jcgs-submission.pdf (28 pages, 5382517 bytes).
 PDF statistics:
- 1228 PDF objects out of 1440 (max. 8388607)
- 579 compressed objects within 6 object streams
+ 1230 PDF objects out of 1440 (max. 8388607)
+ 586 compressed objects within 6 object streams
  0 named destinations out of 1000 (max. 500000)
  213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

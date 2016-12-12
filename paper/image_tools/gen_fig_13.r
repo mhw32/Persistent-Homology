@@ -56,7 +56,7 @@ pdf('figure_13_maxmin_margin_euler.pdf')
 par(mar=c(5,6,4,2))
 plot(max_euler2, 
      type="l", 
-     xlab="Time", 
+     xlab="t", 
      ylab="EC", 
      col=rgb(248, 137, 113 ,255, maxColorValue=255),
      lwd=1.5,
@@ -65,12 +65,12 @@ plot(max_euler2,
      cex.main=2.5, 
      cex.sub=2.5)
 lines(max_euler1, lwd=1.5, col=rgb(63, 223, 218, 255, maxColorValue=255))
-lines(min_euler2, lwd=1.5, lty="solid", col=rgb(202, 109, 89 ,255, maxColorValue=255))
-lines(min_euler1, lwd=1.5, lty="solid", col=rgb(46, 165, 162, 255, maxColorValue=255))
+# lines(min_euler2, lwd=1.5, lty="solid", col=rgb(202, 109, 89 ,255, maxColorValue=255))
+# lines(min_euler1, lwd=1.5, lty="solid", col=rgb(46, 165, 162, 255, maxColorValue=255))
 legend("topright", 
-       c("CDM (High)", "WDM (High)", "CDM (Low)", "WDM (Low)"), 
-       col=c(rgb(248, 137, 113 ,255, maxColorValue=255), rgb(63, 223, 218, 255, maxColorValue=255), rgb(202, 109, 89 ,255, maxColorValue=255), rgb(46, 165, 162, 255, maxColorValue=255)), 
-       lty=c("solid", "solid", "solid", "solid"),
+       c("CDM", "WDM"), # , "CDM (Low)", "WDM (Low)"), 
+       col=c(rgb(248, 137, 113 ,255, maxColorValue=255), rgb(63, 223, 218, 255, maxColorValue=255)), # , #rgb(202, 109, 89 ,255, maxColorValue=255), rgb(46, 165, 162, 255, maxColorValue=255)), 
+       lty=c("solid", "solid"), # "solid", "solid"),
        lwd=1.5,
        cex=2.5)
 dev.off()

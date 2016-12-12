@@ -21,24 +21,24 @@ plt.figure()
 plt.plot(max_cdm_corr, 
          linewidth=2, 
          color='#F88971', 
-         label='CDM (High)')
+         label='CDM')
 plt.plot(max_wdm_corr, 
          linewidth=2, 
          color='#3FDFDA', 
-         label='WDM (High)')
-plt.plot(min_cdm_corr,
-         # linestyle='--', 
-         linewidth=2, 
-         color='#CA6D59', 
-         label='CDM (Low)')
-plt.plot(min_wdm_corr, 
-         # linestyle='--',
-         linewidth=2, 
-         color='#2EA5A2', 
-         label='WDM (Low)')
+         label='WDM')
+# plt.plot(min_cdm_corr,
+#          # linestyle='--', 
+#          linewidth=2, 
+#          color='#CA6D59', 
+#          label='CDM (Low)')
+# plt.plot(min_wdm_corr, 
+#          # linestyle='--',
+#          linewidth=2, 
+#          color='#2EA5A2', 
+#          label='WDM (Low)')
 
 plt.tick_params(labelsize=28)
-plt.xlabel('Radius', fontsize=28)
+plt.xlabel('Distance', fontsize=28)
 plt.ylabel('CORR', fontsize=28)
 plt.legend(loc='upper right', fontsize=28)
 plt.tight_layout()
