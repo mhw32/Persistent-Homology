@@ -90,7 +90,7 @@ def hard_line_plot(allkeys,
     matplotlib.rc('xtick', labelsize=27) 
     matplotlib.rc('ytick', labelsize=27) 
     fig, ax = plt.subplots(figsize=(20,5))
-    plt.ylabel('log10 p-value', fontsize=40)
+    plt.ylabel(r'$log_{10}(p)$', fontsize=40)
     plt.xlabel('PercFil', fontsize=40)
 
     for it in range(5):
@@ -156,27 +156,44 @@ def hard_line_plot(allkeys,
     else:
         plt.show()
 
-allkeys = ['euler', 'all-euler', 'indiv-euler-dim-0', 'indiv-euler-dim-1', 'indiv-euler-dim-2']
-allticks = ['EC', 'EC (0:2)', 'EC (0)', 'EC (1)', 'EC (2)']
-allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
-hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-7, 1], save_path='figure_8_euler_group_normed.pdf')
+def merge_dicts(*dict_args):
+    '''
+    Given any number of dicts, shallow copy and merge into a new dict,
+    precedence goes to key value pairs in latter dicts.
+    '''
+    result = {}
+    for dictionary in dict_args:
+        result.update(dictionary)
+    return result
 
-allkeys = ['silh-euler', 'all-silh', 'indiv_silh-dim-0', 'indiv_silh-dim-1', 'indiv_silh-dim-2']
-allticks = ['SIL (EC)', 'SIL (0:2)', 'SIL (0)', 'SIL (1)', 'SIL (2)']
-allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
-hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-3.5, 0.5], save_path='figure_8_silhouette_group_normed.pdf')
+# allkeys = ['euler', 'all-euler', 'indiv-euler-dim-0', 'indiv-euler-dim-1', 'indiv-euler-dim-2']
+# allticks = ['EC', 'EC (0:2)', 'EC (0)', 'EC (1)', 'EC (2)']
+# allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
+# hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-7, 1], save_path='figure_8_euler_group_normed.pdf')
 
-allkeys = ['contour-dim-0', 'contour-dim-1', 'contour-dim-2']
-allticks = ['IK (0)', 'IK (1)', 'IK (2)']
-allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
-hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-1.8, 0], save_path='figure_8_contour_group_normed.pdf')
+# allkeys = ['silh-euler', 'all-silh', 'indiv_silh-dim-0', 'indiv_silh-dim-1', 'indiv_silh-dim-2']
+# allticks = ['SIL (EC)', 'SIL (0:2)', 'SIL (0)', 'SIL (1)', 'SIL (2)']
+# allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
+# hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-3.5, 0.5], save_path='figure_8_silhouette_group_normed.pdf')
+
+# allkeys = ['contour-dim-0', 'contour-dim-1', 'contour-dim-2']
+# allticks = ['IK (0)', 'IK (1)', 'IK (2)']
+# allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
+# hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-1.8, 0], save_path='figure_8_contour_group_normed.pdf')
 
 allkeys = ['corr']
 allticks = ['CORR']
 allcolors = ['#44B3C2']
 hard_line_plot(allkeys, allticks, allcolors, bighash_corr, custom_ylim=[-5, 1], save_path='figure_8_correlation_group_normed.pdf')
 
-allkeys = ['wik_0', 'wik_1', 'wik_2', 'pi']
-allticks = ['WIK (0)', 'WIK (1)', 'WIK (2)', 'PI']
-allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46']
-hard_line_plot(allkeys, allticks, allcolors, bighash_wik, custom_ylim=[-1.2, 0], save_path='figure_8_weighted_contour_group_normed.pdf')
+# allkeys = ['wik_0', 'wik_1', 'wik_2', 'pi']
+# allticks = ['WIK (0)', 'WIK (1)', 'WIK (2)', 'PI']
+# allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46']
+# hard_line_plot(allkeys, allticks, allcolors, bighash_wik, custom_ylim=[-1.2, 0], save_path='figure_8_weighted_contour_group_normed.pdf')
+
+bighash_best = merge_dicts(bighash, bighash_corr, bighash_wik)
+allkeys = ['euler', 'silh-euler', 'contour-dim-2', 'wik_2', 'corr']
+allticks = ['EC', 'SIL (EC)', 'IK (2)', 'WIK (2)', 'CORR']
+allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
+hard_line_plot(allkeys, allticks, allcolors, bighash_best, save_path='figure_8_best_group_normed.pdf')
+
