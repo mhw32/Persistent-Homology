@@ -872,64 +872,34 @@ Judging from our most sensitive test statistics, Table \ref{table:hypoCDMWDMresu
 
 \begin{table}[htp!]
     \begin{center}
-        \begin{tabular}{ l | c | c }
+        \begin{tabular}{ l | c | c | c | c }
           \toprule
-          \multicolumn{3}{c}{Unstandardized} \\
+          \multicolumn{1}{c}{} & \multicolumn{2}{c}{Unstandardized} & \multicolumn{2}{c}{Standardized} \\
           \toprule
-          Test & $2^3$ Sub-cubes & $4^3$ Sub-cubes \\
+          Test & $2^3$ Sub-cubes & $4^3$ Sub-cubes & $2^3$ Sub-cubes & $4^3$ Sub-cubes \\
           \midrule
-          EC & 1.2e-06 & 7.4e-26 \\
-          $\textup{EC}_{0:2}$ & 2.1e-05 & 7.4e-28 \\
-          $\textup{EC}_{0}$ & 3.3e-08 & 3.8e-30 \\
-          $\textup{EC}_{1}$ &  1.8e-05 & 8.2e-21 \\
-          $\textup{EC}_{2}$ & 0.340 & 0.088 \\
+          EC & 1.2e-06 & 7.4e-26 & 1.1e-04 &  7.3e-12 \\
+          $\textup{EC}_{0:2}$ & 2.1e-05 & 7.4e-28 & 1.3e-05 &  4.0e-14 \\
+          $\textup{EC}_{0}$ & 3.3e-08 & 3.8e-30 & 1.4e-06 & 1.6e-12 \\
+          $\textup{EC}_{1}$ &  1.8e-05 & 8.2e-21 & 0.024 & 0.001 \\
+          $\textup{EC}_{2}$ & 0.340 & 0.088 & 0.004 & 2.0e-07 \\
           \midrule
-          $\textup{Sil}_{\textup{EC}}$ & 7.7e-08 & 2.5e-20 \\
-          $\textup{Sil}_{0:2}$ & 1.9e-06 & 1.1e-33 \\
-          $\textup{Sil}_{0}$ &3.0e-08 & 1.5e-34 \\
-          $\textup{Sil}_{1}$ & 1.2e-05 & 2.9e-23 \\
-          $\textup{Sil}_{2}$ & 0.93 & 0.035 \\
+          $\textup{Sil}_{\textup{EC}}$ & 7.7e-08 & 2.5e-20 & 0.0122 & 0.005 \\
+          $\textup{Sil}_{0:2}$ & 1.9e-06 & 1.1e-33 & 4.3e-04 & 8.1e-12 \\
+          $\textup{Sil}_{0}$ &3.0e-08 & 1.5e-34 & 6.5e-06 & 1.8e-11 \\
+          $\textup{Sil}_{1}$ & 1.2e-05 & 2.9e-23 & 0.028 & 3.9e-07 \\
+          $\textup{Sil}_{2}$ & 0.93 & 0.035 & 0.003 & 1.5e-04 \\
           \midrule
-          $\textup{KC}_{0}$ & 0.442 & 0.000 \\
-          $\textup{KC}_{1}$ & 0.192 & 0.000 \\
-          $\textup{KC}_{2}$ & 0.248 & 0.002 \\
+          $\textup{KC}_{0}$ & 0.442 & 0.000 & 0.986 & 0.856 \\
+          $\textup{KC}_{1}$ & 0.192 & 0.000 & 0.962 & 0.956 \\
+          $\textup{KC}_{2}$ & 0.248 & 0.002 & 0.962 & 0.260 \\
           \midrule
-          $\textup{WIK}_{0}$ & 0.084 & 0.000 \\
-          $\textup{WIK}_{1}$ & 0.051 & 0.000 \\
-          $\textup{WIK}_{2}$ & 0.496 & 0.000 \\
-          $\textup{PI}$ & 0.923 & 0.281 \\
+          $\textup{WIK}_{0}$ & 0.084 & 0.000 & 0.092 & 0.000 \\
+          $\textup{WIK}_{1}$ & 0.051 & 0.000 & 0.066 & 0.000 \\
+          $\textup{WIK}_{2}$ & 0.496 & 0.000 & 0.459 & 0.001 \\
+          $\textup{PI}$ & 0.923 & 0.281 & 0.999 & 0.306 \\
           \midrule
-          $\textup{CORR}$ & 6.7e-04 & 7.4e-16 \\
-          \bottomrule
-        \end{tabular}
-        \begin{tabular}{ l | c |  c }
-          \toprule
-          \multicolumn{3}{c}{Standardized} \\
-          \toprule
-          Test & $2^3$ Sub-cubes& $4^3$ Sub-cubes \\
-          \midrule
-          EC & 1.1e-04 &  7.3e-12 \\
-          $\textup{EC}_{0:2}$ & 1.3e-05 &  4.0e-14 \\
-          $\textup{EC}_{0}$ & 1.4e-06 & 1.6e-12 \\
-          $\textup{EC}_{1}$ & 0.024 & 0.001 \\
-          $\textup{EC}_{2}$ & 0.004 & 2.0e-07 \\
-          \midrule
-          $\textup{Sil}_{\textup{EC}}$ & 0.0122 & 0.005 \\
-          $\textup{Sil}_{0:2}$ & 4.3e-04 & 8.1e-12 \\
-          $\textup{Sil}_{0}$ & 6.5e-06 & 1.8e-11 \\
-          $\textup{Sil}_{1}$ & 0.028 & 3.9e-07 \\
-          $\textup{Sil}_{2}$ & 0.003 & 1.5e-04 \\
-          \midrule
-          $\textup{KC}_{0}$ & 0.986 & 0.856 \\
-          $\textup{KC}_{1}$ & 0.962 & 0.956 \\
-          $\textup{KC}_{2}$ & 0.962 & 0.260 \\
-          \midrule
-          $\textup{WIK}_{0}$ & 0.092 & 0.000 \\
-          $\textup{WIK}_{1}$ & 0.066 & 0.000 \\
-          $\textup{WIK}_{2}$ & 0.459 & 0.001 \\
-          $\textup{PI}$ & 0.999 & 0.306 \\
-          \midrule
-          $\textup{CORR}$ & 0.0289 & 0.918 \\
+          $\textup{CORR}$ & 6.7e-04 & 7.4e-16 & 0.0289 & 0.918 \\
           \bottomrule
         \end{tabular}
     \end{center}

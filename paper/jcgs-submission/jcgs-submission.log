@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 DEC 2016 12:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  12 DEC 2016 12:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1019,7 +1019,7 @@ Package pdftex.def Info: figs/figure_11_cdm_pd.pdf used on input line 827.
 File: figs/fig_12_hmap_dim0_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim0_nonorm.pdf>
-Package pdftex.def Info: figs/fig_12_hmap_dim0_nonorm.pdf used on input line 96
+Package pdftex.def Info: figs/fig_12_hmap_dim0_nonorm.pdf used on input line 93
 5.
 (pdftex.def)             Requested size: 221.88762pt x 49.2019pt.
 
@@ -1028,14 +1028,14 @@ File: figs/fig_12_hmap_dim0_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim0_yesnorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim0_yesnorm.pdf used on input line 9
-71.
+41.
 (pdftex.def)             Requested size: 221.88762pt x 48.76845pt.
 
 <figs/fig_12_hmap_dim1_nonorm.pdf, id=1014, 934.29361pt x 207.17714pt>
 File: figs/fig_12_hmap_dim1_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim1_nonorm.pdf>
-Package pdftex.def Info: figs/fig_12_hmap_dim1_nonorm.pdf used on input line 97
+Package pdftex.def Info: figs/fig_12_hmap_dim1_nonorm.pdf used on input line 94
 7.
 (pdftex.def)             Requested size: 221.88762pt x 49.2019pt.
 
@@ -1044,14 +1044,14 @@ File: figs/fig_12_hmap_dim1_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim1_yesnorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim1_yesnorm.pdf used on input line 9
-83.
+53.
 (pdftex.def)             Requested size: 221.88762pt x 48.76845pt.
 
 <figs/fig_12_hmap_dim2_nonorm.pdf, id=1016, 934.29361pt x 207.17714pt>
 File: figs/fig_12_hmap_dim2_nonorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim2_nonorm.pdf>
-Package pdftex.def Info: figs/fig_12_hmap_dim2_nonorm.pdf used on input line 98
+Package pdftex.def Info: figs/fig_12_hmap_dim2_nonorm.pdf used on input line 95
 9.
 (pdftex.def)             Requested size: 221.88762pt x 49.2019pt.
 
@@ -1060,7 +1060,7 @@ File: figs/fig_12_hmap_dim2_yesnorm.pdf Graphic file (type pdf)
 
 <use figs/fig_12_hmap_dim2_yesnorm.pdf>
 Package pdftex.def Info: figs/fig_12_hmap_dim2_yesnorm.pdf used on input line 9
-95.
+65.
 (pdftex.def)             Requested size: 221.88762pt x 48.76845pt.
 
 <figs/figure_13_maxmin_margin_euler.pdf, id=1018, 504.92957pt x 462.38736pt>
@@ -1068,7 +1068,7 @@ File: figs/figure_13_maxmin_margin_euler.pdf Graphic file (type pdf)
 
 <use figs/figure_13_maxmin_margin_euler.pdf>
 Package pdftex.def Info: figs/figure_13_maxmin_margin_euler.pdf used on input l
-ine 1009.
+ine 979.
 (pdftex.def)             Requested size: 157.83632pt x 144.54pt.
 
 <figs/figure_13_maxmin_margin_corr.pdf, id=1019, 578.16pt x 397.485pt>
@@ -1076,7 +1076,7 @@ File: figs/figure_13_maxmin_margin_corr.pdf Graphic file (type pdf)
 
 <use figs/figure_13_maxmin_margin_corr.pdf>
 Package pdftex.def Info: figs/figure_13_maxmin_margin_corr.pdf used on input li
-ne 1015.
+ne 985.
 (pdftex.def)             Requested size: 210.2459pt x 144.54pt.
  (./jcgs-submission.bbl [23]
 [24 <./figs/fig_12_hmap_dim0_nonorm.pdf> <./figs/fig_12_hmap_dim0_yesnorm.pdf
@@ -1142,7 +1142,7 @@ Missing character: There is no ¸ in font cmr12!
 Here is how much of TeX's memory you used:
  15450 strings out of 493014
  299439 string characters out of 6133351
- 347326 words of memory out of 5000000
+ 345326 words of memory out of 5000000
  18642 multiletter control sequences out of 15000+600000
  16073 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1167,7 +1167,7 @@ cm/cmti10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmti12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmtt12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msbm10.pfb>
-Output written on jcgs-submission.pdf (28 pages, 5382387 bytes).
+Output written on jcgs-submission.pdf (28 pages, 5382212 bytes).
 PDF statistics:
  1229 PDF objects out of 1440 (max. 8388607)
  586 compressed objects within 6 object streams
