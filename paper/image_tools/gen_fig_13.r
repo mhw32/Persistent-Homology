@@ -58,19 +58,49 @@ plot(max_euler2,
      type="l", 
      xlab="t", 
      ylab="EC", 
-     col=rgb(248, 137, 113 ,255, maxColorValue=255),
+     col=rgb(63, 223, 218, 255, maxColorValue=255),
      lwd=1.5,
      cex.lab=2.5, 
      cex.axis=2.5, 
      cex.main=2.5, 
-     cex.sub=2.5)
-lines(max_euler1, lwd=1.5, col=rgb(63, 223, 218, 255, maxColorValue=255))
+     cex.sub=2.5,
+     xlim=c(0, 2000))
+lines(max_euler1, lwd=1.5, col=rgb(248, 137, 113 ,255, maxColorValue=255))
 # lines(min_euler2, lwd=1.5, lty="solid", col=rgb(202, 109, 89 ,255, maxColorValue=255))
 # lines(min_euler1, lwd=1.5, lty="solid", col=rgb(46, 165, 162, 255, maxColorValue=255))
 legend("topright", 
-       c("CDM", "WDM"), # , "CDM (Low)", "WDM (Low)"), 
-       col=c(rgb(248, 137, 113 ,255, maxColorValue=255), rgb(63, 223, 218, 255, maxColorValue=255)), # , #rgb(202, 109, 89 ,255, maxColorValue=255), rgb(46, 165, 162, 255, maxColorValue=255)), 
+       c("WDM", "CDM"), # , "CDM (Low)", "WDM (Low)"), 
+       col=c(rgb(63, 223, 218, 255, maxColorValue=255), rgb(248, 137, 113 ,255, maxColorValue=255)), # , #rgb(202, 109, 89 ,255, maxColorValue=255), rgb(46, 165, 162, 255, maxColorValue=255)), 
        lty=c("solid", "solid"), # "solid", "solid"),
        lwd=1.5,
        cex=2.5)
 dev.off()
+
+
+# plot WDM and CDM plots
+library(scatterplot3d)
+cdm_41 <- readRDS('intermediate/fig_13_wdm_41_slice.rds')
+wdm_41 <- readRDS('intermediate/fig_13_cdm_41_slice.rds')
+
+png("figure_13_cdm_slice.png")
+scatterplot3d(cdm_41, 
+              xlab='', 
+              ylab='', 
+              zlab='', 
+              pch='.',
+              color=rgb(0, 0, 0, 0.5),
+              tick.marks=FALSE,
+              label.tick.marks=FALSE)
+dev.off()
+png("figure_13_wdm_slice.png")
+scatterplot3d(wdm_41,
+              xlab='', 
+              ylab='', 
+              zlab='',
+              pch='.',
+              color=rgb(0, 0, 0, 0.5),
+              tick.marks=FALSE,
+              label.tick.marks=FALSE) 
+dev.off()
+
+

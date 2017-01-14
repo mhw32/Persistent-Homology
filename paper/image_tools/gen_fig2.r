@@ -14,12 +14,12 @@ res <- 0.05
 boxlim <- cbind(c(-1.5, 1.5), 
                 c(-1.5, 1.5))
 diag <- gridDiag(Mat, 
-                 kde, 
+                 dtm, 
                  lim=boxlim, 
                  by=res, 
                  sublevel=T, 
                  printProgress=T,
-                 h=.3)
+                 m0=0.05)
 
 diag <- cleanDiag(diag$diagram)
 
@@ -32,14 +32,16 @@ plot(X[,2],
      X[,3], 
      pch = c(X[,1]+1), 
      col = c(X[,1]+1), 
-     xlab = "Death", 
-     ylab = "Birth", 
+     xlab = "Birth", 
+     ylab = "Death", 
      main = "", 
      cex.lab=2.0, 
      cex.axis=2.0, 
      cex.main=2.0, 
      cex.sub=2.0, 
-     cex=2.0)
+     cex=2.0, 
+     xlim=c(0,1),
+     ylim=c(0,1))
 abline(a = 0, b = 1)
 legend("bottomright", 
        c(expression('H'[0]),expression('H'[1]),expression('H'[2])),

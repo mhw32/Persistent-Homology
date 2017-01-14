@@ -181,19 +181,19 @@ def merge_dicts(*dict_args):
 # allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
 # hard_line_plot(allkeys, allticks, allcolors, bighash, custom_ylim=[-1.8, 0], save_path='figure_8_contour_group_normed.pdf')
 
-allkeys = ['corr']
-allticks = ['CORR']
-allcolors = ['#44B3C2']
-hard_line_plot(allkeys, allticks, allcolors, bighash_corr, custom_ylim=[-5, 1], save_path='figure_8_correlation_group_normed.pdf')
+# allkeys = ['corr']
+# allticks = ['CORR']
+# allcolors = ['#44B3C2']
+# hard_line_plot(allkeys, allticks, allcolors, bighash_corr, custom_ylim=[-5, 1], save_path='figure_8_correlation_group_normed.pdf')
 
 # allkeys = ['wik_0', 'wik_1', 'wik_2', 'pi']
 # allticks = ['WIK (0)', 'WIK (1)', 'WIK (2)', 'PI']
 # allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46']
 # hard_line_plot(allkeys, allticks, allcolors, bighash_wik, custom_ylim=[-1.2, 0], save_path='figure_8_weighted_contour_group_normed.pdf')
 
-bighash_best = merge_dicts(bighash, bighash_corr, bighash_wik)
-allkeys = ['euler', 'silh-euler', 'contour-dim-2', 'wik_2', 'corr']
-allticks = ['EC', 'SIL (EC)', 'IK (2)', 'WIK (2)', 'CORR']
-allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46', '#7B8D8E']
+bighash_best = merge_dicts(bighash, bighash_wik)
+allkeys = ['euler', 'silh-euler', 'contour-dim-2', 'wik_2']
+allticks = ['EC', 'SIL (EC)', 'IK (2)', 'WIK (2)']
+allcolors = ['#44B3C2', '#F1A94E', '#E45641', '#5D4C46']
 hard_line_plot(allkeys, allticks, allcolors, bighash_best, save_path='figure_8_best_group_normed.pdf')
 
