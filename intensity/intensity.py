@@ -1,4 +1,5 @@
 from helper import apply_to_vector
+import pdb
 import numpy as np
 from copy import copy
 # import matplotlib.pyplot as plt
@@ -59,11 +60,11 @@ def map0to1(x):
 #     plt.pcolor(xgrid, ygrid, zgrid, cmap='jet', vmin=zgrid_min, vmax=zgrid_max)
 #     # set the limits of the plot to the limits of the data
 #     plt.axis([xgrid.min(), xgrid.max(), ygrid.min(), ygrid.max()])
-#     plt.colorbar()    
-#     plt.show()   
+#     plt.colorbar()
+#     plt.show()
 
 def safe_concatenate(x):
-    y = np.concatenate(x) 
+    y = np.concatenate(x)
     if np.ndim(y) != 2:
         y = safe_concatenate(y)
     return y
@@ -87,7 +88,7 @@ def getDiagMinMax(base_data, foam_data, by_dim=True):
         ymin = min(ymin)
         ymax = max(ymax)
 
-    return (xmin, xmax, ymin, ymax)        
+    return (xmin, xmax, ymin, ymax)
 
 def getDiagMinMaxSimu(cdm_data, wdm_data, by_dim=True):
     data = np.concatenate([np.concatenate(cdm_data), np.concatenate(wdm_data)])
@@ -108,12 +109,12 @@ def getDiagMinMaxSimu(cdm_data, wdm_data, by_dim=True):
         ymin = min(ymin)
         ymax = max(ymax)
 
-    return (xmin, xmax, ymin, ymax)        
+    return (xmin, xmax, ymin, ymax)
 
 
 # -----------------------------------------------------------
 # implementing a test statistic based on intensity
-# images on persistence diagrams. 
+# images on persistence diagrams.
 # http://arxiv.org/pdf/1510.02502v1.pdf
 
 def gaussianKernel1D(x, mu=0, h=1):
@@ -121,7 +122,7 @@ def gaussianKernel1D(x, mu=0, h=1):
     return k
 
 def gaussianKernel2D(x, y, mux=0, muy=0, hx=1, hy=1):
-    # (1 / (2 * np.pi * (hx**2 + hy**2))) 
+    # (1 / (2 * np.pi * (hx**2 + hy**2)))
     # i don't the constant and it doesn't really matter since all relative.
     k = np.exp(-((x - mux)**2 / (2 * hx**2) + (y - muy)**2 / (2 * hy**2)))
     return k
@@ -162,9 +163,9 @@ def intensityVecDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax):
 def intensityVecFunc(diagset, dim, gridnum, tau, xmin, xmax, ymin, ymax):
     f = lambda diag: intensityVecDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax)
     return apply_to_vector(diagset, f)
-    
+
 # -----------------------------------------------------------
-# implementing a test statistic based on persistent images. 
+# implementing a test statistic based on persistent images.
 # data --> persistence diagram --> surface --> image
 # http://arxiv.org/pdf/1507.06217v3.pdf
 
@@ -183,7 +184,7 @@ def weightFunc(s, b):
 
 def surfaceEqn(x, y, births, deaths, tau, bias):
     space = weightFunc(deaths, b=bias) * (1 / tau**2) * gaussianKernel2D((x - births) / tau, (y - deaths) / tau, mux=0, muy=0, hx=np.std(births), hy=np.std(deaths))
-    return np.sum(space)      
+    return np.sum(space)
 
 def surfaceDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax):
     # diag = linearTransformDiag(diag)
@@ -201,11 +202,11 @@ def surfaceDiagFunc(diag, dim, gridnum, tau, xmin, xmax, ymin, ymax):
             y = ylist[j]
             stats[i, j] = surfaceEqn(x, y, births, deaths, tau, bias=ymax)
             # stats[i, j] = intensityEqn(x, y, births, deaths, tau)
-     
+
     return (xlist, ylist, stats)
 
 def safeGroup(totalsize, groupsize, loosefrac=0.5):
-    ''' Given a number (assume a range up to it), how to 
+    ''' Given a number (assume a range up to it), how to
         safely split into groups of size groupsize while
         losing as little information as possible.
     '''
@@ -216,16 +217,16 @@ def safeGroup(totalsize, groupsize, loosefrac=0.5):
     # breakpoints (naive)
     bkpts = range(0, totalsize, integral)
 
-    # if there is any overflow, make it its own group if 
+    # if there is any overflow, make it its own group if
     # at least loosefrac * the size of the spacing
     if (totalsize - bkpts[-1]) >= (integral * loosefrac):
         bkpts.append(totalsize)
 
     return np.array(bkpts)
 
-# n, m should be divisble 
+# n, m should be divisble
 def surfaceToPixels(surf, n):
-    # create image 
+    # create image
     rows, cols = surf.shape
 
     if rows <= n or cols <= n:
@@ -233,7 +234,7 @@ def surfaceToPixels(surf, n):
 
     rowgroupsizes = safeGroup(rows, n)
     colgroupsizes = safeGroup(cols, n)
-    gridrows, gridcols = rowgroupsizes.shape[0] - 1, colgroupsizes.shape[0] - 1 
+    gridrows, gridcols = rowgroupsizes.shape[0] - 1, colgroupsizes.shape[0] - 1
     grid = np.zeros((gridrows, gridcols))
 
     # its persistence image is the collection of pixels I
@@ -248,6 +249,7 @@ def vectorize(A):
     return A.flatten()
 
 def pimageDiagFunc(diag, gridnum, tau, n, xmin, xmax, ymin, ymax):
+    pdb.set_trace()
     p0 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 0, gridnum, tau, xmin, xmax, ymin, ymax)[2], n))
     p1 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 1, gridnum, tau, xmin, xmax, ymin, ymax)[2], n))
     p2 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 2, gridnum, tau, xmin, xmax, ymin, ymax)[2], n))
@@ -307,7 +309,7 @@ def process_simu_file(cdm_file, wdm_file):
 def intensity_voronoi_test_suite(base_file, foam_file, normalize=False):
     # process the voronoi files into arrays
     base_data, foam_data = process_voronoi_file(base_file, foam_file)
-    
+
     # remove known anomalies
     base_data = cleanVec(base_data)
     foam_data = cleanFoam(foam_data)
@@ -358,7 +360,7 @@ def intensity_simu_test_suite(cdm_file, wdm_file, dim, normalize=False):
 
 def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
     # process the voronoi files into data
-    base_data, foam_data = process_voronoi_file(base_file, foam_file)    
+    base_data, foam_data = process_voronoi_file(base_file, foam_file)
     base_data = cleanVec(base_data)
     foam_data = cleanFoam(foam_data)
 
@@ -380,7 +382,7 @@ def pimage_voronoi_test_suite(base_file, foam_file, normalize=False):
     for p in range(num_percfil):
         foam_stats[p, :, :] = pimageVecFunc(foam_data[p], 25, 0.2, 10, xmin, xmax, ymin, ymax)
 
-    return base_stats, foam_stats    
+    return base_stats, foam_stats
 
 def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     # process the simulation files into arrays
@@ -391,7 +393,7 @@ def pimage_simu_test_suite(cdm_file, wdm_file, normalize=False):
     # normalize the thing if need be
     if normalize:
         cdm_data, wdm_data = normVec(cdm_data), normVec(wdm_data)
-    
+
     xmin, xmax, ymin, ymax = getDiagMinMaxSimu(cdm_data, wdm_data, by_dim=False)
 
     # storage for this stuff
@@ -467,7 +469,7 @@ def kernel_stat(X, Y, h):
     sum3 = np.sum(gaussianKernel1DNoConst(Y[mm_grid[:, 0]], Y[mm_grid[:, 1]], h))
 
     # Now that we have all out sums, calculate the Tstat.
-    T = float(1)/(n**2)*sum1 - float(2)/(m*n)*sum2 + float(1)/(m**2)*sum3    
+    T = float(1)/(n**2)*sum1 - float(2)/(m*n)*sum2 + float(1)/(m**2)*sum3
     return T
 
 def grid_search(fun, X, Y, mini=0.1, maxi=5.0, step=0.1):
@@ -494,7 +496,7 @@ def permute(X, Y):
 def permutation_method(X, Y, N=10000, h=None):
     if h is None:
         h = grid_search(kernel_stat, X, Y, 0.1, 5.0, 0.1)
-    
+
     p = 0 # estimated pval
     loss_orig = kernel_stat(X, Y, h=h)
     for _ in range(N):
@@ -502,7 +504,7 @@ def permutation_method(X, Y, N=10000, h=None):
         loss_new = kernel_stat(X, Y, h=h)
         if (loss_new <= loss_orig):
             p += 1
-    
+
     p = p / float(N)
     return p
 
@@ -521,7 +523,7 @@ def reshape_data(data, by_dim=False):
         for i in range(num_iters):
             for j in range(num_dims):
                 base_data[i, j, :, :] = data[i][0][j]
-                foam_data[i, j, :, :, :] = data[i][1][j]  
+                foam_data[i, j, :, :, :] = data[i][1][j]
     else:
         num_percfil = len(data[0][1])
         num_reps = len(data[0][1][0])
@@ -595,8 +597,8 @@ def reshape_simu_data(data, by_dim=False):
 #     np.save(open('wdm_' + dfile[:-4] + '.npy', 'wb'), wdm_data)
 # -- end script --
 
-# apply the permutation test onto the voronoi and the 
-# simulation data. This wil return logged values. 
+# apply the permutation test onto the voronoi and the
+# simulation data. This wil return logged values.
 
 def voronoi_bydim_hypo_suite(base_stats, foam_stats):
     num_iters = base_stats.shape[0]
@@ -616,7 +618,7 @@ def voronoi_bydim_hypo_suite(base_stats, foam_stats):
 def simu_bydim_hypo_suite(cdm_stats, wdm_stats):
     num_iters = cdm_stats.shape[0]
     num_dims  = cdm_stats.shape[1]
-    
+
     log_p_grid = np.zeros((num_iters, num_dims))
     for i in range(log_p_grid.shape[0]):
         print('iter: %d' % i)
@@ -624,7 +626,7 @@ def simu_bydim_hypo_suite(cdm_stats, wdm_stats):
         for d in range(num_dims):
             log_p = np.log(permutation_method(cdm_stats[i, d, :cur_length, :], wdm_stats[i, d, :cur_length, :], N=1000))
             log_p_grid[i, d] = log_p
-    
+
     return log_p_grid
 
 def voronoi_nodim_hypo_suite(base_stats, foam_stats):
