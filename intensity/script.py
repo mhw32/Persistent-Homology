@@ -9,8 +9,8 @@ import argparse
 
 def run(mini=1, maxi=101):
     print("running instance with min %d, max %d" % (mini, maxi))
-    intensity_stats_norm   = []
-    intensity_stats_unnorm = []
+    # intensity_stats_norm   = []
+    # intensity_stats_unnorm = []
     pimage_stats_norm      = []
     pimage_stats_unnorm    = []
 
@@ -18,18 +18,18 @@ def run(mini=1, maxi=101):
         base_file = 'data/sub_voronoi/baseline%d.npy' % iters
         foam_file = 'data/sub_voronoi/foam%d.npy' % iters
 
-        print("iteration %d: unstandardized intensity calculation..." % iters)
-        intensity_stats_unnorm.append(intensity_voronoi_test_suite(base_file, foam_file, False))
-        print("iteration %d: standardized intensity calculation..." % iters)
-        intensity_stats_norm.append(intensity_voronoi_test_suite(base_file, foam_file, True))
+        # print("iteration %d: unstandardized intensity calculation..." % iters)
+        # intensity_stats_unnorm.append(intensity_voronoi_test_suite(base_file, foam_file, False))
+        # print("iteration %d: standardized intensity calculation..." % iters)
+        # intensity_stats_norm.append(intensity_voronoi_test_suite(base_file, foam_file, True))
 
         print("iteration %d: unstandardized persistent image calculation..." % iters)
         pimage_stats_unnorm.append(pimage_voronoi_test_suite(base_file, foam_file, False))
         print("iteration %d: standardized persistent image calculation..." % iters)
         pimage_stats_norm.append(pimage_voronoi_test_suite(base_file, foam_file, True))
 
-    cPickle.dump(intensity_stats_unnorm, open('output/sub_voronoi/intensity_stats_unnorm.pkl', 'wb'))
-    cPickle.dump(intensity_stats_norm, open('output/sub_voronoi/intensity_stats_norm.pkl', 'wb'))
+    # cPickle.dump(intensity_stats_unnorm, open('output/sub_voronoi/intensity_stats_unnorm.pkl', 'wb'))
+    # cPickle.dump(intensity_stats_norm, open('output/sub_voronoi/intensity_stats_norm.pkl', 'wb'))
     cPickle.dump(pimage_stats_unnorm, open('output/sub_voronoi/pimage_stats_unnorm.pkl', 'wb'))
     cPickle.dump(pimage_stats_norm, open('output/sub_voronoi/pimage_stats_norm.pkl', 'wb'))
 
