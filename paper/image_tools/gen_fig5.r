@@ -52,16 +52,16 @@ vf<- voronoi3d(boxlim,
                percFil=0.5,
                percClust=0.02)
 
-pdf(paste('figure_5_plot.pdf'))
-scatterplot3d(vf,
-              xlab='',
-              ylab='',
-              zlab='',
-              pch='.',
-              color=rgb(0, 0, 0, 0.25),
-              tick.marks=FALSE,
-              label.tick.marks=FALSE)
-dev.off()
+# pdf(paste('figure_5_plot.pdf'))
+# scatterplot3d(vf,
+#               xlab='',
+#               ylab='',
+#               zlab='',
+#               pch='.',
+#               color=rgb(0, 0, 0, 0.25),
+#               tick.marks=FALSE,
+#               label.tick.marks=FALSE)
+# dev.off()
 
 # b) persistence diagram
 diag <- gridDiag(vf,
@@ -97,62 +97,62 @@ legend('bottomright',
        cex=2.0)
 dev.off()
 
-# c) euler characteristics
-diag <- gridDiag(vf,
-                 dtm,
-                 lim=cbind(Xlim,Ylim,Zlim),
-                 by=res,
-                 sublevel=T,
-                 printProgress=T,
-                 m0=0.001)
-# no removal of extra pt
-diagram <- diag$diagram
-tseq <- seq(min(diagram[,2:3]),
-            max(diagram[,2:3]),
-            length=5000)
+# # c) euler characteristics
+# diag <- gridDiag(vf,
+#                  dtm,
+#                  lim=cbind(Xlim,Ylim,Zlim),
+#                  by=res,
+#                  sublevel=T,
+#                  printProgress=T,
+#                  m0=0.001)
+# # no removal of extra pt
+# diagram <- diag$diagram
+# tseq <- seq(min(diagram[,2:3]),
+#             max(diagram[,2:3]),
+#             length=5000)
 
-euler <- eulerChar(tseq,
-                   diagram,
-                   maxdimension=max(diagram[,1]),
-                   threshold=0)
+# euler <- eulerChar(tseq,
+#                    diagram,
+#                    maxdimension=max(diagram[,1]),
+#                    threshold=0)
 
-pdf('figure_5_euler.pdf')
-par(mar=c(5,6,4,2))
-plot(euler,
-     type="l",
-     lwd=3,
-     col="cornflowerblue",
-     xlab="Sequence",
-     ylab="EC",
-     cex.lab=2.0,
-     cex.axis=2.0,
-     cex.main=2.0,
-     cex.sub=2.0,
-     cex=2.0)
-dev.off()
+# pdf('figure_5_euler.pdf')
+# par(mar=c(5,6,4,2))
+# plot(euler,
+#      type="l",
+#      lwd=3,
+#      col="cornflowerblue",
+#      xlab="Sequence",
+#      ylab="EC",
+#      cex.lab=2.0,
+#      cex.axis=2.0,
+#      cex.main=2.0,
+#      cex.sub=2.0,
+#      cex=2.0)
+# dev.off()
 
-# d) silhouette function
-tseq <- seq(min(diagram[,2:3]),
-            max(diagram[,2:3]),
-            length=1000)
+# # d) silhouette function
+# tseq <- seq(min(diagram[,2:3]),
+#             max(diagram[,2:3]),
+#             length=1000)
 
-silh <- silhouette(diagram,
-                   p=1,
-                   dimension=2,
-                   tseq)
+# silh <- silhouette(diagram,
+#                    p=1,
+#                    dimension=2,
+#                    tseq)
 
-pdf('figure_5_silhouette.pdf')
-par(mar=c(5,6,4,2))
-plot(abs(silh),
-     type="l",
-     lwd=3,
-     col="cornflowerblue",
-     xlab="Sequence",
-     ylab="SIL",
-     cex.lab=2.0,
-     cex.axis=2.0,
-     cex.main=2.0,
-     cex.sub=2.0,
-     cex=2.0)
-dev.off()
+# pdf('figure_5_silhouette.pdf')
+# par(mar=c(5,6,4,2))
+# plot(abs(silh),
+#      type="l",
+#      lwd=3,
+#      col="cornflowerblue",
+#      xlab="Sequence",
+#      ylab="SIL",
+#      cex.lab=2.0,
+#      cex.axis=2.0,
+#      cex.main=2.0,
+#      cex.sub=2.0,
+#      cex=2.0)
+# dev.off()
 

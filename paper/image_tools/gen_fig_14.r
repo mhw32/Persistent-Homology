@@ -1,71 +1,81 @@
 #!/usr/bin/r
+library(scatterplot3d)
 
-infile <- "intermediate/fig_14_data.bin"
+infile <- "intermediate/fig_14_min_data_top_3.bin"
 con <- file(infile, "rb")
 dim <- readBin(con, "integer", 2)
-Mat <- matrix(readBin(con, "numeric", prod(dim)), dim[1], dim[2])
+minMat <- matrix(readBin(con, "numeric", prod(dim)), dim[1], dim[2])
 close(con)
 
-cdm <- readRDS('../../saved_states/wdm_cdm_raw/cdm_slices_raw.rds')
-wdm <- readRDS('../../saved_states/wdm_cdm_raw/wdm_slices_raw.rds')
-Mat_dim <- dim(Mat)
+infile <- "intermediate/fig_14_max_data_top_3.bin"
+con <- file(infile, "rb")
+dim <- readBin(con, "integer", 2)
+maxMat <- matrix(readBin(con, "numeric", prod(dim)), dim[1], dim[2])
+close(con)
 
-num_cdm_row <- 0
-num_wdm_row <- 0
-for (grid_i in 1:64) {
-  num_wdm_row <- num_wdm_row + dim(wdm[[grid_i]])[1]
-  num_cdm_row <- num_cdm_row + dim(cdm[[grid_i]])[1]
-}
+cdm_slices <- readRDS('../../saved_states/wdm_cdm_raw/cdm_slices_raw.rds')
+wdm_slices <- readRDS('../../saved_states/wdm_cdm_raw/wdm_slices_raw.rds')
+indexmap <- readRDS('intermediate/indexmap.rds')
 
-wdm_mat <- matrix(, nrow=num_wdm_row, ncol=3, byrow=TRUE)
-wdm_col <- matrix(, nrow=num_wdm_row, ncol=1, byrow=TRUE)
-cdm_mat <- matrix(, nrow=num_cdm_row, ncol=3, byrow=TRUE)
-cdm_col <- matrix(, nrow=num_cdm_row, ncol=1, byrow=TRUE)
-
-dim_i <- 1
-m <- Mat[dim_i,]
-counter_wdm <- 1
-counter_cdm <- 1
-
-for (grid_i in 1:64) {
-  wdm_slice <- wdm[[grid_i]]
-  num_wdm_slice <- dim(wdm[[grid_i]])[1]
-  wdm_mat[counter_wdm:(counter_wdm+num_wdm_slice-1), 1:3] <- wdm_slice
-
-  cdm_slice <- cdm[[grid_i]]
-  num_cdm_slice <- dim(cdm[[grid_i]])[1]
-  cdm_mat[counter_cdm:(counter_cdm+num_cdm_slice-1), 1:3] <- cdm_slice
-
-  if (grid_i %in% m) {
-    wdm_col[counter_wdm:(counter_wdm+num_wdm_slice-1), 1] <- rgb(1, 0, 0, 0.06)
-    cdm_col[counter_cdm:(counter_cdm+num_cdm_slice-1), 1] <- rgb(1, 0, 0, 0.06)
-  } else {
-    wdm_col[counter_wdm:(counter_wdm+num_wdm_slice-1), 1] <- rgb(0, 0, 0, 0.03)
-    cdm_col[counter_cdm:(counter_cdm+num_cdm_slice-1), 1] <- rgb(0, 0, 0, 0.03)
+regroup_cube_robust <- function(slices, indexmap, n, min_find, max_find) {
+  num_row <- 0
+  for (i in 1:64) {
+    num_row <- num_row + dim(slices[[i]])[1]
   }
-  counter_wdm <- counter_wdm + num_wdm_slice
-  counter_cdm <- counter_cdm + num_cdm_slice
+  counter <- 1
+  cube <- matrix(NA, num_row, 3)
+  colors <- matrix(NA, num_row, 1)
+  for (i in 1:64) {
+    slice <- slices[[i]]
+    map <- indexmap[[i]]
+    num_in_slice <- dim(slice)[1]
+    for (j in 1:3) {
+      slice[,j] <- slice[,j] + map[j,1]
+    }
+    cube[counter:(counter+num_in_slice-1),] <- slice
+    if (i %in% max_find) {
+      colors[counter:(counter+num_in_slice-1),] <- rgb(1, 0, 0, 0.02)
+    } else if (i %in% min_find) {
+      colors[counter:(counter+num_in_slice-1),] <- rgb(0, 0, 1, 0.02)
+    } else {
+      colors[counter:(counter+num_in_slice-1),] <- rgb(0, 0, 0, 0.01)
+    }
+    counter <- counter + num_in_slice
+  }
+  return(list(cube=cube, colors=colors))
 }
 
-library(scatterplot3d)
-png("figure_14_wdm_colored.png")
-scatterplot3d(wdm_mat, 
-              xlab='', 
-              ylab='', 
-              zlab='', 
-              pch='.',
-              color=wdm_col,
-              tick.marks=FALSE,
-              label.tick.marks=FALSE)
-dev.off()
 
-png("figure_14_cdm_colored.png")
-scatterplot3d(cdm_mat, 
-              xlab='', 
-              ylab='', 
-              zlab='', 
-              pch='.',
-              color=cdm_col,
-              tick.marks=FALSE,
-              label.tick.marks=FALSE)
-dev.off()
+for (d in 1:2) {
+  min_find <- minMat[d,]
+  max_find <- maxMat[d,]
+  cdm_obj <- regroup_cube_robust(cdm_slices, indexmap, 4, min_find, max_find)
+  wdm_obj <- regroup_cube_robust(wdm_slices, indexmap, 4, min_find, max_find)
+
+  cdm_cube <- cdm_obj$cube
+  cdm_colors <- cdm_obj$colors
+  wdm_cube <- wdm_obj$cube
+  wdm_colors <- wdm_obj$colors
+
+  png(paste("figure_14_wdm_colored_top_bot_3_dim_",d,".png", sep=""))
+  scatterplot3d(wdm_cube, 
+                xlab='', 
+                ylab='', 
+                zlab='', 
+                pch='.',
+                color=wdm_colors,
+                tick.marks=FALSE,
+                label.tick.marks=FALSE)
+  dev.off()
+
+  png(paste("figure_14_cdm_colored_top_bot_3_dim_",d,".png", sep=""))
+  scatterplot3d(cdm_cube, 
+                xlab='', 
+                ylab='', 
+                zlab='', 
+                pch='.',
+                color=cdm_colors,
+                tick.marks=FALSE,
+                label.tick.marks=FALSE)
+  dev.off()
+}

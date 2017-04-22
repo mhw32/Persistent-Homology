@@ -36,43 +36,43 @@ max_index <- 41
 max_cdm <- cdm_diags[[max_index]]
 max_wdm <- wdm_diags[[max_index]]
 
-min_index <- 24
-min_cdm <- cdm_diags[[min_index]]
-min_wdm <- wdm_diags[[min_index]]
+# min_index <- 24
+# min_cdm <- cdm_diags[[min_index]]
+# min_wdm <- wdm_diags[[min_index]]
 
-max_tseq1 <- seq(min(max_cdm[,2:3]),max(max_cdm[,2:3]),length=100)
+max_tseq1 <- seq(0, 25,length=5000)
 max_euler1 <- eulerChar(max_tseq1, max_cdm, maxdimension=max(max_cdm[,1]), threshold=0)
 
-max_tseq2 <- seq(min(max_wdm[,2:3]),max(max_wdm[,2:3]),length=100)
+max_tseq2 <- seq(0, 25,length=5000)
 max_euler2 <- eulerChar(max_tseq2, max_wdm, maxdimension=max(max_wdm[,1]), threshold=0)
 
-min_tseq1 <- seq(min(min_cdm[,2:3]),max(min_cdm[,2:3]),length=100)
-min_euler1 <- eulerChar(min_tseq1, min_cdm, maxdimension=max(min_cdm[,1]), threshold=0)
+# min_tseq1 <- seq(min(min_cdm[,2:3]),max(min_cdm[,2:3]),length=100)
+# min_euler1 <- eulerChar(min_tseq1, min_cdm, maxdimension=max(min_cdm[,1]), threshold=0)
 
-min_tseq2 <- seq(min(min_wdm[,2:3]),max(min_wdm[,2:3]),length=100)
-min_euler2 <- eulerChar(min_tseq2, min_wdm, maxdimension=max(min_wdm[,1]), threshold=0)
+# min_tseq2 <- seq(min(min_wdm[,2:3]),max(min_wdm[,2:3]),length=100)
+# min_euler2 <- eulerChar(min_tseq2, min_wdm, maxdimension=max(min_wdm[,1]), threshold=0)
 
 pdf('figure_13_maxmin_margin_euler.pdf')
 par(mar=c(5,6,4,2))
-plot(max_euler2,
+plot(max_tseq2, max_euler2,
      type="l",
-     xlab="t",
+     xlab="t (Mpc)",
      ylab="EC",
      col=rgb(63, 223, 218, 255, maxColorValue=255),
-     lwd=1.5,
+     lwd=3.0,
      cex.lab=2.5,
      cex.axis=2.5,
      cex.main=2.5,
      cex.sub=2.5,
-     xlim=c(0, 100))
-lines(max_euler1, lwd=1.5, col=rgb(248, 137, 113 ,255, maxColorValue=255))
+     xlim=c(0, 4))
+lines(max_tseq1, max_euler1, lty=2, lwd=3.0, col=rgb(248, 137, 113 ,255, maxColorValue=255))
 # lines(min_euler2, lwd=1.5, lty="solid", col=rgb(202, 109, 89 ,255, maxColorValue=255))
 # lines(min_euler1, lwd=1.5, lty="solid", col=rgb(46, 165, 162, 255, maxColorValue=255))
 legend("topright",
        c("WDM", "CDM"), # , "CDM (Low)", "WDM (Low)"),
        col=c(rgb(63, 223, 218, 255, maxColorValue=255), rgb(248, 137, 113 ,255, maxColorValue=255)), # , #rgb(202, 109, 89 ,255, maxColorValue=255), rgb(46, 165, 162, 255, maxColorValue=255)),
-       lty=c("solid", "solid"), # "solid", "solid"),
-       lwd=1.5,
+       lty=c("solid", "dashed"), # "solid", "solid"),
+       lwd=3.0,
        cex=2.5)
 dev.off()
 

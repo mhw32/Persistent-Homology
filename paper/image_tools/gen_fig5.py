@@ -1,6 +1,9 @@
 # -- Figure 5 : compilation of different tests --
 
+import pdb
 import numpy as np
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import matplotlib.cm as cm
@@ -25,45 +28,45 @@ def rds_to_np(Rfile):
     raw = robjects.r['readRDS'](Rfile)
     return raw
 
-# data = rds_to_np('intermediate/fig_5_kernel_pd.rds')
-# data = np.array(data)
-# data_feat_1 = data[:, 1:]
-# x = data_feat_1[:, 0]
-# y = data_feat_1[:, 1]
+data = rds_to_np('intermediate/fig_5_kernel_pd.rds')
+data = np.array(data)
+data_feat_1 = data[:, 1:]
+x = data_feat_1[:, 0]
+y = data_feat_1[:, 1]
 
-# xrng = np.arange(0.5, 1.7, 0.01)
-# yrng = np.arange(0.5, 1.7, 0.01)
-# xx, yy = np.meshgrid(xrng, yrng)
-# zz = np.zeros(xx.shape)
+xrng = np.arange(0.5, 1.8, 0.01)
+yrng = np.arange(0.5, 1.8, 0.01)
+xx, yy = np.meshgrid(xrng, yrng)
+zz = np.zeros(xx.shape)
 
-# def find_closest_index(val, arr):
-#     minidx = -1
-#     minval = 1000000
-#     for i in range(len(arr)):
-#         curval = np.abs( val - arr[i] )
-#         if curval < minval:
-#             minval = curval
-#             minidx = i
+def find_closest_index(val, arr):
+    minidx = -1
+    minval = 1000000
+    for i in range(len(arr)):
+        curval = np.abs( val - arr[i] )
+        if curval < minval:
+            minval = curval
+            minidx = i
 
-#     return minidx
+    return minidx
 
-# for i in range(len(x)):
-#     xix = find_closest_index( x[i], xrng )
-#     yix = find_closest_index( y[i], yrng )
-#     zz[xix,yix] += 1
+for i in range(len(x)):
+    xix = find_closest_index( x[i], xrng )
+    yix = find_closest_index( y[i], yrng )
+    zz[xix,yix] += 1
 
-# plt.figure()
-# tmp = gaussian_filter(zz.T, 1.5)
-# plt.contour(xrng, yrng, tmp, linewidths=1, colors='k')
-# fig = plt.contourf(xrng, yrng, tmp, cmap=plt.cm.jet)
-# plt.tick_params(labelsize=28)
-# plt.xlabel('Birth', fontsize=28)
-# plt.ylabel('Death', fontsize=28)
-# cbar = plt.colorbar(fig)
-# cbar.ax.tick_params(labelsize=28)
-# plt.tight_layout()
-# plt.savefig('figure_5_kernel.pdf')
-# # plt.show()
+plt.figure()
+tmp = gaussian_filter(zz.T, 1.5)
+plt.contour(xrng, yrng, tmp, linewidths=1, colors='k')
+fig = plt.contourf(xrng, yrng, tmp, cmap=plt.cm.jet)
+plt.tick_params(labelsize=22)
+plt.xlabel('Birth', fontsize=22)
+plt.ylabel('Death', fontsize=22)
+cbar = plt.colorbar(fig)
+cbar.ax.tick_params(labelsize=22)
+plt.tight_layout()
+plt.savefig('figure_5_kernel.pdf')
+# plt.show()
 
 # # f) correlation function
 # corr_fun = np.load('intermediate/fig_5_corr_func.npy')
@@ -88,22 +91,26 @@ def rds_to_np(Rfile):
 # plt.tick_params(axis='both', which='major', labelsize=28)
 # plt.tick_params(axis='both', which='minor', labelsize=28)
 # plt.tight_layout()
-# plt.savefig('figure_5_intensity_fun.pdf')
-# # plt.show()
+# # plt.savefig('figure_5_intensity_fun.pdf')
+# plt.show()
 
 # h) persistent image
 plt.figure()
 data = np.load('intermediate/fig_5_pimage.npy')
 data = data.reshape(13, 13)
 fig = plt.pcolor(data, cmap=plt.cm.RdBu)
-plt.xlabel('Birth', fontsize=28)
-plt.ylabel('Persistence', fontsize=28)
+plt.xlabel('Birth', fontsize=22)
+plt.ylabel('Persistence', fontsize=22)
 cbar = plt.colorbar(fig)
-cbar.ax.tick_params(labelsize=28)
-plt.gca().set_xlim((0,13))
-plt.gca().set_ylim((0,13))
-plt.tick_params(axis='both', which='major', labelsize=28)
-plt.tick_params(axis='both', which='minor', labelsize=28)
+cbar.ax.tick_params(labelsize=22)
+plt.gca().set_xlim((0,11))
+plt.gca().set_ylim((0,11))
+plt.tick_params(axis='both', which='major', labelsize=22)
+plt.tick_params(axis='both', which='minor', labelsize=22)
 plt.tight_layout()
+xtick = plt.xticks()[0]
+plt.xticks(xtick[:-1], ['0.6', '0.8', '1.0', '1.2', '1.4', '1.6'])
+ytick = plt.yticks()[0]
+plt.yticks(ytick[:-1], ['0.0', '0.2', '0.4', '0.6', '0.8', '1.0'])
 plt.savefig('figure_5_pimage_fun.pdf')
 # plt.show()
