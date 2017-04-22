@@ -66,6 +66,12 @@ eulerStat <- function(X, L) {
   return(proba$p.value)
 }
 
+eulerVanillaFunction <- function(diagram, length=1000) {
+  tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=length)
+  euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
+  return euler;
+}
+
 # Wrapper fxn to combine generation and integration.
 eulerIntegration <- function(diagram) {
   tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=1000)
@@ -104,41 +110,3 @@ eulerDualPlot <- function(diagram1, diagram2, main='', path='') {
   legend("topright", c("CDM", "WDM"), col=c("blue", "red"), lty=1)
   dev.off()
 }
-
-# # Example Usage
-# # -------------
-# n <- 50
-# X <- circleUnif(n)
-# plot(X)
-#
-# maxdimension <- 1
-# maxscale <- 3
-#
-# Diag <- ripsDiag(X, maxdimension, maxscale, printProgress=T)
-# diagram <- Diag$d
-# plot(diagram)
-#
-# tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=1000)
-# euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
-# plot(tseq, euler, type="l", main="Euler Characteristic")
-#
-#
-# ## KDE
-# # Generate data from the unit circle, plus clutter noise.
-# n <- 300
-# XX <- circleUnif(n)
-#
-# # Grid limits
-# Xlim <- c(-1.6,1.6)
-# Ylim <- c(-1.7,1.7)
-# lim <- cbind(Xlim,Ylim)
-# by <- 0.065
-#
-# #Kernel Density Diagram of the suplevel sets
-# h <- .3  #bandwidth for the function kde
-# diagram <-gridDiag(XX, kde, lim, by=by, sublevel=F, printProgress=T, h=h)$diag
-#
-# plot(diagram)
-# tseq <- seq(min(test[,2:3]),max(test[,2:3]),length=1000)
-# euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
-# plot(tseq, euler, type="l", main="Euler Characteristic")
