@@ -69,7 +69,7 @@ eulerStat <- function(X, L) {
 eulerVanillaFunction <- function(diagram, length=1000) {
   tseq <- seq(min(diagram[,2:3]),max(diagram[,2:3]),length=length)
   euler <- eulerChar(tseq, diagram, maxdimension=max(diagram[,1]), threshold=0)
-  return euler;
+  return(euler);
 }
 
 # Wrapper fxn to combine generation and integration.

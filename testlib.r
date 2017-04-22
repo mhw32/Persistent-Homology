@@ -20,7 +20,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE, run_base=TRUE) {
   colnum <- length(foam[[1]])
   basenum <- setnum # This represents the added baseline.
   if (run_base == FALSE) { setnum <- setnum - 1 }
-  
+
   # Euler Characteristic.
   euler_test <- function() {
     eulerMat <- gridOperation(foam, eulerIntegration)
@@ -121,7 +121,7 @@ voronoi_tests <- function(foam, baseline, norm=FALSE, run_base=TRUE) {
     silhEulerProba <- rep(0, setnum)
     for (i in 1:setnum) {
       currproba <- t.test(
-        silhEulerMat[,basenum], 
+        silhEulerMat[,basenum],
         silhEulerMat[,i],
         paired=TRUE
       )
@@ -184,8 +184,17 @@ voronoi_tests <- function(foam, baseline, norm=FALSE, run_base=TRUE) {
   }
 
   # Return the tests.
-  keys <- c('euler', 'indiv-euler', 'all-euler', 'indiv-land', 'all-land', 'indiv_silh', 'all-silh', 'silh-euler', 'distr', 'contour', 'global-kde')
-  tests <- c(euler_test, euler_indiv_test, euler_all_test, land_indiv_test, land_all_test, silh_indiv_test, silh_all_test, silh_euler_test, distr_test, contour_test, global_kde_test)
+  keys <- c(
+    'euler', 'indiv-euler', 'all-euler', 'indiv-land',
+    'all-land', 'indiv_silh', 'all-silh', 'silh-euler',
+    'distr', 'contour', 'global-kde'
+  )
+  tests <- c(
+    euler_test, euler_indiv_test, euler_all_test,
+    land_indiv_test, land_all_test, silh_indiv_test,
+    silh_all_test, silh_euler_test, distr_test,
+    contour_test, global_kde_test
+  )
   testsfxns <- vector(mode="list", length=length(keys))
   names(testsfxns) <- keys
   for (i in 1:length(keys)) {
@@ -194,12 +203,20 @@ voronoi_tests <- function(foam, baseline, norm=FALSE, run_base=TRUE) {
   return(testsfxns)
 }
 
-test_wrapper <- function(foam, base, ext, norm=FALSE, run_base=FALSE) {
-  print('entered test_wrapper')
+test_wrapper <- function(
+  foam, base, norm=FALSE, run_base=FALSE,
+  ext='set', folder='.'
+) {
   # 'indiv-land', 'all-land', 'global-kde', 'distr' not included.
-  keys <- c('euler', 'indiv-euler', 'all-euler', 'indiv_silh', 'all-silh', 'silh-euler', 'contour')
+  keys <- c(
+    'euler', 'indiv-euler', 'all-euler', 'indiv_silh',
+    'all-silh', 'silh-euler', 'contour'
+  )
+  if (substr(folder, nchar(folder), nchar(folder)+1) != "/") {
+    folder <- paste(folder, "/", sep="")
+  }
   # Direct output to a file.
-  sink(paste("./saved_states/large_sub_set_test/results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
+  sink(paste(folder, "results-", ext, ".txt", sep=""), append=FALSE, split=FALSE)
   print("--------------------------------")
   t <- voronoi_tests(foam, base, norm=norm, run_base=run_base)
   for (i in keys) {
