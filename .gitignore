@@ -1,4 +1,5 @@
 images/*
+*.bin
 **.npy
 **.DS_Store
 test_set
@@ -17,3 +18,14 @@ test_set
 *.Rout
 /scratch
 *.pyc
+*.pdf
+/correlation/sub_output
+/correlation/pure_sub_data
+/correlation/pure_simu
+/correlation/pure_data
+/correlation/output
+/correlation/old_output
+/correlation/data
+/correlation/data_sim
+/intensity/data
+/intensity/output

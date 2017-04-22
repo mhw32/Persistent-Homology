@@ -19,6 +19,14 @@ load_WDM <- function() {
   return(reframe)
 }
 
+# remove the least massive particles
+downsample_WDM <- function(cdm, wdm) {
+  num_cdm <- dim(cdm)[1]
+  num_wdm <- dim(wdm)[1]
+  num_to_remove <- num_cdm - num_wdm
+  # sort the cdm by size -- TODO: we lack the particle sizes for CDM
+}
+
 # we can't just take a sample. Instead we have to divide the cube itself into 27 smaller sets.
 # A cube is cubic, so n=3 --> 3 in each dimension = 27 slices.
 slice_cube <- function(cube) {
@@ -48,6 +56,7 @@ slice_cube <- function(cube) {
 slice_cube_robust <- function(cube, n) {
   # This is the final slices.
   slices <- vector('list', n^3)
+  indexmap <- vector('list', n^3)
   slicenum <- 1
   # initialize some item/counters
   item <- 0
@@ -75,12 +84,34 @@ slice_cube_robust <- function(cube, n) {
         newcube[,2] <- newcube[,2] - (h[j-1])
         newcube[,3] <- newcube[,3] - (h[k-1])
         slices[[slicenum]] <- newcube
+        indexmap[[slicenum]] <- rbind(dim1, dim2, dim3)
         slicenum <- slicenum + 1
       }
     }
   }
   return(slices)
 }
+
+regroup_cube_robust <- function(slices, indexmap, n) {
+  num_row <- 0
+  for (i in 1:64) {
+    num_row <- num_row + dim(slices[[i]])[1]
+  }
+  counter <- 1
+  cube <- matrix(NA, num_row, 3)
+  for (i in 1:64) {
+    slice <- slices[[i]]
+    map <- indexmap[[i]]
+    num_in_slice <- dim(slice)[1]
+    for (j in 1:3) {
+      slice[,j] <- slice[,j] + map[j,1]
+    }
+    cube[counter:(counter+num_in_slice-1),] <- slice
+    counter <- counter + num_in_slice
+  }
+  return cube
+}
+
 
 # With the set, create persistence diagrams from each one.
 persistify_set <- function(sampleset, n) {
