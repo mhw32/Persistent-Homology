@@ -12,6 +12,7 @@ test_set
 *.ipynb
 *.ipynb_checkpoints/
 /saved_states
+/simulations
 /notebooks
 *.bsub
 *.RData

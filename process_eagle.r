@@ -1,6 +1,5 @@
 # Tests with EAGLE simulation data.
 library(rhdf5)
-library(rgl)
 library(scatterplot3d)
 library(TDA)
 
@@ -19,12 +18,22 @@ load_WDM <- function() {
   return(reframe)
 }
 
+load_CDM_masses <- function() {
+  d <- t(h5read("./simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloMasses"))
+  return(d)
+}
+
 # remove the least massive particles
-downsample_WDM <- function(cdm, wdm) {
-  num_cdm <- dim(cdm)[1]
+load_downsample_CDM <- function() {
+  cdm <- load_CDM()
+  wdm <- load_WDM()
+  cdm_masses <- load_CDM_masses()
+  # get sizes
   num_wdm <- dim(wdm)[1]
-  num_to_remove <- num_cdm - num_wdm
-  # sort the cdm by size -- TODO: we lack the particle sizes for CDM
+  # sort the cdm by size
+  indexes <- sort(cdm_masses, index.return=TRUE)
+  cdm <- cdm[rev(indexes[["ix"]])[1:num_wdm],]
+  return(cdm)
 }
 
 # we can't just take a sample. Instead we have to divide the cube itself into 27 smaller sets.
