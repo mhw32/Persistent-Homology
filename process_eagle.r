@@ -18,13 +18,23 @@ load_WDM <- function() {
   return(reframe)
 }
 
+load_WDM_vanilla <- function() {
+  d <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloPositions"))
+  return(d)
+}
+
 load_CDM_masses <- function() {
   d <- t(h5read("./simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloMasses"))
   return(d)
 }
 
+load_WDM_masses <- function() {
+  d <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloMasses"))
+  return(d)
+}
+
 # remove the least massive particles
-load_downsample_CDM <- function() {
+load_downsampled_CDM_by_mass <- function() {
   cdm <- load_CDM()
   wdm <- load_WDM()
   cdm_masses <- load_CDM_masses()
@@ -35,6 +45,26 @@ load_downsample_CDM <- function() {
   cdm <- cdm[rev(indexes[["ix"]])[1:num_wdm],]
   return(cdm)
 }
+
+load_downsampled_CDM_by_mass_cuts <- function(threshold) {
+  stopifnot(!(threshold %in% c(1, 0.5, 0.1)))
+  if (threshold == 1) {
+    wdm_mass_cut <- 1e8
+    cdm_mass_cut <- 8e8
+  } else if (threshold == 0.5) {
+    wdm_mass_cut <- 1e9
+    cdm_mass_cut <- 2e8
+  } else {
+    wdm_mass_cut <- 1e10
+    cdm_mass_cut <- 1e10
+  }
+
+  cdm <- load_CDM()
+  wdm <- load_WDM()
+  cdm_max_masses <- load_CDM_max_masses()
+  wdm_max_masses <- load_WDM_max_masses()
+}
+
 
 # we can't just take a sample. Instead we have to divide the cube itself into 27 smaller sets.
 # A cube is cubic, so n=3 --> 3 in each dimension = 27 slices.
@@ -118,7 +148,7 @@ regroup_cube_robust <- function(slices, indexmap, n) {
     cube[counter:(counter+num_in_slice-1),] <- slice
     counter <- counter + num_in_slice
   }
-  return cube
+  return(cube)
 }
 
 
