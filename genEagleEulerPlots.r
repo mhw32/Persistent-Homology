@@ -31,12 +31,12 @@ response <- euler_eagle_directory_test(
 cdmAverages <- array(, dim=c(4, 1000))
 wdmAverages <- array(, dim=c(4, 1000))
 for (i in 1:4) {
-    cdmSplit <- response[[paste("cdm", "split", i, sep="_")]]
-    wdmSplit <- response[[paste("wdm", "split", i, sep="_")]]
-    cdmAverage <- apply(cdmSplit, c(3), function(x) mean(x))
-    wdmAverage <- apply(wdmSplit, c(2), function(x) mean(x))
-    cdmAverages[i,] <- cdmAverage
-    wdmAverages[i,] <- wdmAverage
+  cdmSplit <- response[[paste("cdm", "split", i, sep="_")]]
+  wdmSplit <- response[[paste("wdm", "split", i, sep="_")]]
+  cdmAverage <- apply(cdmSplit, c(3), function(x) mean(x))
+  wdmAverage <- apply(wdmSplit, c(2), function(x) mean(x))
+  cdmAverages[i,] <- cdmAverage
+  wdmAverages[i,] <- wdmAverage
 }
 
 saveRDS(
@@ -68,12 +68,13 @@ saveRDS(
 )
 
 for (i in 1:4) {
-  cdmMat <- response[[paste("cdm", "split", i, sep="_")]][1,,]
+  cdmMat <- response[[paste("cdm", "split", i, sep="_")]]
   wdmMat <- response[[paste("wdm", "split", i, sep="_")]]
+  wdmMat <- array(wdmMat, c(1, dim(wdmMat)))
   eulerComparePlot(
     wdmMat, cdmMat,
-    nullLabel=paste("Null [wdm (split ", i ")]", sep=""),
-    testLabel=paste("Test [cdm (split ", i ")]", sep=""),
+    nullLabel=paste("Null [wdm (split ", i, ")]", sep=""),
+    testLabel=paste("Test [cdm (split ", i, ")]", sep=""),
     plotTitle=paste("Null vs Test Hypothesis Euler Characteristic"),
     outFile=paste(
       plotDir,

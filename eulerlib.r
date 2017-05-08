@@ -100,10 +100,21 @@ eulerComparePlot <- function(
   for (d in 1:euler_length) {
     avg_baseline[d] <- mean(baseline[,,d])
     avg_foam[d] <- mean(foam[,,d])
-    minus_1std_baseline[d] <- avg_baseline[d] - sd(baseline[,,d])
-    minus_1std_foam[d] <- avg_foam[d] - sd(foam[,,d])
-    plus_1std_baseline[d] <- avg_baseline[d] + sd(baseline[,,d])
-    plus_1std_foam[d] <- avg_foam[d] + sd(foam[,,d])
+    if (length(avg_baseline[d]) > 1) {
+      minus_1std_baseline[d] <- avg_baseline[d] - sd(baseline[,,d])
+      plus_1std_baseline[d] <- avg_baseline[d] + sd(baseline[,,d])
+    } else {
+      minus_1std_baseline[d] <- 0
+      plus_1std_baseline[d] <- 0
+    }
+
+    if (length(avg_foam[d]) > 1) {
+      minus_1std_foam[d] <- avg_foam[d] - sd(foam[,,d])
+      plus_1std_foam[d] <- avg_foam[d] + sd(foam[,,d])
+    } else {
+      minus_1std_foam[d] <- 0
+      plus_1std_foam[d] <- 0
+    }
   }
   plot_ymin <- min(min(minus_1std_baseline), min(minus_1std_foam))
   plot_ymax <- max(max(plus_1std_baseline), max(plus_1std_foam))
