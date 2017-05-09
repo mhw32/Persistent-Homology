@@ -24,12 +24,17 @@ load_CDM_masses <- function() {
 }
 
 load_WDM_masses <- function() {
-  d <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloMasses"))
-  return(d)
+  d <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloPositions"))
+  HMspher <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloHMSpher"))
+  MaxMass <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloMaxMass"))
+  selection <- (MaxMass > 2.2e8) & (HMspher > 0.2)
+  d2 <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloMasses"))
+  d2 <- array(d2[,selection], dim=c(1, sum(selection)))
+  return(d2)
 }
 
 load_downsampled_WDM <- function(threshold) {
-  stopifnot(!(threshold %in% c(1, 0.5, 0.1)))
+  stopifnot(threshold %in% c(1, 0.5, 0.1))
   if (threshold == 1) {
     wdm_mass_cut <- 1e8
   } else if (threshold == 0.5) {
@@ -43,18 +48,12 @@ load_downsampled_WDM <- function(threshold) {
   wdm_masses <- wdm_masses * 1e10 / 0.7
 
   num_wdm <- length(wdm)
-  downsampled_wdm <- array()
-  for (i in 1:num_wdm) {
-    if (wdm_masses[i] > wdm_mass_cut) {
-      downsampled_wdm <- rbind(downsampled_wdm, wdm[i,])
-    }
-  }
-
+  downsampled_wdm <- wdm[wdm_masses > wdm_mass_cut,]
   return(downsampled_wdm)
 }
 
 load_downsampled_CDM <- function(threshold) {
-  stopifnot(!(threshold %in% c(1, 0.5, 0.1)))
+  stopifnot(threshold %in% c(1, 0.5, 0.1))
   if (threshold == 1) {
     cdm_mass_cut <- 8e8
   } else if (threshold == 0.5) {
@@ -68,13 +67,7 @@ load_downsampled_CDM <- function(threshold) {
   cdm_masses <- cdm_masses * 1e10 / 0.7
 
   num_cdm <- length(cdm)
-  downsampled_cdm <- array()
-  for (i in 1:num_cdm) {
-    if (cdm_masses[i] > cdm_mass_cut) {
-      downsampled_cdm <- rbind(downsampled_cdm, cdm[i,])
-    }
-  }
-
+  downsampled_cdm <- cdm[cdm_masses > cdm_mass_cut,]
   return(downsampled_cdm)
 }
 
