@@ -104,16 +104,16 @@ eulerComparePlot <- function(
       minus_1std_baseline[d] <- avg_baseline[d] - sd(baseline[,,d])
       plus_1std_baseline[d] <- avg_baseline[d] + sd(baseline[,,d])
     } else {
-      minus_1std_baseline[d] <- 0
-      plus_1std_baseline[d] <- 0
+      minus_1std_baseline[d] <- avg_baseline[d]
+      plus_1std_baseline[d] <- avg_baseline[d]
     }
 
     if (length(avg_foam[d]) > 1) {
       minus_1std_foam[d] <- avg_foam[d] - sd(foam[,,d])
       plus_1std_foam[d] <- avg_foam[d] + sd(foam[,,d])
     } else {
-      minus_1std_foam[d] <- 0
-      plus_1std_foam[d] <- 0
+      minus_1std_foam[d] <- avg_baseline[d]
+      plus_1std_foam[d] <- avg_baseline[d]
     }
   }
   plot_ymin <- min(min(minus_1std_baseline), min(minus_1std_foam))

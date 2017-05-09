@@ -18,11 +18,6 @@ load_WDM <- function() {
   return(reframe)
 }
 
-load_WDM_vanilla <- function() {
-  d <- t(h5read("./simulations/Output_Eagle_VolumeW.hdf5", "P1/SubhaloPositions"))
-  return(d)
-}
-
 load_CDM_masses <- function() {
   d <- t(h5read("./simulations/Output_Eagle_Volume.hdf5", "P1/SubhaloMasses"))
   return(d)
@@ -33,36 +28,54 @@ load_WDM_masses <- function() {
   return(d)
 }
 
-# remove the least massive particles
-load_downsampled_CDM_by_mass <- function() {
-  cdm <- load_CDM()
-  wdm <- load_WDM()
-  cdm_masses <- load_CDM_masses()
-  # get sizes
-  num_wdm <- dim(wdm)[1]
-  # sort the cdm by size
-  indexes <- sort(cdm_masses, index.return=TRUE)
-  cdm <- cdm[rev(indexes[["ix"]])[1:num_wdm],]
-  return(cdm)
-}
-
-load_downsampled_CDM_by_mass_cuts <- function(threshold) {
+load_downsampled_WDM <- function(threshold) {
   stopifnot(!(threshold %in% c(1, 0.5, 0.1)))
   if (threshold == 1) {
     wdm_mass_cut <- 1e8
-    cdm_mass_cut <- 8e8
   } else if (threshold == 0.5) {
     wdm_mass_cut <- 1e9
-    cdm_mass_cut <- 2e8
   } else {
     wdm_mass_cut <- 1e10
+  }
+
+  wdm <- load_WDM()
+  wdm_masses <- load_WDM_masses()
+  wdm_masses <- wdm_masses * 1e10 / 0.7
+
+  num_wdm <- length(wdm)
+  downsampled_wdm <- array()
+  for (i in 1:num_wdm) {
+    if (wdm_masses[i] > wdm_mass_cut) {
+      downsampled_wdm <- rbind(downsampled_wdm, wdm[i,])
+    }
+  }
+
+  return(downsampled_wdm)
+}
+
+load_downsampled_CDM <- function(threshold) {
+  stopifnot(!(threshold %in% c(1, 0.5, 0.1)))
+  if (threshold == 1) {
+    cdm_mass_cut <- 8e8
+  } else if (threshold == 0.5) {
+    cdm_mass_cut <- 2e8
+  } else {
     cdm_mass_cut <- 1e10
   }
 
   cdm <- load_CDM()
-  wdm <- load_WDM()
-  cdm_max_masses <- load_CDM_max_masses()
-  wdm_max_masses <- load_WDM_max_masses()
+  cdm_masses <- load_CDM_masses()
+  cdm_masses <- cdm_masses * 1e10 / 0.7
+
+  num_cdm <- length(cdm)
+  downsampled_cdm <- array()
+  for (i in 1:num_cdm) {
+    if (cdm_masses[i] > cdm_mass_cut) {
+      downsampled_cdm <- rbind(downsampled_cdm, cdm[i,])
+    }
+  }
+
+  return(downsampled_cdm)
 }
 
 
