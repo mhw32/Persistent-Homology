@@ -27,11 +27,11 @@ def run_corr_test(dataDir, outDir, norm=False):
   all_cdm_corr = np.zeros((4, 64))
   all_wdm_corr = np.zeros((4, 64))
 
-  for i in np.arange(1, 5)[::-1]:
+  for i in np.arange(2, 5)[::-1]:
     print('Operating on set %d' % i)
     cdm_corr, wdm_corr = corr_simu_test_suite(
-      os.path.join(dataDir, 'cdm_diags_%d.rds' % i),
-      os.path.join(dataDir, 'wdm_diags_%d.rds' % i),
+      os.path.join(dataDir, 'cdm_coords_%d.rds' % i),
+      os.path.join(dataDir, 'wdm_coords_%d.rds' % i),
       normalize=norm,
     )
     all_cdm_corr[i-1, :i**3] = cdm_corr
@@ -51,11 +51,11 @@ def run_corr_func_test(dataDir, outDir, norm=False):
   all_cdm_func = np.zeros((4, 64, 100))
   all_wdm_func = np.zeros((4, 64, 100))
 
-  for i in np.arange(1, 5)[::-1]:
+  for i in np.arange(2, 5)[::-1]:
     print('Operating on set %d' % i)
     cdm_func, wdm_func = corr_simu_func_suite(
-      os.path.join(dataDir, 'cdm_diags_%d.rds' % i),
-      os.path.join(dataDir, 'wdm_diags_%d.rds' % i),
+      os.path.join(dataDir, 'cdm_coords_%d.rds' % i),
+      os.path.join(dataDir, 'wdm_coords_%d.rds' % i),
       normalize=norm,
     )
     all_cdm_func[i-1, :i**3, :] = cdm_func
