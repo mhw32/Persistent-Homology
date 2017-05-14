@@ -22,8 +22,8 @@ if (substr(outDir, nchar(outDir), nchar(outDir)+1) != "/") {
   outDir <- paste(outDir, "/", sep="")
 }
 
-load(paste(dataDir, 'cdm_corr_norm(', norm, ').gzip', sep=''))
-load(paste(dataDir, 'wdm_corr_norm(', norm, ').gzip', sep=''))
+load(paste(dataDir, 'cdm_corr_norm(', norm, ').rds', sep=''))
+load(paste(dataDir, 'wdm_corr_norm(', norm, ').rds', sep=''))
 tlibs <- corrSimuTestSuite(cdm, wdm)
 corrDimTest <- tlibs$`indiv-corr`
 corrDimProba <- corrDimTest(cdm, wdm)

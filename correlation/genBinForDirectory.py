@@ -27,7 +27,7 @@ for dataFile in dataDir:
     if args.rds:
       dataFileArr[-1] = 'rds'
       newDataFile = '.'.join(dataFileArr)
-      objectName = 'cdm' if cdm in dataFile else 'wdm'
+      objectName = 'cdm' if 'cdm' in dataFile else 'wdm'
       np_to_rds(
         os.path.join(args.dataDir, dataFile), 
         os.path.join(args.outDir, newDataFile),
