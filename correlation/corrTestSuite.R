@@ -74,24 +74,3 @@ corrSimuTestSuite <- function(cdmStats, wdmStats) {
   	return(fxns)
 }
 
-applyCorrVoronoiTestSuite <- function(norm) {
-	load(paste('output/base_corr_norm(', norm, ').gzip', sep=''))
-	load(paste('output/foam_corr_norm(', norm, ').gzip', sep=''))
-	
-	tlibs <- corrVoronoiTestSuite(base, foam)
-	corrDimTest <- tlibs$`indiv-corr`
-	corrDimProba <- corrDimTest(base, foam)
-	saveRDS(corrDimProba, file=paste('output/voronoi_proba_norm(', norm, ').rds', sep=''))
-}
-
-applyCorrSimuTestSuite <- function(norm) {
-	load(paste('output/cdm_corr_norm(', norm, ').gzip', sep=''))
-	load(paste('output/wdm_corr_norm(', norm, ').gzip', sep=''))
-	
-	tlibs <- corrSimuTestSuite(cdm, wdm)
-	corrDimTest <- tlibs$`indiv-corr`
-	corrDimProba <- corrDimTest(cdm, wdm)
-	saveRDS(corrDimProba, file=paste('output/simu_proba_norm(', norm, ').rds', sep=''))
-}
-
-
