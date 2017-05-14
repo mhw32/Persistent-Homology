@@ -46,22 +46,17 @@ def corr_voronoi_test_suite(base_file, foam_file, normalize=False):
 
 	return base_stats, foam_stats
 
+
 def corr_simu_test_suite(cdm_file, wdm_file, normalize=False):
 	# read all the data
 	cdm_raw  = rds_to_np(cdm_file)
-	if cdm_file == 'pure_simu/cdm_1.rds':
-		cdm_data = [np.array( cdm_raw ).T]
-	else:
-		cdm_data = [np.array( i ).T for i in cdm_raw]
+	cdm_data = [np.array(i).T for i in cdm_raw]
 
 	if normalize:
 		cdm_data = normVec(cdm_data)
 
 	wdm_raw  = rds_to_np(wdm_file)
-	if wdm_file == 'pure_simu/wdm_1.rds':
-		wdm_data = [np.array( wdm_raw ).T]
-	else:
-		wdm_data = [np.array( i ).T for i in wdm_raw]
+	wdm_data = [np.array(i).T for i in wdm_raw]
 
 	if normalize:
 		wdm_data = normVec(wdm_data)
@@ -122,22 +117,17 @@ def corr_voronoi_func_suite(base_file, foam_file, normalize=False):
 
 	return base_func, foam_func
 
+
 def corr_simu_func_suite(cdm_file, wdm_file, normalize=False):
 	# read all the data
 	cdm_raw  = rds_to_np(cdm_file)
-	if cdm_file == 'pure_simu/cdm_1.rds':
-		cdm_data = [np.array( cdm_raw ).T]
-	else:
-		cdm_data = [np.array( i ).T for i in cdm_raw]
+	cdm_data = [np.array(i).T for i in cdm_raw]
 
 	if normalize:
 		cdm_data = normVec(cdm_data)
 
 	wdm_raw  = rds_to_np(wdm_file)
-	if wdm_file == 'pure_simu/wdm_1.rds':
-		wdm_data = [np.array( wdm_raw ).T]
-	else:
-		wdm_data = [np.array( i ).T for i in wdm_raw]
+	wdm_data = [np.array(i).T for i in wdm_raw]
 
 	if normalize:
 		wdm_data = normVec(wdm_data)
