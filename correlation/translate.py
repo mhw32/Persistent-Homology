@@ -1,5 +1,9 @@
-''' Translate R data to Python.  
-'''
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+
+''' Translate R data to Python. '''
 
 import rpy2.robjects as robjects
 import rpy2.robjects.numpy2ri
@@ -7,26 +11,31 @@ rpy2.robjects.numpy2ri.activate()
 from rpy2.robjects.numpy2ri import numpy2ri
 import numpy as np
 
+
 def rds_to_np(Rfile):
-	''' Convert .RData to be able to load 
+	''' Convert .RData to be able to load
 		the array into Python.
 
-		Rfile := (str) location of file to 
+		Rfile := (str) location of file to
 		translate to Python.
-	''' 
+	'''
 	raw = robjects.r['readRDS'](Rfile)
 	return raw
+
 
 def read_baseline(raw):
 	# convert raw matrices to numpy
 	f = lambda x : np.array(x)
 	return [f(x) for x in raw]
 
+
 def read_foam(raw):
 	return [read_baseline(x) for x in raw]
 
+
 def read_fake_foam(raw):
 	return [read_baseline(raw)]
+
 
 def read_pure_baseline(raw):
 	data = np.array(raw)
@@ -35,22 +44,24 @@ def read_pure_baseline(raw):
 		new_data[int(np.floor(i/3)),i%3,:] = data[i, :]
 	return(list(new_data))
 
+
 def read_pure_foam(raw):
 	new_data = [] # can't be array, not all same length
 	for i in range(len(raw)):
 		new_data.append(read_pure_baseline(raw[i]))
 	return new_data
 
+
 def np_to_bin(inputfile, outputfile='/tmp/data.bin'):
 	'''
 	inputfile := npy file path
 	outputfile := bin file path
 
-	Read a numpy file, and write a simple 
-	binary file containing two integers 'n' 
-	and 'k' for rows and columns n times k floats 
-	with the actual matrix which can be read 
-	by any application or language that 
+	Read a numpy file, and write a simple
+	binary file containing two integers 'n'
+	and 'k' for rows and columns n times k floats
+	with the actual matrix which can be read
+	by any application or language that
 	can read binary.
 	'''
 
@@ -70,6 +81,7 @@ def np_to_bin(inputfile, outputfile='/tmp/data.bin'):
 	    data = struct.pack('%id' % mat.shape[0], *mat[:,i])
 	    binfile.write(data)
 	binfile.close()
+
 
 def np_to_rds(inputfile, outputfile, robjname):
 	''' Save numpy file to rds file.

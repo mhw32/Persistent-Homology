@@ -19,12 +19,12 @@ if (substr(outDir, nchar(outDir), nchar(outDir)+1) != "/") {
   outDir <- paste(outDir, "/", sep="")
 }
 
-for (i in 2:4) {
+for (i in 1:1) {
   if (downsample) {
     cdm <- load_downsampled_CDM(threshold)
     wdm <- load_downsampled_WDM(threshold)
-    cdm_diags_name <- "cdm_diags_downsampled_"
-    wdm_diags_name <- "wdm_diags_downsampled_"
+    cdm_diags_name <- paste("cdm_diags_downsampled_", threshold, "_", sep="")
+    wdm_diags_name <- paste("wdm_diags_downsampled_", threshold, "_", sep="")
   } else {
     cdm <- load_CDM()
     wdm <- load_WDM()

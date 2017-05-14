@@ -31,7 +31,7 @@ for (i in 2:4) {
   test_wrapper(
     bigset, wdm, norm=FALSE, run_base=FALSE,
     ext=paste(paste("split=[", i, "]", sep=""), "norm=[0]", "base=[cdm]", sep="_"),
-    folder=outDir,
+    folder=outDir
   )
 
   print(paste('Executing Eagle set [base=cdm, norm=True]: ', i))
@@ -42,7 +42,7 @@ for (i in 2:4) {
   test_wrapper(
     bigset, wdm, norm=TRUE, run_base=FALSE,
     ext=paste(paste("split=[", i, "]", sep=""), "norm=[1]", "base=[cdm]", sep="_"),
-    folder=outDir,
+    folder=outDir
   )
 
   print(paste('Executing Eagle set [base=wdm, norm=False]: ', i))
@@ -53,7 +53,7 @@ for (i in 2:4) {
   test_wrapper(
     bigset, cdm, norm=FALSE, run_base=FALSE,
     ext=paste(paste("split=[", i, "]", sep=""), "norm=[0]", "base=[wdm]", sep="_"),
-    folder=outDir,
+    folder=outDir
   )
 
   print(paste('Executing Eagle set [base=wdm, norm=True]: ', i))
@@ -64,6 +64,6 @@ for (i in 2:4) {
   test_wrapper(
     bigset, cdm, norm=TRUE, run_base=FALSE,
     ext=paste(paste("split=[", i, "]", sep=""), "norm=[1]", "base=[wdm]", sep="_"),
-    folder=outDir,
+    folder=outDir
   )
 }
