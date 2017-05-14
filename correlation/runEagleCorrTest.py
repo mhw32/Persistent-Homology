@@ -4,6 +4,7 @@ from __future__ import print_function
 
 import os
 import argparse
+import numpy as np
 from applyCorr import (
   corr_simu_test_suite,
   corr_simu_func_suite,
