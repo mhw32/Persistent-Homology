@@ -22,7 +22,7 @@ if (substr(outDir, nchar(outDir), nchar(outDir)+1) != "/") {
   outDir <- paste(outDir, "/", sep="")
 }
 
-for (i in 2:4) {
+for (i in 4:4) {
   print(paste('Executing Eagle set [base=cdm, norm=False]: ', i))
   cdm <- readRDS(paste(dataDir, "cdm_diags_", i, ".rds", sep=""))
   wdm <- readRDS(paste(dataDir, "wdm_diags_", i, ".rds", sep=""))

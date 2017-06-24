@@ -1,5 +1,4 @@
 from helper import apply_to_vector
-import pdb
 import numpy as np
 from copy import copy
 # import matplotlib.pyplot as plt
@@ -249,7 +248,6 @@ def vectorize(A):
     return A.flatten()
 
 def pimageDiagFunc(diag, gridnum, tau, n, xmin, xmax, ymin, ymax):
-    pdb.set_trace()
     p0 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 0, gridnum, tau, xmin, xmax, ymin, ymax)[2], n))
     p1 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 1, gridnum, tau, xmin, xmax, ymin, ymax)[2], n))
     p2 = vectorize(surfaceToPixels(surfaceDiagFunc(diag, 2, gridnum, tau, xmin, xmax, ymin, ymax)[2], n))

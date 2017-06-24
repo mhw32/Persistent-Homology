@@ -19,7 +19,7 @@ if (substr(outDir, nchar(outDir), nchar(outDir)+1) != "/") {
   outDir <- paste(outDir, "/", sep="")
 }
 
-for (i in 1:1) {
+for (i in 4:4) {
   if (downsample) {
     cdm <- load_downsampled_CDM(threshold)
     wdm <- load_downsampled_WDM(threshold)
