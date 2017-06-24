@@ -63,14 +63,14 @@ corrSimuTestSuite <- function(cdmStats, wdmStats) {
 	# in a dictionary like structure.
 
 	keys  <- c('indiv-corr')
-  	tests <- c(corrDimTest)
-  
-  	fxns <- vector(mode="list", length=length(keys))
-  	names(fxns) <- keys
+	tests <- c(corrDimTest)
+	fxns <- vector(mode="list", length=length(keys))
+	names(fxns) <- keys
+
 	for (i in 1:length(keys)) {
 		fxns[keys[i]] <- tests[i]
 	}
   
-  	return(fxns)
+  return(fxns)
 }
 

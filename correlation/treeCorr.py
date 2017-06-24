@@ -42,7 +42,7 @@ def get_corr(x, y, z, min_r=1., max_r=100., L=500., Lc=-0.5, ngal=10000, simple=
 	nrand = ngal
 
 	# initialize a catalog
-	cat = treecorr.Catalog(x=x, y=y, z=z)
+	cat = treecorr.Catalog(x=x, y=y, z=z, x_units='arcmin', y_units='arcmin')
 	# initialize a NN correlation
 	dd = treecorr.NNCorrelation(bin_size=0.1, min_sep=min_r, max_sep=max_r, 
 															sep_units='arcmin', verbose=2)
@@ -55,7 +55,7 @@ def get_corr(x, y, z, min_r=1., max_r=100., L=500., Lc=-0.5, ngal=10000, simple=
 	rz = npr.random_sample(nrand) * L + Lc
 
 	# calculate catalog and NN for random one
-	rand = treecorr.Catalog(x=rx, y=ry, z=rz)
+	rand = treecorr.Catalog(x=rx, y=ry, z=rz, x_units='arcmin', y_units='arcmin')
 	rr = treecorr.NNCorrelation(bin_size=0.1, min_sep=min_r, max_sep=max_r, 
 															sep_units='arcmin', verbose=2)
 

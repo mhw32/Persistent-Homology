@@ -71,7 +71,6 @@ def corr_simu_test_suite(cdm_file, wdm_file, normalize=False):
 	for i in range(num_samples):
 		cur_cdm = cdm_data[i].T
 		cdm_stats[i] = get_corr_stat(cur_cdm, L=100, Lc=0, ngal=cur_cdm.shape[0])
-		import pdb; pdb.set_trace()
 		cur_wdm = wdm_data[i].T
 		wdm_stats[i] = get_corr_stat(cur_wdm, L=100, Lc=0, ngal=cur_wdm.shape[0])
 
