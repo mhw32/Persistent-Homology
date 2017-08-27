@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{multicol}
+\usepackage{authblk}
+\usepackage{url}
+\usepackage{color}
+
+\graphicspath{{./}{figs/}}
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\def\R{{\mathbb R}}
+
+\addtolength{\oddsidemargin}{-.5in}%
+\addtolength{\evensidemargin}{-.5in}%
+\addtolength{\textwidth}{1in}%
+\addtolength{\textheight}{1.3in}%
+\addtolength{\topmargin}{-.8in}%
+
+\begin{document}
+
+\subsection{Additional Experiments}
+
+In all previous experiments on cosmological simulation data, the distance-to-measure metric used a resolution of 2 Mpc. It is possible that many more interesting differences between CDM and WDM are fine grain and therefore not captured by previous measures. To check this, we perform the same set of hypothesis tests on unstandardized $4^{3}$ sub-cubes but using persistence diagrams generated from a grid scale of 0.2 Mpc. From Table \ref{table:cosmo-0.2mpc-tests}, we see that statistically significant differences still exist between CDM and WDM Sub-cubes, and more notably, every hypothesis test is more sensitive to these differences (lower p-values) than in the 2 Mpc case, confirming our expectation to find more differences in finer-grain settings.
+
+\begin{table}[htp!]
+    \centering
+    \begin{tabular}{l | c }
+        \toprule
+        Test & $4^3$ Sub-cubes \\
+        \hline
+        EC & 1.50e-10 \\
+        $\textup{EC}_{0:2}$ & 3.00e-50 \\
+        $\textup{EC}_{0}$ & 4.95e-12 \\
+        $\textup{EC}_{1}$ & 1.01e-18 \\
+        $\textup{EC}_{2}$ & 1.60e-12 \\
+        $\textup{Sil}_{EC}$ & 3.93e-37 \\
+        $\textup{Sil}_{0:2}$ & 3.29e-43 \\
+        $\textup{Sil}_{0}$ & 2.77e-06 \\
+        $\textup{Sil}_{1}$ & 1.66e-43 \\
+        $\textup{Sil}_{2}$ & 7.24e-22 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Probability values from hypothesis tests comparing sub-cubes from WDM and CDM simulations using a 0.2 Mpc grid scale for DTM computation.}
+    \label{table:cosmo-0.2mpc-tests}
+\end{table}
+
+All of our experiments thus far have suggested that differences based on persistence diagrams reflect differences in the true underlying topology of the subhalo distribution in CDM and WDM. Playing devil's advocate, this conclusion could be false since the  number of subhalo centers is different between CDM and WDM, which introduces bias into the way we generate and evaluate persistence diagrams. As a sanity check and a confirmation of the validity of our procedure, we subsample the CDM subhaloes (since there are more subhaloes in the CDM simulation than WDM) such that the number density is equivalent to the WDM sample. The procedure by which we subsample is to remove N least-massive subhaloes, the intuition being that most small haloes will not host a luminous galaxy. More explicity, we first plot the cumulative mass function for haloes and subhaloes for both CDM and WDM models. We then pick a fixed number density $n_{\textup{density}}$, find the corresponding halo mass and remove haloes below this threshold.
+
+\begin{table}[htp!]
+    \centering
+    \resizebox{0.7\linewidth}{!}{%
+    \begin{tabular}{l | c | c | c | c | c | c}
+        \toprule
+        \multicolumn{1}{c}{} & \multicolumn{2}{c}{$1 \textup{h}^{3} / \textup{Mpc}^{3}$} & \multicolumn{2}{c}{$5 \times 10^{-1} \textup{h}^{3} / \textup{Mpc}^{3}$} & \multicolumn{2}{c}{$10^{-1} \textup{h}^{3} / \textup{Mpc}^{3}$} \\
+        \toprule
+        Test & $2^3$ Sub-cubes & $4^3$ Sub-cubes & $2^3$ Sub-cubes & $4^3$ Sub-cubes & $2^3$ Sub-cubes & $4^3$ Sub-cubes \\
+        \midrule
+        EC & 1.06e-04 & 2.46e-37 & 8.68e-05 & 8.66e-20 & 3.29e-04 & 2.90e-08 \\
+        $\textup{EC}_{0:2}$ & 6.75e-05 & 3.68e-44 & 1.98e-05 & 6.39e-39 & 3.62e-05 & 5.69e-41 \\
+        $\textup{EC}_{0}$ & 2.03e-04 & 1.75e-29 & 1.11e-04 & 3.18e-21 & 3.34e-01 & 1.16e-08 \\
+        $\textup{EC}_{1}$ & 1.72e-01 & 3.29e-28 & 3.68e-07 & 1.69e-33 & 1.07e-06 & 2.35e-08 \\
+        $\textup{EC}_{2}$ & 1.23e-06 & 4.72e-46 & 4.00e-06 & 3.79e-10 & 3.27e-03 & 1.27e-21 \\
+        $\textup{Sil}_{EC}$ & 2.04e-04 & 2.05e-10 & 8.18e-04 & 3.77e-31 & 1.76e-04 & 1.52e-28 \\
+        $\textup{Sil}_{0:2}$ & 1.13e-05 & 2.37e-22 & 1.09e-05 & 2.08e-35 & 3.34e-05 & 4.83e-37 \\
+        $\textup{Sil}_{0}$ & 3.52e-01 & 1.77e-06 & 1.10e-04 & 1.57e-17 & 3.18e-06 & 9.09e-10 \\
+        $\textup{Sil}_{1}$ & 7.01e-07 & 5.92e-24 & 3.56e-07 & 4.44e-36 & 4.66e-07 & 5.69e-38 \\
+        $\textup{Sil}_{2}$ & 6.66e-04 & 4.15e-06 & 3.13e-04 & 1.27e-22 & 2.81e-04 & 1.76e-20 \\
+        $\textup{CORR}$ & 7.52e-03 & 6.84e-01 & 1.21e-04 & 5.82e-02 & 2.05e-04 & 2.30e-09 \\
+        \bottomrule
+    \end{tabular}}
+    \caption{Probability values comparing sub-cubes of varying scales when downsampling CDM haloes by 3 different mass cuts.}
+    \label{table:cosmo-masscut-tests}
+\end{table}
+
+For this experiment, we consider three different spatial number densities, where $n_{\textup{density}}$ = $1 \textup{h}^{3} / \textup{Mpc}^{3}$, $5 \times 10^{-1} \textup{h}^{3} / \textup{Mpc}^{3}$, and $10^{-1} \textup{h}^{3} / \textup{Mpc}^{3}$. See Table \ref{table:cosmo-masscut-tests} for probability values for each $n_{\textup{density}}$. The table results show that across all 3 mass cuts, a genuine signal still exists in EC, Sil, and other functions that compare persistence diagrams. This suggests, again, that the underlying homology of CDM and WDM haloes do differ.
+
+\end{document}
