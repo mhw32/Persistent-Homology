@@ -47,8 +47,8 @@ for (i in 1:4) {
 }
 
 if (norm) {
-  out_path <- paste(outDir, '/eagle_dists_norm.rds');
+  out_path <- paste(outDir, '/eagle_dists_norm.rds', sep='');
 } else {
-  out_path <- paste(outDir, '/eagle_dists.rds');
+  out_path <- paste(outDir, '/eagle_dists.rds', sep='');
 }
 saveRDS(dists, file=out_path)

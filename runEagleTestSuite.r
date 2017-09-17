@@ -45,25 +45,25 @@ for (i in 4:4) {
     folder=outDir
   )
 
-  print(paste('Executing Eagle set [base=wdm, norm=False]: ', i))
-  cdm <- readRDS(paste(dataDir, "cdm_diags_", i, ".rds", sep=""))
-  wdm <- readRDS(paste(dataDir, "wdm_diags_", i, ".rds", sep=""))
-  bigset <- vector('list', 1)
-  bigset[[1]] <- wdm
-  test_wrapper(
-    bigset, cdm, norm=FALSE, run_base=FALSE,
-    ext=paste(paste("split=[", i, "]", sep=""), "norm=[0]", "base=[wdm]", sep="_"),
-    folder=outDir
-  )
+  # print(paste('Executing Eagle set [base=wdm, norm=False]: ', i))
+  # cdm <- readRDS(paste(dataDir, "cdm_diags_", i, ".rds", sep=""))
+  # wdm <- readRDS(paste(dataDir, "wdm_diags_", i, ".rds", sep=""))
+  # bigset <- vector('list', 1)
+  # bigset[[1]] <- wdm
+  # test_wrapper(
+  #   bigset, cdm, norm=FALSE, run_base=FALSE,
+  #   ext=paste(paste("split=[", i, "]", sep=""), "norm=[0]", "base=[wdm]", sep="_"),
+  #   folder=outDir
+  # )
 
-  print(paste('Executing Eagle set [base=wdm, norm=True]: ', i))
-  cdm <- readRDS(paste(dataDir, "cdm_diags_", i, ".rds", sep=""))
-  wdm <- readRDS(paste(dataDir, "wdm_diags_", i, ".rds", sep=""))
-  bigset <- vector('list', 1)
-  bigset[[1]] <- wdm
-  test_wrapper(
-    bigset, cdm, norm=TRUE, run_base=FALSE,
-    ext=paste(paste("split=[", i, "]", sep=""), "norm=[1]", "base=[wdm]", sep="_"),
-    folder=outDir
-  )
+  # print(paste('Executing Eagle set [base=wdm, norm=True]: ', i))
+  # cdm <- readRDS(paste(dataDir, "cdm_diags_", i, ".rds", sep=""))
+  # wdm <- readRDS(paste(dataDir, "wdm_diags_", i, ".rds", sep=""))
+  # bigset <- vector('list', 1)
+  # bigset[[1]] <- wdm
+  # test_wrapper(
+  #   bigset, cdm, norm=TRUE, run_base=FALSE,
+  #   ext=paste(paste("split=[", i, "]", sep=""), "norm=[1]", "base=[wdm]", sep="_"),
+  #   folder=outDir
+  # )
 }

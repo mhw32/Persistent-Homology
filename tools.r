@@ -107,3 +107,38 @@ plotDiag <- function(X){
   legend("bottomright", c("0","1","2"), pch = c(1,2,3), col = c(1,2,3), cex=2.0)
   dev.off()
 }
+
+plotDiagAndShow <- function(X, norm=FALSE) {
+  mar.default <- c(5,4,4,2) + 0.1
+  par(mar = mar.default + c(0, 1, 0, 0)) 
+  if (norm) {
+    xlim <- c(0,1)
+    ylim <- c(0,1)
+  } else {
+    xlim <- c(0,2)
+    ylim <- c(0,2)
+  }
+  plot(
+    X[,2], X[,3], 
+    pch = c(X[,1]+1), 
+    col = c(X[,1]+1), 
+    xlab = "Birth", 
+    ylab = "Death", 
+    main = "", 
+    cex.lab=2.0, 
+    cex.axis=2.0, 
+    cex.main=2.0, 
+    cex.sub=2.0, 
+    cex=2.0, 
+    xlim=xlim,
+    ylim=ylim
+  )
+  abline(a = 0, b = 1)
+  legend(
+    "bottomright", 
+    c("0","1","2"), 
+    pch = c(1,2,3), 
+    col = c(1,2,3), 
+    cex=2.0
+  )
+}
