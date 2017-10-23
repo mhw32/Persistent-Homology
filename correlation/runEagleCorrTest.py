@@ -17,6 +17,7 @@ def make_parser():
   )
   parser.add_argument('dataDir', type=str, help='path to input data')
   parser.add_argument('outDir', type=str, help='path to output data')
+  parser.add_argument('--nameExt', type=str, default='', help='name to append for downsampling, etc.')
   parser.add_argument('--norm', action='store_true')
   parser.add_argument('--return_func', action='store_true')
   args = parser.parse_args()
@@ -27,11 +28,11 @@ def run_corr_test(dataDir, outDir, norm=False):
   all_cdm_corr = np.zeros((4, 64))
   all_wdm_corr = np.zeros((4, 64))
 
-  for i in np.arange(1, 5)[::-1]:
+  for i in [4]: # np.arange(1, 5)[::-1]:
     print('Operating on set %d' % i)
     cdm_corr, wdm_corr = corr_simu_test_suite(
-      os.path.join(dataDir, 'cdm_coords_%d.rds' % i),
-      os.path.join(dataDir, 'wdm_coords_%d.rds' % i),
+      os.path.join(dataDir, 'cdm_coords_%s%d.rds' % (args.nameExt, i)),
+      os.path.join(dataDir, 'wdm_coords_%s%d.rds' % (args.nameExt, i)),
       normalize=norm,
     )
     all_cdm_corr[i-1, :i**3] = cdm_corr
@@ -54,8 +55,8 @@ def run_corr_func_test(dataDir, outDir, norm=False):
   for i in np.arange(1, 5)[::-1]:
     print('Operating on set %d' % i)
     cdm_func, wdm_func = corr_simu_func_suite(
-      os.path.join(dataDir, 'cdm_coords_%d.rds' % i),
-      os.path.join(dataDir, 'wdm_coords_%d.rds' % i),
+      os.path.join(dataDir, 'cdm_coords_%s%d.rds' % (args.nameExt, i)),
+      os.path.join(dataDir, 'wdm_coords_%s%d.rds' % (args.nameExt, i)),
       normalize=norm,
     )
     all_cdm_func[i-1, :i**3, :] = cdm_func

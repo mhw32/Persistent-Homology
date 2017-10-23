@@ -9,9 +9,14 @@ if (length(args) < 2) {
     "(dataDir[string], outDir[string]).\n",
     sep="",
   ), call.=FALSE)
-} else {
-    dataDir <- args[1]
-    outDir <- args[2]
+} else if (length(args) == 2) {
+  dataDir <- args[1]
+  outDir <- args[2]
+  appendName <- ""
+} else if (length(args) == 3) {
+  dataDir <- args[1]
+  outDir <- args[2]
+  appendName <- args[3]
 }
 
 if (substr(dataDir, nchar(dataDir), nchar(dataDir)+1) != "/") {
@@ -24,8 +29,8 @@ if (substr(outDir, nchar(outDir), nchar(outDir)+1) != "/") {
 
 for (i in 4:4) {
   print(paste('Executing Eagle set [base=cdm, norm=False]: ', i))
-  cdm <- readRDS(paste(dataDir, "cdm_diags_", i, ".rds", sep=""))
-  wdm <- readRDS(paste(dataDir, "wdm_diags_", i, ".rds", sep=""))
+  cdm <- readRDS(paste(dataDir, "cdm_diags_", appendName, i, ".rds", sep=""))
+  wdm <- readRDS(paste(dataDir, "wdm_diags_", appendName, i, ".rds", sep=""))
   bigset <- vector('list', 1)
   bigset[[1]] <- cdm
   test_wrapper(
@@ -35,8 +40,8 @@ for (i in 4:4) {
   )
 
   print(paste('Executing Eagle set [base=cdm, norm=True]: ', i))
-  cdm <- readRDS(paste(dataDir, "cdm_diags_", i, ".rds", sep=""))
-  wdm <- readRDS(paste(dataDir, "wdm_diags_", i, ".rds", sep=""))
+  cdm <- readRDS(paste(dataDir, "cdm_diags_", appendName, i, ".rds", sep=""))
+  wdm <- readRDS(paste(dataDir, "wdm_diags_", appendName, i, ".rds", sep=""))
   bigset <- vector('list', 1)
   bigset[[1]] <- cdm
   test_wrapper(
