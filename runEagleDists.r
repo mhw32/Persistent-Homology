@@ -6,13 +6,19 @@ args = commandArgs(trailingOnly=TRUE)
 if (length(args) < 3) {
   stop(paste(
     "At least 2 arguments must be supplied ",
-    "(norm[boolean], dataDir[string], outDir[string]).\n",
+    "(norm[boolean], dataDir[string], outDir[string], nameExt[string]).\n",
     sep="",
   ), call.=FALSE)
-} else {
-    norm <- as.logical(args[1])
-    dataDir <- args[2]
-    outDir <- args[3]
+} else if (length(args) == 3) {
+  norm <- as.logical(args[1])
+  dataDir <- args[2]
+  outDir <- args[3]
+  nameExt <- ''
+} else if (length(args) == 4) {
+  norm <- as.logical(args[1])
+  dataDir <- args[2]
+  outDir <- args[3]
+  nameExt <- args[4]
 }
 
 if (substr(dataDir, nchar(dataDir), nchar(dataDir)+1) != "/") {
@@ -27,8 +33,8 @@ dists <- array(0,dim=c(4, 64, 3))
 
 for (i in 1:4) {
   print(paste('Executing distance calculation set: ', i))
-  cdm_slices <- readRDS(paste(dataDir, '/cdm_diags_', i, '.rds', sep=''))
-  wdm_slices <- readRDS(paste(dataDir, '/wdm_diags_', i, '.rds', sep=''))
+  cdm_slices <- readRDS(paste(dataDir, '/cdm_diags_', nameExt, i, '.rds', sep=''))
+  wdm_slices <- readRDS(paste(dataDir, '/wdm_diags_', nameExt, i, '.rds', sep=''))
 
   for (l in 1:i^3) {
     cdm_diag <- cleanDiag(cdm_slices[[l]])

@@ -57,7 +57,7 @@ load_downsampled_CDM <- function(threshold) {
   if (threshold == 1) {
     cdm_mass_cut <- 8e8
   } else if (threshold == 0.5) {
-    cdm_mass_cut <- 2e8
+    cdm_mass_cut <- 2e9
   } else {
     cdm_mass_cut <- 1e10
   }
